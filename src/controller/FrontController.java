@@ -1,4 +1,4 @@
-package controller;
+  package controller;
 
 import java.io.IOException;
 
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.*;
 
-@WebServlet(urlPatterns = "/register")
+@WebServlet(urlPatterns = "/hi")
 public class FrontController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -28,7 +28,6 @@ public class FrontController extends HttpServlet {
 		CommandFactory factory = CommandFactory.newInstance();
 		Command command = factory.createCommand(cmd);
 		String state = (String)req.getSession().getAttribute("STATE");
-		System.out.println(state);
 		if(state != null && state.equals("COMPLETE")){
 			url = "/WEB-INF/CORDING/test.jsp";
 		}
