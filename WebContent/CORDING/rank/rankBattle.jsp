@@ -26,6 +26,7 @@
 <title>Ranking</title>
 </head>
 <body>
+<jsp:include page="/top.jsp"/>
 <jsp:include page="/nav.html"/>
     
 <div class="container">   
