@@ -39,9 +39,9 @@
     <!-- 우측 정렬 네비 바 -->
       <ul class="nav navbar-nav navbar-right">
       	<%if(u_id.length()==0){%>
-        	<li><a href="CORDING/login/login.html">로그인</a></li>
-        	<li><a href="CORDING/login/resistration.html">회원가입</a></li>
-        	<li><a href="CORDING/login/idpw.jsp">아이디/비밀번호 찾기</a></li>
+        	<li><a href="/GuiltyPleasure/CORDING/login/login.html">로그인</a></li>
+        	<li><a href="/GuiltyPleasure//CORDING/login/resistration.html">회원가입</a></li>
+        	<li><a href="/GuiltyPleasure//CORDING/login/idpw.jsp">아이디/비밀번호 찾기</a></li>
         <%} %>
         <%if(u_id.length()>0){%>
         	<li><a><%=u_id%>님 환영합니다.</a></li>
