@@ -1,21 +1,14 @@
 package dto;
 
-import java.sql.Timestamp;
-
-public class Service_Center {
-	private int sc_num;
-	private String u_id;
-	private String sc_type;
-	private String sc_title;
-	private String sc_content;
-	private Timestamp sc_regdate;
-	//¿ÃπÃ¡ˆ
-	private String sc_date;
+public class c_board {
+	private String sc_num, u_id, sc_type, sc_title, sc_content,
+	sc_regdate,sc_state;
+	private String img;
 	
-	public int getSc_num() {
+	public String getSc_num() {
 		return sc_num;
 	}
-	public void setSc_num(int sc_num) {
+	public void setSc_num(String sc_num) {
 		this.sc_num = sc_num;
 	}
 	public String getU_id() {
@@ -42,16 +35,22 @@ public class Service_Center {
 	public void setSc_content(String sc_content) {
 		this.sc_content = sc_content;
 	}
-	public Timestamp getSc_regdate() {
+	public String getSc_regdate() {
 		return sc_regdate;
 	}
-	public void setSc_regdate(Timestamp sc_regdate) {
+	public void setSc_regdate(String sc_regdate) {
 		this.sc_regdate = sc_regdate;
 	}
-	public String getSc_date() {
-		return sc_date;
+	public String getSc_state() {
+		return sc_state;
 	}
-	public void setSc_date(String sc_date) {
-		this.sc_date = sc_date;
+	public void setSc_state(String sc_state) {
+		this.sc_state = sc_state;
+	}
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
 	}
 }
