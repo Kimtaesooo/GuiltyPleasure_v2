@@ -7,7 +7,6 @@
 <link rel="stylesheet" href="bootstrap332/css/bootstrap.min.css">
 <script src="bootstrap332/js/jquery-3.2.1.min.js"></script>
 <script src="bootstrap332/js/bootstrap.min.js"></script>
-<style>body{margin-top: 40px}</style>
 
 <script>
 	$(
@@ -78,11 +77,11 @@
 
         <div class="row">
             <div class="col-md-4 portfolio-item" align="center">
-                <a href="#">
+                <a href="CORDING/custom/customer_main.jsp">
                     <img class="img-responsive" src="https://cdn2.iconfinder.com/data/icons/miscellaneous-31/60/birdhouse-128.png" alt="">
                 </a>
                 <h3>
-                    <a href="#">∞Ì∞¥ºæ≈Õ</a>
+                    <a href="CORDING/custom/customer_main.jsp">∞Ì∞¥ºæ≈Õ</a>
                 </h3>
               	<br><br><br>
             </div>

@@ -10,7 +10,6 @@
 <link rel="stylesheet" href="../../bootstrap332/css/bootstrap.min.css">
 <script src="../../bootstrap332/js/jquery-3.2.1.min.js"></script>
 <script src="../../bootstrap332/js/bootstrap.min.js"></script>
-<style>body{margin-top: 40px}</style>
 
 <%
 	request.setCharacterEncoding("euc-kr");
