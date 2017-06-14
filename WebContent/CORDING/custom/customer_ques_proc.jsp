@@ -25,7 +25,10 @@
 <title>글 등록</title>
 </head>
 <body>
-<%response.sendRedirect("customer_list.jsp");%>
+<script>
+			alert("등록되었습니다.");
+			location.replace("customer_list.jsp");  
+</script>
 
 </body>
 </html>

@@ -22,9 +22,14 @@
 	if(u_pw.equals(pw)){
 		dao.DeleteAns(sc_num);
 		dao.DeleteUserQ(sc_num);
-		response.sendRedirect("customer_list.jsp");
-	}else{ 
 %>
+		<script>
+			alert("삭제되었습니다.");
+			location.replace("customer_list.jsp");  
+		</script>
+<%
+	}else{%>
+
 		<script>
 			alert("패스워드가 틀립니다.");
 			location.replace("customer_list.jsp");  
