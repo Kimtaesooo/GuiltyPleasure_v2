@@ -14,7 +14,7 @@ public class MyinfoCommand implements Command{
 	MyInfoDAO dao = new MyInfoDAO();
 	@Override
 	public Object processCommand(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getSession().getAttribute("id").toString();
+		String id = request.getSession().getAttribute("u_id").toString();
 		MyInfoDTO dto = dao.searchMyInfo(id);
 		
 		request.setAttribute("dto", dto);

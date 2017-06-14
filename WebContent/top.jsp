@@ -45,10 +45,10 @@
         <%} %>
         <%if(u_id.length()>0){%>
         	<li><a><%=u_id%>님 환영합니다.</a></li>
-        	<li><a href="#">마이페이지</a></li>
+        	<li><a href="/GuiltyPleasure/myinfo?cmd=MYINFO">마이페이지</a></li>
         	<li><a href="CORDING/login/logout.html">로그아웃</a></li>
         	<%if(u_id.equals("master")){ %>
-        		<li><a href="#">회원관리</a>
+        		<li><a href="/GuiltyPleasure/userinfo?cmd=LIST">회원관리</a>
         	<%}%>
         <%}%>
       </ul>
