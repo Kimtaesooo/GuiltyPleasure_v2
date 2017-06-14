@@ -41,6 +41,7 @@ $(document).ready(function(){
 </head>
 <body>
 <%@include file="../../top.jsp" %>
+
 <form method="post" action="/GuiltyPleasure/userinfo" name="userListForm" id="userListForm">
 <input type="hidden" name="cmd" id="cmd"/>
 <input type="hidden" name="userid" id="userid"/>
