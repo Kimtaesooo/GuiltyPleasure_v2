@@ -34,6 +34,12 @@ public class CommandFactory {
 		if(cmd.equals("QUIT")){
 			return new QuitCommand();
 		}
+		if(cmd.equals("POP")){
+			return new PopCommand();
+		}
+		if(cmd.equals("DELETERESTRICTION")){
+			return new DeleteRestrictionCommand();
+		}
 		
 		return null;
 	}

@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/sub.css">
 <link href="${pageContext.request.contextPath}/font/NotoSansKR.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/showModalDialog.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/pagenav.js" charset='utf-8'></script>
 <script>
 $(document).ready(function(){
@@ -216,15 +217,57 @@ $(document).ready(function(){
 		$("#pagesize").val('10');
 		$("#userInfoForm").submit();
 	}	
+	$("#btnEraseRestriction").click(function(){
 		
+		var info = '';
+		
+		var enroll = $("#enroll").val();
+		if(enroll.length>0) info += '글쓰기금지=enroll ';
+		var chat = $("#chat").val();
+		if(chat.length>0) info += '채팅금지=chat ';
+		var single = $("#single").val();
+		if(single.length>0) info += '싱글금지=single ';
+		var battle = $("#battle").val();
+		if(battle.length>0) info += '배틀금지=battle ';		
+		var entry = $("#entry").val();
+		if(entry.length>0) info += '접속금지=entry ';
+		var del = $("#delete").val();
+		if(del != 'N') info += '탈퇴=del ';
+		
+		if(info.length == 0){
+			alert('제재내역이 없는 사용자 입니다.');
+			return ;
+		}
+		
+		var param = 'dialogWidth:400px; dialogHeight:500px; center:yes; help:no; status:no; scroll:no; resizable:no; modal:yes';
+		var msgDialog = window.showModalDialog('/GuiltyPleasure/userinfo?cmd=POP', info, param);
+		
+		showModalDialogCallback = function(msgDialog){
+			if(msgDialog){		 
+				deleterestrictionAjax(msgDialog, $("#userid").val());
+			}
+		}
+		
+		function deleterestrictionAjax(v, id){
+			$.ajax({
+				type:"POST",
+				url :'/GuiltyPleasure/userinfo?cmd=DELETERESTRICTION',
+				data : {
+					param : v,
+					id : id
+				},
+				success:function(args){   
+			    	alert("사용자 제재 삭제 성공");
+			    	moveinfo();
+			    },     
+			    error:function(e){  
+			    	alert("사용자 제재 삭제 실패");  
+			    }  
+			});
+		}
+	});	
 	$("#btnMain").click(moveinfo);
-});
-	
-function deleterestriction(){
-		
-}
-	
-	
+});	
 </script>
 </head>
 <body>
@@ -270,7 +313,7 @@ function deleterestriction(){
 <hr class="margin20">
 <h2>구매 아이템</h2>
 <hr class="margin10">
-<c:if test="${empty list}">
+<c:if test="${empty itemList}">
 	<hr class="margin10">
 	<h2 style="text-align: center;">아이템 구매내역이  없습니다.</h2>
 	<hr class="margin20">
@@ -284,10 +327,10 @@ function deleterestriction(){
 		<col style="width:20%;">
 	</colgroup>
 	<tr>
-		<th>아이템명</th>
-		<th>구매일</th>
-		<th>유효기간</th>
-		<th>가격</th>
+		<th style="text-align: center;">아이템명</th>
+		<th style="text-align: center;">구매일</th>
+		<th style="text-align: center;">유효기간</th>
+		<th style="text-align: center;">가격</th>
 	</tr>
 	<c:forEach var="item" items="${itemList}">
 		<tr>

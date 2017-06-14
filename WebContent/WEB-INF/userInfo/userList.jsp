@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/sub.css?ver=1">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/sub.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/layout.css">
 <link href="${pageContext.request.contextPath}/font/NotoSansKR.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
@@ -75,13 +75,13 @@ $(document).ready(function(){
 			<col style="width:15%;">
 		</colgroup>
 		<tr id="sortTr">
-			<th id="UM.U_ID">아이디</th>
-			<th id="UM.UM_CHAT">채팅</th>
-			<th id="UM.UM_ENROLL">글쓰기</th>
-			<th id="UM.UM_SINGLE">싱글</th>
-			<th id="UM.UM_BATTLE">배틀</th>
-			<th id="UM.UM_ENTRY">정지</th>
-			<th id="A.U_DELETE">삭제</th>
+			<th id="UM.U_ID" style="text-align: center;">아이디</th>
+			<th id="UM.UM_CHAT" style="text-align: center;">채팅</th>
+			<th id="UM.UM_ENROLL" style="text-align: center;">글쓰기</th>
+			<th id="UM.UM_SINGLE" style="text-align: center;">싱글</th>
+			<th id="UM.UM_BATTLE" style="text-align: center;">배틀</th>
+			<th id="UM.UM_ENTRY" style="text-align: center;">정지</th>
+			<th id="A.U_DELETE" style="text-align: center;">삭제</th>
 		</tr>		
 		<c:forEach var="info" items="${list}" varStatus="num">
 			<tr id="move${num.index}">

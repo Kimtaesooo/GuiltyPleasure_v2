@@ -40,7 +40,7 @@
 	left:0;
 	position:absolute;
 }
-/*��� ������ �޴�*/
+
 .comReMenuW{
 	margin:0 0 10px 0;
 	overflow:hidden;
@@ -143,6 +143,7 @@
 }
 .infoTable th{
 	background:#f3f6f7;
+	text-align:center;
 	padding:10px;
 	border-right:1px solid #eee;
 	border-bottom:1px solid #eee;
