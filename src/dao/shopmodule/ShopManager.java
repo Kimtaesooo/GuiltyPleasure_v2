@@ -37,7 +37,7 @@ public class ShopManager {
 	//아이템 수정
 	public void updateItem(Shop dto) {
 		try {
-			String sql = "update shop set s_itemname=?,s_price=?, s_deadline=?,s_limit_num=?,s_limit_pow=?,s_content=? where s_itemcode=?";
+			String sql = "update shop set s_itemname=?,s_price=?, s_deadline=?,s_limit_num=?,s_content=? where s_itemcode=?";
 
 			con = pool.getConnection();
 
@@ -47,60 +47,44 @@ public class ShopManager {
 			pstmt.setInt(2, dto.getS_price());
 			pstmt.setInt(3, dto.getS_deadline());
 			pstmt.setInt(4, dto.getS_limit_num());
-			pstmt.setInt(5, dto.getS_limit_pow());
-			pstmt.setString(6, dto.getS_content());
-			pstmt.setString(7, dto.getS_itemcode());
+			pstmt.setString(5, dto.getS_content());
+			pstmt.setString(6, dto.getS_itemcode());
 			pstmt.executeUpdate();
 
 		} catch (Exception err) {
 			System.out.println("updateItem()에서 오류");
 			err.printStackTrace();
 		} finally {
-			pool.freeConnection(con, pstmt, rs);
+			pool.freeConnection(con, pstmt);
 		}
 	}
 	
 	//아이템 추가
-//	public void addItem(Board board){
-//		try{
-//			
-//			con = pool.getConnection();
-//			String sql="Insert into tblBoard (b_num,b_name,b_email,b_homepage,b_subject,b_content,b_regdate,b_pass,b_ip,b_count,b_pos,b_depth) values(seq_bnum.nextVal, ?,?,?,?,?,sysdate,?,?,0,0,0)";
-//			pstmt = con.prepareStatement(sql);
-//			pstmt.setString(1, board.getB_name());
-//			pstmt.setString(2, board.getB_email());
-//			pstmt.setString(3, board.getB_homepage());
-//			pstmt.setString(4, board.getB_subject());
-//			pstmt.setString(5, board.getB_content());
-//			pstmt.setString(6, board.getB_pass());
-//			pstmt.setString(7, board.getB_ip());
-//			pstmt.executeUpdate();
-//
-//		}
-//		catch(Exception err){
-//			System.out.println("addItem():"+err);
-//			err.printStackTrace();
-//		}
-//		finally{
-//			pool.freeConnection(con,pstmt);
-//		}
-//	}
-//	
-//	public void deleteItem(int b_num) {
-//		try {
-//			String sql = "delete from tblBoard where b_num="+b_num;
-//
-//			con = pool.getConnection();
-//			pstmt = con.prepareStatement(sql);
-//			pstmt.executeUpdate();
-//
-//		} catch (Exception err) {
-//			System.out.println("updateBoard()에서 오류");
-//			err.printStackTrace();
-//		} finally {
-//			pool.freeConnection(con, pstmt, rs);
-//		}
-//	}
+	public void addItem(Shop dto){
+		try{
+			String sql="Insert into shop (s_itemcode, s_itemname,s_price,s_deadline,s_limit_num,s_limit_pow,s_content) values('SIC'||LPAD((seq_s_itemcode.NEXTVAL),4,'0'),?,?,?,?,'',?)";
+			
+
+			con = pool.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getS_itemname());
+			pstmt.setInt(2, dto.getS_price());
+			pstmt.setInt(3, dto.getS_deadline());
+			pstmt.setInt(4, dto.getS_limit_num());
+			pstmt.setString(5, dto.getS_content());
+			pstmt.executeUpdate();
+
+		}
+		catch(Exception err){
+			System.out.println("addItem():"+err);
+			err.printStackTrace();
+		}
+		finally{
+			pool.freeConnection(con,pstmt);
+		}
+	}
+
+	//아이템선택
 	public Shop selectOneItemByCode(String s_itemcode){
 		String sql = "select * from shop WHERE s_itemcode=?";
 		Shop dto=null;
@@ -132,9 +116,29 @@ public class ShopManager {
 		return dto;
 	}
 	
+	//아이템 삭제
+	public void deleteItemByCode(String s_itemcode){
+		String sql = "delete shop WHERE s_itemcode=?";
+		Shop dto=null;
+		try {
+			con = pool.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, s_itemcode);
+			pstmt.executeUpdate();
+		}
+		catch(Exception err){
+			System.out.println("getItemList()에서오류");
+			err.printStackTrace();
+		}
+		finally{
+			pool.freeConnection(con, pstmt);
+		}
+	}
+	
+	//전체리스트출력
 	public List getItemList() {
 		ArrayList list = new ArrayList();
-		String sql = "select * from shop";
+		String sql = "select * from shop order by s_itemcode";
 		try {
 			con = pool.getConnection();
 			pstmt = con.prepareStatement(sql);
