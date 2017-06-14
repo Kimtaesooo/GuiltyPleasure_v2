@@ -9,20 +9,13 @@
 		request.setCharacterEncoding("euc-kr");
 		response.setCharacterEncoding("euc-kr");
 		
-		String title = request.getParameter("title");
-		String type = request.getParameter("type");
-		String content = request.getParameter("content");
-		String id = (String)session.getAttribute("u_id");
-		if(title!=null&&type!=null&&content!=null&&id!=null){
-			dto.setSc_title(title);
-			dto.setSc_type(type);
-			dto.setSc_content(content);
-			dto.setU_id(id);
-			dao.regC_board(dto);
+		String num = request.getParameter("sc_num");
+		String answer = request.getParameter("sca_answer");
 		
-		}
+		dao.reg_Ans(num, answer);	
+		dao.reg_Ans_fin(num);
 %>
-<title>글 등록</title>
+<title>답변 등록</title>
 </head>
 <body>
 <%response.sendRedirect("customer_list.jsp");%>

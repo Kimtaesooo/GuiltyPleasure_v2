@@ -10,7 +10,20 @@
 
 
 <script>
+function check(){
+	if(document.que.title.value == ""){
+		alert("제목을 입력해주세요.");
+		document.que.title.focus();
+		return;
+	}
 
+	if(document.que.content.value == ""){
+		alert("내용을 입력해주세요.");
+		document.que.content.focus();
+		return;
+	}
+	document.que.submit();
+}
 </script>
 <%
 	request.setCharacterEncoding("euc-kr");
@@ -44,7 +57,7 @@
 				</div>
 				<br>
 				<div class="jumbotron">
-				<form action="customer_ques_proc.jsp" method="post">
+				<form action="customer_ques_proc.jsp" method="post" name="que">
 				<div class="form-group">
 				<label class="control-label" >제목</label>
 				<input class="form-control"  type="text" name="title" >
@@ -67,7 +80,7 @@
 		        <label class="control-label" >내용</label>
 		        <textarea class="form-control" rows="10" id="content" name="content"></textarea>
 		        </div>
-		        <button type="submit" class="btn btn-primary">확인</button>
+		        <a href="javascript:check()" class="btn btn-primary">문의</a>
 		        <button type="reset" class="btn btn-default">다시작성</button>	 
 		        </form>
 		        </div>

@@ -15,11 +15,12 @@
 	response.setCharacterEncoding("euc-kr");
 	
 	String id ="";
-
+	String keyField = request.getParameter("keyField");
+	String keyWord = request.getParameter("keyWord");
 	if(session.getAttribute("u_id")!=null){
-	id = (String)session.getAttribute("u_id");
+		id = (String)session.getAttribute("u_id");
 	}
-	List list = dao.getBoardList(id);
+	List list = dao.getBoardList(id,keyField,keyWord);
 	
 %>
 
@@ -27,12 +28,20 @@
 <title>Main</title>
 </head>
 <script>
+function check(){
+	if(document.search.keyWord.value == ""){
+		alert("검색어를 입력하세요.");
+		document.search.keyWord.focus();
+		return;
+	}
+	document.search.submit();
+}
 function fnRead(sc_num){
 	document.frmRead.sc_num.value = sc_num;
 	document.frmRead.submit();
 }
 $(document).ready(function(){
-	$("table").css("background","lightblue");
+	$("#list").css("background","lightblue");
 
 });
 </script>
@@ -60,10 +69,38 @@ $(document).ready(function(){
 				</div>
 				
 				<div class="jumbotron">
-				<table class="table table-striped table-hover ">
+				<form action="customer_list.jsp" name="search" method="post">
+					<table border=0 align=center cellpadding=4 cellspacing=0>
+					<tr>
+						<td align=center valign=bottom>
+							<select name="keyField" size="1">
+								<option value="sc_title" 
+								<% if(keyField!=null&&keyField.equals("sc_title")){%>
+								selected="selected"<%} %>> 제목
+								<%if(id.equals("Master01")){ %>
+								<option value="u_id"
+								<% if(keyField!=null&&keyField.equals("u_id")){%>
+								selected="selected"<%} %>>작성자
+								<%} %>
+								<option value="sc_state" 
+								<% if(keyField!=null&&keyField.equals("sc_state")){%>
+								selected="selected"<%} %>> 처리상태
+							</select>
+				
+							<input type="text" size="16" name="keyWord" 
+							<% if(keyWord != null){%>value="<%=keyWord %>"<%} %>>
+							
+							<input type="button" value="찾기" onClick="check()">
+							<input type="hidden" name="page" value= "0">
+						</td>
+					</tr>
+					</table>
+				</form>
+				<table class="table table-striped table-hover " id="list"  align=center>
 				  <thead>
 				    <tr>
-				      <th width="200">등록일</th>
+				      <th width="170">등록일</th>
+				      <th width="100">작성자</th>
 				      <th>글제목</th>
 				      <th width="100">처리상태</th>
 				    </tr>
@@ -75,6 +112,7 @@ $(document).ready(function(){
 					%>			
 							<tr class="info">
 								<td><%=dto.getSc_regdate()%></td>
+								<td><%=dto.getU_id()%></td>
 								<td><a href="javascript:fnRead('<%=dto.getSc_num()%>')"><%=dto.getSc_title()%></a></td>
 								<td><%=dto.getSc_state() %></td>
 							</tr>
@@ -82,6 +120,7 @@ $(document).ready(function(){
 				  </tbody>
 				</table>
 				</div>
+				
 				<%} else{%>
 				
 				<br>
@@ -94,6 +133,7 @@ $(document).ready(function(){
         </div>
 	</div>
 </div>
+
 <form name="frmRead" method="post" action="customer_read.jsp">
 	<input type="hidden" name="sc_num" />
 </form>
