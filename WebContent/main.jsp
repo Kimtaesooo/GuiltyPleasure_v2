@@ -10,15 +10,8 @@
 <style>body{margin-top: 40px}</style>
 
 <script>
-	$(
-			function(){
-				$("#btnPopup").click(
-						function(){
-							$("#theModal").modal();
-						}
-						);
-			}
-	);
+function(){$("#popup").click(function(){$("#theModal").modal();});}
+
 </script>
 <%
 	request.setCharacterEncoding("euc-kr");
@@ -78,11 +71,11 @@
 
         <div class="row">
             <div class="col-md-4 portfolio-item" align="center">
-                <a href="#">
+                <a href="CORDING/custom/customer_main.jsp">
                     <img class="img-responsive" src="https://cdn2.iconfinder.com/data/icons/miscellaneous-31/60/birdhouse-128.png" alt="">
                 </a>
                 <h3>
-                    <a href="#">고객센터</a>
+                    <a href="CORDING/custom/customer_main.jsp">고객센터</a>
                 </h3>
               	<br><br><br>
             </div>
@@ -125,11 +118,11 @@
     
             </div>
             <div class="col-md-4 portfolio-item" align="center">
-                <a href="#theModal" data-toggle="modal">
+                <a href="#theModal" data-toggle="modal" id="popup">
                     <img class="img-responsive" src="https://cdn2.iconfinder.com/data/icons/new-year-s-hand-drawn-basic/64/question_mark-128.png" alt="">
                 </a>
                 <h3>
-                    <a href="#theModal" data-toggle="modal">사이트 안내</a> 
+                    <a href="#theModal" data-toggle="modal" id="popup">사이트 안내</a> 
                 </h3>
              
             </div>
