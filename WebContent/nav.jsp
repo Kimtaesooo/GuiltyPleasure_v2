@@ -1,11 +1,12 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="EUC-KR">
-<link rel="stylesheet" href="bootstrap332/css/bootstrap.min.css">
-<script src="bootstrap332/js/jquery-3.2.1.min.js"></script>
-<script src="bootstrap332/js/bootstrap.min.js"></script>
-
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap332/css/bootstrap.min.css">
+<script src="${pageContext.request.contextPath}/bootstrap332/js/jquery-3.2.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/bootstrap332/js/bootstrap.min.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-default">

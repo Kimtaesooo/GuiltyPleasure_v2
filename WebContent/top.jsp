@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<link rel="stylesheet" href="bootstrap332/css/bootstrap.min.css">
-<script src="bootstrap332/js/jquery-3.2.1.min.js"></script>
-<script src="bootstrap332/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap332/css/bootstrap.min.css">
+<script src="${pageContext.request.contextPath}/bootstrap332/js/jquery-3.2.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/bootstrap332/js/bootstrap.min.js"></script>
 <%
 	request.setCharacterEncoding("euc-kr");
 	response.setCharacterEncoding("euc-kr");
