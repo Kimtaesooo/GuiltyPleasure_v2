@@ -12,7 +12,7 @@ public class CommandFactory_hy {
 		if (cmd.equals("QUIZ_GET")) {
 			return new QuizgetCommand();
 		}else if (cmd.equals("QUIZ_CHECK")) {
-			return new QuziCheckCommand();
+			//return new QuziCheckCommand();
 		}
 		else if (cmd.equals("QUIZ_PUT")) {
 		}else if(cmd.equals("QUIZ_RESULT")){
