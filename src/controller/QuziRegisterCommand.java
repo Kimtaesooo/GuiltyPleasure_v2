@@ -19,9 +19,12 @@ public class QuziRegisterCommand implements Command{
 	@Override
 	public Object processCommand(HttpServletRequest request, HttpServletResponse resp)
 			throws ServletException, IOException {
+		
+		String u_id = (String) request.getAttribute("u_id");
 		try {
 			DBConnectionMgr db = DBConnectionMgr.getInstance();
 			con = db.getConnection();
+			uq.setU_id(u_id);
 			uq.setUq_answer(request.getParameter("textAnswer"));
 			uq.setUq_wa_a(request.getParameter("w1"));
 			uq.setUq_wa_b(request.getParameter("w2"));
@@ -36,7 +39,7 @@ public class QuziRegisterCommand implements Command{
 		} catch (Exception e) {
 			System.out.println("퀴즈등록 실패"+e);
 		}
-		return "/CORDING/Quiz/main.jsp";
+		return "/CORDING/QuizRegi/RegiComplete.html";
 	}
 	
 	private int RegiQuiz(U_Quiz uq){
@@ -48,7 +51,7 @@ public class QuziRegisterCommand implements Command{
 		try {
 			psmt = con.prepareStatement(sql);
 			psmt.setInt(1, 1);
-			psmt.setString(2, "test");
+			psmt.setString(2, uq.getU_id());
 			psmt.setString(3, uq.getQ_type());
 			psmt.setString(4, uq.getUq_question());
 			psmt.setString(5, uq.getUq_answer());
