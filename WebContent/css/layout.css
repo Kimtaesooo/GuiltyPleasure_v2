@@ -1,0 +1,613 @@
+/*top*/
+#header{
+	background:#fff;
+}
+.topW{
+	border-bottom:1px solid #eee;
+}
+.logoW{
+	border-bottom:3px solid #0066b3;
+}
+.logoC{
+	width:1200px;
+	margin:0 auto;
+	overflow:hidden;
+	height:65px;
+}
+.logo{
+	float:left;
+	margin:17px 0 0 0;
+}
+.logo a{
+	display:block;
+	width:215px;
+	height:28px;
+	background:url('../images/common/logo.png') no-repeat 0 0;
+	text-indent:-9999px;
+}
+.srchW{
+	overflow:hidden;
+	float:right;
+	margin:16px 0 0 0;
+}
+.greetingW{
+	float:left;
+	line-height:30px;
+	margin:0 15px 0 0;
+}
+.srchC{
+	float:right;
+	overflow:hidden;
+}
+.srchBox{
+	height:30px;
+	float:left;
+	border:2px solid #0066b3;
+}
+.srchBox select{
+	width:90px;
+	height:26px;
+	padding:3px;
+}
+.srchBox input[type=text]{
+	width:180px;
+	height:26px;
+}
+.srchBtnW{
+	float:right;
+}
+.btnSrch{
+	display:inline-block;
+	width:50px;
+	height:30px;
+	background:#0066b3 url('../images/common/btn_srch.png') no-repeat 50%;
+	text-indent:-9999px;
+}
+/* gnb */
+.gnbW{
+	border-bottom:1px solid #ddd;
+}
+.gnbC{
+	width:1200px;
+	margin:0 auto;
+	overflow:hidden;
+}
+.gnb li{
+	float:left;
+	width:16.6666666%;
+	height:40px;
+	line-height:39px;
+	text-align:center;
+	font-size:15px;
+	position:relative;
+}
+.gnb li::after{
+	content:"";
+	width:1px;
+	height:15px;
+	background:#eee;
+	display:block;
+	position:absolute;
+	top:12px;
+}
+.gnb li:first-child::after{
+	display:none;
+}
+/**/
+#footer{
+	clear:both;
+	background:#fff;
+	border-top:1px solid #eaeff3;
+}
+.footerC{
+	padding:30px 0;
+	font-size:12px;
+	width:1200px;
+	margin:0 auto;
+	text-align:center;
+}
+/* -------------------------------------------------------------------------
+	main
+------------------------------------------------------------------------- */
+.mainC{
+	width:1200px;
+	margin:0 auto;
+	overflow:hidden;
+}
+/*m left*/
+.mLeftW{
+	float:left;
+}
+.mCon{
+	border-left:1px solid #eee;
+	border-right:1px solid #eee;
+	width:240px;
+	height:580px;
+	padding:30px 17px;
+}
+
+/*m right*/
+.mRightW{
+	float:right;
+	width:960px;
+}
+.mTitleW{
+	margin:0 0 15px 0;
+	position:relative;
+}
+.mTitleW h2{
+	color:#000;
+	position:relative;
+	padding:15px 0 0 0;
+	font-weight:600;
+}
+.mTitleW h2::after{
+	content:"";
+	display:block;
+	width:30px;
+	height:2px;
+	background:#0066b3;
+	position:absolute;
+	top:0;
+	left:0;
+}
+.mBtnMore{
+	margin:0 10px;
+}
+.mBtnMore a{
+	width:80px;
+	height:30px;
+	line-height:28px;
+	text-align:center;
+	font-size:11px;
+	color:#a4a4a4;
+	display:block;
+	border:1px solid #eee;
+}
+.mBtnMore a:hover{
+	border-color:#0066b3;
+	color:#000;
+}
+
+/**/
+.mcInfo{
+	padding:35px 10px;
+}
+.mcInfo p{
+	color:#b4b4b4;
+	font-size:13px;
+}
+/**/
+.mQuickW{
+	overflow:hidden;
+	border-bottom:1px solid #eee;
+}
+.mQW{
+	width:240px;
+	height:370px;
+	padding:1px;
+	float:left;
+	border-right:1px solid #eee;
+}
+.mQC{
+	border:5px solid #fff;
+	padding:24px 11px;
+	height:368px;
+	-webkit-transition: all .1s linear;
+	-moz-transition: all .1s linear;
+	-ms-transition: all .1s linear;
+	-o-transition: all .1s linear;
+	transition: all .1s linear;
+}
+.mQC:hover{
+	border-color:#e9eef2;
+	cursor:pointer;
+}
+.mQC:hover .mqImg .mqBgW{
+	background:#0066b3;
+}
+.mQC .mqImg{
+	position:relative;
+	margin:0 0 15px 0;
+}
+.mQC .mqImg .mqBgW{
+	position:absolute;
+	width:205px;
+	height:215px;
+	top:0;
+	left:0;
+	background:#000;
+	opacity:.3;
+}
+.mQC .mqImg .mTitleW.white{
+	position:absolute;
+	top:30px;
+	left:30px;
+}
+.mQC .mqImg .mTitleW.white h2{
+	color:#fff;
+}
+.mQC .mqImg .mTitleW.white h2::after{
+	background:#fff;
+}
+.mQC .mqImg .mqCountW{
+	position:absolute;
+	top:85px;
+	left:50%;
+	margin-left:-50px;
+	width:100px;
+	height:100px;
+	border:2px solid #ddd;
+	border-radius:50%;
+	text-align:center;
+	padding:20px 0;
+	color:#fff;
+}
+.mQC .mqImg .mqCountW strong{
+	display:block;
+}
+.mQC .mqImg .mqCountW span{
+	font-size:30px;
+	line-height:30px;
+}
+.mQC .mqInfoW{
+	padding:0 20px;
+}
+.mQC .mqInfoW dl{
+	clear:both;
+	overflow:hidden;
+	margin:0 0 5px 0;
+}
+.mQC .mqInfoW dl dt{
+	float:left;
+	color:#999;
+}
+.mQC .mqInfoW dl dd{
+	float:right;
+	text-align:right;
+	color:#000;
+}
+/**/
+.mListW{
+	overflow:hidden;
+	height:210px;
+}
+/*주요법령*/
+.mLawLinkW{
+	float:left;
+	width:480px;
+	border-right:1px solid #eee;
+	padding:35px 30px;
+}
+.mllC ul{
+	margin-right:-12px;
+}
+.mllC ul li{
+	float:left;
+	width:20%;
+	text-align:center;
+	padding:0 12px 0 0;
+}
+.mllC ul li a{
+	display:block;
+	border:1px solid #ddd;
+	height:85px;
+	padding:13px 0;
+	line-height:14px;
+	color:#666;
+	font-size:11px;
+	-webkit-box-shadow: 1px 1px 0px 0px rgba(0,0,0,0.05);
+	-moz-box-shadow: 1px 1px 0px 0px rgba(0,0,0,0.05);
+	box-shadow: 1px 1px 0px 0px rgba(0,0,0,0.05);
+	background:#f9fbfc;
+}
+.mllC ul li a:hover{
+	background:#fff;
+	border-color:#0066b3;
+	color:#000;
+}
+.mllC ul li span{
+	text-indent:-9999px;
+	width:27px;
+	height:31px;
+	margin:0 auto 5px auto;
+	display:block;
+	background:url('../images/main/btn_quick.png') no-repeat;
+}
+.mllC ul li.ml1 span{background-position:3px 0;}
+.mllC ul li.ml2 span{background-position:-38px 0;}
+.mllC ul li.ml3 span{background-position:-78px 0;}
+.mllC ul li.ml4 span{background-position:-119px 0;}
+.mllC ul li.ml5 span{background-position:-159px 0;}
+
+/**/
+.mNoticeW{
+	background:#f9fbfc;
+	border-bottom:1px solid #eee;
+	height:40px;
+	overflow:hidden;
+}
+.mNoticeW h2{
+	background:url('../images/main/icon_notice.png') no-repeat 25px 50%;
+	font-size:11px;
+	line-height:40px;
+	padding:0 0 0 45px;
+	float:left;
+	width:22%;
+	color:#999;
+}
+.mNoticeW ul{
+	float:right;
+	width:78%;
+}
+.mNoticeW ul li{
+	overflow:hidden;
+	line-height:40px;
+	font-size:11px;
+	padding:0 25px 0 0;
+}
+.mNoticeW ul li p{
+	float:left;
+	width:80%;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	white-space:nowrap;
+	overflow:hidden;
+	word-wrap:normal;
+}
+.mNoticeW ul li span{
+	display:block;
+	float:right;
+	text-align:right;
+	color:#999;
+	width:20%;
+}
+
+/**/
+.mListRightW{
+	float:right;
+	width:480px;
+	border-right:1px solid #eee;
+}
+/* 최근개정규정 */
+.mListC{
+	padding:35px 30px;
+}
+.mList{
+	
+}
+.btnListMW{
+	position:absolute;
+	top:0;
+	right:0;
+}
+.btnListMW a{
+	border:1px solid #eee;
+	display:block;
+	color:#c9c9c9;
+	width:30px;
+	height:30px;
+	text-align:center;
+	line-height:28px;
+}
+.mList li{
+	overflow:hidden;
+	line-height:12px;
+	margin:0 0 8px 0;
+	position:relative;
+	padding:0 0 0 7px;
+	font-size:12px;
+}
+.mList li::before{
+	position:absolute;
+	top:5px;
+	left:0;
+	content:"";
+	display:block;
+	background:#57b1f4;
+	width:2px;
+	height:2px;
+}
+.mList li a{
+	color:#666;
+}
+.mList li p{
+	float:left;
+}
+.mList li span{
+	display:block;
+	float:right;
+}
+
+/* --------------------------------------------------------------------
+	일정을 확인하세요
+-------------------------------------------------------------------- */
+.scheduleW{
+	background:#f9fbfc;
+	color:#fff;
+}
+.scheduleC{
+	width:1200px;
+	margin:0 auto;
+	overflow:hidden;
+}
+.scheduleTitle{
+	float:left;
+	width:240px;
+	height:210px;
+	background:#7d8993 url('../images/main/icon_calendar.png') no-repeat 30px 140px;
+	padding:35px 30px;
+	position:relative;
+}
+.scheduleTitle .date span{
+	display:block;
+	font-size:18px;
+	line-height:18px;
+}
+.scheduleTitle .date strong{
+	font-size:40px;
+	line-height:40px;
+	display:block;
+}
+.scheduleTitle .textW{
+	text-align:right;
+	position:absolute;
+	top:55px;
+	right:30px;
+}
+.scheduleTitle .ctrlW{
+	position:absolute;
+	bottom:35px;
+	right:31px;
+}
+.scheduleTitle .ctrlW .btnMonth{
+	text-indent:-9999px;
+	border:1px solid #fff;
+	display:block;
+	width:25px;
+	height:25px;
+	float:left;
+	margin:0 -1px 0 0;
+	background:url('../images/main/btn_arrow.png') no-repeat 8px 5px;
+	opacity:.5;
+}
+.scheduleTitle .ctrlW .btnMonth.next{
+	background-position:-9px 5px;
+}
+/**/
+.scheduleConW{
+	float:right;
+	width:960px;
+}
+.calDateW{
+	overflow:hidden;
+	background:#bbc8d2;
+	height:35px;
+	line-height:35px;
+}
+.calDateW ul li{
+	float:left;
+	width:3.225806451612903%;
+	text-align:center;
+	position:relative;
+}
+.calDateW ul li a{
+	color:#fff;
+	font-size:11px;
+}
+.calDateW ul li::after{
+	content:"";
+	display:block;
+	position:absolute;
+	top:12px;
+	right:0;
+	width:1px;
+	height:11px;
+	background:#fff;
+	opacity:.5;
+}
+
+.scheduleDetail{
+	overflow:hidden;
+}
+.scheduleDetail ul li{
+	float:left;
+	width:25%;
+	height:175px;
+	padding:30px;
+	border-right:1px solid #eee;
+	color:#777;
+}
+
+/**/
+.followW{
+	position:absolute;
+	width:70px;
+	top:130px;
+	right:50%;
+	margin-right:-690px;
+}
+.followW .foTitle{
+	position:absolute;
+	font-size:11px;
+	top:4px;
+	left:-5px;
+	text-align:center;
+	width:75px;
+	height:22px;
+	line-height:20px;
+	color:#fff;
+	background:url('../images/main/bg_follow.png') no-repeat;
+}
+.followC{
+	padding:22px 0 0 0;
+	border:1px solid #eee;
+	border-bottom:none;
+}
+.followC ul li{
+	border-bottom:1px solid #eee;
+	text-align:center;
+	line-height:15px;
+	padding:7px 0;
+	font-size:11px;
+}
+.followC ul li a{
+	display:block;
+}
+.followC ul li span{
+	display:block;
+	width:15px;
+	height:16px;
+	margin:0 auto 5px auto;
+	text-indent:-9999px;
+	background:url('../images/main/bg_follow.png') no-repeat;
+}
+.followC ul li.fol1 span{background-position:0 -27px;}
+.followC ul li.fol2 span{background-position:0 -51px;}
+.followC ul li.fol3 span{background-position:0 -74px;}
+.followC ul li.fol4 span{background-position:0 -97px;}
+.followC ul li.fol5 span{background-position:0 -120px;}
+
+.followC ul li.fol5{
+	background:#f3f6f7;
+	padding:7px 0 0 0;
+}
+.followC ul li.fol5 ul{
+	margin:7px 0 0 0;
+}
+.followC ul li.fol5 ul li{
+	padding:0;
+	height:30px;
+	line-height:30px;
+	border:none;
+	border-top:1px solid #eee;
+}
+
+.goTopW{
+	position:relative;
+	text-align:center;
+	padding:15px 0 0 0;
+}
+.goTopW::before{
+	content:"";
+	display:block;
+	top:0;
+	width:1px;
+	height:15px;
+	background:#0066b3;
+	position:absolute;
+	left:50%;
+	margin-left:-1px;
+}
+.goTopW a{
+	color:#868686;
+	display:block;
+	margin:0 auto;
+	width:29px;
+	height:29px;
+	line-height:24px;
+	border:2px solid #0066b3;
+	font-size:10px;
+	text-align:center;
+	border-radius:50px;
+}
