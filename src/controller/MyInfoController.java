@@ -14,6 +14,7 @@ import command.myInfo.CommandFactory;
 public class MyInfoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     CommandFactory instance;
+
     public MyInfoController() {
         super();
         instance =CommandFactory.getInstance();

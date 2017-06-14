@@ -30,7 +30,7 @@ public class UserInfoDAO {
 		ArrayList<UserInfoDTO> list = new ArrayList<UserInfoDTO>();
 
 		boolean info = false;
-		System.out.println("order = "+order);
+		
 		String sql = "SELECT * FROM ( SELECT A.U_ID , TO_CHAR(UM.UM_CHAT,'YYYY/MM/DD') AS UM_CHAT ,TO_CHAR(UM.UM_ENROLL,'YYYY/MM/DD') AS UM_ENROLL "
 					+ ", TO_CHAR(UM.UM_SINGLE,'YYYY/MM/DD') AS UM_SINGLE , TO_CHAR(UM.UM_BATTLE,'YYYY/MM/DD') AS UM_BATTLE "
 					+" , TO_CHAR(UM.UM_ENTRY,'YYYY/MM/DD') AS UM_ENTRY "
@@ -126,9 +126,9 @@ public class UserInfoDAO {
 	            +" ON USR.U_ID = UM.U_ID "
 	            +" WHERE USR.U_ID = ?";
 		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, id);
+				rs = pstmt.executeQuery();
 			
 			if(rs.next()){
 				dto.setId(rs.getString("u_id"));
@@ -276,9 +276,7 @@ public class UserInfoDAO {
 			entry = true;
 			cnt++;
 		}
-		System.out.println("u_id = "+id);
 		sql += " WHERE U_ID = ?";
-		System.out.println("sql = "+sql);	
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
@@ -331,6 +329,65 @@ public class UserInfoDAO {
 			e.printStackTrace();
 		}
 		return result;
+	}
+
+	public int deleteRestriction(String param, String id) {
+		int result = -1;
+		int delResult = -1;
+		int cnt = 1;
+		String sql = "UPDATE U_MANAGE SET ";
+		String sqlDelete = "UPDATE USERINFO SET U_DELETE = 'N' WHERE U_ID = ?";
+		if(param.contains("chat")){
+			if(cnt == 1){
+				sql += "UM_CHAT = ? ";
+			}else{
+				sql += ", UM_CHAT = ? ";
+			}
+		}
+		if(param.contains("chat")){
+			if(cnt == 1){
+				sql += "UM_CHAT = ? ";
+			}else{
+				sql += ", UM_CHAT = ? ";
+			}
+		}
+		if(param.contains("chat")){
+			if(cnt == 1){
+				sql += "UM_CHAT = ? ";
+			}else{
+				sql += ", UM_CHAT = ? ";
+			}
+		}
+		if(param.contains("chat")){
+			if(cnt == 1){
+				sql += "UM_CHAT = ? ";
+			}else{
+				sql += ", UM_CHAT = ? ";
+			}
+		}
+		if(param.contains("chat")){
+			if(cnt == 1){
+				sql += "UM_CHAT = ? ";
+			}else{
+				sql += ", UM_CHAT = ? ";
+			}
+		}
+		
+		if(param.contains("del")){
+			try {
+				pstmt = conn.prepareStatement(sqlDelete);
+				pstmt.setString(1, id);
+				delResult = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		if(delResult == 1 && result == 1){
+			return 1;
+		}
+		return delResult==1?result:delResult;
 	}
 }
 

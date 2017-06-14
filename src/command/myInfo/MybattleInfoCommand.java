@@ -16,7 +16,7 @@ public class MybattleInfoCommand implements Command{
 	@Override
 	public Object processCommand(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String id = request.getSession().getAttribute("id").toString();
+		String id = request.getSession().getAttribute("u_id").toString();
 		MyInfoDTO dto = dao.searchMyBattleInfo(id);
 		ArrayList<MyInfoDTO> poaList = dao.searchMyBattlePoaInfo(id);
 		ArrayList<MyInfoDTO> regQList = dao.searchReqQInfo(id);
@@ -27,5 +27,4 @@ public class MybattleInfoCommand implements Command{
 		
 		return "WEB-INF/myInfo/myBattleInfo.jsp";
 	}
-
 }
