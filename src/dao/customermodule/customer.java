@@ -55,7 +55,7 @@ public class customer {
 	
 	public List getBoardList(String id){
 		ArrayList list = new ArrayList();
-		sql = "select * from service_center where u_id='"+id+"'";
+		sql = "select * from service_center where u_id='"+id+"' order by sc_num desc";
 		try{
 
 			con = pool.getConnection();
@@ -80,6 +80,34 @@ public class customer {
 			pool.freeConnection(con,pstmt, rs);
 		}
 		return list;
+	}
+	
+	public c_board getRead (String num){
+		c_board dto = new c_board();
+		
+		sql = "select * from service_center where sc_num='"+num+"'";
+		try{
+			
+			con = pool.getConnection();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+				
+			while(rs.next()){		
+				dto.setSc_title(rs.getString("sc_title"));
+				dto.setSc_content(rs.getString("sc_content"));
+				dto.setSc_regdate(rs.getString("sc_regdate"));
+				dto.setSc_state(rs.getString("sc_state"));
+				dto.setSc_type(rs.getString("sc_type"));
+				dto.setSc_num(rs.getString("sc_num"));
+				}
+		}
+		catch(Exception err){
+			System.out.println("getBoardList() 에서 오류 : "+err);
+		}
+		finally{
+			pool.freeConnection(con,pstmt, rs);
+		}
+		return dto;
 	}
 	
 }

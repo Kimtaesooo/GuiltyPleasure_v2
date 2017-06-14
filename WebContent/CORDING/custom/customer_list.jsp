@@ -10,10 +10,6 @@
 <script src="../../bootstrap332/js/jquery-3.2.1.min.js"></script>
 <script src="../../bootstrap332/js/bootstrap.min.js"></script>
 <jsp:useBean id="dao" class="dao.customermodule.customer"/>
-
-<script>
-
-</script>
 <%
 	request.setCharacterEncoding("euc-kr");
 	response.setCharacterEncoding("euc-kr");
@@ -30,6 +26,16 @@
 
 <title>Main</title>
 </head>
+<script>
+function fnRead(sc_num){
+	document.frmRead.sc_num.value = sc_num;
+	document.frmRead.submit();
+}
+$(document).ready(function(){
+	$("table").css("background","lightblue");
+
+});
+</script>
 <body>
 <jsp:include page="/top.jsp"/>
 <jsp:include page="/nav.html"/>
@@ -69,7 +75,7 @@
 					%>			
 							<tr class="info">
 								<td><%=dto.getSc_regdate()%></td>
-								<td><a><%=dto.getSc_title()%></a></td>
+								<td><a href="javascript:fnRead('<%=dto.getSc_num()%>')"><%=dto.getSc_title()%></a></td>
 								<td><%=dto.getSc_state() %></td>
 							</tr>
 					<% 		}%>
@@ -86,6 +92,10 @@
 			
 				<%} %>
         </div>
+	</div>
 </div>
+<form name="frmRead" method="post" action="customer_read.jsp">
+	<input type="hidden" name="sc_num" />
+</form>
 </body>
 </html>
