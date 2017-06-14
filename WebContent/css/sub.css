@@ -1,0 +1,351 @@
+.subW{
+	background:url('../images/sub/bg_left.png') repeat-y;
+	overflow:hidden;
+}
+.subLeftW{
+	width:199px;
+	float:left;
+	margin:0 0 120px 0;
+}
+.leftTitleW{
+	padding:0 0 0 35px;
+	margin:0 0 10px 0;
+	height:30px;
+	line-height:29px;
+	background:#eceff0 url('../images/sub/icon_for_bullet.png') no-repeat 15px 9px;
+	border-bottom:1px solid #ddd;
+}
+.categoryL li{
+	margin:0 0 2px 0;
+}
+.categoryL li a{
+	display:block;
+	height:45px;
+	line-height:44px;
+	background:#eceff0;
+	position:relative;
+	padding:0 0 0 25px;
+	font-size:14px;
+}
+.categoryL li.active a{
+	background:#fff;
+}
+.categoryL li.active a::before{
+	content:"";
+	display:block;
+	width:4px;
+	background:#0066b3;
+	height:45px;
+	top:0;
+	left:0;
+	position:absolute;
+}
+/*��� ������ �޴�*/
+.comReMenuW{
+	margin:0 0 10px 0;
+	overflow:hidden;
+	padding:0 3px;
+}
+.comReMenu li{
+	width:33.3333333333%;
+	float:left;
+	text-align:center;
+	padding:0 3px 6px 3px;
+}
+.comReMenu li a{
+	display:block;
+	background:#f6f6f6;
+	border-radius:5px;
+	border:2px solid #eee;
+	font-size:11px;
+	padding:6px 0;
+	line-height:13px;
+}
+.comReMenu li a:hover{
+	background:#fff;
+	border-color:#0066b3;
+}
+.comReMenu li span{
+	background:url('../images/sub/icon_comreg.png') no-repeat;
+	width:33px;
+	height:17px;
+	display:block;
+	margin:0 auto 5px auto;
+	text-indent:-9999px;
+}
+.comReMenu li.cr1 span{background-position:50% 0;}
+.comReMenu li.cr2 span{background-position:50% -30px;}
+.comReMenu li.cr3 span{background-position:50% -60px;}
+.comReMenu li.cr4 span{background-position:50% -93px;}
+.comReMenu li.cr5 span{background-position:50% -123px;}
+.comReMenu li.cr6 span{background-position:50% -154px;}
+.comReMenu li.cr7 span{background-position:50% -185px;}
+/**/
+.subCW{
+	margin:0 0 0 200px;
+}
+.subCC{
+	padding:50px;
+}
+.pageLocaW{
+	height:30px;
+	border-bottom:1px solid #ddd;
+	background:#f3f6f7;
+	line-height:29px;
+	padding:0 0 0 15px;
+}
+/*Ÿ��Ʋ*/
+.subTitle{
+	font-weight:600;
+	position:relative;
+	font-size:20px;
+	padding:8px 0 0 0;
+	margin:0 0 30px 0;
+	color:#000;
+}
+.subTitle::before{
+	content:"";
+	display:block;
+	width:30px;
+	height:2px;
+	background:#0066b3;
+	position:absolute;
+	top:0;
+	left:0;
+}
+/**/
+.subTabW{
+	overflow:hidden;
+	margin:0 0 15px 0;
+}
+.subTabW ul li{
+	float:left;
+	margin:0 3px 0 0;
+}
+.subTabW ul li a{
+	display:block;
+	height:40px;
+	line-height:36px;
+	border:2px solid #eee;
+	padding:0 20px;
+	font-size:13px;
+	color:#999;
+}
+.subTabW ul li.active a{
+	border-color:#000;
+	color:#000;
+}
+
+.infoTable{
+	border-top:2px solid #000;
+	border-left:1px solid #eee;
+	font-size:13px;
+}
+.infoTable th{
+	background:#f3f6f7;
+	padding:10px;
+	border-right:1px solid #eee;
+	border-bottom:1px solid #eee;
+	color:#000;
+}
+
+.infoTable td{
+	text-align:left;
+	padding:10px;
+	border-bottom:1px solid #eee;
+	border-right:1px solid #eee;
+}
+.infoTable td input[type=text]{
+	border:1px solid #eee;
+	background:#fefefe;
+	line-height:27px;
+	padding:3px 5px;
+	margin: 5px;
+}
+.infoTable td input[type=tel]{
+	border:1px solid #eee;
+	background:#fefefe;
+	line-height:27px;
+	padding:3px 5px;
+}
+.infoTable td select{
+	border:1px solid #eee;
+	background:#fefefe;
+	padding:3px;
+}
+.infoTable td textarea{
+	width:80%;
+	min-height:120px;
+	border:1px solid #eee;
+	background:#fefefe;
+	line-height:20px;
+	padding:5px;
+}
+.infoTable td input[type=file]{
+	border:1px solid #eee;
+	background:#fefefe;
+	padding:3px;
+	line-height:22px;
+}
+.infoTable td p{
+	font-size:12px;
+	vertical-align:middle;
+	display:inline-block;
+}
+.infoTable td ul li{
+	position:relative;
+	padding:0 0 0 7px;
+	line-height:20px;
+}
+.infoTable td ul li::before{
+	content:"";
+	position:absolute;
+	display:block;
+	width:2px;
+	height:2px;
+	background:#0066b3;
+	top:8px;
+	left:0;
+}
+/**/
+.infoTable td .fileList li{
+	background:url('../images/sub/icon_for_bullet.png') no-repeat 0 -39px;
+	padding:0 0 0 18px;
+}
+.infoTable td .fileList li::before{
+	display:none;
+}
+/*�������׺�*/
+.pageNaviW{
+	height:35px;
+	overflow:hidden;
+	text-align:center;
+}
+.pageNaviW ul li{
+	display:inline-block;
+}
+.pageNaviW ul li a{
+	display:block;
+	width:35px;
+	height:35px;
+	line-height:31px;
+	font-size:12px;
+	border:2px solid #eee;
+}
+.pageNaviW ul li a:hover{
+	border-color:#000;
+}
+.pageNaviW ul li.active a{
+	border-color:#000;
+	background:#000;
+	color:#fff;
+}
+.pageNaviW ul li span{
+	display:block;
+	text-indent:-9999px;
+	width:13px;
+	height:12px;
+	margin:10px auto 0 auto;
+	background:url('../images/sub/btn_navi.png') no-repeat;
+}
+.pageNaviW ul li.arrow.first span{background-position:50% 0;}
+.pageNaviW ul li.arrow.prev span{background-position:50% -13px;}
+.pageNaviW ul li.arrow.next span{background-position:50% -26px;}
+.pageNaviW ul li.arrow.last span{background-position:50% -39px;}
+.pageNaviW ul li.arrow a{
+	border:none;
+}
+/* ����Ʈ���̺� */
+.vertical tr, td{
+	text-align:center;
+	/*margin:auto;*/
+	height:auto;
+}
+/**/
+.btnCalender{
+	text-indent:-9999px;
+	display:inline-block;
+	width:16px;
+	height:16px;
+/* 	background:url('../images/sub/btn_calendar.png') no-repeat 0 0; */
+	vertical-align:middle;
+	margin:-5 5px;
+}
+/**/
+.btnArea{
+	text-align:center;
+}
+.btnStyle{
+	display:inline-block;
+	height:40px;
+	line-height:40px;
+	padding:0 20px;
+	color:#fff;
+	border-radius:5px;
+}
+.btnStyle.comBlack{
+	background:#333;
+}
+.btnStyle.comBlue{
+	background:#0066b3;
+}
+.btnStyle2{
+	display:inline-block;
+	height:32px;
+	line-height:32px;
+	padding:0 20px;
+	color:#fff;
+	border-radius:5px;
+}
+.btnStyle2.midBlack{
+	background:#333;
+}
+.btnStyle2.midBlue{
+	background:#0066b3;
+}
+.btnInTable{
+	height:30px;
+	line-height:30px;
+	border-radius:5px;
+	vertical-align:middle;
+	background:#6c7c88;
+	color:#fff;
+	font-size:11px;
+	display:inline-block;
+	padding:0 10px;
+	margin-left: 5px;
+}
+/**/
+.tableOverW{
+	overflow:hidden;
+}
+.alignL{
+	float:left;
+	line-height:32px;
+}
+.alignR{
+	float:right;
+}
+/**/
+.totalW{
+	margin:0 10px 0 0;
+	padding:0 0 0 18px;
+	display:inline-block;
+	font-size:13px;
+	background:url('../images/sub/icon_for_bullet.png') no-repeat 0 -10px;
+}
+.totalW strong{
+	color:#0078d3;
+}
+.radioW{
+	margin:0 10px 0 0;
+	display:inline-block;
+}
+.radioW ul li{
+	font-size:13px;
+	display:inline-block;
+	margin:0 5px 0 0;
+}
+.radioW ul li input[type=radio]{
+	vertical-align:middle;
+}
