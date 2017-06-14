@@ -15,7 +15,6 @@
 		u_id = (String)session.getAttribute("u_id");
 	}
 %>
-
 </head>
 <body>
 <nav class="navbar navbar-default"  role="navigation">
