@@ -9,15 +9,8 @@
 <script src="${pageContext.request.contextPath}/bootstrap332/js/bootstrap.min.js"></script>
 
 <script>
-	$(
-			function(){
-				$("#btnPopup").click(
-						function(){
-							$("#theModal").modal();
-						}
-						);
-			}
-	);
+function(){$("#popup").click(function(){$("#theModal").modal();});}
+
 </script>
 <%
 	request.setCharacterEncoding("euc-kr");
@@ -124,11 +117,11 @@
     
             </div>
             <div class="col-md-4 portfolio-item" align="center">
-                <a href="#theModal" data-toggle="modal">
+                <a href="#theModal" data-toggle="modal" id="popup">
                     <img class="img-responsive" src="https://cdn2.iconfinder.com/data/icons/new-year-s-hand-drawn-basic/64/question_mark-128.png" alt="">
                 </a>
                 <h3>
-                    <a href="#theModal" data-toggle="modal">사이트 안내</a> 
+                    <a href="#theModal" data-toggle="modal" id="popup">사이트 안내</a> 
                 </h3>
              
             </div>

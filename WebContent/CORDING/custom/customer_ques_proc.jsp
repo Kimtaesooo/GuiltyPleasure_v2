@@ -8,7 +8,7 @@
 <%
 		request.setCharacterEncoding("euc-kr");
 		response.setCharacterEncoding("euc-kr");
-		int success=0;
+		
 		String title = request.getParameter("title");
 		String type = request.getParameter("type");
 		String content = request.getParameter("content");
@@ -19,16 +19,16 @@
 			dto.setSc_content(content);
 			dto.setU_id(id);
 			dao.regC_board(dto);
-			success=1;
+		
 		}
 %>
 <title>글 등록</title>
 </head>
 <body>
-	<%if(success==1){ %>
-		<%response.sendRedirect("customer_list.jsp");%>
-	<%} else{%>
-		<%response.sendRedirect("customer_err.jsp");%>	
-	<%} %>
+<script>
+			alert("등록되었습니다.");
+			location.replace("customer_list.jsp");  
+</script>
+
 </body>
 </html>
