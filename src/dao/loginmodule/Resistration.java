@@ -25,7 +25,8 @@ public class Resistration {
 	
 	// 회원가입 등록, UserInfo는 dto 클래스
 	public void regUser(UserInfo dto){
-		String sql = "insert into userinfo(u_id, u_pw, u_name, u_nickname, u_phone, u_email, u_addr, u_postnumber, "
+		String sql ="";
+		sql = "insert into userinfo(u_id, u_pw, u_name, u_nickname, u_phone, u_email, u_addr, u_postnumber, "
 				+ "u_birth, u_gender, u_introduce, u_regdate, u_point, u_power, u_delete, u_question, u_answer, u_comment) "
 				+ "values(?,?,?,?,?,?,?,?,?,?,?,sysdate,0,1000,'N',?,?,?)";
 		try{
@@ -52,12 +53,71 @@ public class Resistration {
 			pstmt.executeUpdate();
 		}
 		catch(Exception err){
-			System.out.println("regUser에서 오류");
+			System.out.println("regUser 첫번째에서 오류");
 			err.printStackTrace();
 		}
+		
+		sql = "insert into u_poa(u_id, up_type, up_a_cnt, up_wa_cnt) values(?,'A',0,0)";
+		try{
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getU_id());			
+			pstmt.executeUpdate();
+		}
+		catch(Exception err){
+			System.out.println("regUser 두번째에서 오류");
+			err.printStackTrace();
+		}
+		
+		sql = "insert into u_poa(u_id, up_type, up_a_cnt, up_wa_cnt) values(?,'B',0,0)";
+		try{
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getU_id());			
+			pstmt.executeUpdate();
+		}
+		catch(Exception err){
+			System.out.println("regUser 세번째에서 오류");
+			err.printStackTrace();
+		}
+		
+		sql = "insert into u_poa(u_id, up_type, up_a_cnt, up_wa_cnt) values(?,'C',0,0)";
+		try{
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getU_id());			
+			pstmt.executeUpdate();
+		}
+		catch(Exception err){
+			System.out.println("regUser 네번째에서 오류");
+			err.printStackTrace();
+		}
+		
+		sql = "insert into u_poa(u_id, up_type, up_a_cnt, up_wa_cnt) values(?,'D',0,0)";
+		try{
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getU_id());	
+			pstmt.executeUpdate();
+		}
+		catch(Exception err){
+			System.out.println("regUser 다섯번째에서 오류");
+			err.printStackTrace();
+		}
+		
+		sql = "insert into u_battle(u_id, ub_win, ub_lose) values(?,0,0)";
+		try{
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getU_id());	
+			pstmt.executeUpdate();
+		}
+		catch(Exception err){
+			System.out.println("regUser 여섯번째에서 오류");
+			err.printStackTrace();
+		}
+		
+		
+		
 		finally{
 			pool.freeConnection(con, pstmt, rs);
 		}
+		
 	}
 	
 	
