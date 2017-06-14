@@ -9,7 +9,13 @@
 <script src="${pageContext.request.contextPath}/bootstrap332/js/bootstrap.min.js"></script>
 
 <script>
-function(){$("#popup").click(function(){$("#theModal").modal();});}
+$(
+	function(){
+		$("#popup").click(function(){
+			$("#theModal").modal();
+		});
+	}
+);
 
 </script>
 <%
