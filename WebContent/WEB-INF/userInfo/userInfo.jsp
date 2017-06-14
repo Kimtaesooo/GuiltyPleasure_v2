@@ -228,6 +228,7 @@ function deleterestriction(){
 </script>
 </head>
 <body>
+<%@include file="../../top.jsp" %>
 <form method="post" action="/GuiltyPleasure/userinfo" name="userInfoForm" id="userInfoForm">
 <input type="hidden" name="cmd" id="cmd"/>
 <input type="hidden" name="userid" id="userid" value="${dto.id }"/>

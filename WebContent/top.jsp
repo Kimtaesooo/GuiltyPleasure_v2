@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -20,7 +20,7 @@
 <nav class="navbar navbar-default"  role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
-    	<!-- ÀÌ¹ÌÁö ±úÁü
+    	<!-- ì´ë¯¸ì§€ ê¹¨ì§
     	<a class="navbar-brand" href="#">
     		<img alt="Brand" src="/images/quiz.jpg">
     	</a>
@@ -28,27 +28,27 @@
     	<a class="navbar-brand" href="/GuiltyPleasure/main.jsp"><font color="red">Guilty Pleasure</font></a>
     </div>
     <div>
-    <!-- ÁÂÃøÁ¤·Ä ³×ºñ ¹Ù
+    <!-- ì¢Œì¸¡ì •ë ¬ ë„¤ë¹„ ë°”
       <ul class="nav navbar-nav">
-        <li><a href="#">È¨</a></li>
-        <li><a href="#">¸Þ´º1</a></li>
-        <li><a href="#">¸Þ´º2</a></li> 
-        <li><a href="#">¸Þ´º3</a></li> 
+        <li><a href="#">í™ˆ</a></li>
+        <li><a href="#">ë©”ë‰´1</a></li>
+        <li><a href="#">ë©”ë‰´2</a></li> 
+        <li><a href="#">ë©”ë‰´3</a></li> 
       </ul>
     -->
-    <!-- ¿ìÃø Á¤·Ä ³×ºñ ¹Ù -->
+    <!-- ìš°ì¸¡ ì •ë ¬ ë„¤ë¹„ ë°” -->
       <ul class="nav navbar-nav navbar-right">
       	<%if(u_id.length()==0){%>
-        	<li><a href="/GuiltyPleasure/CORDING/login/login.html">·Î±×ÀÎ</a></li>
-        	<li><a href="/GuiltyPleasure/CORDING/login/resistration.html">È¸¿ø°¡ÀÔ</a></li>
-        	<li><a href="/GuiltyPleasure/CORDING/login/idpw.jsp">¾ÆÀÌµð/ºñ¹Ð¹øÈ£ Ã£±â</a></li>
+        	<li><a href="/GuiltyPleasure/CORDING/login/login.html">ë¡œê·¸ì¸</a></li>
+        	<li><a href="/GuiltyPleasure/CORDING/login/resistration.html">íšŒì›ê°€ìž…</a></li>
+        	<li><a href="/GuiltyPleasure/CORDING/login/idpw.jsp">ì•„ì´ë””/ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°</a></li>
         <%} %>
         <%if(u_id.length()>0){%>
-        	<li><a><%=u_id%>´Ô È¯¿µÇÕ´Ï´Ù.</a></li>
-        	<li><a href="/GuiltyPleasure/myinfo?cmd=MYINFO">¸¶ÀÌÆäÀÌÁö</a></li>
-        	<li><a href="CORDING/login/logout.html">·Î±×¾Æ¿ô</a></li>
+        	<li><a><%=u_id%>ë‹˜ í™˜ì˜í•©ë‹ˆë‹¤.</a></li>
+        	<li><a href="/GuiltyPleasure/myinfo?cmd=MYINFO">ë§ˆì´íŽ˜ì´ì§€</a></li>
+        	<li><a href="CORDING/login/logout.html">ë¡œê·¸ì•„ì›ƒ</a></li>
         	<%if(u_id.equals("master")){ %>
-        		<li><a href="/GuiltyPleasure/userinfo?cmd=LIST">È¸¿ø°ü¸®</a>
+        		<li><a href="/GuiltyPleasure/userinfo?cmd=LIST">íšŒì›ê´€ë¦¬</a>
         	<%}%>
         <%}%>
       </ul>
