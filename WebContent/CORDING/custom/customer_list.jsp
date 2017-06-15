@@ -17,9 +17,13 @@
 	String id ="";
 	String keyField = request.getParameter("keyField");
 	String keyWord = request.getParameter("keyWord");
+	if(keyWord==null){
+		keyWord="";
+	}
 	if(session.getAttribute("u_id")!=null){
 		id = (String)session.getAttribute("u_id");
 	}
+	
 	List list = dao.getBoardList(id,keyField,keyWord);
 	//페이징
 	int totalRecord = list.size();
@@ -155,7 +159,7 @@ $(document).ready(function(){
 						<td  colspan="5" align="center">
 							Go to Page
 							<% if(nowBlock > 0){%>
-								<a href="customer_list.jsp?nowBlock=<%=nowBlock-1%>&nowPage=<%=pagePerBlock*(nowBlock+1)%>">이전<%=pagePerBlock%>개</a>
+								<a href="customer_list.jsp?nowBlock=<%=nowBlock-1%>&nowPage=<%=pagePerBlock*(nowBlock+1)%>&keyField=<%=keyField%>&keyWord=<%=keyWord%>">이전<%=pagePerBlock%>개</a>
 							<% }%> 
 							[ 
 							<%
@@ -163,14 +167,15 @@ $(document).ready(function(){
 									if((nowBlock*pagePerBlock)+i == totalPage)
 										break;
 							%>
-									<a href="customer_list.jsp?nowPage=<%=(nowBlock*pagePerBlock)+i%>&nowBlock=<%=nowBlock%>"><%= (nowBlock*pagePerBlock)+i+1%></a>&nbsp;&nbsp;&nbsp;
+									<a href="customer_list.jsp?nowPage=<%=(nowBlock*pagePerBlock)+i%>&nowBlock=<%=nowBlock%>&keyField=<%=keyField%>&keyWord=<%=keyWord%>"><%= (nowBlock*pagePerBlock)+i+1%></a>&nbsp;&nbsp;&nbsp;
 							<%
 								}
 							%>
 							] 
 							<% if(totalBlock > nowBlock+1){%>
-								<a href="customer_list.jsp?nowBlock=<%=nowBlock+1%>&nowPage=<%=pagePerBlock*(nowBlock+1)%>">다음<%=pagePerBlock%>개</a>
+								<a href="customer_list.jsp?nowBlock=<%=nowBlock+1%>&nowPage=<%=pagePerBlock*(nowBlock+1)%>&keyField=<%=keyField%>&keyWord=<%=keyWord%>">다음<%=pagePerBlock%>개</a>
 							<% }%>
+								<a href="customer_list.jsp"> 처음으로</a>
 						</td>
 						
 					</tr>
@@ -194,6 +199,8 @@ $(document).ready(function(){
 
 <form name="frmRead" method="post" action="customer_read.jsp">
 	<input type="hidden" name="sc_num" />
+	<input type="hidden" name="keyField" value="<%=keyField%>"/>
+	<input type="hidden" name="keyWord" value="<%=keyWord%>"/>
 </form>
 </body>
 </html>
