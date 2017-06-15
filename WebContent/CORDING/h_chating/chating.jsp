@@ -7,7 +7,7 @@
 </head>
 <body>
 	<script type="text/javascript">
-		var webSocket = new WebSocket("ws://localhost:8080/GuiltyPleasure/websocket");
+		var webSocket = new WebSocket("ws://1270.0.1:8080/GuiltyPleasure/websocket");
 		var messageTextArea = document.getElementById("messageTextArea");
 		
 		//웹소켓이 연결되었을 때 호출되는 이벤트

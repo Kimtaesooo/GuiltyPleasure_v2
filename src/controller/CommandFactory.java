@@ -17,6 +17,10 @@ public class CommandFactory {
 			return new QuziRegisterCommand();
 		}else if(cmd.equals("QUIZ_RESULT")){
 			return new QuizResultCommand();
+		}else if(cmd.equals("QREGI_BOARD_LIST")){
+			return new QBoradRegisterCommand();
+		}else if(cmd.equals("QREGI_BOARD_GET")){
+			return new QBoradRegisterCommand();
 		}
 		else{
 		}

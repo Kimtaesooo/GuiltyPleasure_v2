@@ -15,12 +15,16 @@
 
 <!-- 이용자 form -->
 <div>
-<form action="QuizReg.jsp">
+<form action="/GuiltyPleasure/borad">
+	<input type="hidden" name = "cmd" value="QREGI_BOARD_LIST"/>
+	<input type="hidden" name = "power" value="user"/>
 	<input type="submit" value="확인">
 	<input type="reset" value= "취소">
 </form>
 <!-- 관리자 form 아이디를 가져와서 둘중 하나만 보이게 바꿔야됨 -->
-<form action="QuizReg.jsp">
+<form action="/GuiltyPleasure/borad">
+	<input type="hidden" name = "cmd" value="QREGI_BOARD_LIST"/>
+	<input type="hidden" name = "power" value="master"/>
 	<input type="submit" value="확인">
 	<input type="reset" value= "취소">
 </div>
