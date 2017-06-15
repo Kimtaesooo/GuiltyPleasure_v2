@@ -30,7 +30,7 @@
 <title>Main</title>
 </head>
 <body>
-<jsp:include page="/top.jsp"/>
+<jsp:include page="/nav.jsp"/>
 
 <div class="container">   
         <div class="row">

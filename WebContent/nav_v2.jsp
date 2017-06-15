@@ -42,28 +42,26 @@
 		<div class="top-menu">
 			<div class="container">
 				<div class="row">
-					<div class="col-xs-2">
+					<div class="col-xs-3">
 						<div id="fh5co-logo"><a href="main.jsp">Guilty Pleasure<span>.</span></a></div>
 					</div>
-					<div class="col-xs-10 text-right menu-1">
+					<div class="col-xs-9 text-right menu-1">
 						<ul>
-							<li class="active"><a href="index.html">Home</a></li>
-							<li><a href="courses.html">Courses</a></li>
-							<li><a href="teacher.html">Teacher</a></li>
-							<li><a href="about.html">About</a></li>
-							<li><a href="pricing.html">Pricing</a></li>
+							<li class="active"><a href="main.jsp">Home</a></li>
+							<li><a href="courses.html">Single</a></li>
+							<li><a href="teacher.html">Battle</a></li>
+							<li><a href="about.html">Shop</a></li>
+							<li><a href="pricing.html">Ranking</a></li>
 							<li class="has-dropdown">
-								<a href="blog.html">Blog</a>
+								<a href="blog.html">Community</a>
 								<ul class="dropdown">
-									<li><a href="#">Web Design</a></li>
-									<li><a href="#">eCommerce</a></li>
-									<li><a href="#">Branding</a></li>
-									<li><a href="#">API</a></li>
+									<li><a href="#">자유게시판</a></li>
+									<li><a href="#">공지사항</a></li>
 								</ul>
 							</li>
-							<li><a href="contact.html">Contact</a></li>
+							<li><a href="pricing.html">Quiz</a></li>
 							<li class="btn-cta"><a href="#"><span>Login</span></a></li>
-							<li class="btn-cta"><a href="#"><span>Create a Course</span></a></li>
+							<li><a href="contact.html">회원관리</a></li>
 						</ul>
 					</div>
 				</div>
