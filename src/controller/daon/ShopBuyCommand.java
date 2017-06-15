@@ -21,7 +21,7 @@ public class ShopBuyCommand implements Command{
 		System.out.println(code);
 		req.setAttribute("item",dto);
 		
-		return "/daon_v1/shop.jsp";
+		return "/daon_v1/outline/shop.jsp";
 	}
 
 }

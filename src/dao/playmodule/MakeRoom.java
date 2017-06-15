@@ -28,6 +28,7 @@ public class MakeRoom {
 		sql = "insert into battleroom(br_subject, br_pw, br_type, br_cnt, br_point, u_id, br_people, br_gamestate) "
 				+ "values(?,?,?,?,?,?,?,?)";
 		try {
+			/*
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, dto.getU_id());
 			pstmt.setString(2, dto.getU_pw());
@@ -47,7 +48,7 @@ public class MakeRoom {
 			pstmt.setString(12, dto.getU_question());
 			pstmt.setString(13, dto.getU_answer());
 			pstmt.setString(14, dto.getU_comment());
-
+		*/
 			pstmt.executeUpdate();
 		} catch (Exception err) {
 			System.out.println("regUser 첫번째에서 오류");

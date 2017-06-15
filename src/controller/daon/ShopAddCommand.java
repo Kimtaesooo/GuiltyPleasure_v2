@@ -32,7 +32,7 @@ public class ShopAddCommand implements Command{
 		sDao.addItem(dto);
 		
 		
-		return "/daon_v1/shop.jsp";
+		return "/daon_v1/outline/shop.jsp";
 	}
 
 }

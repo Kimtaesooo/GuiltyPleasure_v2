@@ -34,7 +34,7 @@ public class ShopUpdateCommand implements Command{
 		sDao.updateItem(dto);
 		
 		
-		return "/daon_v1/shop.jsp";
+		return "/daon_v1/outline/shop.jsp";
 	}
 
 }
