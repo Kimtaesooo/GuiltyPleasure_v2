@@ -115,11 +115,11 @@
 
             </div>
             <div class="col-md-4 portfolio-item" align="center">
-                <a href="#">
+                <a href="CORDING/QuizRegi/QuizRegInfo.jsp">
                     <img class="img-responsive" src="https://cdn0.iconfinder.com/data/icons/office-icon-set-2/100/Noun_Project_100Icon_10px_grid-17-128.png" alt="">
                 </a>
                 <h3>
-                    <a href="#">ДыБоµо·П</a>
+                    <a href="CORDING/QuizRegi/QuizRegInfo.jsp">ДыБоµо·П</a>
                 </h3>
     
             </div>

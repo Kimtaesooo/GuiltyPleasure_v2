@@ -75,6 +75,9 @@ public class QBorad {
 	
 	//전체 리스트를 가져오는 메서드
 	public ArrayList getQBoard(String power, String id) {
+		// sql 2개 ; 하나는 유저가 접속했을때, 하나는 마스터가 접속했을때
+		// 마스터가 접속했을땐 전 데이터 출력, 유저가 접속했을 땐 그 유저가 해당하는
+		// if(id.equals(master))
 		ArrayList qlist = new ArrayList<>();
 		U_Quiz uq = null;
 		String sql;
@@ -82,13 +85,13 @@ public class QBorad {
 		try {
 			if (check != null) {
 				if (power.equals("user")) {
-					sql = "select * from u_qreg where u_id = ?";
+					sql = "select * from u_qreg where u_id = ? order by uq_adopt";
 					psmt = con.prepareStatement(sql);
 					psmt.setString(1, id);
 					rs = psmt.executeQuery();
 				} else if (power.equals("master")) {
 					// 관리자일 경우
-					sql = "select * from u_qreg";
+					sql = "select * from u_qreg order by uq_adopt";
 					psmt = con.prepareStatement(sql);
 					rs = psmt.executeQuery();
 				}

@@ -38,9 +38,9 @@
 						uq = (U_Quiz)list.get(i);
 					%>
 						<tr align="center" onclick="qinform(<%=uq.getUq_num()%>)">
-							<td>uq.getUq_num()</td>
-							<td>uq.getUq_question()</td>
-							<td>uq.getUq_adopt()</td>
+							<td><%=uq.getUq_num() %></td>
+							<td><%=uq.getUq_question() %></td>
+							<td><%=uq.getUq_adopt() %></td>
 						<tr>
 					<%
 					}
