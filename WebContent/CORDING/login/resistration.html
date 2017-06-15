@@ -21,7 +21,7 @@
     	var u_id = document.getElementById("u_id").value;
     	var param = "u_id=" + u_id;
     	sendRequest("POST", "idCheck.jsp", param, callback);
-    }    	
+    }  
     function callback(){
     	if(httpRequest.readyState==4){
     		if(httpRequest.status == 200){
@@ -64,6 +64,7 @@
     </div>
   </div>
 </nav>
+<br>
         <div class="container">
             <!-- ¸ð´ÞÃ¢ -->
             <div class="modal fade" id="defaultModal">

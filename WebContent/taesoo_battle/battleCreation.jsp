@@ -1,14 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>배틀 방 생성</title>
-<link rel="stylesheet" href="../bootstrap332/css/bootstrap.css">
-</head>
-<body>
-<jsp:include page="/top.jsp"/>
+<%@ page import="java.util.List"%>
+<%@ page import="dao.playmodule.MakeRoom"%>
+<%@ page import="dto.BattleRoom"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%
+	request.setCharacterEncoding("euc-kr");
+	response.setCharacterEncoding("euc-kr");
 
-</body>
-</html>
+	String u_id = (String)session.getAttribute("u_id");
+%>
+	<jsp:useBean id="dao" class="dao.playmodule.MakeRoom"/>
+	<jsp:useBean id="dto" class="dto.BattleRoom"/>
+	<jsp:setProperty name="dto" property="*"/>
+
+<%
+	dao.regRoom(dto, u_id);
+	//response.sendRedirect("login_err.html");
+%>
+"C:/Users/KimTaesoo/Desktop/education/education/index.html"
