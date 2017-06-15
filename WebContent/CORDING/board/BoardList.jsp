@@ -102,7 +102,7 @@
 <table align=center width="80%" cellpadding="0" cellspacing="0" border="0">
   <tr><td colspan="4" height="5"></td></tr>
   <tr align=right>
-   <td><input type=button value="메인" onclick="window.location='../main.jsp'"></td>
+   <td><input type=button value="메인" onclick="window.location='/GuiltyPleasure/main.jsp'"></td>
    <td>
 <%
 	if(session.getAttribute("u_id") != null){

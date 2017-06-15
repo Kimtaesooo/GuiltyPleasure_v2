@@ -106,7 +106,7 @@
 
         <div class="row">
             <div class="col-md-4 portfolio-item" align="center">
-                <a href="#">
+                <a href="CORDING/board/BoardList.jsp">
                     <img class="img-responsive" src="https://cdn2.iconfinder.com/data/icons/xomo-basics/128/document-05-128.png" alt="">
                 </a>
                 <h3>
