@@ -3,19 +3,19 @@ package dto;
 import java.sql.Timestamp;
 
 public class Board {
-	private int b_num;
+	private String b_num;
 	private String u_id;
 	private String u_nickname;
 	private String b_title;
 	private String b_content;
-	private Timestamp b_regdate;
+	private String b_regdate;
 	private int b_count;
 	private String b_reply;
 	
-	public int getB_num() {
+	public String getB_num() {
 		return b_num;
 	}
-	public void setB_num(int b_num) {
+	public void setB_num(String b_num) {
 		this.b_num = b_num;
 	}
 	public String getU_id() {
@@ -42,10 +42,10 @@ public class Board {
 	public void setB_content(String b_content) {
 		this.b_content = b_content;
 	}
-	public Timestamp getB_regdate() {
+	public String getB_regdate() {
 		return b_regdate;
 	}
-	public void setB_regdate(Timestamp b_regdate) {
+	public void setB_regdate(String b_regdate) {
 		this.b_regdate = b_regdate;
 	}
 	public int getB_count() {
