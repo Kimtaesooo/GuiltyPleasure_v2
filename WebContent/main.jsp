@@ -110,7 +110,7 @@
                     <img class="img-responsive" src="https://cdn2.iconfinder.com/data/icons/xomo-basics/128/document-05-128.png" alt="">
                 </a>
                 <h3>
-                    <a href="hsy_v1/BoardList.jsp">자유게시판</a>
+                    <a href="CORDING/board/BoardList.jsp">자유게시판</a>
                 </h3>
 
             </div>

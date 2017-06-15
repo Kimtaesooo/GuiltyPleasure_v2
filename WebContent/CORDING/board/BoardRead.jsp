@@ -17,9 +17,10 @@
 <jsp:useBean id="dao" class="dao.boardmodule.FreeBoard" />
 <jsp:useBean id="dto" class="dto.Board" />
 <%
-	String b_num = (String)request.getParameter("b_num"); 
+	String b_num = request.getParameter("b_num"); 
 	String keyfield = request.getParameter("keyfield");
 	String keyword = request.getParameter("keyword");
+	
 	dto = dao.getBoard(b_num,true);
 	pageContext.setAttribute("dto", dto);
 	

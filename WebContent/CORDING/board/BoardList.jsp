@@ -82,14 +82,13 @@
              if(i == totalRecord)
                 break;
              Board board = (Board)list.get(i);
-             System.out.println(board+" : "+list.get(i)+" : "+i);
 %>
 <tr height="25" align="center">
-<td><%=dto.getB_num()%></td>
-<td><a href="javascript:fnRead('<%=dto.getB_num()%>')"><%=dto.getB_title()%></a></td>
-<td><%=dto.getU_nickname()%></td>
-<td><%=dto.getB_regdate()%></td>
-<td><%=dto.getB_count()%></td>
+<td><%=board.getB_num()%></td>
+<td><a href="javascript:fnRead('<%=board.getB_num()%>')"><%=board.getB_title()%></a></td>
+<td><%=board.getU_nickname()%></td>
+<td><%=board.getB_regdate()%></td>
+<td><%=board.getB_count()%></td>
 </tr>
 <%
 		 }
@@ -135,7 +134,7 @@
 	</table>
 </form>
 <form name="frmRead" method="post" action="BoardRead.jsp">
-	<input type="hidden" name="b_num" />
+	<input type="hidden" name="b_num"/>
 	<input type="hidden" name="keyfield" value="<%=keyfield %>" />
 	<input type="hidden" name="keyword" value="<%=keyword %>" />
 </form>	
