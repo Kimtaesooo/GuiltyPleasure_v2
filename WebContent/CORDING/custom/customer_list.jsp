@@ -17,11 +17,35 @@
 	String id ="";
 	String keyField = request.getParameter("keyField");
 	String keyWord = request.getParameter("keyWord");
+	if(keyWord==null){
+		keyWord="";
+	}
 	if(session.getAttribute("u_id")!=null){
 		id = (String)session.getAttribute("u_id");
 	}
-	List list = dao.getBoardList(id,keyField,keyWord);
 	
+	List list = dao.getBoardList(id,keyField,keyWord);
+	//페이징
+	int totalRecord = list.size();
+	int numPerPage = 10;
+	int totalPage = 0;
+	int nowPage = 0;
+	int beginPerPage = 0;
+	int pagePerBlock = 3;
+	int totalBlock = 0;
+	int nowBlock = 0;
+	
+	totalPage = (int)Math.ceil((double)totalRecord/numPerPage);
+	
+	if(request.getParameter("nowPage")!=null)
+		nowPage = Integer.parseInt(request.getParameter("nowPage"));
+	
+	if(request.getParameter("nowBlock")!=null)
+		nowBlock = Integer.parseInt(request.getParameter("nowBlock"));
+	
+	totalBlock = (int)Math.ceil((double)totalPage/pagePerBlock);
+	
+	beginPerPage = nowPage * numPerPage;
 %>
 
 
@@ -42,6 +66,7 @@ function fnRead(sc_num){
 }
 $(document).ready(function(){
 	$("#list").css("background","lightblue");
+	$("#page").css("background","lightblue");
 
 });
 </script>
@@ -96,7 +121,7 @@ $(document).ready(function(){
 					</tr>
 					</table>
 				</form>
-				<table class="table table-striped table-hover " id="list"  align=center>
+				<table class="table table-striped table-hover " id="list">
 				  <thead>
 				    <tr>
 				      <th width="170">등록일</th>
@@ -106,18 +131,56 @@ $(document).ready(function(){
 				    </tr>
 				  </thead>
 				  <tbody>
-				   <%
-						for(int i=0; i<list.size();i++){
-								c_board dto = (c_board)list.get(i);	
-					%>			
+				  	<%
+							if(list.size() == 0){
+					%>
+								<tr>
+									<td colspan="5" align="center">데이터가 없습니다.</td>
+								</tr>
+					<% 
+							}
+							else{
+						   for(int i=beginPerPage; i<numPerPage+beginPerPage; i++){
+								if(i == totalRecord)
+									break;
+								
+								c_board dto = (c_board)list.get(i);
+					%>
 							<tr class="info">
 								<td><%=dto.getSc_regdate()%></td>
 								<td><%=dto.getU_id()%></td>
 								<td><a href="javascript:fnRead('<%=dto.getSc_num()%>')"><%=dto.getSc_title()%></a></td>
 								<td><%=dto.getSc_state() %></td>
 							</tr>
-					<% 		}%>
+					<% 		}
+						}%>
+					<tr id="page">
+						
+						<td  colspan="5" align="center">
+							Go to Page
+							<% if(nowBlock > 0){%>
+								<a href="customer_list.jsp?nowBlock=<%=nowBlock-1%>&nowPage=<%=pagePerBlock*(nowBlock+1)%>&keyField=<%=keyField%>&keyWord=<%=keyWord%>">이전<%=pagePerBlock%>개</a>
+							<% }%> 
+							[ 
+							<%
+								for(int i=0; i<pagePerBlock; i++){
+									if((nowBlock*pagePerBlock)+i == totalPage)
+										break;
+							%>
+									<a href="customer_list.jsp?nowPage=<%=(nowBlock*pagePerBlock)+i%>&nowBlock=<%=nowBlock%>&keyField=<%=keyField%>&keyWord=<%=keyWord%>"><%= (nowBlock*pagePerBlock)+i+1%></a>&nbsp;&nbsp;&nbsp;
+							<%
+								}
+							%>
+							] 
+							<% if(totalBlock > nowBlock+1){%>
+								<a href="customer_list.jsp?nowBlock=<%=nowBlock+1%>&nowPage=<%=pagePerBlock*(nowBlock+1)%>&keyField=<%=keyField%>&keyWord=<%=keyWord%>">다음<%=pagePerBlock%>개</a>
+							<% }%>
+								<a href="customer_list.jsp"> 처음으로</a>
+						</td>
+						
+					</tr>
 				  </tbody>
+				  
 				</table>
 				</div>
 				
@@ -136,6 +199,8 @@ $(document).ready(function(){
 
 <form name="frmRead" method="post" action="customer_read.jsp">
 	<input type="hidden" name="sc_num" />
+	<input type="hidden" name="keyField" value="<%=keyField%>"/>
+	<input type="hidden" name="keyWord" value="<%=keyWord%>"/>
 </form>
 </body>
 </html>

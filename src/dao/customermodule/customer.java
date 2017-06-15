@@ -55,7 +55,7 @@ public class customer {
 	
 	public List getBoardList(String id, String type, String key){
 		ArrayList list = new ArrayList();
-		if(key==null){
+		if(key.length()==0||key==null){
 			if(id.equals("master")){
 				sql = "select * from service_center  order by sc_state asc, sc_regdate desc";
 			}else{
