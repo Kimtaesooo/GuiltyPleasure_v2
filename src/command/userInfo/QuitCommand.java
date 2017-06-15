@@ -15,10 +15,10 @@ public class QuitCommand implements Command{
 	public Object processCommand(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
 		int result = dao.quitUser(id);
-		if(result == 1){
-			return "WEB-INF/userInfo/userList.jsp";
+		if(result != 1){
+			return "";
 		}
-		return "WEB-INF/userInfo/userInfo.jsp";
+		return "WEB-INF/userInfo/userList.jsp";
 	}
 
 }

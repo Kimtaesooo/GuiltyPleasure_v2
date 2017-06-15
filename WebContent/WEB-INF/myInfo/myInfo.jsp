@@ -34,7 +34,10 @@
 			    	alert("呕硼贸府 己傍");
 			    	movemain();
 			    },     
-			    error:function(e){  
+			    error:function(e){
+			    	for(var key in e){
+			    		alert(key+" = "+e[key]);
+			    	}
 			    	alert("呕硼贸府 角菩");
 			    }  
 			});
