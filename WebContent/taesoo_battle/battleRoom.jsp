@@ -1,4 +1,8 @@
+<%@page import="dto.Battle_Room"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"%>
+<%@ page import="dao.playmodule.BattlePlay"%>
+<%@ page import="java.util.*"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +21,11 @@
 <title>배틀 대기방</title>
 </head>
 <body>
+	<jsp:useBean id="dao" class="dao.playmodule.BattlePlay"/>
+	<jsp:useBean id="dto" class="dto.Battle_Room"/>
+<%
+	List list = dao.getListRoom();
+%>
 	<jsp:include page="/top.jsp" />
 	<jsp:include page="/nav.jsp" />
 	<br>
@@ -40,17 +49,29 @@
 					<th>게임상태</th>
 				</tr>
 			</thead>
+			
 			<tbody>
+				<%if(list.size() ==0){%>
 				<tr>
-					<td>01</td>
-					<td>덤벼라멍청아</td>
-					<td>연예</td>
-					<td>10</td>
-					<td>1000</td>
-					<td>TEST05</td>
-					<td>1/2</td>
-					<td>대기</td>
+					<td colspan="8" align="center">데이터가 없습니다.</td>
 				</tr>
+				<%}
+				else{%>				
+				<%for(int i=0; i<list.size(); i++){
+					Battle_Room room = (Battle_Room)list.get(i);
+				%>
+				<tr>
+					<td><%=i+1%></td>
+					<td><%=room.getBr_subject() %></td>
+					<td><%=room.getBr_type() %></td>
+					<td><%=room.getBr_cnt() %></td>
+					<td><%=room.getBr_point() %></td>
+					<td><%=room.getU_id() %></td>
+					<td><%=room.getBr_people() %></td>
+					<td><%=room.getBr_gamestate() %></td>
+				</tr>
+				<%} 
+				}%>
 			</tbody>
 		</table>
 		<hr />
@@ -69,6 +90,8 @@
 		</div>
 	</div>
 
+
+
 	<!-- 방만들기 모달 -->
 	<div class="modal fade" id="makeRoom" data-backdrop="static">
 		<form class="form-horizontal" action="battleCreation.jsp">
@@ -80,16 +103,23 @@
 					<div class="modal-body">
 
 						<div class="form-group">
-							<label for="inputEmail" class="col-sm-2 control-label">방제목</label>
+							<label for="br_subject" class="col-sm-2 control-label">방제목</label>
 							<div class="col-sm-10">
 								<input type="text" class="form-control" name="br_subject"
-									id="BR_SUBJECT" placeholder="제목을 입력해주세요">
+									id="br_subject" placeholder="제목을 입력해주세요">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="br_pw" class="col-sm-2 control-label">비밀번호</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control onlyNumber" name="br_pw"
+									id="br_pw" placeholder="비밀번호 4자리를 입력해 주세요" maxlength="4">
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="inputPassword" class="col-sm-2 control-label">포인트</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" name="br_point"
+								<input type="text" class="form-control onlyNumber" name="br_point"
 									id="BR_POINT" placeholder="포인트를 입력해주세요">
 							</div>
 						</div>

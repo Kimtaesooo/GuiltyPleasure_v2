@@ -1,7 +1,7 @@
 package dto;
 
 
-public class BattleRoom {
+public class Battle_Room {
 	private String br_subject;
 	private int br_pw;
 	private String br_type;
