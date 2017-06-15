@@ -12,6 +12,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/bootstrap332/css/bootstrap.min.css">
+<script
+	src="${pageContext.request.contextPath}/bootstrap332/js/jquery-3.2.1.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/bootstrap332/js/bootstrap.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#board").css("background","black").css("color","white").css("font-size","xx-large");
+
+});
+</script>
 <title>Insert title here</title>
 <%
 	int counter =(int)request.getAttribute("counter");
@@ -76,6 +88,7 @@ var result = new Array();
 </script>
 </head>
 <body>
+<!-- 
 	<h1>싱글 플레이 시작</h1>
 
 	<div style="float: left; width: 60%">
@@ -105,6 +118,61 @@ var result = new Array();
 		<c:if test="${combo ne null}">
 			콤보를 출력합니다.
 		</c:if>
+	</div>
+-->
+		<br>
+	<br>
+		<h2>
+			<p class="text-center">싱글 게임 시작</p>
+		</h2>
+	<br>
+	<br>
+	<br>
+	<div class="row">
+		<div class="col-md-7 col-md-offset-1">
+			<textarea class="form-control" rows="6" id="board">${quiz.getQ_question()}</textarea>
+			<br><br><br>
+			<p>
+			<div class="col-lg-12">
+				<div class="col-lg-3">
+	  			<input type="button" class="btn btn-primary btn-lg" value="<%=quizlist.get(0)%>" id="text1"onclick="answerCheck(1);" /> 
+				</div>
+				<div class="col-lg-3">
+				<input type="button" class="btn btn-primary btn-lg" value="<%=quizlist.get(1)%>" id="text2" onclick="answerCheck(2);" />
+				</div>
+				<div class="col-lg-3">
+				<input type="button" class="btn btn-primary btn-lg" value="<%=quizlist.get(2)%>" id="text3" onclick="answerCheck(3);" />
+				</div>
+				<div class="col-lg-3">
+				<input type="button" class="btn btn-primary btn-lg" value="<%=quizlist.get(3)%>" id="text4" onclick="answerCheck(4);" />
+	  			</div>
+
+  			</div>
+
+			</p>
+		</div>
+		
+		<div class="col-xs-3">
+			<div>
+				<h3>
+					제한시간 
+					<label id="time">0</label>
+				</h3>	
+			</div>
+			<br>
+			<table border="0">
+			<tr><th><h2>COMBO</h2></th></tr>
+			<tr><th align="center"><h2>
+			<c:if test="${combo ne null}">
+			</c:if>0</h2></th>
+			</tr>
+			</table>
+			<br><br><br><br><br><br><br>
+				  <div class="col-lg-4">
+	  			<input type="button" value="포기하기" class="btn btn-danger btn-lg"/>
+  				</div>
+
+		</div>
 	</div>
 </body>
 </html>
