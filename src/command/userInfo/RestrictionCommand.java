@@ -22,9 +22,9 @@ public class RestrictionCommand implements Command{
 		String id = request.getParameter("id")==null?"":request.getParameter("id");
 		int result = dao.updateRestiction(param, id);
 		
-		if(result == 1){
-			return "WEB-INF/userInfo/userList.jsp";
+		if(result != 1){
+			return "";
 		}
-		return "WEB-INF/userInfo/userInfo.jsp";
+		return "WEB-INF/userInfo/userList.jsp";
 	}	
 }

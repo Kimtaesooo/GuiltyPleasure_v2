@@ -282,30 +282,25 @@ public class UserInfoDAO {
 			
 			if(chat){
 				pstmt.setString(insert, map.get("um_chat"));
-				System.out.println("um_chat = "+map.get("um_chat") );
 				insert++;
 			}
 			
 			if(enroll){
 				pstmt.setString(insert, map.get("um_enroll"));
-				System.out.println("um_enroll = "+map.get("um_enroll") );
 				insert++;
 			}
 			
 			if(single){
-				pstmt.setString(insert, map.get("um_single"));
-				System.out.println("um_single = "+map.get("um_single") );
+				pstmt.setString(insert, map.get("um_single"));				
 				insert++;
 			}
 			
 			if(battle){
 				pstmt.setString(insert, map.get("um_battle"));
-				System.out.println("um_battle = "+map.get("um_battle") );
 				insert++;
 			}
 			if(entry){
 				pstmt.setString(insert, map.get("um_entry"));
-				System.out.println("um_entry = "+map.get("um_entry") );
 				insert++;
 			}
 			
@@ -335,6 +330,14 @@ public class UserInfoDAO {
 		int result = -1;
 		int delResult = -1;
 		int cnt = 1;
+		int insert = 1;
+		
+		boolean chat = false;
+		boolean enroll = false;
+		boolean single = false;
+		boolean battle = false;
+		boolean entry = false;
+		
 		String sql = "UPDATE U_MANAGE SET ";
 		String sqlDelete = "UPDATE USERINFO SET U_DELETE = 'N' WHERE U_ID = ?";
 		if(param.contains("chat")){
@@ -343,34 +346,73 @@ public class UserInfoDAO {
 			}else{
 				sql += ", UM_CHAT = ? ";
 			}
+			cnt++;
+			chat = true;
 		}
-		if(param.contains("chat")){
+		if(param.contains("enroll")){
 			if(cnt == 1){
-				sql += "UM_CHAT = ? ";
+				sql += "UM_ENROLL = ? ";
 			}else{
-				sql += ", UM_CHAT = ? ";
+				sql += ", UM_ENROLL = ? ";
 			}
+			cnt++;
+			enroll = true;
 		}
-		if(param.contains("chat")){
+		if(param.contains("single")){
 			if(cnt == 1){
-				sql += "UM_CHAT = ? ";
+				sql += "UM_SINGLE = ? ";
 			}else{
-				sql += ", UM_CHAT = ? ";
+				sql += ", UM_SINGLE = ? ";
 			}
+			single = true;
 		}
-		if(param.contains("chat")){
+		if(param.contains("battle")){
 			if(cnt == 1){
-				sql += "UM_CHAT = ? ";
+				sql += "UM_BATTLE = ? ";
 			}else{
-				sql += ", UM_CHAT = ? ";
+				sql += ", UM_BATTLE = ? ";
 			}
+			cnt++;
+			battle = true;
 		}
-		if(param.contains("chat")){
+		if(param.contains("entry")){
 			if(cnt == 1){
-				sql += "UM_CHAT = ? ";
+				sql += "UM_ENTRY = ? ";
 			}else{
-				sql += ", UM_CHAT = ? ";
+				sql += ", UM_ENTRY = ? ";
 			}
+			cnt++;
+			entry = true;
+		}
+		sql += " WHERE U_ID = ? ";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			if(chat){
+				pstmt.setString(insert, "");
+				insert++;
+			}
+			if(enroll){
+				pstmt.setString(insert, "");
+				insert++;
+			}
+			if(single){
+				pstmt.setString(insert, "");
+				insert++;
+			}
+			if(battle){
+				pstmt.setString(insert, "");
+				insert++;
+			}
+			if(entry){
+				pstmt.setString(insert, "");
+				insert++;
+			}
+			
+			pstmt.setString(insert, id);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 		
 		if(param.contains("del")){
