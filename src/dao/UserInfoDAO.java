@@ -121,6 +121,7 @@ public class UserInfoDAO {
 				+", TO_CHAR(CASE WHEN UM.UM_BATTLE > CURRENT_TIMESTAMP THEN UM_BATTLE ELSE NULL END,'YYYY-MM-DD') AS UM_BATTLE "
 				+", TO_CHAR(CASE WHEN UM.UM_ENROLL > CURRENT_TIMESTAMP THEN UM_ENROLL ELSE NULL END,'YYYY-MM-DD') AS UM_ENROLL "
 				+", TO_CHAR(CASE WHEN UM.UM_ENTRY > CURRENT_TIMESTAMP THEN UM_ENTRY ELSE NULL END,'YYYY-MM-DD') AS UM_ENTRY "
+				+ ", USR.U_POINT"
 				+" FROM USERINFO USR "
 				+" INNER JOIN U_MANAGE UM "
 	            +" ON USR.U_ID = UM.U_ID "
@@ -141,6 +142,7 @@ public class UserInfoDAO {
 				System.out.println("rs = "+rs.getString("um_entry"));
 				dto.setIntroduce(rs.getString("u_comment"));
 				dto.setDelete(rs.getString("u_delete"));
+				dto.setPoint(rs.getInt("u_point"));
 				
 			}
 			
