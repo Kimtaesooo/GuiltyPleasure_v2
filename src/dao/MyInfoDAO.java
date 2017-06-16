@@ -41,6 +41,7 @@ public class MyInfoDAO {
 				dto.setDate(rs.getString("u_birth"));
 				dto.setGender(rs.getString("u_gender"));
 				dto.setIntroduce(rs.getString("u_introduce"));
+				dto.setDelete(rs.getString("u_delete"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
