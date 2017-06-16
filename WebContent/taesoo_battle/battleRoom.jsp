@@ -27,7 +27,6 @@
 	List list = dao.getListRoom();
 %>
 	<jsp:include page="/top.jsp" />
-	<jsp:include page="/nav_v2.jsp" />
 	<br>
 	<h2>
 		<center>배틀 대기방</center>
