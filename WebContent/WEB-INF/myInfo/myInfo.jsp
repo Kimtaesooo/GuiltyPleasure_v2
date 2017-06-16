@@ -22,6 +22,10 @@
 		
 		$("#btnDelete").click(function(){
 			if(confirm('탈퇴 승인 이후 3개월동안 개인정보가 유지되며 로그인이 가능합니다.\n이 기간 동안 복구 요청이 가능하며 3개월이후 개인정보는 삭제됩니다.\n탈퇴요청 하시겠습까?')){
+				if($("#delete").val() != 'N'){
+					alert("이미 탈퇴 신청하신 사용자 입니다.");
+					return ;
+				}
 				userDeleteAjax();
 			}	
 		});
@@ -50,6 +54,7 @@
 <body>
 <form method="post" action="/GuiltyPleasure/myinfo" name="myInfoForm" id="myInfoForm">
 <input type="hidden" name="cmd" id="cmd"/>
+<input type="hidden" name="delete" id="delete" value="${dto.delete }"/>
 <div class="subCC">
 <h2 class="subTitle">회원 개인 정보</h2>
 <table>
