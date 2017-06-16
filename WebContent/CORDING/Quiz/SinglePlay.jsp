@@ -24,6 +24,48 @@ $(document).ready(function(){
 
 });
 </script>
+<script>
+var isFirst = false;
+$(document).keyup(function (e) {
+	if(e.which == 49) isFirst=false;
+	}).keydown(function (e) {
+	    if(e.which == 49) isFirst=true;
+	    if( isFirst == true) {
+	    	answerCheck(1);
+	 	return false;
+	 }
+});
+var isSecond = false;
+$(document).keyup(function (e) {
+	if(e.which == 50) isSecond=false;
+	}).keydown(function (e) {
+	    if(e.which == 50) isSecond=true;
+	    if( isSecond == true) {
+	    	answerCheck(2);
+	 	return false;
+	 }
+});
+var isThird = false;
+$(document).keyup(function (e) {
+	if(e.which == 51) isThird=false;
+	}).keydown(function (e) {
+	    if(e.which == 51) isThird=true;
+	    if( isThird == true) {
+	    	answerCheck(3);
+	 	return false;
+	 }
+});
+var isFourth = false;
+$(document).keyup(function (e) {
+	if(e.which == 52) isFourth=false;
+	}).keydown(function (e) {
+	    if(e.which == 52) isFourth=true;
+	    if( isFourth == true) {
+	    	answerCheck(4);
+	 	return false;
+	 }
+});
+</script>
 <title>Insert title here</title>
 <%
 	int counter =(int)request.getAttribute("counter");
