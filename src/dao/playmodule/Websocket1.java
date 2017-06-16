@@ -6,7 +6,7 @@ import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.server.ServerEndpoint;
 
-@ServerEndpoint("/bbb")
+//@ServerEndpoint("/bbb")
 public class Websocket1 {
 	/***
      * 웹 소켓이 연결되면 호출되는 이벤트

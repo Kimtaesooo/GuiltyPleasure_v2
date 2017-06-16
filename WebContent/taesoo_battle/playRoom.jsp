@@ -10,7 +10,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%String clientIP = request.getRemoteAddr();
+	System.out.println(clientIP);
+%>
 	<br><br>
+	<input type="hidden" value="<%=clientIP%>" id="ip">
 	<p class="text-center">배틀 게임 시작</p>
 	<br>
 	<br>
@@ -44,8 +48,7 @@
 		</div>
 
 		<div class="col-xs-3">
-			<textarea class="form-control" rows="4" placeholder="접속자 확인 하는 곳"
-				readonly></textarea>
+			<textarea class="form-control" rows="4" placeholder="접속자 확인 하는 곳" id="connectionCheck" readonly></textarea>
 			<br>
 			<fieldset>
 			<textarea class="form-control" rows="15" id="messageWindow" readonly></textarea>
@@ -62,8 +65,11 @@
 	
 	<script type="text/javascript">
         var textarea = document.getElementById("messageWindow");
+        var connectionCheck = document.getElementById("connectionCheck");
         var webSocket = new WebSocket('ws://70.12.110.106:8080/GuiltyPleasure/websocket');
         var inputMessage = document.getElementById('inputMessage');
+        var ip = document.getElementById('ip').value;
+        
     webSocket.onerror = function(event) {
       onError(event)
     };
@@ -73,18 +79,21 @@
     webSocket.onmessage = function(event) {
       onMessage(event)
     };
+    
+    
     function onMessage(event) {
         textarea.value += "상대 : " + event.data + "\n";
     }
     function onOpen(event) {
         textarea.value += "연결 성공\n";
+        connectionCheck.value += ip + "\n";
     }
     function onError(event) {
       alert(event.data);
     }
     function send() {
         textarea.value += "나 : " + inputMessage.value + "\n";
-        webSocket.send(inputMessage.value);
+        webSocket.send(ip+inputMessage.value);
         inputMessage.value = "";
     }
   </script>

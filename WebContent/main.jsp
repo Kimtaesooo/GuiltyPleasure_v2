@@ -57,11 +57,11 @@
              	<br><br><br>
             </div>
             <div class="col-md-4 portfolio-item"  align="center">
-                <a href="#">
+                <a href="taesoo_battle/battleRoom.jsp">
                     <img class="img-responsive" src="https://cdn0.iconfinder.com/data/icons/pokemon-go-vol-1/135/_Battle-128.png" alt="">
                 </a>
                 <h3>
-                    <a href="#">배틀플레이</a>
+                    <a href="taesoo_battle/battleRoom.jsp">배틀플레이</a>
                 </h3>
                
             </div>

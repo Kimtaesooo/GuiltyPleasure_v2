@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
@@ -14,7 +15,6 @@ import javax.websocket.server.ServerEndpoint;
 @ServerEndpoint("/websocket")
 public class Websocket {
 	private static Set<Session> clients = Collections.synchronizedSet(new HashSet<Session>());
-
 	@OnMessage
 	public void onMessage(String message, Session session) throws IOException {
 		System.out.println(message);
