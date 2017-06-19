@@ -38,7 +38,7 @@
 	
 	// 페이징 기능 추가
    	int totalRecord=list.size(); //전체 글의 개수
-   	int numPerPage=5; //한 페이지 당 보여질 글의 개수
+   	int numPerPage=10; //한 페이지 당 보여질 글의 개수
    	int totalPage=0;
    	int nowPage=0; //현재 내가 선택한(보고 있는) 페이지 번호
    	int beginPerPage=0; //각 페이지당 시작번호
@@ -58,6 +58,13 @@
     
     beginPerPage =  nowPage * numPerPage;
 %>
+<table align=center border=0 width=80%>
+<tr>
+	<td align=left>Total : <%=list.size()%> Articles(
+		<font color=red>  <%=nowPage+1%> / <%=totalPage %> pages </font>)
+	</td>
+</tr>
+</table>
 
 <table align=center width="80%" cellpadding="0" cellspacing="0" border="0">
   <tr height="5"><td width="5"></td></tr>
@@ -97,6 +104,29 @@
   <tr height="1" bgcolor="#D2D2D2"><td colspan="6"></td></tr>
 
  <tr height="1" bgcolor="#82B5DF"><td colspan="6" width="752"></td></tr>
+ <tr>
+ 	<td align="left">
+		Go to Page
+		<%if(nowBlock>0){%>
+			<a href="BoardList.jsp?nowBlock=<%=nowBlock-1%>&nowPage=<%=pagePerBlock*(nowBlock-1)%>">이전<%=pagePerBlock %>개</a>
+		<% }%>
+		::: 
+		<%
+			for(int i=0; i<pagePerBlock; i++){
+				if((nowBlock*pagePerBlock)+i == totalPage)
+					break;
+		%>
+			<a href="BoardList.jsp?nowPage=<%=(nowBlock*pagePerBlock)+i%>&nowBlock=<%=nowBlock%>"><%=(nowBlock*pagePerBlock)+i+1%></a>&nbsp;&nbsp;&nbsp;
+		<%
+			}
+		%>
+		:::
+		<%if(totalBlock > nowBlock+1){%> 
+			<a href="BoardList.jsp?nowBlock=<%=nowBlock+1%>&nowPage=<%=pagePerBlock*(nowBlock+1)%>">다음<%=pagePerBlock%>개</a>
+		<%}%>
+		
+	</td>
+ </tr>
  </table>
  
 <table align=center width="80%" cellpadding="0" cellspacing="0" border="0">

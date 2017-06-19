@@ -8,6 +8,7 @@ import java.util.List;
 
 import dbcp.DBConnectionMgr;
 import dto.Board;
+import dto.Reply;
 
 public class FreeBoard {
 	private Connection con;
@@ -107,6 +108,13 @@ public class FreeBoard {
 		Board board = new Board();
 		String sql = null;
 		try{
+			// 조회수 증가
+			if(isRead){
+				sql = "update board set b_count = b_count+1 where b_num = '" + b_num + "'";
+				pstmt = con.prepareStatement(sql);
+				pstmt.executeUpdate();
+			}
+	
 			// 상세 글  조회
 			sql = "select * from board where b_num='"+ b_num +"'";
 			pstmt = con.prepareStatement(sql);
@@ -152,16 +160,13 @@ public class FreeBoard {
 	// UpdateProc.jsp
 	public void updateBoard(Board board){
 		String sql = "update board set b_title=?, b_content=? where b_num=?";
-		System.out.println(board.getB_title());
-		System.out.println(board.getB_content());
-		System.out.println(board.getB_num());
+		
 		try{
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, board.getB_title());
 			pstmt.setString(2, board.getB_content());
 			pstmt.setString(3, board.getB_num());
 			pstmt.executeUpdate();
-			System.out.println("수정");
 		}
 		catch(Exception err){
 			System.out.println("updateBoard()에서 오류");
@@ -170,5 +175,75 @@ public class FreeBoard {
 		finally{
 			pool.freeConnection(con,pstmt);
 		}
+	}
+	
+	// 댓글 list 뿌리기
+	public ArrayList<Reply> getReplyList(String b_num){
+		ArrayList<Reply> rep_list = new ArrayList<Reply>();
+		String sql = "select * from reply where b_num= ? order by r_reply";
+		
+		try{
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, b_num);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				Reply reply = new Reply();
+				reply.setR_reply(rs.getString("r_reply"));
+				reply.setB_num(rs.getString("b_num"));
+				reply.setU_id(rs.getString("u_id"));
+				reply.setR_content(rs.getString("r_content"));
+				reply.setR_regdate(rs.getString("r_regdate"));
+				
+				rep_list.add(reply);
+			}
+		}
+		catch(Exception err){
+			System.out.println("getReplyList()에서 오류");
+			err.printStackTrace();
+		}
+		finally{
+			 pool.freeConnection(con, pstmt, rs);
+		}
+		return rep_list;
+	}
+	
+	// 댓글 입력
+	public void replyBoard(Reply reply){
+		String sql = "insert into reply(r_reply, b_num, u_id, r_content, r_regdate) "
+				+ "values('R'||LPAD((seq_r_reply.NEXTVAL),4,'0'),?,?,?,sysdate)";
+		try{
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, reply.getB_num());
+			pstmt.setString(2, reply.getU_id());
+			pstmt.setString(3, reply.getR_content());
+			pstmt.executeUpdate();
+		}
+		catch(Exception err){
+		      System.out.println("replyBoard()에서 오류 : " + err);
+		      err.printStackTrace();
+		   }
+		   finally{
+		      pool.freeConnection(con, pstmt);
+		   }
+	}
+	
+	// 댓글 삭제
+	public void deleteReply(String r_reply){
+		String sql = "delete from reply where r_reply= ? ";
+		
+		try{
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, r_reply);
+	        pstmt.executeUpdate();
+		}
+		catch(Exception err){
+	       System.out.println("deleteReply()에서 오류");
+	       err.printStackTrace();
+	    }
+	    finally{
+	       pool.freeConnection(con,pstmt);
+	   }
 	}
 }
