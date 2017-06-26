@@ -20,7 +20,7 @@ public class CommandFactory {
 		}else if(cmd.equals("QREGI_BOARD_LIST")){
 			return new QBoradRegisterCommand();
 		}else if(cmd.equals("QREGI_BOARD_GET")){
-			return new QBoradRegisterCommand();
+			return new QBRGetCommand();
 		}
 		else{
 		}

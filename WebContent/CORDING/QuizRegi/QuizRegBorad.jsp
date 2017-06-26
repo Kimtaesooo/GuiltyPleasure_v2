@@ -37,7 +37,7 @@
 					for(int i =0; i<list.size(); i++){
 						uq = (U_Quiz)list.get(i);
 					%>
-						<tr align="center" onclick="qinform(<%=uq.getUq_num()%>)">
+						<tr align="center" onclick="qinform('<%=uq.getUq_num()%>')">
 							<td><%=uq.getUq_num() %></td>
 							<td><%=uq.getUq_question() %></td>
 							<td><%=uq.getUq_adopt() %></td>
@@ -51,8 +51,8 @@
 	</td>
 </tr>
 </table>
-<form method="posr" action = "QuizReg.jsp">
-<input type ="submit" value="巩力 力免">
+<form method="POST"  action ="CORDING/QuizRegi/QuizReg.jsp">
+	<input type ="submit"  value="巩力 力免">
 </form>
 </body>
 </html>

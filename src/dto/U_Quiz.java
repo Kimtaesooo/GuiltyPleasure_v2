@@ -1,7 +1,7 @@
 package dto;
 
 public class U_Quiz {
-	int uq_num;
+	String uq_num;
 	String u_id;
 	String q_type;
 	String uq_question;
@@ -11,11 +11,12 @@ public class U_Quiz {
 	String uq_wa_c;
 	String uq_regdate;
 	String uq_adopt;
+
 	
-	public int getUq_num() {
+	public String getUq_num() {
 		return uq_num;
 	}
-	public void setUq_num(int uq_num) {
+	public void setUq_num(String uq_num) {
 		this.uq_num = uq_num;
 	}
 	public String getU_id() {
