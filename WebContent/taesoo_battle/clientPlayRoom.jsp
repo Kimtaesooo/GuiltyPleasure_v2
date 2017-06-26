@@ -25,6 +25,7 @@
 	List roominfo = dao.roomInfo(bangjang);
 	Battle_Room room = (Battle_Room)roominfo.get(0);
 	String ip = room.getBr_ip();
+	System.out.println(ip);
 	//System.out.print(clientIP + " : ");
 	Socket sock;
 	
@@ -94,7 +95,7 @@
         var textarea = document.getElementById("messageWindow");
         var connectionCheck = document.getElementById("connectionCheck");
         var ip = document.getElementById('ip').value;
-        var webSocket = new WebSocket('ws://'+<%=ip%>+'/GuiltyPleasure/websocket');
+        var webSocket = new WebSocket("ws://"+ip+":8080/GuiltyPleasure/websocket");
         var inputMessage = document.getElementById('inputMessage');
         var gameUser = document.getElementById('gameUser').value;
         var bangjang = document.getElementById('bangjang').value;

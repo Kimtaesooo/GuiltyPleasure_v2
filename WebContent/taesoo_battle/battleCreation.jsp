@@ -1,3 +1,5 @@
+<%@page import="ts_playmodule.Websocket"%>
+<%@page import="java.net.Socket"%>
 <%@ page import="java.util.List"%>
 <%@ page import="dao.playmodule.BattlePlay"%>
 <%@ page import="dto.Battle_Room"%>
@@ -11,10 +13,11 @@
 	<jsp:useBean id="dao" class="dao.playmodule.BattlePlay"/>
 	<jsp:useBean id="dto" class="dto.Battle_Room"/>
 	<jsp:setProperty name="dto" property="*"/>
+	var webSocket= new Websocket("ws://70.12.110.106:8080/GuiltyPleasure/websocket");
 
 <%
 	dao.regRoom(dto, u_id);
-	response.sendRedirect("serverPlayRoom.jsp");
+	response.sendRedirect("playRoom.jsp");
 %>
 
 <%

@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@page import="java.net.Socket"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <%@ page import="dto.Battle_Room"%>
@@ -21,9 +22,10 @@
 <%
 	String bangjang = request.getParameter("u_id"); // 방장의 아이디
 	String gameUser = (String)session.getAttribute("u_id"); // 접속자의 아이디
-	String clientIP = request.getRemoteAddr();
+	String ip = request.getRemoteAddr();
+	System.out.println(ip);
 	//System.out.print(clientIP + " : ");
-	Socket sock;
+
 	// 방장 만들기
 	if(bangjang == null || bangjang.equals("null")){
 		bangjang = gameUser;
@@ -31,14 +33,16 @@
 	}
 	System.out.println("방장 : " + bangjang);
 	System.out.println("플에이어 : " + gameUser);
-	if(dao.roomInfo(bangjang)==2){
+	List roominfo = dao.roomInfo(bangjang);
+	Battle_Room room = (Battle_Room)roominfo.get(0);
+	if(room.getBr_people()==2){
 %>
 		<script> alert('인원이 꽉 찼습니다.'); 	location.href="battleRoom.jsp";	</script>
 <%	}
 	
 %>
 	<br><br>
-	<input type="hidden" value="<%=clientIP%>" id="ip">
+	<input type="hidden" value="<%=ip%>" id="ip">
 	<input type="hidden" value="<%=gameUser%>" id="gameUser">
 	<input type="hidden" value="<%=bangjang%>" id="bangjang">
 	<input type="hidden" id="uri" value="ws://localhost:8080"> 
@@ -94,9 +98,9 @@
 	<script type="text/javascript">
         var textarea = document.getElementById("messageWindow");
         var connectionCheck = document.getElementById("connectionCheck");
-        var webSocket = new WebSocket('ws://70.12.110.106:8080/GuiltyPleasure/websocket');
-        var inputMessage = document.getElementById('inputMessage');
         var ip = document.getElementById('ip').value;
+        var webSocket = new WebSocket("ws://"+ip+":8080/GuiltyPleasure/websocket");
+        var inputMessage = document.getElementById('inputMessage');
         var gameUser = document.getElementById('gameUser').value;
         var bangjang = document.getElementById('bangjang').value;
         

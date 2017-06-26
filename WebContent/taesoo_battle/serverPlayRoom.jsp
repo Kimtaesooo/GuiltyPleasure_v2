@@ -24,10 +24,10 @@
 	String gameUser = "";
 	List roominfo = dao.roomInfo(bangjang);
 	Battle_Room room = (Battle_Room)roominfo.get(0);
+	String ip = request.getRemoteAddr();
 	//System.out.print(ServerIP + " : ");
-	Socket sock;
-	// 방장 만들기
-	
+
+	// 방장 만들기	
 	/*
 	// 게임룸의 리스트를 만들고 관리하며 방을 생성하고 징는 함수를 구현한다.
 	RoomManager roomManger = new RoomManager();
@@ -102,9 +102,9 @@
 	<script type="text/javascript">
         var textarea = document.getElementById("messageWindow");
         var connectionCheck = document.getElementById("connectionCheck");
-        var webSocket = new WebSocket('ws://localhost:8080/GuiltyPleasure/websocket');
-        var inputMessage = document.getElementById('inputMessage');
         var ip = document.getElementById('ip').value;
+        var webSocket = new WebSocket("ws://70.12.110.106:8080/GuiltyPleasure/websocket");
+        var inputMessage = document.getElementById('inputMessage');
         var gameUser = document.getElementById('gameUser').value;
         var bangjang = document.getElementById('bangjang').value;
         

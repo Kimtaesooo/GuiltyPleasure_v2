@@ -16,6 +16,9 @@ import javax.websocket.server.ServerEndpoint;;
 //@OnOpen은 클라이언트에서 서버로 접속할 때의 처리입니다.
 //@OnClose는 접속이 끊겼을때 처리입니다.
 
+// @ServerEndpoint 어노테이션을 명시함으로서 WEB 소켓으로 접속 가능한 URL 
+// 정보를 명시하여 소켓 서버를 생성해주며 프로퍼티를 통해 decoder나 encoder를 명시할 수 있다.
+// 싱글톤 패턴이다.
 @ServerEndpoint("/websocket")
 public class Websocket {
 	private static Set<Session> clients = Collections.synchronizedSet(new HashSet<Session>());
