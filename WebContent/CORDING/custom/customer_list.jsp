@@ -17,21 +17,21 @@
 	String id ="";
 	String keyField = request.getParameter("keyField");
 	String keyWord = request.getParameter("keyWord");
-<<<<<<< HEAD
+//<<<<<<< HEAD
 	if(keyWord==null){
 		keyWord="";
-=======
+//=======
 	if(session.getAttribute("u_id")!=null){
 		id = (String)session.getAttribute("u_id");
->>>>>>> branch 'master' of https://github.com/Kimtaesooo/GuiltyPleasure_bak.git
+//>>>>>>> branch 'master' of https://github.com/Kimtaesooo/GuiltyPleasure_bak.git
 	}
-<<<<<<< HEAD
+//<<<<<<< HEAD
 	if(session.getAttribute("u_id")!=null){
 		id = (String)session.getAttribute("u_id");
 	}
-=======
+//=======
 	List list = dao.getBoardList(id,keyField,keyWord);
->>>>>>> branch 'master' of https://github.com/Kimtaesooo/GuiltyPleasure_bak.git
+//>>>>>>> branch 'master' of https://github.com/Kimtaesooo/GuiltyPleasure_bak.git
 	
 	List list = dao.getBoardList(id,keyField,keyWord);
 	//∆‰¿Ã¬°
@@ -77,8 +77,7 @@ $(document).ready(function(){
 	$("#list").css("background","lightblue");
 <<<<<<< HEAD
 	$("#page").css("background","lightblue");
-=======
->>>>>>> branch 'master' of https://github.com/Kimtaesooo/GuiltyPleasure_bak.git
+
 
 });
 </script>
@@ -237,8 +236,9 @@ $(document).ready(function(){
 <<<<<<< HEAD
 	<input type="hidden" name="keyField" value="<%=keyField%>"/>
 	<input type="hidden" name="keyWord" value="<%=keyWord%>"/>
-=======
+<!-- =======
 >>>>>>> branch 'master' of https://github.com/Kimtaesooo/GuiltyPleasure_bak.git
+ -->
 </form>
 </body>
 </html>

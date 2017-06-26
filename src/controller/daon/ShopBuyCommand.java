@@ -18,15 +18,20 @@ public class ShopBuyCommand implements Command{
 		ShopManager sDao = ShopManager.getInstance();
 		String code=req.getParameter("code");
 		String id=req.getParameter("id");
-		int userPoint=Integer.parseInt(req.getParameter("userPoint"));
-		Shop dto=sDao.selectOneItemByCode(code);
-		System.out.println(code+"코드야");
-		System.out.println(dto.getS_deadline()+"데드라인이야");
-		sDao.minusOneItem(code, dto.getS_limit_num());
-		sDao.setUserPoint(id, userPoint);
-		sDao.addPurchaseList(id,dto);
 		
-		return "/daon_v1/outline/shop.jsp";
+		int userPoint=Integer.parseInt(req.getParameter("userPoint"));
+		Shop dto=sDao.selectOneItemByCode(code); //아이템 코드값으로 아이템 dto구성
+		sDao.minusOneItem(code, dto.getS_limit_num()); //아이템 수량 하나 감소
+		sDao.setUserPoint(id, userPoint); //유저 포인트 감소
+		sDao.addPurchaseList(id,dto); //구매리스트에추가
+		sDao.addItemFunction(id, dto); //아이템 기능 추가
+		
+		String nickname=req.getParameter("nickname");
+		if(nickname!=null){
+		sDao.editNickname(id, nickname);
+		}
+		
+		return "/CORDING/shop/outline/shop.jsp";
 	}
 
 }
