@@ -201,6 +201,7 @@
 							$("#updateModal" + i).modal();
 						});
 					}
+
 					function buyModal(i) {
 						var defaultText = $("#Check").text()
 
@@ -208,19 +209,21 @@
 								.bind(
 										"click",
 										function(e) {
+											//유저의 포인트에서 상품의 가격을 뺀 잔액의 크기를 구함
 											var leftMoney = document
 													.getElementById("getPoint").value
 													- document
 															.getElementById("getPrice"
 																	+ i).value;
 
-											//상품 수량이 0이 아닐때에만 구매 가능하도록
+											//상품 수량이 없을때 구매 불가능하도록
 											if (document
 													.getElementById("getLimit"
-															+ i).value == 0) {
+															+ i).value < 1) {
 												$("#cantBuyModal").modal();
 												$("#Check").text(defaultText);
 											} else {
+												//잔액의 크기가 마이너스일경우 구매불가능하도록
 												if (leftMoney < 0) {
 													$("#Check")
 															.text(
@@ -246,6 +249,7 @@
 				<%
 					request.setCharacterEncoding("euc-kr");
 				%>
+
 				<jsp:useBean id="dao" class="dao.shopmodule.ShopManager"></jsp:useBean>
 				<jsp:useBean id="userdao" class="dao.UserInfoDAO"></jsp:useBean>
 				<%
@@ -256,41 +260,24 @@
 					int totalPage = 0;
 					int nowPage = 0;
 					int beginPerPage = 0;
-					int pagePerBlock = 3;
-					int totalBlock = 0;
-					int nowBlock = 0;
+					
 
 					totalPage = (int) Math.ceil((double) totalRecord / numPerPage);
 
 					if (request.getParameter("nowPage") != null)
 						nowPage = Integer.parseInt(request.getParameter("nowPage"));
 
-					if (request.getParameter("nowBlock") != null)
-						nowBlock = Integer.parseInt(request.getParameter("nowBlock"));
-
-					totalBlock = (int) Math.ceil((double) totalPage / pagePerBlock);
 
 					beginPerPage = nowPage * numPerPage;
 				%>
 
 				<%
-					//아이디가져오기
+					//세션에서 아이디값 받아 유저의 dto 만들어놓기
 					String id = (String) session.getAttribute("u_id");
 					UserInfoDTO uDto = userdao.searchUserInfo(id);
 				%>
-				<c:set var="totalRecord" value="${itemList.size()}" />
+			
 				<br>
-
-
-
-
-
-
-
-
-
-
-
 
 				<!-- 템플릿 적용 페이지 -->
 				<div class="row">
@@ -301,17 +288,16 @@
 							Shop</h2>
 						<p
 							class="fh5co-sub animate-single product-animate-2 fadeIn animated">
-							실력이 구리면 어쩔 수 없죠. 템빨로 승부하세요!
-							<%=id%>님!
+							실력이 구리면 어쩔 수 없죠. 템빨로 승부하세요!<%=id%>님!
 						</p>
 					</div>
 				</div>
 
 				<div class="row" align="center">
 					<div class="col-md-1">
-
+						<!-- 첫번째 페이지인 경우 빼고 이전페이지로 돌아가는 화살표 생성 -->
 						<%
-							if (nowPage > 0) {
+							if (nowPage != 0) {
 						%>
 						<form action="/GuiltyPleasure/shop" method="post">
 							<input type="hidden" name="cmd" value="SHOPLIST"> <input
@@ -331,14 +317,14 @@
 
 						<div class="row">
 
-
+							<!-- 4개씩 한페이지, 마지막데이터까지 출력하고 반복문 끝 -->
 							<%
-								for (int i = beginPerPage; i < numPerPage + beginPerPage; i++) {
-									if (i == totalRecord) {
-										if (id.equals("master")) {
+							for (int i = beginPerPage; i < numPerPage + beginPerPage; i++) {
+								if (i == totalRecord) {
+									if (id.equals("master")) {
 							%>
 
-							<!--마지막데이터까지 출력된 다음추가버튼 보이게하기 -->
+							<!--관리자인경우 마지막데이터까지 출력된 다음 아이템추가버튼 보이게하기 -->
 							<div class="col-md-3 col-sm-6 col-xs-6 col-xxs-12">
 
 								<a class="fh5co-figure to-animate fadeInUp animated">
@@ -353,9 +339,9 @@
 
 							</div>
 							<%
-								}
-										break;
 									}
+									break;
+							}
 
 									Shop item = (Shop) list.get(i);
 							%>
@@ -365,7 +351,7 @@
 
 
 
-							<!-- 삼품 출력 -->
+							<!-- 삼품 목록 출력 -->
 							<div class="col-md-3 col-sm-6 col-xs-6 col-xxs-12">
 
 								<a class="fh5co-figure to-animate fadeInUp animated">
@@ -384,13 +370,15 @@
 									<p align="right">
 										<button type="button" role="buy"
 											class="btn btn-default btn-xs" id="buyButton${cnt=cnt+1}">
-
 											구매</button>
+										
+										<!-- 히든 버튼으로 아이템의 수량, 가격 값 저장/ 값을 체크하여 구매 불가능한 상황에서는 jquery에서 구매 모달 대신 구매 불가 모달을 띄울수있도록 함-->
 										<input type="hidden" id="getLimit${cnt}"
 											value="<%=item.getS_limit_num()%>"> <input
 											type="hidden" id="getPoint" value="<%=uDto.getPoint()%>">
 										<input type="hidden" id="getPrice${cnt}"
 											value="<%=item.getS_price()%>">
+											
 										<button type="button" role="explain"
 											class="btn btn-default btn-xs" id="explainButton${cnt}">설명</button>
 
@@ -436,7 +424,7 @@
 											<form action="/GuiltyPleasure/shop" method="post"
 												id="buy${cnt}">
 												<%
-													//닉네임 변경아이템일경우 변경란 추가
+													//닉네임 변경아이템일경우 닉네임 변경란 추가
 
 														if (item.getS_itemcode().equals("SIC0009")) {
 												%>
@@ -657,6 +645,7 @@
 
 										</div>
 										<div class="modal-body">
+											<!-- 재고는있는데 포인트가 부족한경우에는 jquery에서 다른 메시지로 변경함 -->
 											<p id="Check">재고가 떨어졌어요ㅠㅠ 다음에 다시 들러주세요</p>
 										</div>
 										<div class="modal-footer">
@@ -688,7 +677,7 @@
 
 
 
-					<!-- 다음 버튼 -->
+					<!-- 마지막페이지가 아닌 경우 다음 버튼 -->
 					<div class="col-md-1">
 						<%
 							if (nowPage < totalPage - 1) {
