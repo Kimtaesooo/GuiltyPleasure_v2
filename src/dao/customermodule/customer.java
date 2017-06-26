@@ -55,6 +55,7 @@ public class customer {
 	
 	public List getBoardList(String id, String type, String key){
 		ArrayList list = new ArrayList();
+<<<<<<< HEAD
 		if(key.length()==0||key==null){
 			if(id.equals("master")){
 				sql = "select * from service_center  order by sc_state asc, sc_regdate desc";
@@ -63,6 +64,16 @@ public class customer {
 		}
 		else{
 			if(id.equals("master")){
+=======
+		if(key==null){
+			if(id.equals("MASTER")){
+				sql = "select * from service_center  order by sc_state asc, sc_regdate desc";
+			}else{
+				sql = "select * from service_center where u_id='"+id+"' order by sc_state asc, sc_regdate desc";}
+		}
+		else{
+			if(id.equals("MASTER")){
+>>>>>>> branch 'master' of https://github.com/Kimtaesooo/GuiltyPleasure_bak.git
 				sql = "select * from service_center where "+type+" like '%"+key+"%' order by  sc_state asc, sc_regdate desc";
 			}else{
 				sql = "select * from service_center where u_id='"+id+"' and "+type+" like '%"+key+"%' order by sc_state asc, sc_regdate desc";}

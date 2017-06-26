@@ -2,7 +2,14 @@ package dto;
 
 public class c_board {
 	private String sc_num, u_id, sc_type, sc_title, sc_content,
-	sc_regdate,sc_state;
+	sc_regdate,sc_state,sc_answer;
+	
+	public String getSc_answer() {
+		return sc_answer;
+	}
+	public void setSc_answer(String sc_answer) {
+		this.sc_answer = sc_answer;
+	}
 	private String img;
 	
 	public String getSc_num() {

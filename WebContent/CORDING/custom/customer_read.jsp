@@ -63,6 +63,7 @@ $(document).ready(function(){
 </head>
 <body>
 <jsp:include page="/top.jsp"/>
+<<<<<<< HEAD
 <jsp:include page="/nav.jsp"/>
 
 <div class="container">   
@@ -105,6 +106,50 @@ $(document).ready(function(){
 			</pre>
 			<%} %>
 			<%if(id.equals("master")==false){ %>
+=======
+<jsp:include page="/nav.html"/>
+
+<div class="container">   
+        <div class="row col-lg-12">
+        	<div class="col-lg-4">
+        	<a href="customer_main.jsp" class="btn btn-success ">문의</a>
+        	<a href="#" class="btn btn-info active">문의 내역</a>
+			</div>
+			<div class="col-lg-8" align="right">
+			<a href="customer_ques.jsp" class="btn btn-warning" >문의하기</a>	
+			</div>
+			<br><br>
+			<div class="jumbotron">
+			<H2><span class="glyphicon glyphicon-user"></span>문의내용</H2>
+			<pre>글제목 : <%=dto.getSc_title() %></pre>
+			<pre>등록일 : <%=dto.getSc_regdate() %></pre>
+			<pre>처리상태 : <%=dto.getSc_state() %> </pre>
+			<pre><%=dto.getSc_content() %>
+			
+			
+			
+			</pre>
+			
+			<H2><span class="glyphicon glyphicon-arrow-right"></span>답변</H2>
+			<%if(answer==null){ %>
+			
+				<%if(id.equals("MASTER")){%>
+				<form action="customer_ans_proc.jsp" method="post" name="ans">
+				<input type="hidden" value="<%=dto.getSc_num()%>" name="sc_num">
+				<textarea class="form-control" rows="10" id="content" name="sca_answer"></textarea>
+				<br>
+		        <a href="javascript:check()" class="btn btn-primary">답변하기</a>
+				</form>
+				<%}else{ %>
+				<h2>아직 처리하지 않은 문의내용 입니다..</h2>
+				<%} %>
+				<br>
+			<%}else{ %>
+			<pre><%=answer %>
+			</pre>
+			<%} %>
+			<%if(id.equals("MASTER")==false){ %>
+>>>>>>> branch 'master' of https://github.com/Kimtaesooo/GuiltyPleasure_bak.git
 			<form action="customer_delete_proc.jsp" method="post" name="del">
 					<input type="hidden" value="<%=dto.getSc_num()%>" name="sc_num">
 					<input type="hidden" value="<%=dto.getU_id()%>" name="u_id">

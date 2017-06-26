@@ -17,12 +17,21 @@
 	String id ="";
 	String keyField = request.getParameter("keyField");
 	String keyWord = request.getParameter("keyWord");
+<<<<<<< HEAD
 	if(keyWord==null){
 		keyWord="";
+=======
+	if(session.getAttribute("u_id")!=null){
+		id = (String)session.getAttribute("u_id");
+>>>>>>> branch 'master' of https://github.com/Kimtaesooo/GuiltyPleasure_bak.git
 	}
+<<<<<<< HEAD
 	if(session.getAttribute("u_id")!=null){
 		id = (String)session.getAttribute("u_id");
 	}
+=======
+	List list = dao.getBoardList(id,keyField,keyWord);
+>>>>>>> branch 'master' of https://github.com/Kimtaesooo/GuiltyPleasure_bak.git
 	
 	List list = dao.getBoardList(id,keyField,keyWord);
 	//페이징
@@ -66,7 +75,10 @@ function fnRead(sc_num){
 }
 $(document).ready(function(){
 	$("#list").css("background","lightblue");
+<<<<<<< HEAD
 	$("#page").css("background","lightblue");
+=======
+>>>>>>> branch 'master' of https://github.com/Kimtaesooo/GuiltyPleasure_bak.git
 
 });
 </script>
@@ -102,6 +114,7 @@ $(document).ready(function(){
 								<option value="sc_title" 
 								<% if(keyField!=null&&keyField.equals("sc_title")){%>
 								selected="selected"<%} %>> 제목
+<<<<<<< HEAD
 								<%if(id.equals("master")){ %>
 								<option value="u_id"
 								<% if(keyField!=null&&keyField.equals("u_id")){%>
@@ -122,6 +135,28 @@ $(document).ready(function(){
 					</table>
 				</form>
 				<table class="table table-striped table-hover " id="list">
+=======
+								<%if(id.equals("Master01")){ %>
+								<option value="u_id"
+								<% if(keyField!=null&&keyField.equals("u_id")){%>
+								selected="selected"<%} %>>작성자
+								<%} %>
+								<option value="sc_state" 
+								<% if(keyField!=null&&keyField.equals("sc_state")){%>
+								selected="selected"<%} %>> 처리상태
+							</select>
+				
+							<input type="text" size="16" name="keyWord" 
+							<% if(keyWord != null){%>value="<%=keyWord %>"<%} %>>
+							
+							<input type="button" value="찾기" onClick="check()">
+							<input type="hidden" name="page" value= "0">
+						</td>
+					</tr>
+					</table>
+				</form>
+				<table class="table table-striped table-hover " id="list"  align=center>
+>>>>>>> branch 'master' of https://github.com/Kimtaesooo/GuiltyPleasure_bak.git
 				  <thead>
 				    <tr>
 				      <th width="170">등록일</th>
@@ -199,8 +234,11 @@ $(document).ready(function(){
 
 <form name="frmRead" method="post" action="customer_read.jsp">
 	<input type="hidden" name="sc_num" />
+<<<<<<< HEAD
 	<input type="hidden" name="keyField" value="<%=keyField%>"/>
 	<input type="hidden" name="keyWord" value="<%=keyWord%>"/>
+=======
+>>>>>>> branch 'master' of https://github.com/Kimtaesooo/GuiltyPleasure_bak.git
 </form>
 </body>
 </html>
