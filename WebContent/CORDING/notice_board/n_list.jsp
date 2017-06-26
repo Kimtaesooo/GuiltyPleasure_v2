@@ -1,3 +1,4 @@
+<%@page import="dto.Notice"%>
 <%@page import="dto.c_board"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"%>
@@ -9,7 +10,7 @@
 <link rel="stylesheet" href="../../bootstrap332/css/bootstrap.min.css">
 <script src="../../bootstrap332/js/jquery-3.2.1.min.js"></script>
 <script src="../../bootstrap332/js/bootstrap.min.js"></script>
-<jsp:useBean id="dao" class="dao.customermodule.customer"/>
+<jsp:useBean id="dao" class="dao.noticemodule.notice"/>
 <%
 	request.setCharacterEncoding("euc-kr");
 	response.setCharacterEncoding("euc-kr");
@@ -60,8 +61,8 @@ function check(){
 	}
 	document.search.submit();
 }
-function fnRead(sc_num){
-	document.frmRead.sc_num.value = sc_num;
+function fnRead(n_num){
+	document.frmRead.num.value = n_num;
 	document.frmRead.submit();
 }
 $(document).ready(function(){
@@ -76,40 +77,23 @@ $(document).ready(function(){
 
 <div class="container">   
         <div class="row col-lg-12">
-        	<div class="col-lg-4">
-        	<a href="customer_main.jsp" class="btn btn-success ">문의</a>
-        	<a href="#" class="btn btn-info active">문의 내역</a>
-			</div>
-			<div class="col-lg-8" align="right">
-			<a href="customer_ques.jsp" class="btn btn-warning" >문의하기</a>	
-			</div>
-			<br><br>
+
 			<div class="col-lg-12 panel panel-success">
 				<br>
-				<%if(session.getAttribute("u_id")!=null){%>
 				<div class="jumbotron">
-	  			<h1>문의하신 내역 입니다.</h1>
-	  			<p>대기상태 항목은 아직 답변해드리지 못한 문의 입니다.</p>
-	  			<h5>클릭시 답변이 나타납니다.</h5>
+	  			<h1>공지사항</h1>
 				</div>
 				
 				<div class="jumbotron">
-				<form action="customer_list.jsp" name="search" method="post">
+				<form action="n_list.jsp" name="search" method="post">
+					
 					<table border=0 align=center cellpadding=4 cellspacing=0>
 					<tr>
 						<td align=center valign=bottom>
 							<select name="keyField" size="1">
-								<option value="sc_title" 
-								<% if(keyField!=null&&keyField.equals("sc_title")){%>
+								<option value="n_title" 
+								<% if(keyField!=null&&keyField.equals("n_title")){%>
 								selected="selected"<%} %>> 제목
-								<%if(id.equals("master")){ %>
-								<option value="u_id"
-								<% if(keyField!=null&&keyField.equals("u_id")){%>
-								selected="selected"<%} %>>작성자
-								<%} %>
-								<option value="sc_state" 
-								<% if(keyField!=null&&keyField.equals("sc_state")){%>
-								selected="selected"<%} %>> 처리상태
 							</select>
 				
 							<input type="text" size="16" name="keyWord" 
@@ -121,13 +105,14 @@ $(document).ready(function(){
 					</tr>
 					</table>
 				</form>
+				
 				<table class="table table-striped table-hover " id="list">
 				  <thead>
 				    <tr>
 				      <th width="170">등록일</th>
 				      <th width="100">작성자</th>
 				      <th>글제목</th>
-				      <th width="100">처리상태</th>
+				      <th width="100">조회수</th>
 				    </tr>
 				  </thead>
 				  <tbody>
@@ -144,13 +129,13 @@ $(document).ready(function(){
 								if(i == totalRecord)
 									break;
 								
-								c_board dto = (c_board)list.get(i);
+								Notice dto = (Notice)list.get(i);
 					%>
 							<tr class="info">
-								<td><%=dto.getSc_regdate()%></td>
-								<td><%=dto.getU_id()%></td>
-								<td><a href="javascript:fnRead('<%=dto.getSc_num()%>')"><%=dto.getSc_title()%></a></td>
-								<td><%=dto.getSc_state() %></td>
+								<td><%=dto.getN_regdate()%></td>
+								<td><%=dto.getU_nickname()%></td>
+								<td><a href="javascript:fnRead('<%=dto.getN_num()%>')"><%=dto.getN_title()%></a></td>
+								<td><%=dto.getN_count()%></td>
 							</tr>
 					<% 		}
 						}%>
@@ -182,23 +167,16 @@ $(document).ready(function(){
 				  </tbody>
 				  
 				</table>
+				<a href="n_update.jsp" class="btn btn-success">글쓰기</a>
 				</div>
 				
-				<%} else{%>
-				
-				<br>
-					<div class="jumbotron">
-		  			<h2>로그인 후 이용가능한 서비스 입니다.</h2>
-		  			<p><a>회원가입</a> 혹은 <a>로그인</a>을 해주세요</p>
-					</div>
-			
-				<%} %>
+
         </div>
 	</div>
 </div>
 
-<form name="frmRead" method="post" action="customer_read.jsp">
-	<input type="hidden" name="sc_num" />
+<form name="frmRead" method="post" action="n_read.jsp">
+	<input type="hidden" name="num" />
 	<input type="hidden" name="keyField" value="<%=keyField%>"/>
 	<input type="hidden" name="keyWord" value="<%=keyWord%>"/>
 </form>

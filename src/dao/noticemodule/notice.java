@@ -1,4 +1,4 @@
-package dao.customermodule;
+package dao.noticemodule;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,18 +7,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dbcp.DBConnectionMgr;
+import dto.Notice;
 import dto.c_board;
 import dto.u_battle;
 
 
-public class customer {
+public class notice {
 	private Connection con;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	private DBConnectionMgr pool;
 	private String sql = "";
 	
-	public customer(){
+	public notice(){
 		try{
 			pool = DBConnectionMgr.getInstance();
 		}
@@ -26,27 +27,45 @@ public class customer {
 			System.out.println("DBCP 인스턴스 참조 실패 : "+err);
 		}
 	}
-	
+	public String getUserNick (String u_id){
+		String nickname=null;
+		sql = "select * from userinfo where U_ID='"+u_id+"'";
+		try{	
+			con = pool.getConnection();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+				
+			while(rs.next()){		
+				nickname = rs.getString("u_nickname");
+			}
+		}
+		catch(Exception err){
+			System.out.println("getUserNickn() 에서 오류 : "+err);
+		}
+		finally{
+			pool.freeConnection(con,pstmt, rs);
+		}
+		return nickname;
+	}
 	//List.jsp
-	public void regC_board(c_board dto){
+	public void regN_board(Notice dto){
 	
-		sql = "INSERT INTO SERVICE_CENTER (SC_NUM, U_ID, SC_TYPE, SC_TITLE, SC_CONTENT, SC_REGDATE, SC_IMAGE, SC_STATE)"+
-		" VALUES ('SC'||LPAD((seq_sc_num.NEXTVAL),4,'0'),"+
-		" ?,?,?,?,sysdate,'','대기')";
+		sql = "INSERT INTO NOTICE (N_NUM, U_ID, U_NICKNAME, N_TITLE, N_CONTENT, N_REGDATE, N_COUNT, N_IMPORTANT)"+
+		" VALUES (seq_n_num.NEXTVAL,"+
+		" ?,?,?,?,sysdate,'0','0')";
 		try{
 			con = pool.getConnection();
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setString(1, dto.getU_id());
-			pstmt.setString(2, dto.getSc_type());
-			pstmt.setString(3, dto.getSc_title());
-			pstmt.setString(4, dto.getSc_content());
-			
+			pstmt.setString(2, "운영자");
+			pstmt.setString(3, dto.getN_title());
+			pstmt.setString(4, dto.getN_content());
 			pstmt.executeUpdate();
 
 		}
 		catch(Exception err){
-			System.out.println("regC_boadr() 에서 오류 : "+err);
+			System.out.println("regN_boadr() 에서 오류 : "+err);
 		}
 		finally{
 			pool.freeConnection(con,pstmt, rs);
@@ -55,17 +74,12 @@ public class customer {
 	
 	public List getBoardList(String id, String type, String key){
 		ArrayList list = new ArrayList();
-		if(key.length()==0||key==null){
-			if(id.equals("master")){
-				sql = "select * from service_center  order by sc_state asc, sc_regdate desc";
-			}else{
-				sql = "select * from service_center where u_id='"+id+"' order by sc_state asc, sc_regdate desc";}
-		}
-		else{
-			if(id.equals("master")){
-				sql = "select * from service_center where "+type+" like '%"+key+"%' order by  sc_state asc, sc_regdate desc";
-			}else{
-				sql = "select * from service_center where u_id='"+id+"' and "+type+" like '%"+key+"%' order by sc_state asc, sc_regdate desc";}
+		
+		if (key.length() == 0 || key == null) {
+			sql = "select * from notice order by n_regdate desc";
+		} else {
+			sql = "select * from notice where "+type+" like '%" + key
+					+ "%' order by n_regdate desc";
 		}
 		try{
 			
@@ -74,19 +88,19 @@ public class customer {
 			rs = pstmt.executeQuery();
 				
 			while(rs.next()){		
-				c_board dto = new c_board();
-				dto.setSc_title(rs.getString("sc_title"));
-				dto.setSc_content(rs.getString("sc_content"));
-				dto.setSc_regdate(rs.getString("sc_regdate"));
-				dto.setSc_state(rs.getString("sc_state"));
-				dto.setSc_type(rs.getString("sc_type"));
-				dto.setSc_num(rs.getString("sc_num"));
+				Notice dto = new Notice();
+				dto.setN_num(rs.getString("n_num"));
+				dto.setN_title(rs.getString("n_title"));
+				dto.setN_content(rs.getString("n_content"));
+				dto.setN_regdate(rs.getString("n_regdate"));
 				dto.setU_id(rs.getString("u_id"));
+				dto.setU_nickname(rs.getString("u_nickname"));
+				dto.setN_count(rs.getInt("n_count"));
 				list.add(dto);
 				}
 		}
 		catch(Exception err){
-			System.out.println("getBoardList() 에서 오류 : "+err);
+			System.out.println("noticeList 가져오기 에서 오류 : "+err);
 		}
 		finally{
 			pool.freeConnection(con,pstmt, rs);
@@ -94,10 +108,10 @@ public class customer {
 		return list;
 	}
 	
-	public c_board getRead (String num){
-		c_board dto = new c_board();
+	public Notice getRead (String num){
+		Notice dto = new Notice();
 		
-		sql = "select * from service_center where sc_num='"+num+"'";
+		sql = "select * from notice where n_num='"+num+"'";
 		try{
 			
 			con = pool.getConnection();
@@ -105,13 +119,12 @@ public class customer {
 			rs = pstmt.executeQuery();
 				
 			while(rs.next()){		
-				dto.setSc_title(rs.getString("sc_title"));
+				dto.setN_title(rs.getString("n_title"));
+				dto.setN_content(rs.getString("n_content"));
+				dto.setN_regdate(rs.getString("n_regdate"));
 				dto.setU_id(rs.getString("u_id"));
-				dto.setSc_content(rs.getString("sc_content"));
-				dto.setSc_regdate(rs.getString("sc_regdate"));
-				dto.setSc_state(rs.getString("sc_state"));
-				dto.setSc_type(rs.getString("sc_type"));
-				dto.setSc_num(rs.getString("sc_num"));
+				dto.setU_nickname(rs.getString("u_nickname"));
+				dto.setN_count(rs.getInt("n_count"));
 				}
 		}
 		catch(Exception err){
@@ -123,50 +136,10 @@ public class customer {
 		return dto;
 	}
 	
-	public String getReadAs (String num){
-		String as=null;
-		sql = "select * from service_center_as where sc_num='"+num+"'";
-		try{	
-			con = pool.getConnection();
-			pstmt = con.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-				
-			while(rs.next()){		
-				as = rs.getString("sca_answer");
-				}
-		}
-		catch(Exception err){
-			System.out.println("getRead() 에서 오류 : "+err);
-		}
-		finally{
-			pool.freeConnection(con,pstmt, rs);
-		}
-		return as;
-	}
 	
-	public void reg_Ans(String num, String ans){
+	public void N_Count_Update(String num){
 		
-		sql = "INSERT INTO SERVICE_CENTER_AS (SC_NUM, SCA_ANSWER) VALUES (?,?)";
-		try{
-			con = pool.getConnection();
-			pstmt = con.prepareStatement(sql);
-			
-			pstmt.setString(1, num);
-			pstmt.setString(2, ans);
-			pstmt.executeUpdate();
-
-		}
-		catch(Exception err){
-			System.out.println("regC_boadr() 에서 오류 : "+err);
-		}
-		finally{
-			pool.freeConnection(con,pstmt, rs);
-		}
-	}
-	
-	public void reg_Ans_fin(String num){
-		
-		sql = "UPDATE SERVICE_CENTER SET SC_STATE='완료' WHERE SC_NUM='"+num+"'";
+		sql = "UPDATE NOTICE SET N_COUNT=N_COUNT+1 WHERE N_NUM='"+num+"'";
 		try{
 			con = pool.getConnection();
 			pstmt = con.prepareStatement(sql);
@@ -174,7 +147,7 @@ public class customer {
 
 		}
 		catch(Exception err){
-			System.out.println("reg_Ans_fin() 에서 오류 : "+err);
+			System.out.println("N_Count_Update() 에서 오류 : "+err);
 		}
 		finally{
 			pool.freeConnection(con,pstmt, rs);
