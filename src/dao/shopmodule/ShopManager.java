@@ -1,13 +1,17 @@
 package dao.shopmodule;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import dbcp.DBConnectionMgr;
 import dto.Shop;
+import dto.UserInfo;
+import dto.UserInfoDTO;
 
 public class ShopManager {
 	private Connection con;
@@ -105,6 +109,7 @@ public class ShopManager {
 				dto.setS_limit_pow(rs.getInt("s_limit_pow"));
 				dto.setS_content(rs.getString("s_content"));
 			}
+			System.out.println(dto.getS_deadline());
 		}
 		catch(Exception err){
 			System.out.println("getItemList()에서오류");
@@ -114,6 +119,71 @@ public class ShopManager {
 			pool.freeConnection(con, pstmt, rs);
 		}
 		return dto;
+	}
+	
+	
+	//아이템 구매기능 1 아이템구매후남은포인트로 유저정보세팅
+	public void setUserPoint(String u_id, int u_point){
+		
+		String sql = "update userinfo set u_point=? where u_id = ?";
+		try{
+			con = pool.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, u_point);
+			pstmt.setString(2, u_id);
+			pstmt.executeUpdate();
+			
+		}
+		catch(Exception err){
+			System.out.println("setUserPoint에서 오류");
+			err.printStackTrace();
+		}
+		finally{
+			pool.freeConnection(con, pstmt);
+		}
+		
+	}
+	//아이템 구매기능2 아이템 수량 -1
+	public void minusOneItem(String s_itemcode, int s_limit_num){
+		String sql = "update shop set s_limit_num=? where s_itemcode=?";
+		try {
+			con = pool.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, s_limit_num-1);
+			pstmt.setString(2, s_itemcode);
+			pstmt.executeUpdate();
+		}
+		catch(Exception err){
+			System.out.println("minusOneByCode()에서오류");
+			err.printStackTrace();
+		}
+		finally{
+			pool.freeConnection(con, pstmt);
+		}
+	}
+	//아이템 구매기능3 구매내역리스트에 추가
+	public void addPurchaseList(String u_id, Shop dto){
+		try{
+			String sql="insert into purchase values('P'||LPAD((seq_p_buy_code.NEXTVAL),4,'0'),?,?,?,sysdate,sysdate+?,?)";
+			
+			con = pool.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, u_id);
+			pstmt.setString(2, dto.getS_itemcode());
+			pstmt.setString(3, dto.getS_itemname());
+			pstmt.setInt(4, dto.getS_deadline());
+			System.out.println(dto.getS_deadline()+"데드라인");
+			pstmt.setInt(5, dto.getS_price());
+			pstmt.executeUpdate();
+
+		}
+		catch(Exception err){
+			System.out.println("addItem():"+err);
+			err.printStackTrace();
+		}
+		finally{
+			pool.freeConnection(con,pstmt);
+		}
 	}
 	
 	//아이템 삭제
@@ -166,4 +236,6 @@ public class ShopManager {
 		}
 		return list;
 	}
+	
+	
 }

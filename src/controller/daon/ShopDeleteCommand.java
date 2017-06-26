@@ -20,7 +20,7 @@ public class ShopDeleteCommand implements Command{
 		sDao.deleteItemByCode(code);
 		
 		
-		return "/daon_v1/shop.jsp";
+		return "/daon_v1/outline/shop.jsp";
 	}
 
 }

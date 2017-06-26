@@ -10,6 +10,7 @@
 <title>»óÁ¡</title>
 <link rel="stylesheet"
 	href="/GuiltyPleasure/bootstrap332/css/bootstrap.min.css">
+<link rel="stylesheet" href="/GuiltyPleasure/design/mintstrap/outline/css/style.css">
 <script src="/GuiltyPleasure/bootstrap332/js/jquery-3.2.1.min.js"></script>
 <script src="/GuiltyPleasure/bootstrap332/js/bootstrap.min.js"></script>
 
@@ -61,6 +62,16 @@
 </script>
 </head>
 <body>
+	<div id="fh5co-menu" class="navbar">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle" data-toggle="collapse" data-target="#fh5co-navbar" aria-expanded="false" aria-controls="navbar"><span>Menu</span> <i></i></a>
+					<a href="index.html" class="navbar-brand"><span>Outline</span></a>
+				</div>
+			</div>
+		</div>
+	</div>
 	<%
 		request.setCharacterEncoding("euc-kr");
 	%>

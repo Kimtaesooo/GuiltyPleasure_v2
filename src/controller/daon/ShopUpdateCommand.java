@@ -18,23 +18,23 @@ public class ShopUpdateCommand implements Command{
 		String code=req.getParameter("code");
 		String name=req.getParameter("name");
 		int price=Integer.parseInt(req.getParameter("price"));
-		int limit=Integer.parseInt(req.getParameter("limit"));
 		int deadline=Integer.parseInt(req.getParameter("deadline"));
+		int limit=Integer.parseInt(req.getParameter("limit"));
 		String content=req.getParameter("content");
 		
 		Shop dto = new Shop();
 		dto.setS_itemcode(code);
 		dto.setS_itemname(name);
 		dto.setS_price(price);
-		dto.setS_limit_num(limit);
 		dto.setS_deadline(deadline);
+		dto.setS_limit_num(limit);
 		dto.setS_content(content);
 		
 		ShopManager sDao = ShopManager.getInstance();
 		sDao.updateItem(dto);
 		
 		
-		return "/daon_v1/shop.jsp";
+		return "/daon_v1/outline/shop.jsp";
 	}
 
 }
