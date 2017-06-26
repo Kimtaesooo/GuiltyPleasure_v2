@@ -18,12 +18,14 @@
 	String bangjang = request.getParameter("u_id"); // 방장의 아이디
 	String gameUser = (String)session.getAttribute("u_id"); // 접속자의 아이디
 	String clientIP = request.getRemoteAddr();
+	String bangjangIp = "";
 	//System.out.print(clientIP + " : ");
 	
 	// 방장 만들기
 	if(bangjang == null || bangjang.equals("null")){
 		bangjang = gameUser;
 		gameUser = "";		
+		bangjangIp = bangjang + request.getRemoteAddr();
 	}
 	System.out.println("방장 : " + bangjang);
 	System.out.println("플에이어 : " + gameUser);
@@ -134,6 +136,7 @@
     function send() {
     	if (inputMessage.value == ""){}
     	else{
+    		
         	textarea.value += "나 : " + inputMessage.value + "\n";
         	webSocket.send(gameUser+ " : " + inputMessage.value, "abcd ");
         	inputMessage.value = "";
