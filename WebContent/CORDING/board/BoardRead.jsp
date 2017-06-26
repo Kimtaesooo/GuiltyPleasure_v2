@@ -6,11 +6,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <title>자유게시판 글 조회</title>
 </head>
 <script>
 	function fnList(){
 		document.frmList.submit();
+	}
+	
+	function fnRead2(b_num){
+		document.frmRead2.b_num.value = b_num;
+		document.frmRead2.submit();
 	}
 
 	function inputBtn(b_num){
@@ -133,7 +140,6 @@
 	else{
 		for(int i=0; i<rep_list.size(); i++){
 			dto2 = (Reply)rep_list.get(i);
-			System.out.println("uid = "+dto2.getU_id());
 %>  
     	<tr height="25" align="center">
     		<td><%=dto2.getU_id() %></td>
@@ -151,7 +157,6 @@
  	}
  %> 
 		</tr>
-	
 </table>
 </form>
    <form name="replyform" method="post" action="Reply_proc.jsp"> 
@@ -170,9 +175,34 @@
    </td>
   </tr>
  </table>
+ 
+ <table>
+	<tr>
+ <%
+ 	if(dto.getPrevnum() != null){
+ %>
+		<td>이전 글</td><td><a href="javascript:fnRead2('<%=dto.getPrevnum()%>')"><%=dto.getPrevtitle()%></a></td>
+<%
+ 	}
+%>
+	</tr>
+<%
+	if(dto.getNextnum() != null){
+%>		
+ 	<tr>
+ 		<td>다음 글</td><td><a href="javascript:fnRead2('<%=dto.getNextnum()%>')"><%=dto.getNexttitle()%></a></td>
+<%
+	} 
+%>
+ 	</tr>
+ </table>
+ 
  <form name="frmList" method="post" action="BoardList.jsp">
 	<input type="hidden" name="keyfield" value="<%=keyfield %>" />
 	<input type="hidden" name="keyword" value="<%=keyword %>" />
+</form>
+<form name="frmRead2" method="post" action="BoardRead.jsp">
+	<input type="hidden" name="b_num"/>
 </form>
 </body>
 </html>

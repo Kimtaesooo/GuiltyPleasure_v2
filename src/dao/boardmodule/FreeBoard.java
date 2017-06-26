@@ -26,6 +26,12 @@ public class FreeBoard {
 		}
 	}
 	
+	private static FreeBoard instance = new FreeBoard();
+	
+	public static FreeBoard getInstance(){
+		return instance;
+	}
+	
 	//BoardWrite_proc.jsp 글쓰기 기능
 	public void regBoard(String u_id, String b_title, String b_content){
 		String u_nickname ="";
@@ -129,10 +135,30 @@ public class FreeBoard {
 	        	 board.setB_title(rs.getString("b_title"));
 	        	 board.setB_content(rs.getString("b_content"));
 	         }
+	         
+	         // 이전 글, 다음 글..
+	         sql = "select b_num as prevnum, b_title as prevtitle from board where b_num = (select max(b_num) from board where b_num<?)";
+	         
+	         pstmt = con.prepareStatement(sql);
+	         pstmt.setString(1, b_num);
+	         rs = pstmt.executeQuery();
+	         if(rs.next()){
+	        	 board.setPrevnum(rs.getString("prevnum"));
+	         	board.setPrevtitle(rs.getString("prevtitle"));
+	         }
+	         sql = "select b_num as nextnum, b_title as nexttitle from board where b_num = (select min(b_num) from board where b_num>?)";
+	         pstmt = con.prepareStatement(sql);
+	         pstmt.setString(1, b_num);
+	         rs = pstmt.executeQuery();
+	         if(rs.next()){
+	        	 board.setNextnum(rs.getString("nextnum"));
+	        	 board.setNexttitle(rs.getString("nexttitle"));
+	         }
+	         
+	        
 		}
 		catch(Exception err){
             System.out.println("getBoard():read"+err);
-            //return null;
          }
          finally{
             pool.freeConnection(con, pstmt, rs);

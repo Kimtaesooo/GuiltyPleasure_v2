@@ -6,7 +6,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>자유게시판</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<style>
+	.table-hover>tbody>tr:hover {
+		background-color: #EEEEEE
+	}
+</style>
 <script>
 	function check(){
 		if(document.search.keyword.value == ""){
@@ -58,94 +65,126 @@
     
     beginPerPage =  nowPage * numPerPage;
 %>
-<table align=center border=0 width=80%>
-<tr>
-	<td align=left>Total : <%=list.size()%> Articles(
-		<font color=red>  <%=nowPage+1%> / <%=totalPage %> pages </font>)
-	</td>
-</tr>
-</table>
+	<div class="row">
+		<div class="col-md-2"></div>
 
-<table align=center width="80%" cellpadding="0" cellspacing="0" border="0">
-  <tr height="5"><td width="5"></td></tr>
- <tr style="background:url('img/table_mid.gif') repeat-x; text-align:center;">
-   <td width="73">번호</td>
-   <td width="379">제목</td>
-   <td width="73">작성자</td>
-   <td width="164">작성일</td>
-   <td width="58">조회수</td>
-   <td width="7"><img src="img/table_right.gif" width="5" height="30" /></td>
-  </tr>
-<%
-	if(list.size()==0){
-%>  
-	<tr height="25" align="center">
-		<td>데이터가 없습니다.</td>
-	</tr>
-<%
-	}
-	else{
-		 for(int i=beginPerPage; i<numPerPage+beginPerPage; i++){
-             if(i == totalRecord)
-                break;
-             Board board = (Board)list.get(i);
-%>
-<tr height="25" align="center">
-<td><%=board.getB_num()%></td>
-<td><a href="javascript:fnRead('<%=board.getB_num()%>')"><%=board.getB_title()%></a></td>
-<td><%=board.getU_nickname()%></td>
-<td><%=board.getB_regdate()%></td>
-<td><%=board.getB_count()%></td>
-</tr>
-<%
-		 }
-}
-%>
-  <tr height="1" bgcolor="#D2D2D2"><td colspan="6"></td></tr>
+		<div class="col-md-8">
 
- <tr height="1" bgcolor="#82B5DF"><td colspan="6" width="752"></td></tr>
- <tr>
- 	<td align="left">
-		Go to Page
-		<%if(nowBlock>0){%>
-			<a href="BoardList.jsp?nowBlock=<%=nowBlock-1%>&nowPage=<%=pagePerBlock*(nowBlock-1)%>">이전<%=pagePerBlock %>개</a>
-		<% }%>
-		::: 
-		<%
-			for(int i=0; i<pagePerBlock; i++){
-				if((nowBlock*pagePerBlock)+i == totalPage)
-					break;
-		%>
-			<a href="BoardList.jsp?nowPage=<%=(nowBlock*pagePerBlock)+i%>&nowBlock=<%=nowBlock%>"><%=(nowBlock*pagePerBlock)+i+1%></a>&nbsp;&nbsp;&nbsp;
-		<%
-			}
-		%>
-		:::
-		<%if(totalBlock > nowBlock+1){%> 
-			<a href="BoardList.jsp?nowBlock=<%=nowBlock+1%>&nowPage=<%=pagePerBlock*(nowBlock+1)%>">다음<%=pagePerBlock%>개</a>
-		<%}%>
-		
-	</td>
- </tr>
- </table>
- 
-<table align=center width="80%" cellpadding="0" cellspacing="0" border="0">
-  <tr><td colspan="4" height="5"></td></tr>
-  <tr align=right>
-   <td><input type=button value="메인" onclick="window.location='/GuiltyPleasure/main.jsp'"></td>
-   <td>
-<%
-	if(session.getAttribute("u_id") != null){
-%>
-   <input type=button value="글쓰기" onclick="window.location='BoardWrite.jsp'">
-<%
+			<div class="row">
+				<div class="col-md-4">
+					<table align=center border=0 width=100%>
+						<tr>
+							<td align=left>Total : <%=list.size()%> ( <font
+								color=red> <%=nowPage + 1%> / <%=totalPage%> pages
+							</font>)
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+
+			<div class="row">
+				<table class="table table-bordered table-hover table-condensed">
+					<thead>
+						<tr>
+							<td width="73">번호</td>
+							<td width="379">제목</td>
+							<td width="73">작성자</td>
+							<td width="164">작성일</td>
+							<td width="58">조회수</td>
+						</tr>
+					</thead>
+					<%
+						if (list.size() == 0) {
+					%>
+					<tr height="25" align="center">
+						<td>데이터가 없습니다.</td>
+					</tr>
+					<%
+						} else {
+							for (int i = beginPerPage; i < numPerPage + beginPerPage; i++) {
+								if (i == totalRecord)
+									break;
+								Board board = (Board) list.get(i);
+					%>
+					<tbody>
+						<tr height="25" align="center">
+							<td><%=i+1%></td>
+							<td><a href="javascript:fnRead('<%=board.getB_num()%>')"><%=board.getB_title()%></a></td>
+							<td><%=board.getU_nickname()%></td>
+							<td><%=board.getB_regdate()%></td>
+							<td><%=board.getB_count()%></td>
+						</tr>
+					</tbody>
+					<%
+						}
+						}
+					%>
+				</table>
+			</div>
+
+			<div class="row">
+				<div class="col-md-2">
+					<table>
+						<tr>
+							<td align="left">
+								<%
+									if (nowBlock > 0) {
+								%> <a
+								href="BoardList.jsp?nowBlock=<%=nowBlock - 1%>&nowPage=<%=pagePerBlock * (nowBlock - 1)%>">이전<%=pagePerBlock%>개
+							</a> <%
+ 	}
+ %> ::: <%
+ 	for (int i = 0; i < pagePerBlock; i++) {
+ 		if ((nowBlock * pagePerBlock) + i == totalPage)
+ 			break;
+ %> <a
+								href="BoardList.jsp?nowPage=<%=(nowBlock * pagePerBlock) + i%>&nowBlock=<%=nowBlock%>"><%=(nowBlock * pagePerBlock) + i + 1%></a>&nbsp;
+								<%
+									}
+								%> ::: <%
+									if (totalBlock > nowBlock + 1) {
+								%> <a
+								href="BoardList.jsp?nowBlock=<%=nowBlock + 1%>&nowPage=<%=pagePerBlock * (nowBlock + 1)%>">다음<%=pagePerBlock%>개
+							</a> <%
+ 	}
+ %>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-8">
+					<table align=center width="80%" cellpadding="0" cellspacing="0"
+						border="0">
+						<tr>
+							<td colspan="4" height="5"></td>
+						</tr>
+						<tr align=right>
+							<td><input type=button value="메인"
+								onclick="window.location='/GuiltyPleasure/main.jsp'"></td>
+							<td>
+								<%
+									if (session.getAttribute("u_id") != null) {
+								%> <input type=button value="글쓰기"
+								onclick="window.location='BoardWrite.jsp'"> <%
 	}
-%>   
-   &nbsp;<input type=button value="목록" onclick="window.location='BoardList.jsp'">
-   </td>
-  </tr>
-</table>
-<br>
+%> &nbsp;<input type=button value="목록"
+								onclick="window.location='BoardList.jsp'">
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-2"></div>
+	</div>
+	<br>
+
+<div class="row">
 <form action="BoardList.jsp" name="search" method="post">
 	<table border=0 width=527 align=center cellpadding=4 cellspacing=0>
 	<tr>
@@ -163,6 +202,8 @@
 	</tr>
 	</table>
 </form>
+</div>
+
 <form name="frmRead" method="post" action="BoardRead.jsp">
 	<input type="hidden" name="b_num"/>
 	<input type="hidden" name="keyfield" value="<%=keyfield %>" />
