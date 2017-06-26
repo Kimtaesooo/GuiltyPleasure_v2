@@ -25,6 +25,7 @@
 			return;
 		}
 		session.setAttribute("u_id", u_id);
+		session.setAttribute("u_nickname", userinfo.getU_nickname());
 		response.sendRedirect("../../main.jsp");
 	}
 	else{

@@ -5,16 +5,21 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
-import javax.websocket.server.ServerEndpoint;
+import javax.websocket.server.ServerEndpoint;;
+
+//@ServerEndpoint는 클라이언트에서 서버로 접속 할 주소로 지정합니다.
+//@OnMessage에서는 클라이언트로 부터 메시지가 도착했을때 처리입니다.
+//@OnOpen은 클라이언트에서 서버로 접속할 때의 처리입니다.
+//@OnClose는 접속이 끊겼을때 처리입니다.
 
 @ServerEndpoint("/websocket")
 public class Websocket {
 	private static Set<Session> clients = Collections.synchronizedSet(new HashSet<Session>());
+	
 	@OnMessage
 	public void onMessage(String message, Session session) throws IOException {
 		System.out.println(message);
@@ -32,6 +37,7 @@ public class Websocket {
 	@OnOpen
 	public void onOpen(Session session) {
 		// Add session to the connected sessions set
+		//System.out.println(bangjang);
 		System.out.println(session);
 		clients.add(session);
 	}

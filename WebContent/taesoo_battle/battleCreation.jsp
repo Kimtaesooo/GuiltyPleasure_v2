@@ -7,7 +7,6 @@
 	response.setCharacterEncoding("euc-kr");
 
 	String u_id = (String)session.getAttribute("u_id");
-	u_id = "TEST01";
 %>
 	<jsp:useBean id="dao" class="dao.playmodule.BattlePlay"/>
 	<jsp:useBean id="dto" class="dto.Battle_Room"/>

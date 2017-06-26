@@ -1,5 +1,5 @@
-<%@page import="dto.Battle_Room"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"%>
+<%@page import="dto.Battle_Room"%>
 <%@ page import="dao.playmodule.BattlePlay"%>
 <%@ page import="java.util.*"%>
 
@@ -17,7 +17,15 @@
 			$("#theModal").modal();
 		});
 	});
+	
+	function fnRead(u_id){
+		document.frmRead.u_id.value = u_id;
+		document.frmRead.submit();
+	}
 </script>
+<%
+	String gameUser = (String)session.getAttribute("u_id");
+%>
 <title>배틀 대기방</title>
 </head>
 <body>
@@ -61,7 +69,7 @@
 				%>
 				<tr>
 					<td><%=i+1%></td>
-					<td><%=room.getBr_subject() %></td>
+					<td><a href="javascript:fnRead('<%=room.getU_id()%>')"><%=room.getBr_subject() %></a></td>
 					<td><%=room.getBr_type() %></td>
 					<td><%=room.getBr_cnt() %></td>
 					<td><%=room.getBr_point() %></td>
@@ -155,5 +163,8 @@
 		</form>
 	</div>
 	<!-- 방만들기 모달 종료-->
+<form name="frmRead" method="post" action="playRoom.jsp">
+	<input type="hidden" name="u_id"/>
+</form>	
 </body>
 </html>

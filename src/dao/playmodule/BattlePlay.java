@@ -79,4 +79,33 @@ public class BattlePlay {
 		}
 		return list;
 	}
+	
+	// playRoom.jsp 방 정보 소환
+		public int roomInfo(String u_id) {
+			int br_people = 1;
+			String sql = "select * from battle_room where u_id ='" +u_id+ "'";
+
+			try {
+				pstmt = con.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+
+				if (rs.next()) {
+					rs.getString("br_subject");
+					rs.getInt("br_pw");
+					rs.getString("br_type");
+					rs.getInt("br_cnt");
+					rs.getInt("br_point");
+					rs.getString("u_id");
+					br_people = rs.getInt("br_people");
+					rs.getString("br_gamestate");
+				}
+			} catch (Exception err) {
+				System.out.println("roomInfo();에서 오류");
+				err.printStackTrace();
+			}
+			finally {
+				pool.freeConnection(con, pstmt, rs);
+			}
+			return br_people;
+		}
 }
