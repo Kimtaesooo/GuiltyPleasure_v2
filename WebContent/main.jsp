@@ -65,11 +65,11 @@ $(
                
             </div>
             <div class="col-md-4 portfolio-item"  align="center">
-                <a href="#">
+                <a href="/GuiltyPleasure/shop?cmd=SHOPLIST">
                     <img class="img-responsive" src="https://cdn3.iconfinder.com/data/icons/shopping-icons-14/128/01_Shopping_Cart-128.png" alt="">
                 </a>
                 <h3>
-                    <a href="#">상점</a>
+                    <a href="/GuiltyPleasure/shop?cmd=SHOPLIST">상점</a>
                 </h3>
             </div>
         </div>
