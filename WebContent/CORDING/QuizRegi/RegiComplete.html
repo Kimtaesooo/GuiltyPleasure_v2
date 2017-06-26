@@ -5,7 +5,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>퀴즈등록이 되었습니다. 버튼을 누르면 메인 페이지로 복귀합니다.</h1>
-	<form action="../../main.jsp"></form>
+	<h1>퀴즈등록이 되었습니다. 버튼을 누르면 리스트로 복귀합니다.</h1>
+<form method="POST" action="/GuiltyPleasure/borad">
+	<input type="hidden" name = "cmd"  value="QREGI_BOARD_LIST"/>
+	<input type="submit"  value="돌아가기">
+</form>
 </body>
 </html>

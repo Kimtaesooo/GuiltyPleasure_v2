@@ -51,7 +51,7 @@ $(
                     <img class="img-responsive" src="https://cdn3.iconfinder.com/data/icons/forall/110/game-128.png" alt="">
                 </a>
                 <h3>
-                    <a href="#">ΩÃ±€«√∑π¿Ã</a>
+                    <a href="CORDING/Quiz/SingleStart.html">ΩÃ±€«√∑π¿Ã</a>
                 </h3>
              	<br><br><br>
             </div>

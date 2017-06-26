@@ -14,11 +14,11 @@ public class QBRGetCommand implements Command {
 	@Override
 	public Object processCommand(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		int id = Integer.parseInt(req.getParameter("id"));
+		String id = req.getParameter("id");
 		QBorad qb = new QBorad();
 		U_Quiz uq = qb.getU_Quzi(id);
 		req.setAttribute("uq", uq);
-		return  "/CORDING/QuizRegi/QuizInform.jsp";
+		return  "/CORDING/QuizRegi/QuizeInform.jsp";
 	}
 
 }

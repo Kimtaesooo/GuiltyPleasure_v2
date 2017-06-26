@@ -97,17 +97,17 @@ var result = new Array();
 		result[1]= "<%=quiz.getQ_type()%>"
 		answer = "<%=quiz.getQ_answer()%>"
 		if (select == answer) {
-			alert("정답입니다 " + select + ". 남은 문제수 :" + j);
+		//	alert("정답입니다 " + select + ". 남은 문제수 :" + j);
 			result[2] = "o";
 	} else if (select != answer) {
-			alert("오답입니다.  " + select + " 남은 문제수 :" + j);
+		//	alert("오답입니다.  " + select + " 남은 문제수 :" + j);
 			result[2] = "x";
 	}
 	}
 </script>
 <script>
 	var counter = <%=counter%>
-	time = 1105;
+	time = 30;
 	function timer(){
 		var text = document.getElementById("time");
 		text.innerHTML= time;
@@ -116,8 +116,11 @@ var result = new Array();
 			clearInterval(tid);
 			if(counter>1){
 			counter--;
-			location.href="/GuiltyPleasure/quiz?cmd=QUIZ_GET&counter="+counter;
-			alert("남은 게임 숫자"+counter)
+			result[0] ="<%=quiz.getQ_code()%>"
+				result[1]= "<%=quiz.getQ_type()%>"
+				result[2]="x"
+				location.href="/GuiltyPleasure/quiz?cmd=QUIZ_GET&counter="+counter+"&result="+result;
+				//alert("남은 게임 숫자"+counter)
 			}else if(counter =1){
 				alert("문제 끝")
 				clearInterval(tid);
