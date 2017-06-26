@@ -20,8 +20,6 @@ public class ListCommand implements Command{
 		String order = request.getParameter("order")==null?"UM.U_ID":request.getParameter("order");
 		String pageno = request.getParameter("pageno")==null?"1":request.getParameter("pageno");
 		
-		System.out.println("pageno = "+pageno);
-		System.out.println("order = "+order);
 		if("".equals(pageno)){
 			pageno = "1";
 		}

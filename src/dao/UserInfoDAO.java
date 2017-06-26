@@ -121,7 +121,11 @@ public class UserInfoDAO {
 				+", TO_CHAR(CASE WHEN UM.UM_BATTLE > CURRENT_TIMESTAMP THEN UM_BATTLE ELSE NULL END,'YYYY-MM-DD') AS UM_BATTLE "
 				+", TO_CHAR(CASE WHEN UM.UM_ENROLL > CURRENT_TIMESTAMP THEN UM_ENROLL ELSE NULL END,'YYYY-MM-DD') AS UM_ENROLL "
 				+", TO_CHAR(CASE WHEN UM.UM_ENTRY > CURRENT_TIMESTAMP THEN UM_ENTRY ELSE NULL END,'YYYY-MM-DD') AS UM_ENTRY "
+<<<<<<< HEAD
 				+ ", USR.U_POINT"
+=======
+				+", USR.U_POINT "
+>>>>>>> refs/remotes/origin/lhk
 				+" FROM USERINFO USR "
 				+" INNER JOIN U_MANAGE UM "
 	            +" ON USR.U_ID = UM.U_ID "
@@ -139,7 +143,6 @@ public class UserInfoDAO {
 				dto.setNo_battle(rs.getString("um_battle"));
 				dto.setNo_enroll(rs.getString("um_enroll"));
 				dto.setNo_entry(rs.getString("um_entry"));
-				System.out.println("rs = "+rs.getString("um_entry"));
 				dto.setIntroduce(rs.getString("u_comment"));
 				dto.setDelete(rs.getString("u_delete"));
 				dto.setPoint(rs.getInt("u_point"));
@@ -158,7 +161,7 @@ public class UserInfoDAO {
 	
 	public ArrayList<ItemDTO> searchUserItemInfo(String id, int pagesize, int no){
 		ArrayList<ItemDTO> list = new ArrayList<ItemDTO>();
-		System.out.println("pagesize = "+pagesize);
+		
 		String sql = "SELECT * FROM (SELECT P_ITEM_NAME , NVL2(P_BUY_DATE,TO_CHAR(P_BUY_DATE,'YYYY-MM-DD'),'') AS P_BUY_DATE "
 				+ ", NVL2(P_ITEM_LIMIT,TO_CHAR(P_ITEM_LIMIT,'YYYY-MM-DD'),'') AS P_ITEM_LIMIT "
 				+ ", P_PRICE , ROW_NUMBER() OVER (ORDER BY P_BUY_DATE) AS NUM FROM PURCHASE A WHERE A.U_ID = ?) "
@@ -214,6 +217,7 @@ public class UserInfoDAO {
 		int result = -1;
 		int cnt = 1;
 		int insert = 1;
+		
 		boolean chat = false;
 		boolean enroll = false;
 		boolean single = false;
@@ -278,7 +282,9 @@ public class UserInfoDAO {
 			entry = true;
 			cnt++;
 		}
+		
 		sql += " WHERE U_ID = ?";
+		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
@@ -412,9 +418,8 @@ public class UserInfoDAO {
 			
 			pstmt.setString(insert, id);
 			result = pstmt.executeUpdate();
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		
 		if(param.contains("del")){
@@ -423,7 +428,11 @@ public class UserInfoDAO {
 				pstmt.setString(1, id);
 				delResult = pstmt.executeUpdate();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+				try {
+					conn.rollback();
+				} catch (SQLException roll) {
+					roll.printStackTrace();
+				}
 				e.printStackTrace();
 			}
 			
