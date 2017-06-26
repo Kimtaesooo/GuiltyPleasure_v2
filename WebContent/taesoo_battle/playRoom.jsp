@@ -10,6 +10,9 @@
 <script	src="${pageContext.request.contextPath}/bootstrap332/js/jquery-3.2.1.min.js"></script>
 <script	src="${pageContext.request.contextPath}/bootstrap332/js/bootstrap.min.js"></script>
 <title>게임방</title>
+<script>
+	window.addEventListener("onbeforeunload", closeChatRoom, false);
+</script>
 </head>
 <body>
 <jsp:useBean id="dao" class="dao.playmodule.BattlePlay"/>
@@ -18,14 +21,12 @@
 	String bangjang = request.getParameter("u_id"); // 방장의 아이디
 	String gameUser = (String)session.getAttribute("u_id"); // 접속자의 아이디
 	String clientIP = request.getRemoteAddr();
-	String bangjangIp = "";
 	//System.out.print(clientIP + " : ");
 	
 	// 방장 만들기
 	if(bangjang == null || bangjang.equals("null")){
 		bangjang = gameUser;
 		gameUser = "";		
-		bangjangIp = bangjang + request.getRemoteAddr();
 	}
 	System.out.println("방장 : " + bangjang);
 	System.out.println("플에이어 : " + gameUser);
@@ -45,17 +46,13 @@
 	GameUser gameUser = new GameUser();
 	roomManager.CreateRoom(GameUser bangjang);
 */
-	
-	
-	
 %>
-
-
-
 	<br><br>
 	<input type="hidden" value="<%=clientIP%>" id="ip">
 	<input type="hidden" value="<%=gameUser%>" id="gameUser">
 	<input type="hidden" value="<%=bangjang%>" id="bangjang">
+	<input type="hidden" id="uri" value="ws://localhost:8080"> 
+
 	<p class="text-center">배틀 게임 시작</p>
 	<br>
 	<br>
@@ -135,8 +132,7 @@
     }
     function send() {
     	if (inputMessage.value == ""){}
-    	else{
-    		
+    	else{    		
         	textarea.value += "나 : " + inputMessage.value + "\n";
         	webSocket.send(gameUser+ " : " + inputMessage.value, "abcd ");
         	inputMessage.value = "";
