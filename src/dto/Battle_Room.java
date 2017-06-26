@@ -10,6 +10,7 @@ public class Battle_Room {
 	private String u_id;
 	private int br_people;
 	private String br_gamestate;
+	private String br_ip;
 	
 	public String getBr_subject() {
 		return br_subject;
@@ -59,5 +60,12 @@ public class Battle_Room {
 	public void setBr_gamestate(String br_gamestate) {
 		this.br_gamestate = br_gamestate;
 	}
+	public String getBr_ip() {
+		return br_ip;
+	}
+	public void setBr_ip(String br_ip) {
+		this.br_ip = br_ip;
+	}
+	
 	
 }

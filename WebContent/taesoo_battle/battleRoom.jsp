@@ -25,6 +25,7 @@
 </script>
 <%
 	String gameUser = (String)session.getAttribute("u_id");
+	String ip = request.getRemoteAddr();
 %>
 <title>배틀 대기방</title>
 </head>
@@ -108,7 +109,7 @@
 						<h3>배틀 방 만들기</h3>
 					</div>
 					<div class="modal-body">
-
+						<input type="hidden" value="<%=ip%>" name="br_ip">
 						<div class="form-group">
 							<label for="br_subject" class="col-sm-2 control-label">방제목</label>
 							<div class="col-sm-10">
@@ -163,7 +164,7 @@
 		</form>
 	</div>
 	<!-- 방만들기 모달 종료-->
-<form name="frmRead" method="post" action="playRoom.jsp">
+<form name="frmRead" method="post" action="clientPlayRoom.jsp">
 	<input type="hidden" name="u_id"/>
 </form>	
 </body>

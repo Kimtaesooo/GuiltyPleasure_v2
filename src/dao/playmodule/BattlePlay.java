@@ -8,7 +8,7 @@ import java.util.List;
 
 import dbcp.DBConnectionMgr;
 import dto.Battle_Room;
-import dto.Board;
+import dto.u_battle;
 
 public class BattlePlay {
 	private Connection con;
@@ -28,8 +28,8 @@ public class BattlePlay {
 	// battleRoom.jsp 배틀 게임방 생성
 	public void regRoom(Battle_Room dto, String u_id) {
 		String sql = "";
-		sql = "insert into battle_room(br_subject, br_pw, br_type, br_cnt, br_point, u_id, br_people, br_gamestate) "
-				+ "values(?,?,?,?,?,?,1,'N')";
+		sql = "insert into battle_room(br_subject, br_pw, br_type, br_cnt, br_point, u_id, br_people, br_gamestate, br_ip) "
+				+ "values(?,?,?,?,?,?,1,'N',?)";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, dto.getBr_subject());
@@ -38,6 +38,7 @@ public class BattlePlay {
 			pstmt.setInt(4, dto.getBr_cnt());
 			pstmt.setInt(5, dto.getBr_point());
 			pstmt.setString(6, u_id);
+			pstmt.setString(7, dto.getBr_ip());
 			pstmt.executeUpdate();
 
 		} catch (Exception err) {
@@ -81,8 +82,9 @@ public class BattlePlay {
 	}
 	
 	// playRoom.jsp 방 정보 소환
-		public int roomInfo(String u_id) {
+		public List roomInfo(String u_id) {
 			int br_people = 1;
+			ArrayList list = new ArrayList();			
 			String sql = "select * from battle_room where u_id ='" +u_id+ "'";
 
 			try {
@@ -90,14 +92,17 @@ public class BattlePlay {
 				rs = pstmt.executeQuery();
 
 				if (rs.next()) {
-					rs.getString("br_subject");
-					rs.getInt("br_pw");
-					rs.getString("br_type");
-					rs.getInt("br_cnt");
-					rs.getInt("br_point");
-					rs.getString("u_id");
-					br_people = rs.getInt("br_people");
-					rs.getString("br_gamestate");
+					Battle_Room room = new Battle_Room();
+					room.setBr_subject(rs.getString("br_subject"));
+					room.setBr_pw(rs.getInt("br_pw"));
+					room.setBr_type(rs.getString("br_type"));
+					room.setBr_cnt(rs.getInt("br_cnt"));
+					room.setBr_point(rs.getInt("br_point"));
+					room.setU_id(rs.getString("u_id"));
+					room.setBr_people(rs.getInt("br_people"));
+					room.setBr_gamestate(rs.getString("br_gamestate"));
+					room.setBr_ip(rs.getString("br_ip"));
+					list.add(room);
 				}
 			} catch (Exception err) {
 				System.out.println("roomInfo();에서 오류");
@@ -106,6 +111,6 @@ public class BattlePlay {
 			finally {
 				pool.freeConnection(con, pstmt, rs);
 			}
-			return br_people;
+			return list;
 		}
 }

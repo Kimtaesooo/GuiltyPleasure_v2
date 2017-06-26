@@ -14,7 +14,7 @@
 
 <%
 	dao.regRoom(dto, u_id);
-	response.sendRedirect("playRoom.jsp");
+	response.sendRedirect("serverPlayRoom.jsp");
 %>
 
 <%
