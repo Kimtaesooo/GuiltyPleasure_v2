@@ -7,8 +7,6 @@
 	<jsp:setProperty name="dto2" property="*"/>	
 
 <%
-	System.out.println("bUnum = "+dto2.getR_reply());
-	System.out.println("bUnum = "+dto2.getB_num());
 	dao.deleteReply(dto2.getR_reply());
 	response.sendRedirect("BoardRead.jsp?b_num="+dto2.getB_num());
 %>

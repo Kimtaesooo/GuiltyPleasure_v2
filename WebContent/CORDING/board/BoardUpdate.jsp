@@ -24,15 +24,11 @@
 		}
 		form.submit();
 	}
-	/*
-	function fnRead(b_num){
-		document.frmRead.b_num.value = b_num;
-		document.frmRead.submit();
-	}
-	*/
 </script>
 </head>
 <body>
+	<jsp:include page="/top.jsp" />
+	<jsp:include page="/nav.jsp" />
 <% request.setCharacterEncoding("euc-kr"); %>
 <% response.setCharacterEncoding("euc-kr"); %>
 <jsp:useBean id="dao" class="dao.boardmodule.FreeBoard" />
@@ -56,41 +52,40 @@
      </tr>
     </table>
    <table>
+   <br>
+					<tr height="1" bgcolor="#82B5DF">
+						<td colspan="4" width="407"></td>
+					</tr>
      <tr>
       <td>&nbsp;</td>
-      <td align="center"> 제 목 : </td>
-      <td><input name="b_title" size="50" maxlength="100" value="<%=dto.getB_title()%>"></td>
+      <td align="center"> 제 목 &nbsp;&nbsp;</td>
+      <td><input class="form-control" name="b_title" size="50" maxlength="100" value="<%=dto.getB_title()%>"></td>
       <td>&nbsp;</td>
      </tr>
      <tr height="1" bgcolor="#dddddd"><td colspan="4"></td></tr>
     <tr>
       <td>&nbsp;</td>
-      <td align="center"> 작성자 : </td>
-      <td><input name="id" size="50" maxlength="50" value="<%=sid%>" readonly="readonly">
+      <td align="center"> 작성자 &nbsp;&nbsp;</td>
+      <td><input class="form-control" name="id" size="50" maxlength="50" value="<%=sid%>" readonly="readonly">
       </td>
       <td>&nbsp;</td>
      </tr>
      <tr height="1" bgcolor="#dddddd"><td colspan="4"></td></tr>
      <tr>
       <td>&nbsp;</td>
-      <td align="center"> 내 용 : </td>
-      <td><textarea name="b_content" cols="50" rows="13" ><%=dto.getB_content()%></textarea></td>
+      <td align="center"> 내 용 &nbsp;&nbsp;</td>
+      <td><textarea name="b_content" class="form-control" rows="13" cols="50"><%=dto.getB_content()%></textarea>
+      </td>
       <td>&nbsp;</td>
      </tr>
       <tr height="1" bgcolor="#dddddd"><td colspan="4"></td></tr>
-    <tr>
-      <td>&nbsp;</td>
-      <td align="center">첨부파일 : </td>
-      <td><input name="file" size="50" maxlength="50"></td>
-      <td>&nbsp;</td>
-     </tr>
      <tr height="1" bgcolor="#dddddd"><td colspan="4"></td></tr>
      <tr height="1" bgcolor="#82B5DF"><td colspan="4"></td></tr>
      <tr align="center">
       <td>&nbsp;</td>
-      <td colspan="2">
-      	<input type=button value="수정" OnClick="check()">
-       	<input type=button value="취소" OnClick="javascript:history.back(-1)">
+      <td colspan="2"><br>
+      	<button type="button" class="btn btn-primary" onclick="check()">수정</button>
+       	<button type="button" class="btn btn-primary" onclick="javascript:history.back(-1)">취소</button>
       <td>&nbsp;</td>
      </tr>
     </table>

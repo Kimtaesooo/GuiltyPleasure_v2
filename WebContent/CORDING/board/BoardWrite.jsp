@@ -26,6 +26,8 @@ form.submit();
 </script>
 </head>
 <body>
+	<jsp:include page="/top.jsp" />
+	<jsp:include page="/nav.jsp" />
 <form name="writeform" method="post" action="Boardwrite_proc.jsp">
 <table align=center>
   <tr>
@@ -38,40 +40,41 @@ form.submit();
      </tr>
     </table>
    <table>
+   <br>
+					<tr height="1" bgcolor="#82B5DF">
+						<td colspan="4" width="407"></td>
+					</tr>
      <tr>
       <td>&nbsp;</td>
-      <td align="center"> 제 목 : </td>
-      <td><input name="title" size="50" maxlength="100"></td>
+      <td align="center"> 제 목 &nbsp;&nbsp;</td>
+      <td><input  class="form-control" name="title" size="50" maxlength="100"></td>
       <td>&nbsp;</td>
      </tr>
      <tr height="1" bgcolor="#dddddd"><td colspan="4"></td></tr>
     <tr>
       <td>&nbsp;</td>
-      <td align="center"> 작성자 : </td>
-      <td><input name="u_id" size="50" maxlength="50" value=<%=session.getAttribute("u_id")%> readonly="readonly">
+      <td align="center"> 작성자 &nbsp;&nbsp;</td>
+      <td><input  class="form-control" name="u_id" size="50" maxlength="50" value=<%=session.getAttribute("u_id")%> readonly="readonly">
       </td>
       <td>&nbsp;</td>
      </tr>
      <tr height="1" bgcolor="#dddddd"><td colspan="4"></td></tr>
      <tr>
       <td>&nbsp;</td>
-      <td align="center"> 내 용 : </td>
-      <td><textarea name="content" cols="50" rows="13"></textarea></td>
+      <td align="center"> 내 용 &nbsp;&nbsp;</td>
+      <td>
+      <textarea name="content" class="form-control" rows="13" cols="50"></textarea>
+      </td>
       <td>&nbsp;</td>
      </tr>
       <tr height="1" bgcolor="#dddddd"><td colspan="4"></td></tr>
-    <tr>
-      <td>&nbsp;</td>
-      <td align="center">첨부파일 : </td>
-      <td><input name="file" size="50" maxlength="50"></td>
-      <td>&nbsp;</td>
-     </tr>
-     <tr height="1" bgcolor="#dddddd"><td colspan="4"></td></tr>
+    
      <tr height="1" bgcolor="#82B5DF"><td colspan="4"></td></tr>
      <tr align="center">
       <td>&nbsp;</td>
-      <td colspan="2"><input type=button value="등록" OnClick="javascript:writeCheck();">
-       <input type=button value="취소" OnClick="javascript:history.back(-1)">
+      <td colspan="2"><br>
+       <button type="button" class="btn btn-primary" onclick="javascript:writeCheck();">등록</button>
+       <button type="button" class="btn btn-default" onclick="javascript:history.back(-1)">취소</button>
       <td>&nbsp;</td>
      </tr>
     </table>
