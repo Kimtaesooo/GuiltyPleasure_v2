@@ -127,6 +127,33 @@
   z-index: 10;
   position: relative;
 }
+
+.fh5co-feature, .fh5co-figure {
+  display: block;
+  color: #444;
+  float: left;
+  width: 100%;
+  text-align: center;
+  background: #fff;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  border-radius: 4px;
+  padding: 0px 0px;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+  margin-bottom: 0em;
+}
+
+.navbar-brand > span {
+    display: -moz-inline-stack;
+    display: inline-block;
+    zoom: 1;
+    float: left;
+    border: 2px solid black;
+    padding: 7px 10px 7px 12px;
+}
 </style>
 
 </head>
@@ -166,15 +193,7 @@
 
 	<div id="fh5co-page">
 		<div id="fh5co-wrap">
-			<header id="fh5co-hero" data-section="home" role="banner"
-				style="background: url(images/bg_2.jpg) top left; background-size: cover;">
-				<div class="fh5co-overlay"></div>
-				<div class="fh5co-intro">
-					<div class="container">
-						<div class="row"></div>
-					</div>
-				</div>
-			</header>
+			
 			<!-- END .header -->
 
 			<div id="fh5co-main">
@@ -182,8 +201,7 @@
 
 				<!-- 상점 페이지 시작 -->
 
-				<br> <br> <br> <br> <br> <br> <br>
-				<br> <br> <br> <br>
+				<br> <br>
 				<script>
 					jQuery(function() {
 
@@ -294,24 +312,29 @@
 					UserInfoDTO uDto = userdao.searchUserInfo(id);
 				%>
 			
-				<br>
+				<br><br>
 
 				<!-- 템플릿 적용 페이지 -->
 				<div class="row">
+					<div style="padding-top:0px; height:90px; background-color: #4fd2c2">
 					<div
 						class="col-md-8 col-md-offset-2 fh5co-section-heading text-center">
 						<h2
 							class="fh5co-lead animate-single product-animate-1 fadeIn animated">Item
 							Shop</h2>
-						<p
+						<p 
 							class="fh5co-sub animate-single product-animate-2 fadeIn animated">
+							<font size="3">
 							실력이 구리면 어쩔 수 없죠. 템빨로 승부하세요!<%=id%>님!
+							</font> 
 						</p>
+					</div>
 					</div>
 				</div>
 
+
 				<div class="row" align="center">
-					<div class="col-md-1">
+					<div class="col-md-1 to-animate fadeInUp animated">
 						<!-- 첫번째 페이지인 경우 빼고 이전페이지로 돌아가는 화살표 생성 -->
 						<%
 							if (nowPage != 0) {
@@ -320,7 +343,7 @@
 							<input type="hidden" name="cmd" value="SHOPLIST"> <input
 								type="hidden" name="nowPage" value="<%=nowPage - 1%>"> <input
 								type="image" name="Submit" value="Submit"
-								src="/GuiltyPleasure/daon_v1/img/pre.png">
+								src="/GuiltyPleasure/CORDING/shop/img/pre.png">
 						</form>
 
 						<%
@@ -348,7 +371,7 @@
 
 									<figure>
 										<input type="image" class="add" id="addButton"
-											src="/GuiltyPleasure/daon_v1/img/add.png" />
+											src="/GuiltyPleasure/CORDING/shop/img/add.png" />
 									</figure>
 									<h3 class="fh5co-figure-lead">아이템 추가</h3>
 									<p class="fh5co-figure-text">아이템을 추가하자.</p>
@@ -371,31 +394,35 @@
 							<!-- 삼품 목록 출력 -->
 							<div class="col-md-3 col-sm-6 col-xs-6 col-xxs-12">
 
-								<a class="fh5co-figure to-animate fadeInUp animated">
+								<a class="fh5co-figure to-animate fadeInUp animated" style="border:1px solid gray;">
 									<figure>
 										<img
-											src="/GuiltyPleasure/daon_v1/img/<%=item.getS_itemcode()%>.png"
-											onERROR="this.src='/GuiltyPleasure/daon_v1/img/default.jpg'"
+											src="/GuiltyPleasure/CORDING/shop/img/<%=item.getS_itemcode()%>.png"
+											onERROR="this.src='/GuiltyPleasure/CORDING/shop/img/default.jpg'"
 											class="img-responsive">
 									</figure>
-									<h3 class="fh5co-figure-lead"><%=item.getS_itemname()%></h3>
+									
+									<h3 class="fh5co-figure-lead"><hr><%=item.getS_itemname()%><hr></h3>
+									
 									<p class="fh5co-figure-text">
+										<font size="2">
 										상품가격 :
 										<%=item.getS_price()%><br> 사용기한:
 										<%=item.getS_deadline()%><br> 남은수량 :
 										<%=item.getS_limit_num()%>
+										</font>
 									<p align="right">
 										<button type="button" role="buy"
 											class="btn btn-default btn-xs" id="buyButton${cnt=cnt+1}">
 											구매</button>
-										
+
 										<!-- 히든 버튼으로 아이템의 수량, 가격 값 저장/ 값을 체크하여 구매 불가능한 상황에서는 jquery에서 구매 모달 대신 구매 불가 모달을 띄울수있도록 함-->
 										<input type="hidden" id="getLimit${cnt}"
 											value="<%=item.getS_limit_num()%>"> <input
 											type="hidden" id="getPoint" value="<%=uDto.getPoint()%>">
 										<input type="hidden" id="getPrice${cnt}"
 											value="<%=item.getS_price()%>">
-											
+
 										<button type="button" role="explain"
 											class="btn btn-default btn-xs" id="explainButton${cnt}">설명</button>
 
@@ -404,13 +431,12 @@
 											if (id.equals("master")) {
 										%>
 										<input type="image" class="update" id="updataButton${cnt}"
-											src="/GuiltyPleasure/daon_v1/img/edit.png" />
+											src="/GuiltyPleasure/CORDING/shop/img/edit.png" />
 										<%
 											}
 										%>
 									</p>
 
-									</p>
 								</a>
 
 							</div>
@@ -681,21 +707,14 @@
 
 
 
-							<div class="clearfix visible-sm-block"></div>
-
-							<div class="fh5co-spacer fh5co-spacer-sm"></div>
-
-							<div
-								class="col-md-4 col-md-offset-4 text-center to-animate fadeInUp animated">
-								<a href="#" class="btn btn-primary">View All Products</a>
-							</div>
+							
 						</div>
 					</div>
 
 
 
 					<!-- 마지막페이지가 아닌 경우 다음 버튼 -->
-					<div class="col-md-1">
+					<div class="col-md-1 to-animate fadeInUp animated">
 						<%
 							if (nowPage < totalPage - 1) {
 						%>
@@ -703,7 +722,7 @@
 							<input type="hidden" name="cmd" value="SHOPLIST"> <input
 								type="hidden" name="nowPage" value="<%=nowPage + 1%>"> <input
 								type="image" name="Submit" value="Submit"
-								src="/GuiltyPleasure/daon_v1/img/next.png">
+								src="/GuiltyPleasure/CORDING/shop/img/next.png">
 						</form>
 
 						<%
@@ -712,67 +731,17 @@
 					</div>
 				</div>
 				<!-- 템플릿 적용 페이지 끝 -->
-
+<br>
 				<div align="center">
 					<font color=gray> <%=nowPage + 1%> / <%=totalPage%> Pages
-					</font> <br> <br> <br> <br>
+					</font> <br> <br> 
 
 				</div>
 
 			</div>
 		</div>
 
-		<footer id="fh5co-footer" style="">
-			<div class="fh5co-overlay"></div>
-			<div class="fh5co-footer-content">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-3 col-sm-4 col-md-push-3">
-							<h3 class="fh5co-lead">About</h3>
-							<ul>
-
-							</ul>
-						</div>
-						<div class="col-md-3 col-sm-4 col-md-push-3">
-							<h3 class="fh5co-lead">Support</h3>
-							<ul>
-
-							</ul>
-						</div>
-						<div class="col-md-3 col-sm-4 col-md-push-3">
-							<h3 class="fh5co-lead">More Links</h3>
-							<ul>
-								<li><a href="#">Feedback</a></li>
-								<li><a href="#">Frequently Ask Questions</a></li>
-								<li><a href="#">Terms of Service</a></li>
-								<li><a href="#">Privacy Policy</a></li>
-								<li><a href="#">Careers</a></li>
-								<li><a href="#">More Apps</a></li>
-							</ul>
-						</div>
-
-						<div class="col-md-3 col-sm-12 col-md-pull-9">
-							<div class="fh5co-footer-logo">
-								<a href="index.html">Outline</a>
-							</div>
-							<p class="fh5co-copyright">
-								<small>&copy; 2015. All Rights Reserved. <br> by <a
-									href="http://freehtml5.co/" target="_blank">FREEHTML5.co</a>
-									Images: <a href="http://pexels.com/" target="_blank">Pexels</a></small>
-							</p>
-							<p class="fh5co-social-icons">
-								<a href="#"><i class="icon-twitter"></i></a> <a href="#"><i
-									class="icon-facebook"></i></a> <a href="#"><i
-									class="icon-instagram"></i></a> <a href="#"><i
-									class="icon-dribbble"></i></a> <a href="#"><i
-									class="icon-youtube"></i></a>
-							</p>
-						</div>
-
-					</div>
-				</div>
-			</div>
-		</footer>
+		
 	</div>
 
 
