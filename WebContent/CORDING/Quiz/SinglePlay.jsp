@@ -68,7 +68,7 @@ $(document).keyup(function (e) {
 </script>
 <title>Insert title here</title>
 <%
-	int counter =(int)request.getAttribute("counter");
+	int counter =(Integer)request.getAttribute("counter");
 	request.setCharacterEncoding("euc-kr");
 	Quiz quiz = (Quiz) request.getAttribute("quiz");
 	CheckQuiz check = new CheckQuiz();

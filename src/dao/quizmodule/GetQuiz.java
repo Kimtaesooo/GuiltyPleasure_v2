@@ -26,12 +26,12 @@ public class GetQuiz {
 		}
 	}
 
-	// 퀴즈를 생성하는 메서드
+	// 퀴즈 한개를 생성하는 메서드
 	public Quiz makeQuiz() {
 		PreparedStatement pre = null;
 		ResultSet rs = null;
 		Quiz q = null;
-		String sql = "select * from(select * from quiz order by dbms_random.value) where rownum <6";
+		String sql = "select * from(select * from quiz order by dbms_random.value) where rownum < 5";
 		try {
 			pre = con.prepareStatement(sql);
 			rs = pre.executeQuery();
@@ -50,7 +50,38 @@ public class GetQuiz {
 		}
 		return q;
 	}
+	
+	//퀴즈의 숫자만큼 추출하는 메서드
+	public ArrayList makeQuiz(int val) {
+		PreparedStatement pre = null;
+		ResultSet rs = null;
+		Quiz q = null;
+		ArrayList array = new ArrayList<>();
+		String sql = "select * from(select * from quiz order by dbms_random.value) where rownum < ?";
+		try {
+			pre = con.prepareStatement(sql);
+			pre.setInt(1, val);
+			rs = pre.executeQuery();
+			while (rs.next()) {
+				q = new Quiz();
+				q.setQ_code(rs.getString("Q_CODE"));
+				q.setQ_answer(rs.getString("Q_ANSWER"));
+				q.setQ_question(rs.getString("Q_QUESTION"));
+				q.setQ_wa_a(rs.getString("Q_WA_A"));
+				q.setQ_wa_b(rs.getString("Q_WA_B"));
+				q.setQ_wa_c(rs.getString("Q_WA_C"));
+				q.setQ_type(rs.getString("Q_TYPE"));
+				
+				array.add(q);
+			}
+		} catch (SQLException e) {
+			System.out.println("getquiz : " + e);
+		}
+		return array;
+	}
 
+	
+	//퀴즈 정답 오답과 이용자의 정답수 오답수를 기록하는 메서드
 	public void setResult(ArrayList list) {
 		QuizResult qrs = null;
 		ResultSet rs = null;
