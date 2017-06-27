@@ -6,11 +6,66 @@
 <head>
 <meta charset="EUC-KR">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../../bootstrap332/css/bootstrap.min.css">
-<script src="../../bootstrap332/js/jquery-3.2.1.min.js"></script>
-<script src="../../bootstrap332/js/bootstrap.min.js"></script>
 <jsp:useBean id="dao" class="dao.customermodule.customer"/>
 
+<%
+	request.setCharacterEncoding("euc-kr");
+	response.setCharacterEncoding("euc-kr");
+	String sc_num = request.getParameter("sc_num");
+	c_board dto = new c_board();
+	dto = dao.getRead(sc_num);
+	String answer = dao.getReadAs(sc_num);
+	String id="";
+	if(session.getAttribute("u_id")!=null){
+		id = (String)session.getAttribute("u_id");
+	}
+%>
+
+
+<title>글 쓰기</title>
+<!-- jQuery -->
+<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.min.js"></script>
+<!-- jQuery Easing -->
+<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.easing.1.3.js"></script>
+<!-- Bootstrap -->
+<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/bootstrap.min.js"></script>
+<!-- Waypoints -->
+<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.waypoints.min.js"></script>
+<!-- Magnific Popup -->
+<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.magnific-popup.min.js"></script>
+<!-- Owl Carousel -->
+<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/owl.carousel.min.js"></script>
+<!-- toCount -->
+<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.countTo.js"></script>
+<!-- Main JS -->
+<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/main.js"></script>
+<!-- Animate.css -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/animate.css">
+<!-- Icomoon Icon Fonts-->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/icomoon.css">
+<!-- Simple Line Icons-->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/simple-line-icons.css">
+<!-- Magnific Popup -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/magnific-popup.css">
+<!-- Owl Carousel -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/owl.carousel.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/owl.theme.default.min.css">
+<!-- Salvattore -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/salvattore.css">
+<!-- Theme Style -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/style.css">
+<!-- Modernizr JS -->
+<script src="js/modernizr-2.6.2.min.js"></script>
+<!-- nav바 수정부분 -->	
+<style>
+.fh5co-nav-toggle > span {color: #333;}	a {color: #333;}
+.navbar-brand {color: #333;}#fh5co-offcanvass .fh5co-lead {font-size: 15px;color: #333;}
+.navbar-brand > span {border: 2px solid #333;}
+.navbar-brand:hover {color: #3c763d;}
+a {color: #333;}
+#fh5co-offcanvass {background: #d3d9da;color: #878c93;}
+</style>
+<!-- nav바 수정부분 여기까지 -->
 <script>
 function check(){
 	if(document.ans.sca_answer.value == ""){
@@ -28,42 +83,26 @@ function delete1(){
 	}
 	document.del.submit();
 }
+function deleteChk(){
+	$(".pw").show(1000);
+	$("#submit").show(1000);
+	$("#cancel").show(1000);
+}
+function deleteNo(){
+	$(".pw").hide(1000);
+	$("#submit").hide(1000);
+	$("#cancel").hide(1000);
+}
 $(document).ready(function(){
 	$(".pw").hide(0);
 	$("#submit").hide(0);
 	$("#cancel").hide(0);
-	$("#delete").click(function(){
-		$(".pw").show(1000);
-		$("#submit").show(1000);
-		$("#cancel").show(1000);
-	});
-	$("#cancel").click(function(){
-		$(".pw").hide(1000);
-		$("#submit").hide(1000);
-		$("#cancel").hide(1000);
-	});
-
 });
 </script>
-<%
-	request.setCharacterEncoding("euc-kr");
-	response.setCharacterEncoding("euc-kr");
-	String sc_num = request.getParameter("sc_num");
-	c_board dto = new c_board();
-	dto = dao.getRead(sc_num);
-	String answer = dao.getReadAs(sc_num);
-	String id="";
-	if(session.getAttribute("u_id")!=null){
-		id = (String)session.getAttribute("u_id");
-	}
-%>
-
-
-<title>글 읽기</title>
 </head>
 <body>
-<jsp:include page="/top.jsp"/>
-<jsp:include page="/nav.jsp"/>
+<jsp:include page="/test_nav.jsp"/>
+<br><br><br><br><br>
 
 <div class="container">   
         <div class="row col-lg-12">
@@ -74,7 +113,7 @@ $(document).ready(function(){
 			<div class="col-lg-8" align="right">
 			<a href="customer_ques.jsp" class="btn btn-warning" >문의하기</a>	
 			</div>
-			<br><br>
+			<br><br><br>
 			<div class="jumbotron">
 			<H2><span class="glyphicon glyphicon-user"></span>문의내용</H2>
 			<pre>글제목 : <%=dto.getSc_title() %></pre>
@@ -108,10 +147,10 @@ $(document).ready(function(){
 			<form action="customer_delete_proc.jsp" method="post" name="del">
 					<input type="hidden" value="<%=dto.getSc_num()%>" name="sc_num">
 					<input type="hidden" value="<%=dto.getU_id()%>" name="u_id">
-		        	<a class="btn btn-primary" id="delete">삭제하기</a>
+		        	<a class="btn btn-primary" href="javascript:deleteChk()">삭제하기</a>
 		        	<input type="password" size="20" name="pwcheck" placeholder="비밀번호를 입력하세요" class="pw">
 		        	<a href="javascript:delete1()" class="btn btn-danger" id="submit">확인</a>
-		        	<a class="btn btn-success" id="cancel">취소</a>
+		        	<a class="btn btn-success" id="cancel" href="javascript:deleteNo()">취소</a>
 			</form>
 			<BR>
 			<%} %>
@@ -120,4 +159,5 @@ $(document).ready(function(){
 	</div>
 </div>
 </body>
+
 </html>

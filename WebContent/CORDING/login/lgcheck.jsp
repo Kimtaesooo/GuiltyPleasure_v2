@@ -26,7 +26,7 @@
 		}
 		session.setAttribute("u_id", u_id);
 		session.setAttribute("u_nickname", userinfo.getU_nickname());
-		response.sendRedirect("../../main.jsp");
+		response.sendRedirect("../../test.jsp");
 	}
 	else{
 		response.sendRedirect("login_err.html");		
