@@ -22,7 +22,8 @@ public class CommandFactory {
 		}else if(cmd.equals("QREGI_BOARD_GET")){
 			return new QBRGetCommand();
 		}
-		else{
+		else if(cmd.equals("CHATING")){
+			return new ChatingCommand();
 		}
 		return null;
 	}	
