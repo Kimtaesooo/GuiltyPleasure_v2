@@ -109,13 +109,16 @@ $(document).ready(function(){
 .navbar-brand:hover {color: #3c763d;}
 a {color: #333;}
 #fh5co-offcanvass {background: #d3d9da;color: #878c93;}
+select[size] {
+  height: 30px;
+}
 </style>
 <!-- nav바 수정부분 여기까지 -->
 </head>
 <body>
 <jsp:include page="/test_nav.jsp"/>
 <br><br><br><br><br>
-<div class="container">   
+<div class="container" id="fh5co-main">   
         <div class="row col-lg-12">
         	<div class="col-lg-4">
         	<a href="customer_main.jsp" class="btn btn-success ">문의</a>
@@ -161,10 +164,11 @@ a {color: #333;}
 						</td>
 					</tr>
 					</table>
+					<br>
 				</form>
 				<table class="table table-striped table-hover " id="list">
 				  <thead>
-				    <tr>
+				    <tr class="success">
 				      <th width="170">등록일</th>
 				      <th width="100">작성자</th>
 				      <th>글제목</th>
@@ -195,10 +199,10 @@ a {color: #333;}
 							</tr>
 					<% 		}
 						}%>
-					<tr id="page">
+					<tr id="page" class="success">
 						
 						<td  colspan="5" align="center">
-							Go to Page
+						 Page
 							<% if(nowBlock > 0){%>
 								<a href="customer_list.jsp?nowBlock=<%=nowBlock-1%>&nowPage=<%=pagePerBlock*(nowBlock+1)%>&keyField=<%=keyField%>&keyWord=<%=keyWord%>">이전<%=pagePerBlock%>개</a>
 							<% }%> 
@@ -230,7 +234,7 @@ a {color: #333;}
 				<br>
 					<div class="jumbotron">
 		  			<h2>로그인 후 이용가능한 서비스 입니다.</h2>
-		  			<p><a>회원가입</a> 혹은 <a>로그인</a>을 해주세요</p>
+		  			<p><a href="${pageContext.request.contextPath}/CORDING/login/resistration.html">회원가입</a> 혹은 <a href="${pageContext.request.contextPath}/CORDING/login/login.html">로그인</a>을 해주세요</p>
 					</div>
 			
 				<%} %>

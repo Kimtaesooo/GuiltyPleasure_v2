@@ -42,7 +42,6 @@
 .navbar-brand {color: #333;}#fh5co-offcanvass .fh5co-lead {font-size: 15px;color: #333;}
 .navbar-brand > span {border: 2px solid #333;}
 .navbar-brand:hover {color: #3c763d;}
-a {color: #333;}
 #fh5co-offcanvass {background: #d3d9da;color: #878c93;}
 #fh5co-hero .fh5co-overlay { background: #f5f5f5;}
 #fh5co-hero .fh5co-intro h2 {color: #333333;}
@@ -51,6 +50,7 @@ a {color: #333;}
 </head>
 <body>
 <jsp:include page="/test_nav.jsp"/>
+	<div>
 			<header id="fh5co-hero" data-section="home" role="banner" style="background: WHITE top left; background-size: cover;" >
 				<div class="fh5co-intro">
 					<div class="container">
@@ -76,5 +76,6 @@ a {color: #333;}
 					</div>						
 				</div>
 			</header>
+	</div>
 </body>
 </html>

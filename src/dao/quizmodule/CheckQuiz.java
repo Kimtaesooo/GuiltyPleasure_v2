@@ -7,7 +7,7 @@ import dto.Quiz;
 
 public class CheckQuiz {
 	Quiz quiz;
-	int combo = 0;
+	int combo = 1;
 	String answer = null;
 	ArrayList<String> quizlist;
 	public CheckQuiz() {

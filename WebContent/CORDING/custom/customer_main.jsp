@@ -58,7 +58,7 @@ a {color: #333;}
 <jsp:include page="/test_nav.jsp"/>
 <br><br><br><br><br>
 
-<div class="container">   
+<div class="container" id="fh5co-main">   
         <div class="row col-lg-12">
         	<div class="col-lg-4">
         	<a href="#" class="btn btn-success active">¹®ÀÇ</a>

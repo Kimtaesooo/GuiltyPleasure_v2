@@ -104,7 +104,7 @@ $(document).ready(function(){
 <jsp:include page="/test_nav.jsp"/>
 <br><br><br><br><br>
 
-<div class="container">   
+<div class="container" id="fh5co-main">   
         <div class="row col-lg-12">
         	<div class="col-lg-4">
         	<a href="customer_main.jsp" class="btn btn-success ">¹®ÀÇ</a>

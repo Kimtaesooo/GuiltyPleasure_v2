@@ -51,6 +51,9 @@ a {color: #333;}
   background: #4fd2c2;
   font-size: 15pt;
 }
+input, button, select, textarea {
+    color: black;
+}
 </style>
 </head>
 <body>
@@ -64,7 +67,10 @@ a {color: #333;}
 								<h2 class="to-animate intro-animate-1">문제 등록 이 뭔가요? </h2>
 								<p class="to-animate intro-animate-2">자신이 문제를 출제하고 관리자가 검토후에 문제 등록이 진행됩니다.</p>
 								<p class="to-animate intro-animate-3">채택된 문제는 포인트를 드립니다.</p>
-								<p class="to-animate intro-animate-3"><a href="QuizReg.jsp" class="btn btn-primary btn-md">출제하러 가기</a></p>	
+								<form action="/GuiltyPleasure/borad">
+								<input type="hidden" name="cmd" value="QREGI_BOARD_LIST"/>
+								<input type="submit" value="출제하러 가기">
+								</form>
 							</div>
 						</div>
 					</div>						
