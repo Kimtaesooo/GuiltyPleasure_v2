@@ -10,7 +10,6 @@
 <script	src="${pageContext.request.contextPath}/bootstrap332/js/jquery-3.2.1.min.js"></script>
 <script	src="${pageContext.request.contextPath}/bootstrap332/js/bootstrap.min.js"></script>
 <title>게임방</title>
-<script src=/GuiltyPleasure/ajax.js></script>
 </head>
 <body>
 <jsp:useBean id="dao" class="dao.playmodule.BattlePlay"/>
@@ -44,49 +43,13 @@
 	if (room.getBr_people() == 2) {
 %>
 		<script> alert('인원이 꽉 찼습니다.'); 	location.href="battleRoom.jsp";	</script>
-<% }%>
+<% } %>
 
-<script>
-	
-
-	function gameStart(){
-    	var param = "";
-    	sendRequest("POST", "startBattle.jsp", param, callback);
+<%
+	if(room.getBr_people() ==2){
+		
 	}
-    function callback(){
-    	if(httpRequest.readyState==4){
-    		if(httpRequest.status == 200){
-    			var windowQuiz = document.getElementById("windowQuiz");
-    			windowQuiz.innerHTML = httpRequest.responseText;
-    		}
-    		else{
-    			alert(httpRequest.status);
-    		}
-    	}
-    }
-    
-    function start(){
-    	
-    }
-    function callback2(){
-    	if(httpRequest.readyState==4){
-    		if(httpRequest.status == 200){
-    			var windowQuiz = document.getElementById("windowQuiz");
-    			windowQuiz.innerHTML = httpRequest.responseText;
-    		}
-    		else{
-    			alert(httpRequest.status);
-    		}
-    	}
-    }
-    
-</script>
-
-
-
-
-
-
+%>
 
 
 
@@ -94,15 +57,14 @@
 
 
 	<br><br>
-	<input type="hidden" value="<%=ip%>" id="ip">
-	<input type="hidden" value="<%=gameUser[0]%>" id="bangjang">
-	<input type="hidden" value="<%=gameUser[1]%>" id="gameUser">
-	<input type="hidden" id="url" value="ws://localhost:8080">
+
 	<p class="text-center">배틀 게임 시작</p>
-	<br><br>
+	<br>
+	<br>
 	<div class="row">
 		<div class="col-md-7 col-md-offset-1">
-			<textarea class="form-control" rows="16" id="windowQuiz" style="background-color:transparent;" readonly></textarea>
+			<textarea class="form-control" rows="16" placeholder="퀴즈 문제 출력 되는 곳"
+				readonly></textarea>
 			<br><br><br>
 			<div class="col-md-3">
 				<button type="button" class="btn btn-success btn-lg btn-block">
@@ -127,9 +89,9 @@
 		</div>
 
 		<div class="col-xs-3">
-			<textarea class="form-control" rows="4" placeholder="접속자 확인 하는 곳" id="connectionCheck" style="background-color:transparent;" readonly></textarea>
+			<textarea class="form-control" rows="4" placeholder="접속자 확인 하는 곳" id="connectionCheck" readonly></textarea>
 			<br>
-			<textarea class="form-control" rows="15" id="messageWindow" style="background-color:transparent;" readonly></textarea>
+			<textarea class="form-control" rows="15" id="messageWindow" readonly></textarea>
 			<br>
 				<div class="col-xs-9">
 					<input type="text" class="form-control" id="inputMessage" onkeyup="enterkey()">
@@ -143,7 +105,7 @@
 					<a class="btn btn-danger btn-lg btn-block" href="battleRoom.jsp" role="button">포기하기</a>
 				</div>
 				<div class="col-xs-6">
-					<a class="btn btn-success btn-lg btn-block" role="button" onclick="gameStart();">시작</a>
+					<a class="btn btn-success btn-lg btn-block" role="button">시작</a>
 				</div>
 			<%}else{%>
 				<div class="col-xs-12">
@@ -151,63 +113,9 @@
 				</div>
 			
 			<%} %>
+				
 		</div>
 	</div>
-	
-	
-	
-	<script>
-		var textarea = document.getElementById("messageWindow");
-		var connectionCheck = document.getElementById("connectionCheck");
-		var ip = document.getElementById('ip').value;
-		var webSocket = new WebSocket("ws://70.12.110.106:8080/GuiltyPleasure/websocket");
-		var inputMessage = document.getElementById('inputMessage');
-		var gameUser = document.getElementById('gameUser').value;
-		var bangjang = document.getElementById('bangjang').value;
-	
-	webSocket.onerror = function(event) {
-	      onError(event)
-	    };
-	    webSocket.onopen = function(event) {
-	      onOpen(event)
-	    };
-	    webSocket.onmessage = function(event) {
-	      onMessage(event)
-	    };
-	    
-	    function onMessage(event) {
-	        textarea.value += event.data + "\n";
-	    }
-	    function onOpen(event) {
-	        textarea.value += "연결 성공\n";
-	        connectionCheck.value += ip+ "\n";
-	    }
-	    function onError(event) {
-	      alert(event.data);
-	    }
-	    function send() {
-	    	if (inputMessage.value == ""){}
-	    	else{    		
-	        	textarea.value += "나 : " + inputMessage.value + "\n";
-	        	webSocket.send(gameUser+ " : " + inputMessage.value);
-	        	inputMessage.value = "";
-	    	}
-	    }
-	    function onClose(session) {
-	    	webSocket.onClose(event);
-	    	document.myForm.action="battleRoom.jsp";
-	    	document.myForm.method="post";
-	    	document.myForm.submit();
-	    }
-	    
-	    function enterkey() {
-	        if (window.event.keyCode == 13) {
-	            send();
-	        }
-	    }
-	</script>
-	
-	
 
 </body>
 </html>

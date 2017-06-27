@@ -16,7 +16,7 @@
 <script>
 function fnProcess(){
 	
-	var param ="cmd=CHATING";
+	var param ="cmd=CHATING&state=GET";
 	sendRequest("POST","/GuiltyPleasure/battle", param, callback);
 }
 
@@ -50,8 +50,8 @@ var chatManager = new function(){
 	this.show = function(data)
 	{
 	    var o = document.getElementById('area');
-	    o.value = data;
-	
+	    o.value += data;
+	 b
 	}
 	
 }

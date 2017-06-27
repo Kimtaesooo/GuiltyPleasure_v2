@@ -12,9 +12,6 @@
 <script	src="${pageContext.request.contextPath}/bootstrap332/js/jquery-3.2.1.min.js"></script>
 <script	src="${pageContext.request.contextPath}/bootstrap332/js/bootstrap.min.js"></script>
 <title>∞‘¿”πÊ</title>
-<script>
-	window.addEventListener("onbeforeunload", closeChatRoom, false);
-</script>
 </head>
 <body>
 <jsp:useBean id="dao" class="dao.playmodule.BattlePlay"/>

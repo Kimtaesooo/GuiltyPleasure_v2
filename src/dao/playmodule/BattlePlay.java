@@ -86,7 +86,7 @@ public class BattlePlay {
 		public List roomInfo(String u_id) {
 			int br_people = 1;
 			ArrayList list = new ArrayList();			
-			String sql = "select * from battle_room where u_id ='" +u_id+ "'";
+			String sql = "select * from battle_room where u_id ='"+u_id+ "'";
 
 			try {
 				pstmt = con.prepareStatement(sql);
@@ -131,4 +131,20 @@ public class BattlePlay {
 				pool.freeConnection(con, pstmt, rs);
 			}
 		}
+		
+		// battleRoom.jsp 베틀 게임 시작
+				public void startBattle(String u_id) {
+					String sql = "";
+					sql = "update battle_room set br_gamestate = 'Y' where u_id='"+u_id+"'";
+					try {
+						pstmt = con.prepareStatement(sql);
+						pstmt.executeUpdate();
+
+					} catch (Exception err) {
+						System.out.println("startBattle 첫번째에서 오류");
+						err.printStackTrace();
+					} finally {
+						pool.freeConnection(con, pstmt, rs);
+					}
+				}
 }

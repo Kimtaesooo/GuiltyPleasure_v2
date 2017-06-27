@@ -33,7 +33,7 @@
 	}
 %>
 <title>배틀 대기방</title>
-</head>
+</head>  
 <body>
 	<jsp:useBean id="dao" class="dao.playmodule.BattlePlay"/>
 	<jsp:useBean id="dto" class="dto.Battle_Room"/>
@@ -169,7 +169,7 @@
 		</form>
 	</div>
 	<!-- 방만들기 모달 종료-->
-<form name="frmRead" method="post" action="playRoom.jsp">
+<form name="frmRead" method="get" action="playRoom.jsp">
 	<input type="hidden" name="u_id"/>
 	<input type="hidden" name="br_num"/>
 </form>	
