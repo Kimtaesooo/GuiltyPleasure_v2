@@ -28,7 +28,7 @@ public class FrontController extends HttpServlet {
 		CommandFactory factory = CommandFactory.newInstance();
 		Command command = factory.createCommand(cmd);
 		String state = (String)req.getSession().getAttribute("STATE");
-		System.out.println(state);
+		//System.out.println(state);
 		if(state != null && state.equals("COMPLETE")){
 			url = "/WEB-INF/CORDING/test.jsp";
 		}

@@ -5,18 +5,16 @@
 <meta charset="EUC-KR">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap332/css/bootstrap.min.css">
-<script src="${pageContext.request.contextPath}/bootstrap332/js/jquery-3.2.1.min.js"></script>
-<script src="${pageContext.request.contextPath}/bootstrap332/js/bootstrap.min.js"></script>
-
 <script>
-$(
-	function(){
-		$("#popup").click(function(){
-			$("#theModal").modal();
-		});
-	}
-);
-
+	$(
+			function(){
+				$("#btnPopup").click(
+						function(){
+							$("#theModal").modal();
+						}
+						);
+			}
+	);
 </script>
 <%
 	request.setCharacterEncoding("euc-kr");
@@ -26,111 +24,132 @@ $(
 		u_id = (String)session.getAttribute("u_id");
 	}
 %>
+
 <title>Main</title>
+	<!-- jQuery -->
+	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.waypoints.min.js"></script>
+	<!-- Magnific Popup -->
+	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.magnific-popup.min.js"></script>
+	<!-- Owl Carousel -->
+	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/owl.carousel.min.js"></script>
+	<!-- toCount -->
+	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.countTo.js"></script>
+	<!-- Main JS -->
+	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/main.js"></script>
+<!-- Animate.css -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/icomoon.css">
+	<!-- Simple Line Icons-->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/simple-line-icons.css">
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/magnific-popup.css">
+	<!-- Owl Carousel -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/owl.theme.default.min.css">
+	<!-- Salvattore -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/salvattore.css">
+	<!-- Theme Style -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/style.css">
+	<!-- Modernizr JS -->
+	<script src="js/modernizr-2.6.2.min.js"></script>
+<!-- nav바 수정부분 -->	
+<style>
+.fh5co-nav-toggle > span {color: #333;}	a {color: #333;}
+.navbar-brand {color: #333;}#fh5co-offcanvass .fh5co-lead {font-size: 15px;color: #333;}
+.navbar-brand > span {border: 2px solid #333;}
+.navbar-brand:hover {color: #3c763d;}
+a {color: #333;}
+#fh5co-offcanvass {background: #d3d9da;color: #878c93;}
+</style>
+<!-- nav바 수정부분 여기까지 -->
 </head>
 <body>
-<jsp:include page="/top.jsp"/>
+<jsp:include page="/test_nav.jsp"/>
 
-<div class="container">   
+<div id="fh5co-main"> 
         <div class="row">
-            <div class="col-lg-12" align="center">
-                <h1 class="page-header">Guilty Pleasure
-                 
-                </h1>
-              <div class="alert alert-dismissible alert-warning">
-				  <button type="button" class="close" data-dismiss="alert">&times;</button>
-				  <h4>주의 !!</h4>
-				  <p>아무생각 없고 도움도 안되는 퀴즈를 푸는 사이트 입니다.. 똑똑해 지고 싶어 들어 왔다면 돌아가 주세요 :(</p>
-				</div>
-            </div>
+       <div class="col-md-8 col-md-offset-2 fh5co-section-heading text-center">
+       	<br>
+		<h2 class="fh5co-lead to-animate"></h2>
+		<br>
+		</div>
+			<div class="col-md-4 to-animate">
+					<a href="${pageContext.request.contextPath}/CORDING/Quiz/SingleStart.jsp" class="fh5co-figure">
+						<span class="fh5co-lead">싱글플레이</span>
+						<br>
+						<img src="https://cdn3.iconfinder.com/data/icons/forall/110/game-128.png">
+					</a>
+			</div>
+           	<div class="col-md-4 to-animate">
+					<a href="taesoo_battle/battleRoom.jsp" class="fh5co-figure">
+						<span class="fh5co-price">배틀플레이</span>
+						<br>
+						<img src="https://cdn0.iconfinder.com/data/icons/pokemon-go-vol-1/135/_Battle-128.png">
+					</a>
+			</div>
+      		<div class="col-md-4 to-animate">
+					<a href="/GuiltyPleasure/shop?cmd=SHOPLIST" class="fh5co-figure">
+						<span class="fh5co-price">상점</span>
+						<br>
+						<img src="https://cdn3.iconfinder.com/data/icons/shopping-icons-14/128/01_Shopping_Cart-128.png">
+					</a>
+			</div>
         </div>
 
         <div class="row">
-            <div class="col-md-4 portfolio-item"  align="center">
-                <a href="#">
-                    <img class="img-responsive" src="https://cdn3.iconfinder.com/data/icons/forall/110/game-128.png" alt="">
-                </a>
-                <h3>
-                    <a href="CORDING/Quiz/SingleStart.html">싱글플레이</a>
-                </h3>
-             	<br><br><br>
-            </div>
-            <div class="col-md-4 portfolio-item"  align="center">
-                <a href="taesoo_battle/battleRoom.jsp">
-                    <img class="img-responsive" src="https://cdn0.iconfinder.com/data/icons/pokemon-go-vol-1/135/_Battle-128.png" alt="">
-                </a>
-                <h3>
-                    <a href="taesoo_battle/battleRoom.jsp">배틀플레이</a>
-                </h3>
-               
-            </div>
-            <div class="col-md-4 portfolio-item"  align="center">
-                <a href="/GuiltyPleasure/shop?cmd=SHOPLIST">
-                    <img class="img-responsive" src="https://cdn3.iconfinder.com/data/icons/shopping-icons-14/128/01_Shopping_Cart-128.png" alt="">
-                </a>
-                <h3>
-                    <a href="/GuiltyPleasure/shop?cmd=SHOPLIST">상점</a>
-                </h3>
-            </div>
+        	<div class="col-md-4 to-animate">
+					<a href="CORDING/custom/customer_main.jsp" class="fh5co-figure">
+						<span class="fh5co-price">고객센터</span>
+						<br>
+						<img src="https://cdn2.iconfinder.com/data/icons/miscellaneous-31/60/birdhouse-128.png">
+					</a>
+			</div>
+			<div class="col-md-4 to-animate">
+					<a href="CORDING/rank/rankBattle.jsp" class="fh5co-figure">
+						<span class="fh5co-price">랭킹</span>
+						<br>
+						<img src="https://cdn4.iconfinder.com/data/icons/infographic-bar-pie-chart-vol-5-1/512/5-128.png">
+					</a>
+			</div>
+			<div class="col-md-4 to-animate">
+					<a href="CORDING/notice_board/n_list.jsp" class="fh5co-figure">
+						<span class="fh5co-price">공지사항</span>
+						<br>
+						<img src="https://cdn4.iconfinder.com/data/icons/business-finance-vol-12-2/512/24-128.png">
+					</a>
+			</div>
         </div>
 
         <div class="row">
-            <div class="col-md-4 portfolio-item" align="center">
-                <a href="CORDING/custom/customer_main.jsp">
-                    <img class="img-responsive" src="https://cdn2.iconfinder.com/data/icons/miscellaneous-31/60/birdhouse-128.png" alt="">
-                </a>
-                <h3>
-                    <a href="CORDING/custom/customer_main.jsp">고객센터</a>
-                </h3>
-              	<br><br><br>
-            </div>
-            <div class="col-md-4 portfolio-item" align="center">
-                <a href="CORDING/rank/rankBattle.jsp">
-                    <img class="img-responsive" src="https://cdn4.iconfinder.com/data/icons/infographic-bar-pie-chart-vol-5-1/512/5-128.png" alt="">
-                </a>
-                <h3>
-                    <a href="CORDING/rank/rankBattle.jsp">랭킹</a>
-                </h3>
-               
-            </div>
-            <div class="col-md-4 portfolio-item" align="center">
-                <a href="#">
-                    <img class="img-responsive" src="https://cdn4.iconfinder.com/data/icons/business-finance-vol-12-2/512/24-128.png" alt="">
-                </a>
-                <h3>
-                    <a href="#">공지사항</a>
-                </h3>
-            </div>
-        </div>
+	        <div class="col-md-4 to-animate">
+					<a href="CORDING/board/BoardList.jsp" class="fh5co-figure">
+						<span class="fh5co-price">자유게시판</span>
+						<br>
+						<img src="https://cdn2.iconfinder.com/data/icons/xomo-basics/128/document-05-128.png">
+					</a>
+			</div>
+			<div class="col-md-4 to-animate">
+					<a href="CORDING/QuizRegi/QuizRegInfo.jsp" class="fh5co-figure">
+						<span class="fh5co-price">퀴즈등록</span>
+						<br>
+						<img src="https://cdn0.iconfinder.com/data/icons/office-icon-set-2/100/Noun_Project_100Icon_10px_grid-17-128.png">
+					</a>
+			</div>
+			<div class="col-md-4 to-animate">
+					<a href="#theModal" class="fh5co-figure"  data-toggle="modal">
+						<span class="fh5co-price">사이트 안내</span>
+						<br>
+						<img src="https://cdn2.iconfinder.com/data/icons/new-year-s-hand-drawn-basic/64/question_mark-128.png">
+					</a>
+			</div>
 
-        <div class="row">
-            <div class="col-md-4 portfolio-item" align="center">
-                <a href="CORDING/board/BoardList.jsp">
-                    <img class="img-responsive" src="https://cdn2.iconfinder.com/data/icons/xomo-basics/128/document-05-128.png" alt="">
-                </a>
-                <h3>
-                    <a href="CORDING/board/BoardList.jsp">자유게시판</a>
-                </h3>
-
-            </div>
-            <div class="col-md-4 portfolio-item" align="center">
-                <a href="CORDING/QuizRegi/QuizRegInfo.jsp">
-                    <img class="img-responsive" src="https://cdn0.iconfinder.com/data/icons/office-icon-set-2/100/Noun_Project_100Icon_10px_grid-17-128.png" alt="">
-                </a>
-                <h3>
-                    <a href="CORDING/QuizRegi/QuizRegInfo.jsp">퀴즈등록</a>
-                </h3>
-    
-            </div>
-            <div class="col-md-4 portfolio-item" align="center">
-                <a href="#theModal" data-toggle="modal" id="popup">
-                    <img class="img-responsive" src="https://cdn2.iconfinder.com/data/icons/new-year-s-hand-drawn-basic/64/question_mark-128.png" alt="">
-                </a>
-                <h3>
-                    <a href="#theModal" data-toggle="modal" id="popup">사이트 안내</a> 
-                </h3>
-             
-            </div>
         </div>
 
         <hr>

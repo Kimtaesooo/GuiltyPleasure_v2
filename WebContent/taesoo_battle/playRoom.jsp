@@ -18,24 +18,30 @@
 <jsp:useBean id="dao" class="dao.playmodule.BattlePlay"/>
 <jsp:useBean id="dto" class="dto.Battle_Room"/>
 <%
+	String bangjang = request.getParameter("u_id");
+	String br_num = request.getParameter("br_num");
+	System.out.println("playRoom : 방장 : " + bangjang);
+	System.out.println("playRoom : 방번호: " + br_num);
 
-
-	String gameUser = (String)session.getAttribute("u_id");
-	if (bangjang == null || bangjang.equals("null")) {
-		bangjang = gameUser;
-		gameUser = "";
-	}
-
-	//String bangjang = request.getParameter("u_id"); // 방장의 아이디
-	List roominfo = dao.roomInfo(request.getParameter("u_id")); // DB 연결
-	Battle_Room room = (Battle_Room) roominfo.get(0);
-
-	String gameUser = (String) session.getAttribute("u_id"); // 접속자의 아이디
+	String[] gameUser = new String[2];
+	gameUser[0] = bangjang;
+	gameUser[1] = (String)session.getAttribute("u_id");
+	
+	System.out.println("playRoom : 방장 : " + gameUser[0]);
+	System.out.println("playRoom : 유저 : " + gameUser[1]);
 
 	String ip = request.getRemoteAddr();
 	System.out.println(ip);
 	//System.out.print(clientIP + " : ");
-	// 방장 만들기
+%>
+
+<%
+	List roominfo = dao.roomInfo(bangjang); // DB 연결
+	Battle_Room room = (Battle_Room)roominfo.get(0);
+	
+	if(!bangjang.equals(gameUser[1]) && !gameUser[0].equals("") && !gameUser[1].equals("")){
+		dao.updateRoom(bangjang);
+	}	
 
 	if (room.getBr_people() == 2) {
 %>
@@ -50,31 +56,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	<br><br>
-	<input type="hidden" value="<%=ip%>" id="ip">
-	<input type="hidden" value="<%=gameUser%>" id="gameUser">
-	<input type="hidden" value="<%=bangjang%>" id="bangjang">
-	<input type="hidden" id="uri" value="ws://localhost:8080"> 
 
 	<p class="text-center">배틀 게임 시작</p>
 	<br>
@@ -118,9 +100,20 @@
 					<input type="button" class="btn btn-default" value="전송" onclick="send()"/>
 				</div>
 			<br><br><br>
+			<%if(session.getAttribute("u_id").equals(bangjang)){%>
+				<div class="col-xs-6">
+					<a class="btn btn-danger btn-lg btn-block" href="battleRoom.jsp" role="button">포기하기</a>
+				</div>
+				<div class="col-xs-6">
+					<a class="btn btn-success btn-lg btn-block" role="button">시작</a>
+				</div>
+			<%}else{%>
 				<div class="col-xs-12">
 					<a class="btn btn-danger btn-lg btn-block" href="battleRoom.jsp" role="button">포기하기</a>
 				</div>
+			
+			<%} %>
+				
 		</div>
 	</div>
 

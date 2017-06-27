@@ -21,12 +21,12 @@
 		if(u_id.equals("Master01") || u_id.equals("Master02") || u_id.equals("Master03") ||
 				u_id.equals("Master04") || u_id.equals("Master05") || u_id.equals("Master06")){
 			session.setAttribute("u_id", "master");			
-			response.sendRedirect("../../main.jsp");
+			response.sendRedirect("/GuiltyPleasure/main.jsp");
 			return;
 		}
 		session.setAttribute("u_id", u_id);
 		session.setAttribute("u_nickname", userinfo.getU_nickname());
-		response.sendRedirect("../../test.jsp");
+		response.sendRedirect("/GuiltyPleasure/main.jsp");
 	}
 	else{
 		response.sendRedirect("login_err.html");		

@@ -20,8 +20,8 @@
 	Battle_Room room = (Battle_Room) roominfo.get(0);
 	u_id = room.getU_id();
 	String br_num = room.getBr_num();
-	System.out.println(u_id);
-	System.out.println(br_num);
+	System.out.println("battleCreation 유저아이디" + u_id);
+	System.out.println("battleCreation 방번호" + br_num);
 
-	response.sendRedirect("playRoom.jsp?bangjang="+u_id+"&br_num="+br_num);
+	response.sendRedirect("playRoom.jsp?u_id="+u_id+"&br_num="+br_num);
 %>

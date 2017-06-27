@@ -115,4 +115,20 @@ public class BattlePlay {
 			}
 			return list;
 		}
+		
+		// battleRoom.jsp 배틀 게임방 생성
+		public void updateRoom(String u_id) {
+			String sql = "";
+			sql = "update battle_room set br_people = 2 where u_id='"+u_id+"'";
+			try {
+				pstmt = con.prepareStatement(sql);
+				pstmt.executeUpdate();
+
+			} catch (Exception err) {
+				System.out.println("updateRoom 첫번째에서 오류");
+				err.printStackTrace();
+			} finally {
+				pool.freeConnection(con, pstmt, rs);
+			}
+		}
 }
