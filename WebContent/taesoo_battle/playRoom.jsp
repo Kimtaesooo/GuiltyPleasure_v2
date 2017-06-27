@@ -99,7 +99,7 @@
         var textarea = document.getElementById("messageWindow");
         var connectionCheck = document.getElementById("connectionCheck");
         var ip = document.getElementById('ip').value;
-        var webSocket = new WebSocket("ws://"+ip+":8080/GuiltyPleasure/websocket");
+        var webSocket = new WebSocket("ws://70.12.110.106:8080/GuiltyPleasure/websocket");
         var inputMessage = document.getElementById('inputMessage');
         var gameUser = document.getElementById('gameUser').value;
         var bangjang = document.getElementById('bangjang').value;
@@ -108,7 +108,7 @@
       onError(event)
     };
     webSocket.onopen = function(event) {
-      onOpen(bangjang, event)
+      onOpen(event)
     };
     webSocket.onmessage = function(event) {
       onMessage(event)
@@ -119,7 +119,7 @@
     }
     function onOpen(event) {
         textarea.value += "연결 성공\n";
-        connectionCheck.value += ip + "\n";
+        connectionCheck.value += ip+ "\n";
     }
     function onError(event) {
       alert(event.data);
@@ -128,7 +128,7 @@
     	if (inputMessage.value == ""){}
     	else{    		
         	textarea.value += "나 : " + inputMessage.value + "\n";
-        	webSocket.send(gameUser+ " : " + inputMessage.value, "abcd ");
+        	webSocket.send(gameUser+ " : " + inputMessage.value);
         	inputMessage.value = "";
     	}
     }

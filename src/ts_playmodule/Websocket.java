@@ -40,8 +40,7 @@ public class Websocket {
 	@OnOpen
 	public void onOpen(Session session) {
 		// Add session to the connected sessions set
-		//System.out.println(bangjang);
-		System.out.println(session);
+		System.out.println("onOpen : " + session);
 		clients.add(session);
 	}
 

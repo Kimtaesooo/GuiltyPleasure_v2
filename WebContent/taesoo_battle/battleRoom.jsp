@@ -164,7 +164,7 @@
 		</form>
 	</div>
 	<!-- 방만들기 모달 종료-->
-<form name="frmRead" method="post" action="clientPlayRoom.jsp">
+<form name="frmRead" method="post" action="playRoom.jsp">
 	<input type="hidden" name="u_id"/>
 </form>	
 </body>
