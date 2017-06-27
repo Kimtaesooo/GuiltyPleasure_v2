@@ -204,4 +204,21 @@ public class notice {
 			pool.freeConnection(con,pstmt, rs);
 		}
 	}
+	public void deleteBoard(String n_num){
+		String sql = "delete from NOTICE where n_num=?";
+		try{
+			
+			con = pool.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, n_num);
+			pstmt.executeUpdate();
+		}
+		catch(Exception err){
+	       System.out.println("deleteBoard()에서 오류");
+	       err.printStackTrace();
+	    }
+	    finally{
+	      pool.freeConnection(con,pstmt);
+	    }
+	}
 }
