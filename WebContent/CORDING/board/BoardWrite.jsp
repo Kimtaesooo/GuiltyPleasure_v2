@@ -3,18 +3,20 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <title>자유게시판-글쓰기</title>
 <script>
 function writeCheck(){
  var form = document.writeform;
 if( !form.title.value ){
-  alert( "제목을 적어주세요" );
+  alert("제목을 입력해주세요");
   form.title.focus();
   return;
  }
 
-if( !form.content.value ){
-  alert( "내용을 적어주세요" );
+if(!form.content.value){
+  alert("내용을 입력해주세요");
   form.content.focus();
   return;
  }

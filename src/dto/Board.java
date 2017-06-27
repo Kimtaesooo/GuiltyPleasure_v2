@@ -11,7 +11,35 @@ public class Board {
 	private String b_regdate;
 	private int b_count;
 	private String b_reply;
+	private String prevnum;
+	private String nextnum;
+	private String prevtitle;
+	private String nexttitle;
 	
+	public String getPrevtitle() {
+		return prevtitle;
+	}
+	public void setPrevtitle(String prevtitle) {
+		this.prevtitle = prevtitle;
+	}
+	public String getNexttitle() {
+		return nexttitle;
+	}
+	public void setNexttitle(String nexttitle) {
+		this.nexttitle = nexttitle;
+	}
+	public String getPrevnum() {
+		return prevnum;
+	}
+	public void setPrevnum(String prevnum) {
+		this.prevnum = prevnum;
+	}
+	public String getNextnum() {
+		return nextnum;
+	}
+	public void setNextnum(String nextnum) {
+		this.nextnum = nextnum;
+	}
 	public String getB_num() {
 		return b_num;
 	}
