@@ -55,6 +55,7 @@ public class Resistration {
 		catch(Exception err){
 			System.out.println("regUser 첫번째에서 오류");
 			err.printStackTrace();
+			return;
 		}
 		
 		sql = "insert into u_poa(u_id, up_type, up_a_cnt, up_wa_cnt) values(?,'A',0,0)";
@@ -109,6 +110,17 @@ public class Resistration {
 		}
 		catch(Exception err){
 			System.out.println("regUser 여섯번째에서 오류");
+			err.printStackTrace();
+		}
+		
+		sql = "insert into u_manage(u_id, um_chat, um_single, um_battle, um_entry, um_enroll) values(?,'','','','','')";
+		try{
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getU_id());
+			pstmt.executeUpdate();
+		}
+		catch(Exception err){
+			System.out.println("regUser 일곱번째에서 오류");
 			err.printStackTrace();
 		}
 		

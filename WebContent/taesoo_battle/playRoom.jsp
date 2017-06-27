@@ -1,9 +1,7 @@
 <%@page import="java.util.List"%>
-<%@page import="java.net.Socket"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <%@ page import="dto.Battle_Room"%>
-<%@ page import="dao.playmodule.BattlePlay"%>	
-<%@ page import="ts_playmodule.*"%>	
+<%@ page import="dao.playmodule.BattlePlay"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,7 +33,7 @@
 	System.out.println("플에이어 : " + gameUser);
 	List roominfo = dao.roomInfo(bangjang);
 	Battle_Room room = (Battle_Room)roominfo.get(0);
-	if(room.getBr_people()==2){
+	if(room.getBr_people()==3){
 %>
 		<script> alert('인원이 꽉 찼습니다.'); 	location.href="battleRoom.jsp";	</script>
 <%	}
@@ -94,56 +92,6 @@
 				</div>
 		</div>
 	</div>
-	
-	<script type="text/javascript">
-        var textarea = document.getElementById("messageWindow");
-        var connectionCheck = document.getElementById("connectionCheck");
-        var ip = document.getElementById('ip').value;
-        var webSocket = new WebSocket("ws://70.12.110.106:8080/GuiltyPleasure/websocket");
-        var inputMessage = document.getElementById('inputMessage');
-        var gameUser = document.getElementById('gameUser').value;
-        var bangjang = document.getElementById('bangjang').value;
-        
-    webSocket.onerror = function(event) {
-      onError(event)
-    };
-    webSocket.onopen = function(event) {
-      onOpen(event)
-    };
-    webSocket.onmessage = function(event) {
-      onMessage(event)
-    };
-    
-    function onMessage(event) {
-        textarea.value += event.data + "\n";
-    }
-    function onOpen(event) {
-        textarea.value += "연결 성공\n";
-        connectionCheck.value += ip+ "\n";
-    }
-    function onError(event) {
-      alert(event.data);
-    }
-    function send() {
-    	if (inputMessage.value == ""){}
-    	else{    		
-        	textarea.value += "나 : " + inputMessage.value + "\n";
-        	webSocket.send(gameUser+ " : " + inputMessage.value);
-        	inputMessage.value = "";
-    	}
-    }
-    function onClose(session) {
-    	webSocket.onClose(event);
-    	document.myForm.action="battleRoom.jsp";
-    	document.myForm.method="post";
-    	document.myForm.submit();
-    }
-    
-    function enterkey() {
-        if (window.event.keyCode == 13) {
-            send();
-        }
-    }
-  </script>
+
 </body>
 </html>

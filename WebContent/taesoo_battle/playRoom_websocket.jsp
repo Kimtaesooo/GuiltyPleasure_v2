@@ -1,9 +1,9 @@
+<%@page import="java.util.List"%>
 <%@page import="java.net.Socket"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <%@ page import="dto.Battle_Room"%>
 <%@ page import="dao.playmodule.BattlePlay"%>	
 <%@ page import="ts_playmodule.*"%>	
-<%@ page import="java.util.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,15 +22,19 @@
 <%
 	String bangjang = request.getParameter("u_id"); // 방장의 아이디
 	String gameUser = (String)session.getAttribute("u_id"); // 접속자의 아이디
-	List roominfo = dao.roomInfo(bangjang);
-	Battle_Room room = (Battle_Room)roominfo.get(0);
-	String ip = room.getBr_ip();
+	String ip = request.getRemoteAddr();
 	System.out.println(ip);
 	//System.out.print(clientIP + " : ");
-	Socket sock;
-	
+
+	// 방장 만들기
+	if(bangjang == null || bangjang.equals("null")){
+		bangjang = gameUser;
+		gameUser = "";
+	}
 	System.out.println("방장 : " + bangjang);
 	System.out.println("플에이어 : " + gameUser);
+	List roominfo = dao.roomInfo(bangjang);
+	Battle_Room room = (Battle_Room)roominfo.get(0);
 	if(room.getBr_people()==2){
 %>
 		<script> alert('인원이 꽉 찼습니다.'); 	location.href="battleRoom.jsp";	</script>
@@ -95,7 +99,7 @@
         var textarea = document.getElementById("messageWindow");
         var connectionCheck = document.getElementById("connectionCheck");
         var ip = document.getElementById('ip').value;
-        var webSocket = new WebSocket("ws://"+ip+":8080/GuiltyPleasure/websocket");
+        var webSocket = new WebSocket("ws://70.12.110.106:8080/GuiltyPleasure/websocket");
         var inputMessage = document.getElementById('inputMessage');
         var gameUser = document.getElementById('gameUser').value;
         var bangjang = document.getElementById('bangjang').value;
@@ -104,7 +108,7 @@
       onError(event)
     };
     webSocket.onopen = function(event) {
-      onOpen(bangjang, event)
+      onOpen(event)
     };
     webSocket.onmessage = function(event) {
       onMessage(event)
@@ -115,7 +119,7 @@
     }
     function onOpen(event) {
         textarea.value += "연결 성공\n";
-        connectionCheck.value += ip + "\n";
+        connectionCheck.value += ip+ "\n";
     }
     function onError(event) {
       alert(event.data);
@@ -124,7 +128,7 @@
     	if (inputMessage.value == ""){}
     	else{    		
         	textarea.value += "나 : " + inputMessage.value + "\n";
-        	webSocket.send(gameUser+ " : " + inputMessage.value, "abcd ");
+        	webSocket.send(gameUser+ " : " + inputMessage.value);
         	inputMessage.value = "";
     	}
     }

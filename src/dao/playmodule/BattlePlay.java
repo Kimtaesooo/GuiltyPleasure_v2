@@ -28,8 +28,8 @@ public class BattlePlay {
 	// battleRoom.jsp 배틀 게임방 생성
 	public void regRoom(Battle_Room dto, String u_id) {
 		String sql = "";
-		sql = "insert into battle_room(br_subject, br_pw, br_type, br_cnt, br_point, u_id, br_people, br_gamestate, br_ip) "
-				+ "values(?,?,?,?,?,?,1,'N',?)";
+		sql = "insert into battle_room(br_num, br_subject, br_pw, br_type, br_cnt, br_point, u_id, br_people, br_gamestate, br_ip) "
+				+ "values('BR'||LPAD((seq_br_num.NEXTVAL),4,'0'),?,?,?,?,?,?,1,'N',?)";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, dto.getBr_subject());
@@ -59,7 +59,8 @@ public class BattlePlay {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				Battle_Room battleliset = new Battle_Room();
+				Battle_Room battleliset = new Battle_Room();				
+				battleliset.setBr_num(rs.getString("br_num"));
 				battleliset.setBr_subject(rs.getString("br_subject"));
 				battleliset.setBr_pw(rs.getInt("br_pw"));
 				battleliset.setBr_type(rs.getString("br_type"));
@@ -92,7 +93,8 @@ public class BattlePlay {
 				rs = pstmt.executeQuery();
 
 				if (rs.next()) {
-					Battle_Room room = new Battle_Room();
+					Battle_Room room = new Battle_Room();					
+					room.setBr_num(rs.getString("br_num"));
 					room.setBr_subject(rs.getString("br_subject"));
 					room.setBr_pw(rs.getInt("br_pw"));
 					room.setBr_type(rs.getString("br_type"));

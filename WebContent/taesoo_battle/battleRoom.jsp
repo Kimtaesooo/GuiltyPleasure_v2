@@ -61,7 +61,7 @@
 			<tbody>
 				<%if(list.size() ==0){%>
 				<tr>
-					<td colspan="8" align="center">데이터가 없습니다.</td>
+					<td colspan="8" align="center">현재 대기중인 게임이 없습니다.</td>
 				</tr>
 				<%}
 				else{%>				

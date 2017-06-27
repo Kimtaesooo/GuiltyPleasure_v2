@@ -2,6 +2,7 @@ package dto;
 
 
 public class Battle_Room {
+	private String br_num;
 	private String br_subject;
 	private int br_pw;
 	private String br_type;
@@ -12,6 +13,12 @@ public class Battle_Room {
 	private String br_gamestate;
 	private String br_ip;
 	
+	public String getBr_num() {
+		return br_num;
+	}
+	public void setBr_num(String br_num) {
+		this.br_num = br_num;
+	}
 	public String getBr_subject() {
 		return br_subject;
 	}

@@ -14,7 +14,8 @@
         <!-- 모든 합쳐진 플러그인을 포함하거나 (아래) 필요한 각각의 파일들을 포함하세요 -->
         <script src="../../bootstrap332/js/bootstrap.min.js"></script>
         <!-- Respond.js 으로 IE8 에서 반응형 기능을 활성화하세요 (https://github.com/scottjehl/Respond) -->
-        <script src="../../bootstrap332/js/respond.js"></script>
+        <script src="../../bootstrap332/js/bootstrap.js"></script>
+        
         
 <script>
 	function fnSubmit(){
@@ -36,7 +37,7 @@
 </script>
     </head>
     <body>
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
     	<!-- 이미지 깨짐
@@ -44,7 +45,7 @@
     		<img alt="Brand" src="/images/quiz.jpg">
     	</a>
     	 -->
-    	<a class="navbar-brand" href="#"><font color="red">Guilty Pleasure</font></a>
+    	<a class="navbar-brand" href="/GuiltyPleasure/main.jsp"><font color="red">Guilty Pleasure</font></a>
     </div>
     <div>
     <!-- 좌측정렬 네비 바
@@ -64,7 +65,6 @@
     </div>
   </div>
 </nav>
-<br>
         <div class="container">
             <!-- 모달창 -->
             <div class="modal fade" id="defaultModal">
@@ -150,13 +150,13 @@
             <div class="form-group" id="divPassword">
                 <label for="u_pw" class="col-lg-2 control-label">패스워드</label>
                 <div class="col-lg-10">
-                    <input type="password" class="form-control" name="u_pw" id="u_pw" name="excludeHangul" data-rule-required="true" placeholder="패스워드" maxlength="30">
+                    <input type="password" class="form-control" name="u_pw" id="u_pw" name="excludeHangul" data-rule-required="true" placeholder="패스워드" maxlength="20">
                 </div>
             </div>
             <div class="form-group" id="divPasswordCheck">
                 <label for="passwordCheck" class="col-lg-2 control-label">패스워드 확인</label>
                 <div class="col-lg-10">
-                    <input type="password" class="form-control" id="passwordCheck" data-rule-required="true" placeholder="패스워드 확인" maxlength="30">
+                    <input type="password" class="form-control" id="passwordCheck" data-rule-required="true" placeholder="패스워드 확인" maxlength="20">
                 </div>
             </div>
             <div class="form-group" id="divName">
@@ -213,8 +213,8 @@
             
             <div class="form-group">
                 <label for="u_introduce" class="col-lg-2 control-label">자기소개</label>
-                <div class="col-lg-10" name="u_introduce" id="u_introduce">
-                    <textarea class="form-control" rows="3"></textarea>
+                <div class="col-lg-10" id="u_introduce">
+                    <textarea class="form-control" rows="3" name="u_introduce"></textarea>
                 </div>
             </div>
             
