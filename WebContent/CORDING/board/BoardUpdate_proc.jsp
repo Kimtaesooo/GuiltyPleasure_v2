@@ -11,5 +11,5 @@
 %>
 	 
 <%
-		response.sendRedirect("BoardList.jsp");
+		response.sendRedirect("BoardRead.jsp?b_num="+dto.getB_num());
 %>

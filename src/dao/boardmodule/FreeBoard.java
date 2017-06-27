@@ -143,7 +143,7 @@ public class FreeBoard {
 	         pstmt.setString(1, b_num);
 	         rs = pstmt.executeQuery();
 	         if(rs.next()){
-	        	 board.setPrevnum(rs.getString("prevnum"));
+	        	board.setPrevnum(rs.getString("prevnum"));
 	         	board.setPrevtitle(rs.getString("prevtitle"));
 	         }
 	         sql = "select b_num as nextnum, b_title as nexttitle from board where b_num = (select min(b_num) from board where b_num>?)";
@@ -154,8 +154,6 @@ public class FreeBoard {
 	        	 board.setNextnum(rs.getString("nextnum"));
 	        	 board.setNexttitle(rs.getString("nexttitle"));
 	         }
-	         
-	        
 		}
 		catch(Exception err){
             System.out.println("getBoard():read"+err);
@@ -172,7 +170,6 @@ public class FreeBoard {
 		try{
 			pstmt = con.prepareStatement(sql);
 			pstmt.executeUpdate();
-			System.out.println("del222");
 		}
 		catch(Exception err){
 	       System.out.println("deleteBoard()에서 오류");
