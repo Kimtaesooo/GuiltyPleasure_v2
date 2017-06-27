@@ -110,7 +110,24 @@
 <!-- Main JS 
 	<script src="/GuiltyPleasure/design/mintstrap/outline/js/main.js"></script>
 -->
-
+<style>
+.navbar-brand {
+  text-align: left;
+  font-weight: bold;
+  display: -moz-inline-stack;
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 20px;
+  float: left !important;
+  font-family: "Montserrat", arial, sans-serif;
+  color: #000000;
+  z-index: 10;
+  position: relative;
+}
+</style>
 
 </head>
 <body>
