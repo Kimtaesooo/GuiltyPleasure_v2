@@ -18,14 +18,19 @@
 		});
 	});
 	
-	function fnRead(u_id){
+	function fnRead(u_id, br_num){
 		document.frmRead.u_id.value = u_id;
+		document.frmRead.br_num.value = br_num;
 		document.frmRead.submit();
 	}
 </script>
 <%
 	String gameUser = (String)session.getAttribute("u_id");
-	String ip = request.getRemoteAddr();
+	String ip = request.getRemoteAddr();	
+	String u_id ="";
+	if(session.getAttribute("u_id")!=null){
+		u_id = (String)session.getAttribute("u_id");
+	}
 %>
 <title>배틀 대기방</title>
 </head>
@@ -70,7 +75,7 @@
 				%>
 				<tr>
 					<td><%=i+1%></td>
-					<td><a href="javascript:fnRead('<%=room.getU_id()%>')"><%=room.getBr_subject() %></a></td>
+					<td><a href="javascript:fnRead('<%=room.getU_id()%>','<%=room.getBr_num()%>')"><%=room.getBr_subject() %></a></td>
 					<td><%=room.getBr_type() %></td>
 					<td><%=room.getBr_cnt() %></td>
 					<td><%=room.getBr_point() %></td>
@@ -166,6 +171,7 @@
 	<!-- 방만들기 모달 종료-->
 <form name="frmRead" method="post" action="playRoom.jsp">
 	<input type="hidden" name="u_id"/>
+	<input type="hidden" name="br_num"/>
 </form>	
 </body>
 </html>

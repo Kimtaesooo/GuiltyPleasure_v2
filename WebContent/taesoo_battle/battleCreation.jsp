@@ -15,11 +15,13 @@
 
 <%
 	dao.regRoom(dto, u_id);
-	response.sendRedirect("playRoom.jsp");
-%>
 
-<%
-	// RoomManager : Room의 생성/삭제를 관리하는 클래스이다. Room을 여러개 가질 수 있음
-	// GameRoom : 게임 내의 로직(게임 진행 관련)을 처리하기 위한 클래스이다.  GameUser를 여러개 가질 수 있음
-	// GameUser : 클라이언트의 고유한 정보(닉네임, 아이템, 플레이어 정보 등)를 가지는 클래스이며, 중요한 것은 "소켓" 을 가지고 있어야 한다.
+	List roominfo = dao.roomInfo(u_id); // DB 연결
+	Battle_Room room = (Battle_Room) roominfo.get(0);
+	u_id = room.getU_id();
+	String br_num = room.getBr_num();
+	System.out.println(u_id);
+	System.out.println(br_num);
+
+	response.sendRedirect("playRoom.jsp?bangjang="+u_id+"&br_num="+br_num);
 %>

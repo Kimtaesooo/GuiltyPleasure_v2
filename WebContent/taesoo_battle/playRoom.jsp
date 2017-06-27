@@ -18,27 +18,57 @@
 <jsp:useBean id="dao" class="dao.playmodule.BattlePlay"/>
 <jsp:useBean id="dto" class="dto.Battle_Room"/>
 <%
-	String bangjang = request.getParameter("u_id"); // 방장의 아이디
-	String gameUser = (String)session.getAttribute("u_id"); // 접속자의 아이디
-	String ip = request.getRemoteAddr();
-	System.out.println(ip);
-	//System.out.print(clientIP + " : ");
-
-	// 방장 만들기
-	if(bangjang == null || bangjang.equals("null")){
+	String bangjang;
+	String gameUser = (String)session.getAttribute("u_id");
+	if (bangjang == null || bangjang.equals("null")) {
 		bangjang = gameUser;
 		gameUser = "";
 	}
-	System.out.println("방장 : " + bangjang);
-	System.out.println("플에이어 : " + gameUser);
-	List roominfo = dao.roomInfo(bangjang);
-	Battle_Room room = (Battle_Room)roominfo.get(0);
-	if(room.getBr_people()==3){
+
+	//String bangjang = request.getParameter("u_id"); // 방장의 아이디
+	List roominfo = dao.roomInfo(request.getParameter("u_id")); // DB 연결
+	Battle_Room room = (Battle_Room) roominfo.get(0);
+
+	String gameUser = (String) session.getAttribute("u_id"); // 접속자의 아이디
+
+	String ip = request.getRemoteAddr();
+	System.out.println(ip);
+	//System.out.print(clientIP + " : ");
+	// 방장 만들기
+
+	if (room.getBr_people() == 2) {
 %>
 		<script> alert('인원이 꽉 찼습니다.'); 	location.href="battleRoom.jsp";	</script>
 <%	}
 	
 %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	<br><br>
 	<input type="hidden" value="<%=ip%>" id="ip">
 	<input type="hidden" value="<%=gameUser%>" id="gameUser">
