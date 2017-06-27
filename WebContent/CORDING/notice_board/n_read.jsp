@@ -21,6 +21,8 @@
 	dao.N_Count_Update(num);
 	dto = dao.getRead(num);
 %>
+
+
 <title>질문</title>
 </head>
 <body>
@@ -44,7 +46,7 @@
 						<pre>작성자 : <%=dto.getU_nickname() %> </pre>
 						<pre><%=dto.getN_content() %></pre>
 		        </div>
-		        
+		        <a href="n_delete.jsp?n_num=<%=num%>" class="btn btn-success">삭제</a>
 			</div>
 
         </div>
