@@ -34,21 +34,20 @@
 		
 			<div class="col-lg-12 panel panel-success">
 				<br>
-				<div class="jumbotron">
-	  			<h1>공지사항 작성</h1>
-				</div>
 				<br>
 				<div class="jumbotron">
-							<div class="jumbotron">
+						<div class="jumbotron">
 						<H2>공지사항</H2>
 						<pre>글제목 : <%=dto.getN_title() %></pre>
 						<pre>등록일 : <%=dto.getN_regdate() %></pre>
 						<pre>작성자 : <%=dto.getU_nickname() %> </pre>
 						<pre><%=dto.getN_content() %></pre>
+						<a href="n_list.jsp" class="btn btn-success">목록으로</a>
+						<a href="n_update.jsp" class="btn btn-danger">삭제하기</a>
 		        </div>
 		        <a href="n_delete.jsp?n_num=<%=num%>" class="btn btn-success">삭제</a>
 			</div>
-
+			
         </div>
 </div>
 </body>

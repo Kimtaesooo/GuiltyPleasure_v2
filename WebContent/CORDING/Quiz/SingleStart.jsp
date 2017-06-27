@@ -1,22 +1,10 @@
-<%@page import="java.util.ArrayList"%>
-<%@page import="dto.QuizResult"%>
-<%@ page contentType="text/html; charset=EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>결과</title>
-<%
-ArrayList list = (ArrayList)request.getAttribute("list");
-QuizResult result;
-int csum =0 , wsum = 0;
-for(int i =0; i<list.size(); i++){
-	result = (QuizResult)list.get(i);
-	csum+=result.getCa_sum();
-	wsum+=result.getWa_sum();
-}
-	%>
-	<!-- jQuery -->
+<meta charset="EUC-KR">
+<title>싱글 플레이</title>
+<!-- jQuery -->
 	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.min.js"></script>
 	<!-- jQuery Easing -->
 	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.easing.1.3.js"></script>
@@ -56,44 +44,37 @@ for(int i =0; i<list.size(); i++){
 .navbar-brand:hover {color: #3c763d;}
 a {color: #333;}
 #fh5co-offcanvass {background: #d3d9da;color: #878c93;}
-.fh5co-counter-label {
-  font-size: 20px;
-}
+#fh5co-hero .fh5co-overlay { background: #f5f5f5;}
+#fh5co-hero .fh5co-intro h2 {color: #333333;}
+#fh5co-hero .fh5co-intro p {color: #333333;}
 </style>
 </head>
 <body>
 <jsp:include page="/test_nav.jsp"/>
-<br><br><br>
-<H1 align="center">게임 결과</H1>
-<br>
-	<div id="fh5co-counter" class="fh5co-bg-section"
-		style="background-image: BLACK; background-attachment: fixed;">
-		<div class="fh5co-overlay"></div>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="fh5co-hero-wrap">
-						<div
-							class="fh5co-hero-intro text-center to-animate counter-animate">
-							<div class="col-md-4 text-center">
-								<span class="fh5co-counter-label"><%=session.getAttribute("u_id")%>님의 총점</span>
-							</div>
-							<div class="col-md-4 text-center">
-								<span class="fh5co-counter js-counter" data-from="0"
-									data-to="<%=csum%>" data-speed="2000" data-refresh-interval="50"></span>
-								<span class="fh5co-counter-label">정답수</span>
-							</div>
-							<div class="col-md-4 text-center">
-								<span class="fh5co-counter js-counter" data-from="0"
-									data-to="<%=wsum%>" data-speed="2000" data-refresh-interval=" 50"></span>
-								<span class="fh5co-counter-label">오답수</span>
+			<header id="fh5co-hero" data-section="home" role="banner" style="background: WHITE top left; background-size: cover;" >
+				<div class="fh5co-intro">
+					<div class="container">
+						<div class="row">
+							
+							<div class="col-md-6 fh5co-text">
+								<h2 class="to-animate intro-animate-1">싱글플레이 입니다. </h2>
+								<p class="to-animate intro-animate-2">문제수를 선택하고 시작버튼을 눌러주세요 ~ 유형은 랜덤</p>
+									<form method="get" action="/GuiltyPleasure/quiz">
+										<p class="to-animate intro-animate-3">
+										<input type="hidden"  name="cmd" value="QUIZ_GET"/>
+										<select name = "counter">
+											<option value="3">3</option>
+											<option value="5">5</option>
+											<option value="10">10</option>
+											<option value="20">20</option>
+										</select>
+										<input type="submit" value="게임 시작"/>
+										</p>
+									</form>
 							</div>
 						</div>
-					</div>
+					</div>						
 				</div>
-			</div>
-		</div>
-	</div>
-
+			</header>
 </body>
 </html>

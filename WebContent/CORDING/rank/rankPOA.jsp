@@ -32,42 +32,62 @@
 	List list = dao.getBoardList2(type);
 %>
 <title>Ranking</title>
+<!-- jQuery -->
+	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.waypoints.min.js"></script>
+	<!-- Magnific Popup -->
+	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.magnific-popup.min.js"></script>
+	<!-- Owl Carousel -->
+	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/owl.carousel.min.js"></script>
+	<!-- toCount -->
+	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.countTo.js"></script>
+	<!-- Main JS -->
+	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/main.js"></script>
+<!-- Animate.css -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/icomoon.css">
+	<!-- Simple Line Icons-->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/simple-line-icons.css">
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/magnific-popup.css">
+	<!-- Owl Carousel -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/owl.theme.default.min.css">
+	<!-- Salvattore -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/salvattore.css">
+	<!-- Theme Style -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/style.css">
+	<!-- Modernizr JS -->
+	<script src="js/modernizr-2.6.2.min.js"></script>
+<!-- nav바 수정부분 -->	
+<style>
+.fh5co-nav-toggle > span {color: #333;}	a {color: #333;}
+.navbar-brand {color: #333;}#fh5co-offcanvass .fh5co-lead {font-size: 15px;color: #333;}
+.navbar-brand > span {border: 2px solid #333;}
+.navbar-brand:hover {color: #3c763d;}
+a {color: #333;}
+#fh5co-offcanvass {background: #d3d9da;color: #878c93;}
+#fh5co-testimony {
+  background: #8bccec;
+  color: #fff;
+  padding: 8em 0;
+}
+</style>
+<!-- nav바 수정부분 여기까지 -->
 </head>
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container" >
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-             
-            </div>    
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
-                <ul class="nav navbar-nav"  >
-                <li>
-                <img src="https://cdn0.iconfinder.com/data/icons/chinese-new-year-4/64/treasure-chinese-new-year-heritage-diamond-128.png"
-                	width="100px" height="50px">
-                	
-                </li>
-                    <li>
-                        <a href="#">로그인</a>
-                    </li>
-                    <li>
-                        <a href="#">회원가입</a>
-                    </li>
-                    <li>
-                    	<a href="idpw.html">아이디/비밀번호 찾기</a>     
-                    </li>
-                </ul>
-            </div>
-        </div>
-</nav>
+<jsp:include page="/test_nav.jsp"/>
+            
     
 <div class="container">   
         <div class="row col-lg-12">
-            <div class="col-lg-12" >
+     	<br><br><br>
             <div class="col-lg-12" align="center">
                 <h1 class="page-header">정답률 랭킹 </h1>
                 <a href="rankBattle.jsp">배틀 승률</a> &nbsp;&nbsp;&nbsp;<a href="rankPOA.jsp">정답률</a><br><br>
@@ -93,33 +113,73 @@
            	<br><br><br><br>
             </div>
  <%
+ 	if(list.size()>0){
 			u_single One = (u_single)list.get(0);			
 			u_single Two = (u_single)list.get(1);			
 			u_single Three = (u_single)list.get(2);			
 %>		          	
-          <div class="col-lg-12" >
-           	<div class="alert alert-dismissible alert-danger col-lg-3">
-				 
-				  <h4>1위 <%=One.getU_nickname()%></h4>
-				  <p><%=One.getU_comment()%></p>		  
-			</div>
-           <div class="col-lg-1" ></div>
-            <div class="alert alert-dismissible alert-info col-lg-3">
-				  
-				  <h4>2위 <%=Two.getU_nickname()%></h4>
-				  <p><%=Two.getU_comment()%></p>
-			</div>
-             <div class="col-lg-1" ></div>
-            <div class="alert alert-dismissible alert-success col-lg-3">
-				  
-				  <h4>3위 <%=Three.getU_nickname()%></h4>
-				  <p><%=Three.getU_comment()%></p>
+          
+      <div id="fh5co-page">
+		<div id="fh5co-wrap">
+           <div id="fh5co-testimony" data-section="testimonies">
+				    <div class="container">
+				    	<div class="row animate-box">
+
+							<div class="owl-carousel">
+								<div class="item">
+									<div class="col-md-3 col-sm-3 col-xs-4 col-xxs-12">
+						    			<figure class="fh5co-vcard"><img src="https://cdn3.iconfinder.com/data/icons/letters-and-numbers-1/32/number_1_blue-128.png" 
+						    			alt="Free HTML5 Template by FREEHTML5.co" class="img-responsive"></figure>
+						    		</div>
+						    		<div class="col-md-9 col-sm-9 col-xs-8 col-xxs-12">
+						    			<blockquote>
+						    				<p>&ldquo;<%=One.getU_comment()%>&rdquo;</p>
+						    			</blockquote>
+						    			<p class="fh5co-author fh5co-uppercase-sm"><span><%=One.getU_nickname()%></span>, 1위.</p>
+						    		</div>
+						    	</div>
+
+						    	<div class="item">
+									<div class="col-md-3 col-sm-3 col-xs-4 col-xxs-12">
+						    			<figure class="fh5co-vcard"><img src="https://cdn3.iconfinder.com/data/icons/letters-and-numbers-1/32/number_2_blue-128.png" 
+						    			alt="Free HTML5 Template by FREEHTML5.co" class="img-responsive"></figure>
+						    		</div>
+						    		<div class="col-md-9 col-sm-9 col-xs-8 col-xxs-12">
+						    			<blockquote>
+						    				<p>&ldquo;<%=Two.getU_comment()%>&rdquo;</p>
+						    			</blockquote>
+						    			<p class="fh5co-author fh5co-uppercase-sm"><span><%=Two.getU_nickname()%></span>, 2위.</p>
+						    		</div>
+						    	</div>
+
+						    	<div class="item">
+									<div class="col-md-3 col-sm-3 col-xs-4 col-xxs-12">
+						    			<figure class="fh5co-vcard"><img src="https://cdn3.iconfinder.com/data/icons/letters-and-numbers-1/32/number_3_blue-128.png" 
+						    			alt="Free HTML5 Template by FREEHTML5.co" class="img-responsive"></figure>
+						    		</div>
+						    		<div class="col-md-9 col-sm-9 col-xs-8 col-xxs-12">
+						    			<blockquote>
+						    				<p>&ldquo;<%=Three.getU_comment()%>&rdquo;</p>
+						    			</blockquote>
+						    			<p class="fh5co-author fh5co-uppercase-sm"><span><%=Three.getU_nickname()%></span>, 3위.</p>
+						    		</div>
+						    	</div>
+
+
+						    </div>
+
+				    	</div>
+				    </div>
+			    </div>
+			   </div>
+		  </div>
+ <%}else{ %>
+ 			<div class="alert alert-dismissible alert-success col-lg-3">				  
+				  <h4>데이터가 없습니다.</h4>	
             </div>
-            <br><br>
-            <br><br><br><br>
-           </div>
-        	
-            	<h2 class="page-header" align="center">내 랭킹</h2>
+ <%} %>
+	<div><br><br><br>&nbsp;</div>
+   	<h2 class="page-header" align="center">내 랭킹</h2>
 <%
 
 	if(id.length()>0){
@@ -180,6 +240,7 @@
 				  </thead>
 				  <tbody>
  <%
+ if(list.size()>0){
 	for(int i=0; i<list.size();i++){
 			u_single dto = (u_single)list.get(i);	
 %>			
@@ -190,8 +251,12 @@
 			<td><%=dto.getWa_cnt() %></td>
 			<td><%=dto.getA_cnt()*100/(dto.getA_cnt()+dto.getWa_cnt())%>%</td>
 			<td><%=dto.getUp_type() %></td>
+			<% }
+			}else{%>
+			<td>데이터가 없습니다.</td>
+			<%} %>
 		</tr>
-<% 		}%>
+
 				  </tbody>
 				</table> 
             </div>
@@ -204,7 +269,7 @@
             </div>
 
         </footer>
-</div>
+
 <!-- container -->   
      
 </body>
