@@ -37,7 +37,7 @@
 	<a href="/GuiltyPleasure/myinfo?cmd=MYINFO">마이페이지</a></h2>
 	<%} %>
 		<ul>
-			<li class="active"><a href="${pageContext.request.contextPath}/test.jsp" >메인</a></li>
+			<li class="active"><a href="${pageContext.request.contextPath}/main.jsp" >메인</a></li>
 			<li><a href="${pageContext.request.contextPath}/CORDING/Quiz/SingleStart.jsp" data-nav-section="features">싱글플레이</a></li>
 			<li><a href="${pageContext.request.contextPath}/taesoo_battle/battleRoom.jsp" data-nav-section="design">배틀플레이</a></li>
 			<li><a href="${pageContext.request.contextPath}/CORDING/rank/rankBattle.jsp"" data-nav-section="design">랭킹</a></li>
@@ -53,7 +53,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle" data-toggle="collapse" data-target="#fh5co-navbar" aria-expanded="false" aria-controls="navbar"><span>Menu</span> <i></i></a>
-					<a href="${pageContext.request.contextPath}/test.jsp" data-nav-section="home" class="navbar-brand"><span>Guilty Pleasure</span></a>
+					<a href="${pageContext.request.contextPath}/main.jsp" data-nav-section="home" class="navbar-brand"><span>Guilty Pleasure</span></a>
 				</div>
 			</div>
 		</div>

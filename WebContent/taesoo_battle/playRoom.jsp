@@ -46,10 +46,29 @@
 	if (room.getBr_people() == 2) {
 %>
 		<script> alert('ÀÎ¿øÀÌ ²Ë Ã¡½À´Ï´Ù.'); 	location.href="battleRoom.jsp";	</script>
-<%	}
-	
-%>
+<% } %>
 
+<%
+	if(room.getBr_people() ==2){
+%>
+	<script>
+		function fnSubmit() {
+			var u_id = document.getElementById("u_id").value;
+			var param = "u_id=" + u_id;
+			sendRequest("POST", "idCheck.jsp", param, callback);
+		}
+		function callback() {
+			if (httpRequest.readyState == 4) {
+				if (httpRequest.status == 200) {
+					var idcheck = document.getElementById("idcheck");
+					idcheck.innerHTML = httpRequest.responseText;
+				} else {
+					alert(httpRequest.status);
+				}
+			}
+		}
+	</script>
+	<%}%>
 
 
 
