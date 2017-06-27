@@ -18,7 +18,8 @@
 <jsp:useBean id="dao" class="dao.playmodule.BattlePlay"/>
 <jsp:useBean id="dto" class="dto.Battle_Room"/>
 <%
-	String bangjang;
+
+
 	String gameUser = (String)session.getAttribute("u_id");
 	if (bangjang == null || bangjang.equals("null")) {
 		bangjang = gameUser;
