@@ -8,12 +8,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>자유게시판</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	href="/GuiltyPleasure/design/mintstrap/outline/css/style.css">
 <style>
 .table-hover>tbody>tr:hover {
 	background-color: #EEEEEE
 }
+
+
 </style>
 <script>
 	function check() {
@@ -69,6 +72,13 @@
 
 		beginPerPage = nowPage * numPerPage;
 %>
+<div class="row">
+	<div style="padding-top:0px; height:90px; background-color: #4fd2c2">
+		<div class="col-md-8 col-md-offset-2 fh5co-section-heading text-center">
+			<h2 class="fh5co-lead animate-single product-animate-1 fadeIn animated">자유 게시판</h2>
+		</div>
+	</div>
+</div>
 <div class="row">
 	<div class="col-md-2"></div>
 		<div class="col-md-8">

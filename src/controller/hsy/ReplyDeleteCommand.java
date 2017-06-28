@@ -7,19 +7,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.boardmodule.FreeBoard;
+import dto.Reply;
 
-public class WriteCommand implements CommandBoard {
+public class ReplyDeleteCommand implements CommandBoard {
 	FreeBoard dao = new FreeBoard();
+	Reply dto2 = new Reply();
 	
 	@Override
 	public Object processCommand(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		String u_id = req.getParameter("u_id");
-		String title = req.getParameter("title");
-		String content = req.getParameter("content");
+		dao.deleteReply(dto2.getR_reply());
 		
-		dao.regBoard(u_id, title, content);
-		
-		return "/CORDING/board/BoardList.jsp";
+		return "/CORDING/board/BoardRead.jsp?b_num="+dto2.getB_num();
 	}
 }

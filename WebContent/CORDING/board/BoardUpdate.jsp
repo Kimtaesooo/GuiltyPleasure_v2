@@ -6,6 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="/GuiltyPleasure/design/mintstrap/outline/css/style.css">
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>자유게시판 글 수정</title>
 <script>
@@ -42,22 +44,19 @@
 
 	String sid = (String) session.getAttribute("u_id");
 %>
-	<table width="100%" cellpadding="0" cellspacing="0" border="0">
-		<tr
-			style="background: url('img/table_mid.gif') repeat-x; text-align: center;">
-			<td width="5"><img src="img/table_left.gif" width="5"
-				height="30" /></td>
-			<td>자유게시판 글 수정</td>
-			<td width="5"><img src="img/table_right.gif" width="5"
-				height="30" /></td>
-		</tr>
-	</table>
+	<div class="row">
+	<div style="padding-top:0px; height:90px; background-color: #4fd2c2">
+		<div class="col-md-8 col-md-offset-2 fh5co-section-heading text-center">
+			<h2 class="fh5co-lead animate-single product-animate-1 fadeIn animated">수정</h2>
+		</div>
+	</div>
+</div>
 	<div class="row">
 		<div class="col-md-2"></div>
-		<div class="col-md-8">
+		<div class="col-md-8" align=center>
 			<form name="updateform" method="post" action="BoardUpdate_proc.jsp">
 				<input type="hidden" name="b_num" value="<%=b_num%>" />
-				<table align=center>
+				<table class="table table-condensed">
 					<br>
 					<tr height="1" bgcolor="#82B5DF">
 						<td colspan="4" width="407"></td>
@@ -92,9 +91,6 @@
 					<tr height="1" bgcolor="#dddddd">
 						<td colspan="4"></td>
 					</tr>
-					<tr height="1" bgcolor="#dddddd">
-						<td colspan="4"></td>
-					</tr>
 					<tr height="1" bgcolor="#82B5DF">
 						<td colspan="4"></td>
 					</tr>
@@ -102,7 +98,7 @@
 						<td>&nbsp;</td>
 						<td colspan="2"><br>
 							<button type="button" class="btn btn-primary" onclick="check()">수정</button>
-							<button type="button" class="btn btn-primary"
+							<button type="button" class="btn btn-default"
 								onclick="javascript:history.back(-1)">취소</button>
 						<td>&nbsp;</td>
 					</tr>

@@ -6,17 +6,18 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class UpdateCommand  implements CommandBoard{
+import dao.boardmodule.FreeBoard;
+import dto.Board;
 
+public class UpdateCommand  implements CommandBoard{
+	FreeBoard dao = new FreeBoard();
+	Board dto = new Board();
+	
 	@Override
 	public Object processCommand(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		//이동할 때 처리할 내용
+		dao.updateBoard(dto);
 		
-		//입력값 확인
-		
-		//예외처리
-		
-		return "/CORDING/board/BoardUpdate.jsp";
+		return "/CORDING/board/BoardRead.jsp?b_num="+dto.getB_num();
 	}
 }

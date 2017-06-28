@@ -25,12 +25,13 @@ public class FreeBoard {
 			System.out.println("DBCP 인스턴스 참조 실패 : " + err);
 		}
 	}
-	
+	/*
 	private static FreeBoard instance = new FreeBoard();
 	
 	public static FreeBoard getInstance(){
 		return instance;
 	}
+	*/
 	
 	//BoardWrite_proc.jsp 글쓰기 기능
 	public void regBoard(String u_id, String b_title, String b_content){

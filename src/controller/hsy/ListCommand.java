@@ -11,12 +11,14 @@ import dao.boardmodule.FreeBoard;
 import dto.Board;
 
 public class ListCommand implements CommandBoard {
-
+	FreeBoard dao = new FreeBoard();
+	Board dto = new Board();
+	
 	@Override
 	public Object processCommand(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
-		FreeBoard dao = FreeBoard.getInstance();
+		
 		List BoardList = dao.getBoardList(null, null);
 		req.setAttribute("BoardList", BoardList);
 		

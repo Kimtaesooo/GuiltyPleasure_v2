@@ -8,6 +8,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="/GuiltyPleasure/design/mintstrap/outline/css/style.css">
 <title>자유게시판 글 조회</title>
 </head>
 <script>
@@ -62,30 +64,24 @@
 		pageContext.setAttribute("list", rep_list);
 %>
 	<div class="row">
-		<table width="100%" cellpadding="0" cellspacing="0" border="0">
-			<tr
-				style="background: url('img/table_mid.gif') repeat-x; text-align: center;">
-				<td width="5"><img src="img/table_left.gif" width="5"
-					height="30" /></td>
-				<td>자유게시판</td>
-				<td width="5"><img src="img/table_right.gif" width="5"
-					height="30" /></td>
-			</tr>
-		</table>
+	<div style="padding-top:0px; height:90px; background-color: #4fd2c2">
+		<div class="col-md-8 col-md-offset-2 fh5co-section-heading text-center">
+			<h2 class="fh5co-lead animate-single product-animate-1 fadeIn animated">보기</h2>
+		</div>
 	</div>
+</div>
 	<div class="row">
 		<div class="col-md-2"></div>
 		<div class="col-md-8" align=center>
-			<table width="413">
+			<table class="table table-condensed">
 				<br>
 				<tr height="1" bgcolor="#82B5DF">
 					<td colspan="4" width="407"></td>
 				</tr>
 				<tr>
 					<td width="0">&nbsp;</td>
-					<td align="center" width="76">작성자</td>
-					<td width="319"><jsp:getProperty property="u_nickname"
-							name="dto" /></td>
+					<td align="left" width="80">작성자</td>
+					<td width="400"><jsp:getProperty property="u_nickname" name="dto" /></td>
 					<td width="0">&nbsp;</td>
 				</tr>
 				<tr height="1" bgcolor="#dddddd">
@@ -93,7 +89,7 @@
 				</tr>
 				<tr>
 					<td width="0">&nbsp;</td>
-					<td align="center" width="76">조회수</td>
+					<td align="left" width="76">조회수</td>
 					<td width="319"><jsp:getProperty property="b_count" name="dto" /></td>
 					<td width="0">&nbsp;</td>
 				</tr>
@@ -102,9 +98,8 @@
 				</tr>
 				<tr>
 					<td width="0">&nbsp;</td>
-					<td align="center" width="76">작성일</td>
-					<td width="319"><jsp:getProperty property="b_regdate"
-							name="dto" /></td>
+					<td align="left" width="76">작성일</td>
+					<td width="319"><jsp:getProperty property="b_regdate" name="dto" /></td>
 					<td width="0">&nbsp;</td>
 				</tr>
 				<tr height="1" bgcolor="#dddddd">
@@ -112,7 +107,7 @@
 				</tr>
 				<tr>
 					<td width="0">&nbsp;</td>
-					<td align="center" width="76">제 목</td>
+					<td align="left" width="76">제 &nbsp;목</td>
 					<td width="319"><jsp:getProperty property="b_title" name="dto" /></td>
 					<td width="0">&nbsp;</td>
 				</tr>
@@ -121,8 +116,7 @@
 				</tr>
 				<tr>
 					<td width="0">&nbsp;</td>
-					<td width="399" colspan="2" height="200"><jsp:getProperty
-							property="b_content" name="dto" /></td>
+					<td width="399" colspan="2" height="200"><jsp:getProperty property="b_content" name="dto" /></td>
 				</tr>
 				<tr height="1" bgcolor="#dddddd">
 					<td colspan="4" width="407"></td>
@@ -140,15 +134,13 @@
 			<br>
 			<button type="button" class="btn btn-default" onclick="fnList()">목록</button>
 			<%
-											if (sid.equals(u_id)) {
- 										%>
+				if (sid.equals(u_id)) {
+ 			%>
 			<button type="button" class="btn btn-primary"
 				OnClick="window.location='BoardUpdate.jsp?b_num=<%=b_num%>'">수정</button>
 			<button type="button" class="btn btn-primary"
 				OnClick="window.location='BoardDelete_proc.jsp?b_num=<%=b_num%>'">삭제</button>
-			<%
-											}
-										%>
+			<%}%>
 			<br>
 		</div>
 		<div class="col-md-2"></div>
@@ -158,12 +150,12 @@
 		<div class="col-md-2"></div>
 		<div class="col-md-8" align="center">
 			<form name="delReplyForm" method="post" action="ReplyDelete_proc.jsp">
-				<input type="hidden" name="r_reply"> <input type="hidden"
-					name="b_num" value="<%=b_num%>">
+				<input type="hidden" name="r_reply"> 
+				<input type="hidden" name="b_num" value="<%=b_num%>">
 				<table>
 					<%
 							if (rep_list.size() == 0) {
-						%>
+					%>
 					<tr height="25" align="center">
 						<td></td>
 						<td></td>
@@ -177,7 +169,7 @@
 							} else {
 								for (int i = 0; i < rep_list.size(); i++) {
 										dto2 = (Reply) rep_list.get(i);
-						%>
+					%>
 					<tr height="25" align="center">
 						<td><%=dto2.getU_id()%></td>
 						<td>&nbsp;&nbsp;</td>
@@ -186,7 +178,7 @@
 						<td><%=dto2.getR_regdate()%></td>
 						<%
 								if (sid.equals(dto2.getU_id())) {
-							%>
+						%>
 						<td>&nbsp;</td>
 						<td>
 							<button type="button" name="delReply" class="btn btn-default"
@@ -196,7 +188,7 @@
 								}
 								}
 							}
-										%>
+						%>
 					</tr>
 				</table>
 			</form>
@@ -231,35 +223,30 @@
 	<div class="row">
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
-			<table align="center">
+			<table align="center" width="800">
 				<tr height="1" bgcolor="#dddddd">
 					<td colspan="4" width="407"></td>
 				</tr>
 				<tr>
-					<%
- 	if(dto.getPrevnum() != null){
- %>
-					<td>이전 글</td>
+				<%
+ 					if(dto.getPrevnum() != null){
+                %>
+					<td align="center">이전 글</td>
 					<td>&nbsp;&nbsp;&nbsp;</td>
 					<td><a href="javascript:fnRead2('<%=dto.getPrevnum()%>')"><%=dto.getPrevtitle()%></a></td>
-					<%
- 	}
-%>
+				<%}%>
 				</tr>
 				<tr height="1" bgcolor="#dddddd">
 					<td colspan="4" width="407"></td>
 				</tr>
 				<%
-	if(dto.getNextnum() != null){
-%>
+					if(dto.getNextnum() != null){
+				%>
 				<tr>
-					<td>다음 글</td>
+					<td align="center">다음 글</td>
 					<td>&nbsp;&nbsp;&nbsp;</td>
 					<td><a href="javascript:fnRead2('<%=dto.getNextnum()%>')"><%=dto.getNexttitle()%></a></td>
-
-					<%
-	} 
-%>
+				<%}%>
 				</tr>
 				<tr height="1" bgcolor="#dddddd">
 					<td colspan="4" width="407"></td>

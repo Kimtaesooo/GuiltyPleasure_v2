@@ -6,6 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="/GuiltyPleasure/design/mintstrap/outline/css/style.css">
 <title>자유게시판-글쓰기</title>
 <script>
 	function writeCheck() {
@@ -29,20 +31,19 @@
 <body>
 <jsp:include page="/top.jsp" />
 <jsp:include page="/nav.jsp" />
-	<div class="row">
-		<table width="100%" cellpadding="0" cellspacing="0" border="0">
-			<tr style="background: url('img/table_mid.gif') repeat-x; text-align: center;">
-				<td width="5"><img src="img/table_left.gif" width="5" height="30" /></td>
-				<td>자유게시판 글 등록</td>
-				<td width="5"><img src="img/table_right.gif" width="5" height="30" /></td>
-			</tr>
-		</table>
+<div class="row">
+	<div style="padding-top:0px; height:90px; background-color: #4fd2c2">
+		<div class="col-md-8 col-md-offset-2 fh5co-section-heading text-center">
+			<h2 class="fh5co-lead animate-single product-animate-1 fadeIn animated">쓰기</h2>
+		</div>
 	</div>
+</div>
+	
 	<div class="row">
 	<div class="col-md-2"></div>
-	<div class="col-md-8">
+	<div class="col-md-8" align=center>
 	<form name="writeform" method="post" action="Boardwrite_proc.jsp">
-		<table align=center>
+		<table class="table table-condensed">
 			<br>
 			<tr height="1" bgcolor="#82B5DF">
 				<td colspan="4" width="407"></td>
