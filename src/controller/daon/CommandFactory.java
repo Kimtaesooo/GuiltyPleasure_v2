@@ -24,6 +24,9 @@ public class CommandFactory {
 		else if (cmd.equals("SHOPDELETE")) {
 			return new ShopDeleteCommand();
 		}
+		else if (cmd.equals("bonusPoint")) {
+			return new bonusPointCommand();
+		}
 		else{
 			return null;
 		}
