@@ -32,18 +32,15 @@
 </script>
 </head>
 <body>
-	<jsp:include page="/top.jsp" />
-	<jsp:include page="/nav.jsp" />
-	<%
-		request.setCharacterEncoding("euc-kr");
-	%>
-	<%
-		response.setCharacterEncoding("euc-kr");
-	%>
-	<jsp:useBean id="dao" class="dao.boardmodule.FreeBoard" />
-	<jsp:useBean id="dto" class="dto.Board" />
-
-	<%
+<jsp:include page="/top.jsp" />
+<jsp:include page="/nav.jsp" />
+<%
+	request.setCharacterEncoding("euc-kr");
+	response.setCharacterEncoding("euc-kr");
+%>
+<jsp:useBean id="dao" class="dao.boardmodule.FreeBoard" />
+<jsp:useBean id="dto" class="dto.Board" />
+<%
 		String keyfield = request.getParameter("keyfield");
 		String keyword = request.getParameter("keyword");
 		String reload = request.getParameter("reload");
@@ -71,12 +68,10 @@
 		totalBlock = (int) Math.ceil((double) totalPage / pagePerBlock);
 
 		beginPerPage = nowPage * numPerPage;
-	%>
-	<div class="row">
-		<div class="col-md-2"></div>
-
+%>
+<div class="row">
+	<div class="col-md-2"></div>
 		<div class="col-md-8">
-
 			<div class="row">
 				<div class="col-md-4">
 					<table align=center border=0 width=100%>
@@ -88,146 +83,123 @@
 						</tr>
 					</table>
 				</div>
-			</div>
-
-			
-				<table class="table table-bordered table-hover table-condensed">
-					<thead>
-						<tr>
-							<td width="73">번호</td>
-							<td width="379">제목</td>
-							<td width="73">작성자</td>
-							<td width="164">작성일</td>
-							<td width="58">조회수</td>
-						</tr>
-					</thead>
-					<%
-						if (list.size() == 0) {
+			<div class="col-md-4"></div>
+			<div class="col-md-4"></div>
+		</div>
+			<table class="table table-bordered table-hover table-condensed">
+				<thead>
+					<tr>
+						<td width="73">번호</td>
+						<td width="379">제목</td>
+						<td width="73">작성자</td>
+						<td width="164">작성일</td>
+						<td width="58">조회수</td>
+					</tr>
+				</thead>
+				<%
+					if (list.size() == 0) {
+				%>
+				<tbody>
+					<tr height="25" align="center">
+						<td></td>
+						<td>데이터가 없습니다.</td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</tbody>
+				<%
+					} else {
+						for (int i = beginPerPage; i < numPerPage + beginPerPage; i++) {
+							if (i == totalRecord)
+								break;
+							Board board = (Board) list.get(i);
+				%>
+				<tbody>
+					<tr height="25" align="center">
+						<td><%=i + 1%></td>
+						<td><a href="javascript:fnRead('<%=board.getB_num()%>')"><%=board.getB_title()%></a></td>
+						<td><%=board.getU_nickname()%></td>
+						<td><%=board.getB_regdate()%></td>
+						<td><%=board.getB_count()%></td>
+					</tr>
+				</tbody>
+				<%
+					}
+					}
 					%>
-					<tbody>
-						<tr height="25" align="center">
-							<td></td>
-							<td>데이터가 없습니다.</td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-					</tbody>
-					<%
-						} else {
-							for (int i = beginPerPage; i < numPerPage + beginPerPage; i++) {
-								if (i == totalRecord)
-									break;
-								Board board = (Board) list.get(i);
-					%>
-					<tbody>
-						<tr height="25" align="center">
-							<td><%=i + 1%></td>
-							<td><a href="javascript:fnRead('<%=board.getB_num()%>')"><%=board.getB_title()%></a></td>
-							<td><%=board.getU_nickname()%></td>
-							<td><%=board.getB_regdate()%></td>
-							<td><%=board.getB_count()%></td>
-						</tr>
-					</tbody>
-					<%
-						}
-						}
-					%>
-				</table>
-			
-
+			</table>
 			<div class="row">
 				<div class="col-md-2">
 					<%
-									if (nowBlock > 0) {
-								%>
-					<a
-						href="BoardList.jsp?nowBlock=<%=nowBlock - 1%>&nowPage=<%=pagePerBlock * (nowBlock - 1)%>">이전<%=pagePerBlock%>개
-					</a>
+							if (nowBlock > 0) {
+					%>
+					<a href="BoardList.jsp?nowBlock=<%=nowBlock-1%>&nowPage=<%=pagePerBlock*(nowBlock-1)%>">이전<%=pagePerBlock%>개</a>
+					<%}%>:::
+					<%
+ 					for (int i = 0; i < pagePerBlock; i++) {
+ 						if ((nowBlock * pagePerBlock) + i == totalPage)
+ 							break;
+ 					%>
+					<a href="BoardList.jsp?nowPage=<%=(nowBlock*pagePerBlock)+i%>&nowBlock=<%=nowBlock%>"><%=(nowBlock*pagePerBlock)+i+1%></a>&nbsp;
+					<%}%>:::
+					<%
+						if (totalBlock > nowBlock + 1) {
+					%>
+					<a href="BoardList.jsp?nowBlock=<%=nowBlock+1%>&nowPage=<%=pagePerBlock*(nowBlock+1)%>">다음<%=pagePerBlock%>개</a>
 					<%}%>
-					:::
-					<%
- 	for (int i = 0; i < pagePerBlock; i++) {
- 		if ((nowBlock * pagePerBlock) + i == totalPage)
- 			break;
- %>
-					<a
-						href="BoardList.jsp?nowPage=<%=(nowBlock * pagePerBlock) + i%>&nowBlock=<%=nowBlock%>"><%=(nowBlock * pagePerBlock) + i + 1%></a>&nbsp;
-					<%
-									}%>:::
-					<%
-									if (totalBlock > nowBlock + 1) {
-								%>
-					<a
-						href="BoardList.jsp?nowBlock=<%=nowBlock + 1%>&nowPage=<%=pagePerBlock * (nowBlock + 1)%>">다음<%=pagePerBlock%>개
-					</a>
-					<%} %>
 				</div>
-			
-
-			
-				<div class="col-md-7" >
-				
-			
-		</div>
-		<div class="col-md-3" align="right">
-			
-			<%
-									if (session.getAttribute("u_id") != null) {
-								%>
-			<button type="button" class="btn btn-primary"
-				onclick="window.location='BoardWrite.jsp'">글쓰기</button>
-			<%
- 	}
- %>
-			<button type="button" class="btn btn-default"
-				onclick="window.location='BoardList.jsp'">목록</button>
-		</div>
+				<div class="col-md-7"></div>
+				<div class="col-md-3" align="right">
+					<%
+						if (session.getAttribute("u_id") != null) {
+					%>
+					<button type="button" class="btn btn-primary" onclick="window.location='BoardWrite.jsp'">글쓰기</button>
+					<%}%>
+					<button type="button" class="btn btn-default" onclick="window.location='BoardList.jsp'">목록</button>
+				</div>
 			</div>
-	</div>
-	<br>
-	<div class="row">
-		<div class="col-md-4"></div>
-		<div class="col-md-4">
-			<form action="BoardList.jsp" name="search" method="post">
-				<div class="form-group">
-					<div class="col-xs-4">
-						<select class="form-control" name="keyfield">
-							<option value="u_nickname"
-								<%if (keyfield != null && keyfield.equals("u_nickname")) {%>
-								selected="selected" <%}%>>작성자
-							<option value="b_title"
-								<%if (keyfield != null && keyfield.equals("b_title")) {%>
-								selected="selected" <%}%>>제목
-							<option value="b_content"
-								<%if (keyfield != null && keyfield.equals("b_content")) {%>
-								selected="selected" <%}%>>내용
-						</select>
-					</div>
-					<input type="hidden" name="page" value="0">
-					<div class="input-group">
-						<input type="search" name="keyword" class="form-control"
-							<%if ("null".equals(keyword) || keyword == null) {keyword = "";}%>
-							value=<%=keyword%>>
-						<div class="input-group-btn">
-							<button class="btn btn-info" onClick="check()">
-								<span class="glyphicon glyphicon-search"></span>
-							</button>
+		</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+				<form action="BoardList.jsp" name="search" method="post">
+					<div class="form-group">
+						<div class="col-xs-4">
+							<select class="form-control" name="keyfield">
+								<option value="u_nickname"
+									<%if (keyfield != null && keyfield.equals("u_nickname")) {%>
+									selected="selected" <%}%>>작성자
+								<option value="b_title"
+									<%if (keyfield != null && keyfield.equals("b_title")) {%>
+									selected="selected" <%}%>>제목
+								<option value="b_content"
+									<%if (keyfield != null && keyfield.equals("b_content")) {%>
+									selected="selected" <%}%>>내용
+							</select>
+						</div>
+						<input type="hidden" name="page" value="0">
+						<div class="input-group">
+							<input type="search" name="keyword" class="form-control"
+								<%if ("null".equals(keyword) || keyword == null) {keyword = "";}%>
+								value=<%=keyword%>>
+							<div class="input-group-btn">
+								<button class="btn btn-info" onClick="check()">
+									<span class="glyphicon glyphicon-search"></span>
+								</button>
+							</div>
 						</div>
 					</div>
-				</div>
-			</form>
-		</div>
-		
-		<div class="col-md-2" align="right">
-			
-		</div>
-		<div class="col-md-2"></div>
-	</div>
+				</form>
+			</div>
+		<div class="col-md-2" align="right"></div>
+	<div class="col-md-2"></div>
+</div>
 	<form name="frmRead" method="post" action="BoardRead.jsp">
-		<input type="hidden" name="b_num" /> <input type="hidden"
-			name="keyfield" value="<%=keyfield%>" /> <input type="hidden"
-			name="keyword" value="<%=keyword %>" />
+		<input type="hidden" name="b_num" /> <input type="hidden" name="keyfield" value="<%=keyfield%>" /> 
+		<input type="hidden" name="keyword" value="<%=keyword %>" />
 	</form>
 </body>
 </html>
