@@ -6,7 +6,6 @@
 	<jsp:setProperty name="dto" property="*"/>
 <%
 	String u_id = (String)session.getAttribute("u_id");
-	System.out.println(u_id);
 	List roominfo = dao.roomInfo(u_id);
 	Battle_Room room = (Battle_Room) roominfo.get(0);	
 	int br_people = room.getBr_people();	

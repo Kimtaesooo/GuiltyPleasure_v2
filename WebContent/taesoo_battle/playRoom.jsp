@@ -47,8 +47,6 @@
 <% }%>
 
 <script>
-	
-
 	function gameStart(){
     	var param = "";
     	sendRequest("POST", "startBattle.jsp", param, callback);
@@ -165,25 +163,32 @@
 		var gameUser = document.getElementById('gameUser').value;
 		var bangjang = document.getElementById('bangjang').value;
 	
-	webSocket.onerror = function(event) {
+		webSocket.onerror = function(event) {
 	      onError(event)
 	    };
 	    webSocket.onopen = function(event) {
+	    	event = event + bangjang;
 	      onOpen(event)
 	    };
 	    webSocket.onmessage = function(event) {
 	      onMessage(event)
 	    };
 	    
-	    function onMessage(event) {
-	        textarea.value += event.data + "\n";
-	    }
 	    function onOpen(event) {
 	        textarea.value += "연결 성공\n";
 	        connectionCheck.value += ip+ "\n";
 	    }
+	    function onClose(session) {
+	    	webSocket.onClose(event);
+	    	document.myForm.action="battleRoom.jsp";
+	    	document.myForm.method="post";
+	    	document.myForm.submit();
+	    }
 	    function onError(event) {
 	      alert(event.data);
+	    }
+	    function onMessage(event) {
+	        textarea.value += event.data + "\n";
 	    }
 	    function send() {
 	    	if (inputMessage.value == ""){}
@@ -192,12 +197,6 @@
 	        	webSocket.send(gameUser+ " : " + inputMessage.value);
 	        	inputMessage.value = "";
 	    	}
-	    }
-	    function onClose(session) {
-	    	webSocket.onClose(event);
-	    	document.myForm.action="battleRoom.jsp";
-	    	document.myForm.method="post";
-	    	document.myForm.submit();
 	    }
 	    
 	    function enterkey() {
