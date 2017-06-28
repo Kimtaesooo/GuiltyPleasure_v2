@@ -1,4 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"%>
 <!DOCTYPE html>
 <html lang="kor">
 
@@ -7,7 +6,8 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Search ID/PW</title>
+        <title>Guilty Pleasure Login</title>
+
         <!-- CSS -->
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
         <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
@@ -28,27 +28,10 @@
         <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
         <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
-		<jsp:useBean id="search" class="dao.loginmodule.idpw"/>
-		<%
-		request.setCharacterEncoding("euc-kr");
-		response.setCharacterEncoding("euc-kr");
-		
-		boolean rightPw = true;
-		String id = request.getParameter("id");
-		String email = request.getParameter("email");
-		String select = request.getParameter("select");
-		String answer = request.getParameter("answer");
-		
-		String pw = search.searchPw(id, email, select, answer);
-		if(pw.length()==0){
-			pw="Àß¸ø ÀÔ·ÂÇÏ¼Ì°Å³ª ¾ø´Â Á¤º¸ÀÔ´Ï´Ù..";
-			rightPw = false;
-		}
-		%>
+
     </head>
-	
+
     <body>
-    	
         <!-- Top content -->
         <div class="top-content">
         	
@@ -56,10 +39,10 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-8 col-sm-offset-2 text">
-                            <h1><strong>GuiltyPleasure</strong> ºñ¹Ğ¹øÈ£ Ã£±â</h1>
+                            <h1><strong>GuiltyPleasure</strong> ë¡œê·¸ì¸</h1>
                             <div class="description">
-                            	<p>                           
-	                            	ÀúÈñ Guilty Pleasure ÆäÀÌÁö¿¡ ¿À½Å°ÍÀ» È¯¿µÇÕ´Ï´Ù.<br> ¾Æ¹«·± µµ¿òÀÌ ¾ÈµÇ´Â ÄûÁî¸¦ Ç®¸ç ½Ã°£À» ³¶ºñÇØº¸¼¼¿ä.
+                            	<p>
+	                            	ì €í¬ Guilty Pleasure í˜ì´ì§€ì— ì˜¤ì‹ ê²ƒì„ í™˜ì˜í•©ë‹ˆë‹¤.<br> ì•„ë¬´ëŸ° ë„ì›€ì´ ì•ˆë˜ëŠ” í€´ì¦ˆë¥¼ í’€ë©° ì‹œê°„ì„ ë‚­ë¹„í•´ë³´ì„¸ìš”.
                             	</p>
                             </div>
                         </div>
@@ -68,24 +51,24 @@
                         <div class="col-sm-6 col-sm-offset-3 form-box">
                         	<div class="form-top">
                         		<div class="form-top-left">
-                        			<h3>ºñ¹Ğ¹øÈ£ Ã£±â</h3>
+                        			<h3>ë¡œê·¸ì¸</h3>
+                            		<p>í˜„ì¬ ë¡œê·¸ì¸ì´ ê¸ˆì§€ëœ ë˜ëŠ” ì‚­ì œëœ ìœ ì € ì…ë‹ˆë‹¤.</p>
+                        		</div>
+                        		<div class="form-top-right">
+                        			<i class="fa fa-key"></i>
                         		</div>
                             </div>
                             <div class="form-bottom">
-			                    <form role="form" action="idpw.jsp" method="post" class="login-form">
-<%
-								if(rightPw){
-%>									
-									<h4>È¸¿ø´ÔÀÇ ºñ¹Ğ¹øÈ£´Â </h4> <h3><%=pw%> ÀÔ´Ï´Ù.</h3>
-<%
-								}else{
-%>
-									<h3><%=pw%></h3>
-<%
-								}
-%>
-									<br>
-			                        <button type="submit" class="btn">µ¹¾Æ°¡±â</button>
+			                    <form role="form" action="lgcheck.jsp" method="post" class="login-form">
+			                    	<div class="form-group">
+			                    		<label class="sr-only" for="form-username">Username</label>
+			                        	<input type="text" name="form-username" placeholder="ì•„ì´ë””" class="form-username form-control" id="form-username">
+			                        </div>
+			                        <div class="form-group">
+			                        	<label class="sr-only" for="form-password">Password</label>
+			                        	<input type="password" name="form-password" placeholder="íŒ¨ìŠ¤ì›Œë“œ" class="form-password form-control" id="form-password">
+			                        </div>
+			                        <button type="submit" class="btn">ë¡œê·¸ì¸</button>
 			                    </form>
 		                    </div>
                         </div>
@@ -94,9 +77,10 @@
                         <div class="col-sm-6 col-sm-offset-3 social-login">
                         	<div>
                         		<br>
-	                        	<a href="resistration.html"><font size="4em" color="white">È¸¿ø°¡ÀÔ&nbsp;&nbsp;&nbsp;</font></a>
-	                        	<a href="idpw.jsp"><font size="4em" color="white">¾ÆÀÌµğ/ºñ¹Ğ¹øÈ£ Ã£±â&nbsp;&nbsp;&nbsp;</font></a>
-	                        	<a href="/GuiltyPleasure/CORDING/custom/customer_main.jsp"><font size="4em" color="white">°í°´¼¾ÅÍ</font></a>
+	                        	<a href="resistration.html"><font size="4em" color="white">íšŒì›ê°€ì…&nbsp;&nbsp;&nbsp;</font></a>
+	                        	<a href="idpw.jsp"><font size="4em" color="white">ì•„ì´ë””/ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°&nbsp;&nbsp;&nbsp;</font></a>
+	                        	<a href="/GuiltyPleasure/CORDING/custom/customer_main.jsp"><font size="4em" color="white">ê³ ê°ì„¼í„°&nbsp;&nbsp;&nbsp;</font></a>
+	                        	<a href="/GuiltyPleasure/main.jsp"><font size="4em" color="white">ë©”ì¸&nbsp;&nbsp;&nbsp;</font></a>
                         	</div>
                         </div>
                     </div>

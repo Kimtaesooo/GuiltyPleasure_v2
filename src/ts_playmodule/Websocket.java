@@ -32,6 +32,7 @@ public class Websocket {
 	
 	@OnMessage
 	public void onMessage(String message, Session session) throws IOException {
+		System.out.println(message);
 		System.out.println("¼¼¼Ç ID : " + session.getId() + ", " + message);
 		sendAll(session, message);
 		/*

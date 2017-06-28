@@ -26,7 +26,9 @@ public class MyInfoDAO {
 	
 	public MyInfoDTO searchMyInfo(String id){
 		MyInfoDTO dto = new MyInfoDTO();
-		String sql = "SELECT * FROM USERINFO WHERE U_ID = ?";
+		String sql = "SELECT U_ID , U_NICKNAME , U_NAME , U_EMAIL , U_ADDR , U_GENDER , U_INTRODUCE , U_DELETE , U_PHONE , "
+				+ " TO_CHAR(U_BIRTH,'YYYY/MM/DD') AS U_BIRTH "
+				+ " FROM USERINFO WHERE U_ID = ?";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);

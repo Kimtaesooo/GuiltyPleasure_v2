@@ -1,18 +1,60 @@
-<%@page import="java.util.Date"%>
-<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.List"%>
 <%@page import="dto.Board"%>
 <%@page import="dao.boardmodule.*"%>
 <%@ page contentType="text/html; charset=EUC-KR"%>
+<jsp:useBean id="dao" class="dao.boardmodule.FreeBoard" />
+<jsp:useBean id="dto" class="dto.Board" />
+<jsp:useBean id="userdao" class="dao.UserInfoDAO"/>
+<jsp:useBean id="userdto" class="dto.UserInfoDTO"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>자유게시판</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<!-- jQuery -->
+	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.waypoints.min.js"></script>
+	<!-- Magnific Popup -->
+	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.magnific-popup.min.js"></script>
+	<!-- Owl Carousel -->
+	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/owl.carousel.min.js"></script>
+	<!-- toCount -->
+	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.countTo.js"></script>
+	<!-- Main JS -->
+	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/main.js"></script>
+<!-- Animate.css -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/icomoon.css">
+	<!-- Simple Line Icons-->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/simple-line-icons.css">
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/magnific-popup.css">
+	<!-- Owl Carousel -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/owl.theme.default.min.css">
+	<!-- Salvattore -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/salvattore.css">
+	<!-- Theme Style -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/style.css">
+	<!-- Modernizr JS -->
+	<script src="js/modernizr-2.6.2.min.js"></script>
+<!-- nav바 수정부분 -->
 <style>
+.fh5co-nav-toggle > span {color: #333;}	a {color: #333;}
+.navbar-brand {color: #333;}#fh5co-offcanvass .fh5co-lead {font-size: 15px;color: #333;}
+.navbar-brand > span {border: 2px solid #333;}
+.navbar-brand:hover {color: #3c763d;}
+a {color: #333;}
+#fh5co-offcanvass {background: #d3d9da;color: #878c93;}
+<!-- nav바 수정부분 여기까지 -->
 .table-hover>tbody>tr:hover {
 	background-color: #EEEEEE
 }
@@ -31,25 +73,37 @@
 		document.frmRead.b_num.value = b_num;
 		document.frmRead.submit();
 	}
+	
+	function fnwrite(){
+		if($("#u_id").val().length ==0){
+			alert('로그인 후 사용 가능합니다.');
+			return ;
+		}
+		if($("#enroll").val()!= 'null'){
+			alert("글쓰기가 금지된 유저 입니다.");
+			return ;
+		}
+		window.location='BoardWrite.jsp';
+	}
 </script>
 </head>
 <body>
-	<jsp:include page="/top.jsp" />
-	<jsp:include page="/nav.jsp" />
 	<%
 		request.setCharacterEncoding("euc-kr");
 		response.setCharacterEncoding("euc-kr");
-	%>
-	<jsp:useBean id="dao" class="dao.boardmodule.FreeBoard" />
-	<jsp:useBean id="dto" class="dto.Board" />
 
-	<%
 		String keyfield = request.getParameter("keyfield");
 		String keyword = request.getParameter("keyword");
 		String reload = request.getParameter("reload");
 
 		List list = dao.getBoardList(keyword, keyfield);
-
+		String u_id = "";
+		if(session.getAttribute("u_id")!=null){
+			u_id = (String)session.getAttribute("u_id");
+		}
+		
+		userdto = userdao.searchUserInfo(u_id);
+		
 		// 페이징 기능 추가
 		int totalRecord = list.size(); //전체 글의 개수
 		int numPerPage = 10; //한 페이지 당 보여질 글의 개수
@@ -72,6 +126,10 @@
 
 		beginPerPage = nowPage * numPerPage;
 	%>
+<jsp:include page="../../test_nav.jsp" />
+<input type="hidden" id="u_id" value="<%=u_id %>" />
+<input type="hidden" id="enroll" value="<%=userdto.getNo_enroll() %>" />
+<br><br><br><br>
 	<div class="row">
 		<div class="col-md-2"></div>
 
@@ -176,7 +234,7 @@
 									if (session.getAttribute("u_id") != null) {
 								%>
 			<button type="button" class="btn btn-primary"
-				onclick="window.location='BoardWrite.jsp'">글쓰기</button>
+				onclick="javascript:fnwrite()">글쓰기</button>
 			<%
  	}
  %>
@@ -229,5 +287,6 @@
 			name="keyfield" value="<%=keyfield%>" /> <input type="hidden"
 			name="keyword" value="<%=keyword %>" />
 	</form>
+</div>
 </body>
 </html>

@@ -57,15 +57,19 @@ public class idpw {
 	
 	public String searchId(String name, String email){
 		String id="";
-		sql = "select u_id from userinfo where u_name = '"+name+"' and u_email='"+email+"'";
+
+		sql = "select u_id from userinfo where u_name = ? and u_email= ?";
 		try{
-			int i=0;
 			con = pool.getConnection();
 			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, name);
+			pstmt.setString(2, email);
+			
 			rs = pstmt.executeQuery();
 				
 			while(rs.next()){
-				id = rs.getString("u_id");				
+				id = rs.getString("u_id");
 			}
 		}
 		catch(Exception err){
@@ -79,12 +83,15 @@ public class idpw {
 	
 	public String searchPw(String id, String email, String U_QUESTION, String U_ANSWER){
 		String pw="";
-		sql = "select u_pw from userinfo where u_id = '"+id+"' and u_email='"+email+"' and "+
-		"u_question = '"+U_QUESTION+"' and u_answer='"+U_ANSWER+"'";
+		System.out.println("pwd 체크 확인");
+		sql = "select u_pw from userinfo where u_id = ? and u_email= ? and u_question = ? and u_answer= ? ";
 		try{
-			int i=0;
 			con = pool.getConnection();
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, email);
+			pstmt.setString(3, U_QUESTION);
+			pstmt.setString(4, U_ANSWER);
 			rs = pstmt.executeQuery();
 				
 			while(rs.next()){

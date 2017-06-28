@@ -33,13 +33,15 @@
 		<%
 		request.setCharacterEncoding("euc-kr");
 		response.setCharacterEncoding("euc-kr");
-		
+		boolean rightId = true;
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
-		
 		String id	=   search.searchId(name, email);
-		if(name==null || email==null){
+
+		if(id.length()==0){
+			System.out.println("id 찾기 입력 없음");
 			id = "잘못 입력하셨거나 없는 정보입니다..";
+			rightId = false;
 		}
 		%>
     </head>
@@ -70,7 +72,17 @@
                             </div>
                             <div class="form-bottom">
 			                    <form role="form" action="idpw.jsp" method="post" class="login-form">
-									<h4>회원님의 아이디는 </h4> <h3><%=id%></h3>
+<%
+								if(rightId){
+%>									
+									<h4>회원님의 아이디는 </h4><h3><%=id%> 입니다.</h3>
+<%
+								}else{
+%>
+									<h3><%=id%></h3>
+<%
+								}
+%>
 									<br>
 			                        <button type="submit" class="btn">돌아가기</button>
 			                    </form>
@@ -83,7 +95,7 @@
                         		<br>
 	                        	<a href="resistration.html"><font size="4em" color="white">회원가입&nbsp;&nbsp;&nbsp;</font></a>
 	                        	<a href="idpw.jsp"><font size="4em" color="white">아이디/비밀번호 찾기&nbsp;&nbsp;&nbsp;</font></a>
-	                        	<a href="#"><font size="4em" color="white">고객센터</font></a>
+	                        	<a href="/GuiltyPleasure/CORDING/custom/customer_main.jsp"><font size="4em" color="white">고객센터</font></a>
                         	</div>
                         </div>
                     </div>

@@ -174,6 +174,9 @@
 			alert(event.data);
 		}
 		function onMessage(event) {
+			var abcd = (String) event;
+			alert(abcd);
+			textarea.value += abcd + "\n";
 			textarea.value += event.data + "\n";
 		}
 		

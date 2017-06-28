@@ -12,8 +12,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/bootstrap332/css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap332/css/bootstrap.min.css">
 <script>
 $(document).ready(function(){
 	$("#board").css("background","black").css("color","white").css("font-size","xx-large");

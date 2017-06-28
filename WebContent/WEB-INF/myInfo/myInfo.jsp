@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,9 +21,9 @@
 		}
 		
 		$("#btnDelete").click(function(){
-			if(confirm('Å»Åð ½ÂÀÎ ÀÌÈÄ 3°³¿ùµ¿¾È °³ÀÎÁ¤º¸°¡ À¯ÁöµÇ¸ç ·Î±×ÀÎÀÌ °¡´ÉÇÕ´Ï´Ù.\nÀÌ ±â°£ µ¿¾È º¹±¸ ¿äÃ»ÀÌ °¡´ÉÇÏ¸ç 3°³¿ùÀÌÈÄ °³ÀÎÁ¤º¸´Â »èÁ¦µË´Ï´Ù.\nÅ»Åð¿äÃ» ÇÏ½Ã°Ú½À±î?')){
+			if(confirm('íƒˆí‡´ ìŠ¹ì¸ ì´í›„ 3ê°œì›”ë™ì•ˆ ê°œì¸ì •ë³´ê°€ ìœ ì§€ë˜ë©° ë¡œê·¸ì¸ì´ ê°€ëŠ¥í•©ë‹ˆë‹¤.\nì´ ê¸°ê°„ ë™ì•ˆ ë³µêµ¬ ìš”ì²­ì´ ê°€ëŠ¥í•˜ë©° 3ê°œì›”ì´í›„ ê°œì¸ì •ë³´ëŠ” ì‚­ì œë©ë‹ˆë‹¤.\níƒˆí‡´ìš”ì²­ í•˜ì‹œê² ìŠµê¹Œ?')){
 				if($("#delete").val() != 'N'){
-					alert("ÀÌ¹Ì Å»Åð ½ÅÃ»ÇÏ½Å »ç¿ëÀÚ ÀÔ´Ï´Ù.");
+					alert("ì´ë¯¸ íƒˆí‡´ ì‹ ì²­í•˜ì‹  ì‚¬ìš©ìž ìž…ë‹ˆë‹¤.");
 					return ;
 				}
 				userDeleteAjax();
@@ -35,14 +35,14 @@
 				type:"POST",
 				url :'/GuiltyPleasure/myinfo?cmd=DELETE',
 				success:function(args){   
-			    	alert("Å»ÅðÃ³¸® ¼º°ø");
+			    	alert("íƒˆí‡´ì²˜ë¦¬ ì„±ê³µ");
 			    	movemain();
 			    },     
 			    error:function(e){
 			    	for(var key in e){
 			    		alert(key+" = "+e[key]);
 			    	}
-			    	alert("Å»ÅðÃ³¸® ½ÇÆÐ");
+			    	alert("íƒˆí‡´ì²˜ë¦¬ ì‹¤íŒ¨");
 			    }  
 			});
 		}
@@ -52,17 +52,18 @@
 </script>
 </head>
 <body>
+<%@include file="../../top2.jsp" %>
 <form method="post" action="/GuiltyPleasure/myinfo" name="myInfoForm" id="myInfoForm">
 <input type="hidden" name="cmd" id="cmd"/>
 <input type="hidden" name="delete" id="delete" value="${dto.delete }"/>
 <div class="subCC">
-<h2 class="subTitle">È¸¿ø °³ÀÎ Á¤º¸</h2>
+<h2 class="subTitle">íšŒì› ê°œì¸ ì •ë³´</h2>
 <table>
 	<tr>
 		<td style="text-align: right">
-			<input type="button" value="Å»Åð¿äÃ»" class="btnStyle2 midBlue"  id="btnDelete" />
-			<input type="button" value="³ªÀÇ ·©Å·" class="btnStyle2 midBlue" id="btnBattleInfo" />
-			<input type="button" value="¸ÞÀÎÀ¸·Î" class="btnStyle2 midBlue" id="btnMain" />
+			<input type="button" value="íƒˆí‡´ìš”ì²­" class="btnStyle2 midBlue"  id="btnDelete" />
+			<input type="button" value="ë‚˜ì˜ ëž­í‚¹" class="btnStyle2 midBlue" id="btnBattleInfo" />
+			<input type="button" value="ë©”ì¸ìœ¼ë¡œ" class="btnStyle2 midBlue" id="btnMain" />
 		</td>
 	</tr>
 </table>
@@ -73,39 +74,39 @@
 			<col style="width:40%;">
 		</colgroup>	
 			<tr>
-				<th>¾ÆÀÌµð</th>
+				<th>ì•„ì´ë””</th>
 				<td>${dto.id }</td>
 			</tr>
 			<tr>
-				<th>º°¸í</th>
+				<th>ë³„ëª…</th>
 				<td>${dto.nickname }</td>
 			</tr>
 			<tr>
-				<th>ÀÌ¸§</th>
+				<th>ì´ë¦„</th>
 				<td>${dto.name }</td>
 			</tr>
 			<tr>
-				<th>ÀÌ¸ÞÀÏ</th>
+				<th>ì´ë©”ì¼</th>
 				<td>${dto.email }</td>
 			</tr>
 			<tr>
-				<th>ÀüÈ­</th>
+				<th>ì „í™”</th>
 				<td>${dto.phone }</td>
 			</tr>
 			<tr>
-				<th>ÁÖ¼Ò</th>				
+				<th>ì£¼ì†Œ</th>				
 				<td>${dto.addr }</td>
 			</tr>
 			<tr>
-				<th>»ý³â¿ùÀÏ</th>
+				<th>ìƒë…„ì›”ì¼</th>
 				<td>${dto.date}</td>
 			</tr>
 			<tr>
-				<th>¼ºº°</th>
+				<th>ì„±ë³„</th>
 				<td>${dto.gender }</td>
 			</tr>
 			<tr>
-				<th>¼Ò°³</th>
+				<th>ì†Œê°œ</th>
 				<td>${dto.introduce }</td>
 			</tr>
 		</table>

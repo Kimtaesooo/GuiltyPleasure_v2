@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=EUC-KR" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/sub.css">
@@ -25,25 +25,26 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
+<%@include file="../../top2.jsp" %>
 <form method="post" action="/GuiltyPleasure/myinfo" name="myInfoForm" id="myInfoForm">
 <input type="hidden" name="cmd" id="cmd"/>
 <div class="subCC">
-<h2 class="subTitle">È¸¿ø ÀüÀû Á¤º¸</h2>
+<h2 class="subTitle">íšŒì› ì „ì  ì •ë³´</h2>
 <table>
 	<tr>
 		<td style="text-align: right">
-		<input type="button" value="³ªÀÇ Á¤º¸" class="btnStyle2 midBlue"  id="btnInfo" />
-		<input type="button" value="¸ÞÀÎÀ¸·Î" class="btnStyle2 midBlack"  id="btnMain" />
+		<input type="button" value="ë‚˜ì˜ ì •ë³´" class="btnStyle2 midBlue"  id="btnInfo" />
+		<input type="button" value="ë©”ì¸ìœ¼ë¡œ" class="btnStyle2 midBlack"  id="btnMain" />
 		</td>
 	</tr>
 </table>
 	
 	<hr class="margin20">
-	<h3>ÃÑ ÀüÀû</h3>
+	<h3>ì´ ì „ì </h3>
 	<hr class="margin10">
 	<c:if test="${empty dto}">
 			<hr class="margin10">
-			<h2 style="text-align: center;">ÀüÀû Á¤º¸°¡  ¾ø½À´Ï´Ù.</h2>
+			<h2 style="text-align: center;">ì „ì  ì •ë³´ê°€  ì—†ìŠµë‹ˆë‹¤.</h2>
 	</c:if>
 	<c:if test="${!empty dto}">
 	<table class="infoTable">
@@ -54,10 +55,10 @@ $(document).ready(function(){
 			<col style="width:25%;">
 		</colgroup>
 		<tr>
-			<th>ÃÑÀüÀû</th>
-			<th>½Â</th>
-			<th>ÆÐ</th>
-			<th>½Â·ü</th>
+			<th>ì´ì „ì </th>
+			<th>ìŠ¹</th>
+			<th>íŒ¨</th>
+			<th>ìŠ¹ë¥ </th>
 		</tr>
 		
 		<tr>
@@ -69,11 +70,11 @@ $(document).ready(function(){
 	</table>
 	</c:if>
 	<hr class="margin20">
-	<h3>À¯Çüº° ÀüÀû</h3>
+	<h3>ìœ í˜•ë³„ ì „ì </h3>
 	<hr class="margin10">
 	<c:if test="${empty poalist}">
 			<hr class="margin10">
-			<h2 style="text-align: center;">ÀüÀû Á¤º¸°¡  ¾ø½À´Ï´Ù.</h2>
+			<h2 style="text-align: center;">ì „ì  ì •ë³´ê°€  ì—†ìŠµë‹ˆë‹¤.</h2>
 	</c:if>
 	<c:if test="${fn:length(poalist) > 0}">
 	<table class="infoTable">
@@ -84,10 +85,10 @@ $(document).ready(function(){
 			<col style="width:20%;">
 		</colgroup>
 		<tr>
-			<th>À¯Çü</th>
-			<th>ÃÑ¹®Á¦</th>
-			<th>Á¤´ä</th>
-			<th>Á¤´ä·ü</th>
+			<th>ìœ í˜•</th>
+			<th>ì´ë¬¸ì œ</th>
+			<th>ì •ë‹µ</th>
+			<th>ì •ë‹µë¥ </th>
 		</tr>
 		<c:forEach var="poa" items="${poalist}" varStatus="num">
 			<tr>
@@ -100,11 +101,11 @@ $(document).ready(function(){
 	</table>
 	</c:if>
 	<hr class="margin20">
-	<h3>³»°¡ ¸¸µç ¹®Á¦</h3>
+	<h3>ë‚´ê°€ ë§Œë“  ë¬¸ì œ</h3>
 	<hr class="margin10">
 	<c:if test="${empty regqlist}">
 		<hr class="margin10">
-		<h2 style="text-align: center;">³»°¡ ¸¸µç ÄûÁî°¡ ¾ø½À´Ï´Ù.</h2>
+		<h2 style="text-align: center;">ë‚´ê°€ ë§Œë“  í€´ì¦ˆê°€ ì—†ìŠµë‹ˆë‹¤.</h2>
 	</c:if>
 	<c:if test="${fn:length(regqlist) > 0}">
 	<table class="infoTable">
@@ -116,18 +117,18 @@ $(document).ready(function(){
 			<col style="width:10%;">
 		</colgroup>
 		<tr>
-			<th>À¯Çü</th> 
-			<th>¹®Á¦</th>
-			<th>Á¤´ä</th>
-			<th>¿À´ä</th>
-			<th>Ã³¸®»óÅÂ</th>
+			<th>ìœ í˜•</th> 
+			<th>ë¬¸ì œ</th>
+			<th>ì •ë‹µ</th>
+			<th>ì˜¤ë‹µ</th>
+			<th>ì²˜ë¦¬ìƒíƒœ</th>
 		</tr>
 		<c:forEach var="quiz" items="${regqlist}">
 		<tr>
 			<td style="text-align: center;">${quiz.q_type }</td>
 			<td style="text-align: center;">${quiz.uq_question }</td>
 			<td style="text-align: center;">${quiz.uq_answer }</td>
-			<td style="text-align: center;" title="${quiz.uq_wa_a } &#013;${quiz.uq_wa_b } &#013;${quiz.uq_wa_c }">¿À´äÁ¤º¸</td>
+			<td style="text-align: center;" title="${quiz.uq_wa_a } &#013;${quiz.uq_wa_b } &#013;${quiz.uq_wa_c }">ì˜¤ë‹µì •ë³´</td>
 			<td style="text-align: center;">${quiz.uq_adopt }</td>
 		</tr>
 		</c:forEach>

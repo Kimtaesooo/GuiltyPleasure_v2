@@ -18,7 +18,7 @@
 <title>Id/Pw Search</title>
 </head>
 <body onresize="parent.resizeTo(500,400)" onload="parent.resizeTo(500,400)">
-<jsp:include page="/top.jsp"/>
+<jsp:include page="/top2.jsp"/>
 <div class="container">
         <div class="row">
         	<h2>아이디 / 비밀번호 찾기</h2><hr>

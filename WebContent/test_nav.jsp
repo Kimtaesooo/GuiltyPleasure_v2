@@ -1,18 +1,52 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<jsp:useBean id="userdao" class="dao.UserInfoDAO"/>
+<jsp:useBean id="userdto" class="dto.UserInfoDTO"/>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script>
-	$(
-			function(){
-				$("#btnPopup").click(
-						function(){
-							$("#theModal").modal();
-						}
-						);
-			}
-	);
+$(document).ready(function(){
+	function insingle(){
+		if($("#u_id").val().length ==0){
+			alert('ë¡œê·¸ì¸ í›„ ì‚¬ìš© ê°€ëŠ¥í•©ë‹ˆë‹¤.');
+			return ;
+		}
+		if($("#single").val()!= 'null'){
+			alert("ì‹±ê¸€ í”Œë ˆì´ê°€ ê¸ˆì§€ëœ ìœ ì € ì…ë‹ˆë‹¤.");
+			return ;
+		}
+		location.href="CORDING/Quiz/SingleStart.jsp";
+	}
+	
+	function inbattle(){
+		if($("#u_id").val().length ==0){
+			alert('ë¡œê·¸ì¸ í›„ ì‚¬ìš© ê°€ëŠ¥í•©ë‹ˆë‹¤.');
+			return ;
+		}
+		if($("#battle").val()!= 'null'){
+			alert('ë°°í‹€ í”Œë ˆì´ê°€ ê¸ˆì§€ëœ ìœ ì €ì…ë‹ˆë‹¤.');
+			return ;
+		}
+		location.href="taesoo_battle/battleRoom.jsp";
+	}
+	
+	function inshop(){
+		if($("#u_id").val().length ==0){
+			alert('ë¡œê·¸ì¸ í›„ ì‚¬ìš© ê°€ëŠ¥í•©ë‹ˆë‹¤.');
+			return ;
+		}
+		location.href="/GuiltyPleasure/shop?cmd=SHOPLIST";
+	}
+	
+	function inregquiz(){
+		if($("#u_id").val().length ==0){
+			alert('ë¡œê·¸ì¸ í›„ ì‚¬ìš© ê°€ëŠ¥í•©ë‹ˆë‹¤.');
+			return ;
+		}
+		location.href="CORDING/QuizRegi/QuizRegInfo.jsp";
+	}
+});
 </script>
 <%
 	request.setCharacterEncoding("euc-kr");
@@ -21,33 +55,39 @@
 	if(session.getAttribute("u_id")!=null){
 		u_id = (String)session.getAttribute("u_id");
 	}
+	
+	userdto = userdao.searchUserInfo(u_id);
 %>
 <title>Insert title here</title>
 
 </head>
 <body>
+<input type="hidden" id="u_id" value="<%=u_id %>" />
+<input type="hidden" id="single" value="<%=userdto.getNo_single() %>" />
+<input type="hidden" id="battle" value="<%=userdto.getNo_battle() %>" />
 <div id="fh5co-offcanvass">
 	<%if(u_id.length()==0) {%>
-	<h2 class="fh5co-lead"><a href="${pageContext.request.contextPath}/CORDING/login/login.html">·Î±×ÀÎ</a></h2>
-	<h2 class="fh5co-lead"><a href="/GuiltyPleasure/CORDING/login/resistration.html">È¸¿ø°¡ÀÔ</a></h2>
-	<h2 class="fh5co-lead"><a href="${pageContext.request.contextPath}/CORDING/login/idpw.jsp">¾ÆÀÌµğ/ºñ¹Ğ¹øÈ£ Ã£±â</a></h2>
+	<h2 class="fh5co-lead"><a href="${pageContext.request.contextPath}/CORDING/login/login.html">ë¡œê·¸ì¸</a></h2>
+	<h2 class="fh5co-lead"><a href="/GuiltyPleasure/CORDING/login/resistration.html">íšŒì›ê°€ì…</a></h2>
+	<h2 class="fh5co-lead"><a href="${pageContext.request.contextPath}/CORDING/login/idpw.jsp">ì•„ì´ë””/ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°</a></h2>
 	<%}else{ %>
-	<h2 class="fh5co-lead"><%=u_id %>´Ô È¯¿µÇÕ´Ï´Ù</h2>
-	<h2 class="fh5co-lead"><a href="${pageContext.request.contextPath}/CORDING/login/logout.html">·Î±×¾Æ¿ô</a>
-	<a href="/GuiltyPleasure/myinfo?cmd=MYINFO">¸¶ÀÌÆäÀÌÁö</a></h2>
+	<h2 class="fh5co-lead"><%=u_id %>ë‹˜ í™˜ì˜í•©ë‹ˆë‹¤</h2>
+	<h2 class="fh5co-lead">í¬ì¸íŠ¸ : <%=userdto.getPoint() %></h2>
+	<h2 class="fh5co-lead"><a href="${pageContext.request.contextPath}/CORDING/login/logout.html">ë¡œê·¸ì•„ì›ƒ</a>
+	<a href="/GuiltyPleasure/myinfo?cmd=MYINFO">ë§ˆì´í˜ì´ì§€</a></h2>
 	<%} %>
 		<ul>
-			<li class="active"><a href="${pageContext.request.contextPath}/main.jsp" >¸ŞÀÎ</a></li>
-			<li><a href="${pageContext.request.contextPath}/CORDING/Quiz/SingleStart.jsp" data-nav-section="features">½Ì±ÛÇÃ·¹ÀÌ</a></li>
-			<li><a href="${pageContext.request.contextPath}/taesoo_battle/battleRoom.jsp" data-nav-section="design">¹èÆ²ÇÃ·¹ÀÌ</a></li>
-			<li><a href="${pageContext.request.contextPath}/CORDING/rank/rankBattle.jsp"" data-nav-section="design">·©Å·</a></li>
-			<li><a href="${pageContext.request.contextPath}/CORDING/QuizRegi/QuizRegInfo.jsp" data-nav-section="testimonies">ÄûÁîÃâÁ¦</a></li>
-			<li><a href="/GuiltyPleasure/shop?cmd=SHOPLIST" data-nav-section="testimonies">»óÁ¡</a></li>
-			<li><a href="${pageContext.request.contextPath}/CORDING/notice_board/n_list.jsp" data-nav-section="products">°øÁö»çÇ×</a></li>
-			<li><a href="CORDING/board/BoardList.jsp" data-nav-section="benefits">ÀÚÀ¯°Ô½ÃÆÇ</a></li>
-			<li><a href="${pageContext.request.contextPath}/CORDING/custom/customer_main.jsp" data-nav-section="pricing">°í°´¼¾ÅÍ</a></li>
+			<li class="active"><a href="${pageContext.request.contextPath}/main.jsp" >ë©”ì¸</a></li>
+			<li><a href="javascript:insingle()" data-nav-section="features">ì‹±ê¸€í”Œë ˆì´</a></li>
+			<li><a href="javascript:inbattle()" data-nav-section="design">ë°°í‹€í”Œë ˆì´</a></li>
+			<li><a href="${pageContext.request.contextPath}/CORDING/rank/rankBattle.jsp"" data-nav-section="design">ë­í‚¹</a></li>
+			<li><a href="javascript:inregquiz()" data-nav-section="testimonies">í€´ì¦ˆì¶œì œ</a></li>
+			<li><a href="javascript:inshop()" data-nav-section="testimonies">ìƒì </a></li>
+			<li><a href="${pageContext.request.contextPath}/CORDING/notice_board/n_list.jsp" data-nav-section="products">ê³µì§€ì‚¬í•­</a></li>
+			<li><a href="CORDING/board/BoardList.jsp" data-nav-section="benefits">ììœ ê²Œì‹œíŒ</a></li>
+			<li><a href="${pageContext.request.contextPath}/CORDING/custom/customer_main.jsp" data-nav-section="pricing">ê³ ê°ì„¼í„°</a></li>
 				<%if(u_id.equals("master")) {%>
-			<li><a href="contact.html" data-nav-section="pricing">È¸¿ø°ü¸®</a></li>
+			<li><a href="/GuiltyPleasure/userinfo?cmd=LIST" data-nav-section="pricing">íšŒì›ê´€ë¦¬</a></li>
 				<%} %>
 		</ul>
 </div>
