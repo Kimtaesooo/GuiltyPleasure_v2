@@ -20,7 +20,7 @@
 	if(u_pw.equals(userinfo.getU_pw())){
 		if(u_id.equals("Master01") || u_id.equals("Master02") || u_id.equals("Master03") ||
 				u_id.equals("Master04") || u_id.equals("Master05") || u_id.equals("Master06")){
-			session.setAttribute("u_id", "master");			
+			session.setAttribute("u_id", "master");
 			response.sendRedirect("/GuiltyPleasure/main.jsp");
 			return;
 		}

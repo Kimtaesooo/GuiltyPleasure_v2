@@ -18,12 +18,18 @@ public class QBoradRegisterCommand implements Command {
 			throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		String id = (String) session.getAttribute("u_id");
+		System.out.println(id);
 	//	String power = req.getParameter("power"); 
 		ArrayList list = new ArrayList<>();
 		QBorad qb = new QBorad();
 		list = qb.getQBoard(id);
 		req.setAttribute("Boardlist", list);
-		return "/CORDING/QuizRegi/QuizRegBorad.jsp";
+		if(id.equals("master")){
+			return "/CORDING/QuizRegi/MQuizRegBorad.jsp";
+		}
+		else{
+			return "/CORDING/QuizRegi/QuizRegBorad.jsp";
+		}
 	}
 
 }

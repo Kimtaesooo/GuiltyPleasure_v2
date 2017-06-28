@@ -1,7 +1,5 @@
 package dto;
 
-import java.sql.Timestamp;
-
 public class Board {
 	private String b_num;
 	private String u_id;

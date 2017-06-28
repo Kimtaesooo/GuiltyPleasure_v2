@@ -90,6 +90,20 @@ public class QBorad {
 					sql = "select * from u_qreg order by uq_adopt";
 					psmt = con.prepareStatement(sql);
 					rs = psmt.executeQuery();
+					while (rs.next()) {
+						uq = new U_Quiz();
+						uq.setQ_type(rs.getString("Q_TYPE"));
+						uq.setU_id(rs.getString("U_ID"));
+						uq.setUq_adopt(rs.getString("UQ_ADOPT"));
+						uq.setUq_answer(rs.getString("UQ_ANSWER"));
+						uq.setUq_num(rs.getString("UQ_NUM"));
+						uq.setUq_question(rs.getString("UQ_QUESTION"));
+						uq.setUq_regdate(rs.getString("UQ_REGDATE"));
+						uq.setUq_wa_a(rs.getString("UQ_WA_A"));
+						uq.setUq_wa_b(rs.getString("UQ_WA_B"));
+						uq.setUq_wa_c(rs.getString("UQ_WA_C"));
+						qlist.add(uq);
+					}
 				} else if (check != null) {
 					//유저이고 등록한 퀴즈가 몇개있을경우
 					sql = "select * from u_qreg where u_id = ? order by uq_adopt";

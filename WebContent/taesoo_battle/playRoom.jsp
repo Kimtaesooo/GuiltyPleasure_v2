@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap332/css/bootstrap.min.css">
 <script	src="${pageContext.request.contextPath}/bootstrap332/js/jquery-3.2.1.min.js"></script>
 <script	src="${pageContext.request.contextPath}/bootstrap332/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
 <title>게임방</title>
 <script src=/GuiltyPleasure/ajax.js></script>
 </head>
@@ -18,88 +19,71 @@
 <%
 	String bangjang = request.getParameter("u_id");
 	String br_num = request.getParameter("br_num");
-	System.out.println("playRoom : 방장 : " + bangjang);
-	System.out.println("playRoom : 방번호: " + br_num);
+	String me = (String)session.getAttribute("u_id");
 
 	String[] gameUser = new String[2];
 	gameUser[0] = bangjang;
-	gameUser[1] = (String)session.getAttribute("u_id");
 	
-	System.out.println("playRoom : 방장 : " + gameUser[0]);
-	System.out.println("playRoom : 유저 : " + gameUser[1]);
-
 	String ip = request.getRemoteAddr();
-	System.out.println(ip);
-	//System.out.print(clientIP + " : ");
-%>
 
-<%
 	List roominfo = dao.roomInfo(bangjang); // DB 연결
 	Battle_Room room = (Battle_Room)roominfo.get(0);
 	
-	if(!bangjang.equals(gameUser[1]) && !gameUser[0].equals("") && !gameUser[1].equals("")){
+	// 방장외에 다른 사람이접속하면 방 인원수 카운팅
+	if(!session.getAttribute("u_id").equals(bangjang)){
+		gameUser[1] = (String)session.getAttribute("u_id");
 		dao.updateRoom(bangjang);
-	}	
-
+	}
+	
 	if (room.getBr_people() == 2) {
 %>
 		<script> alert('인원이 꽉 찼습니다.'); 	location.href="battleRoom.jsp";	</script>
 <% }%>
 
-<script>
-	function gameStart(){
-    	var param = "";
-    	sendRequest("POST", "startBattle.jsp", param, callback);
-	}
-    function callback(){
-    	if(httpRequest.readyState==4){
-    		if(httpRequest.status == 200){
-    			var windowQuiz = document.getElementById("windowQuiz");
-    			windowQuiz.innerHTML = httpRequest.responseText;
-    		}
-    		else{
-    			alert(httpRequest.status);
-    		}
-    	}
-    }
-    
-    function start(){
-    	
-    }
-    function callback2(){
-    	if(httpRequest.readyState==4){
-    		if(httpRequest.status == 200){
-    			var windowQuiz = document.getElementById("windowQuiz");
-    			windowQuiz.innerHTML = httpRequest.responseText;
-    		}
-    		else{
-    			alert(httpRequest.status);
-    		}
-    	}
-    }
-    
-</script>
+<!-- AJAX 부분 -->
+	<script>
+		function gameStart() {
+			var param = "";
+			sendRequest("POST", "startBattle.jsp", param, callback);
+		}
+		function callback() {
+			if (httpRequest.readyState == 4) {
+				if (httpRequest.status == 200) {
+					var windowQuiz = document.getElementById("windowQuiz");
+					windowQuiz.innerHTML = httpRequest.responseText;
+				} else {
+					alert(httpRequest.status);
+				}
+			}
+		}
 
+		function start() {
 
-
-
-
-
-
-
-
-
-
+		}
+		function callback2() {
+			if (httpRequest.readyState == 4) {
+				if (httpRequest.status == 200) {
+					var windowQuiz = document.getElementById("windowQuiz");
+					windowQuiz.innerHTML = httpRequest.responseText;
+				} else {
+					alert(httpRequest.status);
+				}
+			}
+		}
+	
+	</script>
+	
 
 	<br><br>
 	<input type="hidden" value="<%=ip%>" id="ip">
 	<input type="hidden" value="<%=gameUser[0]%>" id="bangjang">
 	<input type="hidden" value="<%=gameUser[1]%>" id="gameUser">
+	<input type="hidden" value="<%=me%>" id="me">
 	<input type="hidden" id="url" value="ws://localhost:8080">
 	<p class="text-center">배틀 게임 시작</p>
 	<br><br>
 	<div class="row">
-		<div class="col-md-7 col-md-offset-1">
+		<div class="col-md-7 col-md-offset-1" id="exam">
 			<textarea class="form-control" rows="16" id="windowQuiz" style="background-color:transparent;" readonly></textarea>
 			<br><br><br>
 			<div class="col-md-3">
@@ -154,6 +138,8 @@
 	
 	
 	
+	
+	<!-- 채팅 부분 -->
 	<script>
 		var textarea = document.getElementById("messageWindow");
 		var connectionCheck = document.getElementById("connectionCheck");
@@ -162,49 +148,51 @@
 		var inputMessage = document.getElementById('inputMessage');
 		var gameUser = document.getElementById('gameUser').value;
 		var bangjang = document.getElementById('bangjang').value;
-	
+		var me = document.getElementById('me').value;
+
 		webSocket.onerror = function(event) {
-	      onError(event)
-	    };
-	    webSocket.onopen = function(event) {
-	    	event = event + bangjang;
-	      onOpen(event)
-	    };
-	    webSocket.onmessage = function(event) {
-	      onMessage(event)
-	    };
-	    
-	    function onOpen(event) {
-	        textarea.value += "연결 성공\n";
-	        connectionCheck.value += ip+ "\n";
-	    }
-	    function onClose(session) {
-	    	webSocket.onClose(event);
-	    	document.myForm.action="battleRoom.jsp";
-	    	document.myForm.method="post";
-	    	document.myForm.submit();
-	    }
-	    function onError(event) {
-	      alert(event.data);
-	    }
-	    function onMessage(event) {
-	        textarea.value += event.data + "\n";
-	    }
-	    function send() {
-	    	if (inputMessage.value == ""){}
-	    	else{    		
-	        	textarea.value += "나 : " + inputMessage.value + "\n";
-	        	webSocket.send(gameUser+ " : " + inputMessage.value);
-	        	inputMessage.value = "";
-	    	}
-	    }
-	    
-	    function enterkey() {
-	        if (window.event.keyCode == 13) {
-	            send();
-	        }
-	    }
+			onError(event)
+		};
+		webSocket.onopen = function(event) {
+			onOpen(event)
+		};
+		webSocket.onmessage = function(event) {
+			onMessage(event)
+		};
+
+		function onOpen(event) {
+			textarea.value += "연결 성공\n";
+			connectionCheck.value += ip + "\n";
+		}
+		function onClose(session) {
+			webSocket.onClose(event);
+			document.myForm.action = "battleRoom.jsp";
+			document.myForm.method = "post";
+			document.myForm.submit();
+		}
+		function onError(event) {
+			alert(event.data);
+		}
+		function onMessage(event) {
+			textarea.value += event.data + "\n";
+		}
+		
+		function send() {
+			if (inputMessage.value == "") {
+			} else {
+				textarea.value += "나 : " + inputMessage.value + "\n";
+				webSocket.send(me + " : " + inputMessage.value);
+				inputMessage.value = "";
+			}
+		}
+
+		function enterkey() {
+			if (window.event.keyCode == 13) {
+				send();
+			}
+		}
 	</script>
+	
 	
 	
 

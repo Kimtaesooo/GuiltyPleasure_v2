@@ -23,7 +23,6 @@ import javax.websocket.server.ServerEndpoint;;
 @ServerEndpoint("/websocket")
 public class Websocket {
 	private static Set<Session> clients = Collections.synchronizedSet(new HashSet<Session>());
-	
 	@OnOpen
 	public void onOpen(Session session) {
 		// Add session to the connected sessions set
@@ -33,7 +32,7 @@ public class Websocket {
 	
 	@OnMessage
 	public void onMessage(String message, Session session) throws IOException {
-		System.out.println("技记 ID : " + session.getId() + " , 郴侩 : " + message);
+		System.out.println("技记 ID : " + session.getId() + ", " + message);
 		sendAll(session, message);
 		/*
 		synchronized (clients) {

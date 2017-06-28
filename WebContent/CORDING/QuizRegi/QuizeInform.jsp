@@ -8,6 +8,7 @@
 <title>quiz등록</title>
 <%
 	U_Quiz uq = (U_Quiz) request.getAttribute("uq");
+	String u_id = (String) session.getAttribute("u_id");
 %>
 <script>
 	function Check() {
@@ -144,8 +145,8 @@ button, input, optgroup, select, textarea {
 							<div class="col-md-5">
 								<div class="form-group">
 									<label for="textProblem">문제</label>
-									<textarea value="<%=uq.getUq_question()%>" name="textProblem"
-										id="problem" class="form-control"></textarea>
+									<textarea name="textProblem"
+										id="problem" class="form-control"><%=uq.getUq_question()%></textarea>
 								</div>
 								
 								<select name="genre" id="genre">
@@ -176,6 +177,9 @@ button, input, optgroup, select, textarea {
 								<input type="submit" value="수정" /> 
 								&nbsp;
 								<input type="reset" value="취소" />
+								<%if(u_id.equals("master")){%>
+									<input type="submit" value="관리자 퀴즈 등록" />
+								<%} %>
 							</div>
 						</div>
 					</div>

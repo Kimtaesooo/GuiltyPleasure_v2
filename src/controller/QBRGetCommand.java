@@ -14,6 +14,7 @@ public class QBRGetCommand implements Command {
 	@Override
 	public Object processCommand(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		// 여기서 id는 글 시퀀스 번호임
 		String id = req.getParameter("id");
 		QBorad qb = new QBorad();
 		U_Quiz uq = qb.getU_Quzi(id);

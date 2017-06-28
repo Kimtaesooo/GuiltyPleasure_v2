@@ -28,6 +28,7 @@ public class Board extends HttpServlet{
 		System.out.println("Board ¼­ºí¸´ ¿¬°á");
 		CommandFactory factory = CommandFactory.newInstance();
 		Command command = factory.createCommand(cmd);
+		System.out.println("cmd"+cmd);
 		
 		String url = (String) command.processCommand(req, resp);
 		RequestDispatcher dis = req.getRequestDispatcher(url);

@@ -85,7 +85,7 @@ a {color: #333;}
 						uq = (U_Quiz)list.get(i);
 					%>
 						<tr align="center" onclick="qinform('<%=uq.getUq_num()%>')">
-							<td><%=uq.getUq_num() %></td>
+							<td><%=i+1%></td>
 							<td><a><%=uq.getUq_question() %></a></td>
 							<td><%=uq.getUq_adopt() %></td>
 						<tr>

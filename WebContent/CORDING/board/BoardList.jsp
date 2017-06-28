@@ -1,3 +1,5 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.List"%>
 <%@page import="dto.Board"%>
 <%@page import="dao.boardmodule.*"%>
@@ -36,8 +38,6 @@
 	<jsp:include page="/nav.jsp" />
 	<%
 		request.setCharacterEncoding("euc-kr");
-	%>
-	<%
 		response.setCharacterEncoding("euc-kr");
 	%>
 	<jsp:useBean id="dao" class="dao.boardmodule.FreeBoard" />

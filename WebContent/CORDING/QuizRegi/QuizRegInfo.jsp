@@ -56,6 +56,9 @@ input, button, select, textarea {
 }
 </style>
 </head>
+<%
+	String u_id = (String)session.getAttribute("u_id");
+%>
 <body>
 <!--리스트로 안가져요 -->
 <jsp:include page="/test_nav.jsp"/>
@@ -67,10 +70,20 @@ input, button, select, textarea {
 								<h2 class="to-animate intro-animate-1">문제 등록 이 뭔가요? </h2>
 								<p class="to-animate intro-animate-2">자신이 문제를 출제하고 관리자가 검토후에 문제 등록이 진행됩니다.</p>
 								<p class="to-animate intro-animate-3">채택된 문제는 포인트를 드립니다.</p>
+								<%if(!u_id.equals("master")){ %>
 								<form action="/GuiltyPleasure/borad">
-								<input type="hidden" name="cmd" value="QREGI_BOARD_LIST"/>
-								<input type="submit" value="출제하러 가기">
+									<input type="hidden" name="cmd" value="QREGI_BOARD_LIST"/>
+									<input class="btn btn-success" type="submit" value="출제하러 가기">
 								</form>
+								<%} %>
+								<%if(u_id.equals("master")){ %>
+								<form action="/GuiltyPleasure/CORDING/QuizRegi/QuizReg.jsp">
+									<input class="btn btn-success" type="submit" value="관리자모드  : 출제">
+								</form>
+								<form action="/GuiltyPleasure/borad">
+									<input type="hidden" name="cmd" value="QREGI_BOARD_LIST"/>
+									<input class="btn btn-success" type="submit" value="문제 출력 확인">
+								<%}%>
 							</div>
 						</div>
 					</div>						

@@ -82,6 +82,9 @@ textarea {
 </style>
 <!-- nav바 수정부분 여기까지 -->
 </head>
+<%
+	String u_id = (String)session.getAttribute("u_id");
+%>
 <body>
 <jsp:include page="/test_nav.jsp"/>
 <br><br><br><br><br>
@@ -112,6 +115,10 @@ textarea {
 					<input type= "submit" value="문제 제출" />
 					&nbsp;&nbsp;&nbsp;
 					<input type ="reset" value="취소" />
+					<%if(u_id.equals("master")){ %>
+						&nbsp;&nbsp;&nbsp;
+						<input type ="reset" value="관리자 모드 바로 제출" />
+					<%} %>
 					<br><br>
 	
 	</div>
