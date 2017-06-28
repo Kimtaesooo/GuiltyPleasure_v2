@@ -24,6 +24,8 @@
 		document.frmRead.submit();
 	}
 </script>
+
+
 <%
 	String gameUser = (String)session.getAttribute("u_id");
 	String ip = request.getRemoteAddr();	
@@ -132,8 +134,8 @@
 						<div class="form-group">
 							<label for="inputPassword" class="col-sm-2 control-label">포인트</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control onlyNumber" name="br_point"
-									id="BR_POINT" placeholder="포인트를 입력해주세요">
+								<input type="text"  class="form-control onlyNumber" name="br_point"
+									id="BR_POINT" placeholder="포인트를 입력해주세요">									
 							</div>
 						</div>
 						<div class="form-group">
@@ -173,5 +175,13 @@
 	<input type="hidden" name="u_id"/>
 	<input type="hidden" name="br_num"/>
 </form>	
+<script>
+$(".onlyNumber").keyup(function(event){
+    if (!(event.keyCode >=37 && event.keyCode<=40)) {
+        var inputVal = $(this).val();
+        $(this).val(inputVal.replace(/[^0-9]/gi,''));
+    }
+});
+</script>
 </body>
 </html>
