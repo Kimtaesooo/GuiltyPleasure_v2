@@ -288,7 +288,11 @@
 
 				<!-- 보너스 포인트 적립 팝업 -->
 				<%
+				
 					//포인트 적립 피카츄 기능위해 랜덤좌표 변수
+					//5분의 1확률로 띄우기
+					int bonusPopup = (int) Math.floor(Math.random() * 5);
+					if(bonusPopup==1){
 					int topPosition = (int) Math.floor(Math.random() * 1000);
 					int leftPosition = (int) Math.floor(Math.random() * 1000);
 				%>
@@ -299,11 +303,14 @@
 							style="position: relative; top: <%=topPosition%>px; left: <%=leftPosition%>px; z-index:1000;">
 							<input type="image" name="submit" value="submit"
 								src="/GuiltyPleasure/CORDING/shop/img/pikachu.gif" /> <input
-								type="hidden" name="id" value="<%=id%>"> <input
+								type="hidden" name="id" value="<%=id%>"><input
 								type="hidden" name="cmd" value="bonusPoint">
 						</div>
 					</form>
 				</div>
+				<%
+				}
+				%>
 
 
 
