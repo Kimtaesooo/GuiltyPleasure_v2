@@ -57,76 +57,52 @@
 <link href='https://fonts.googleapis.com/css?family=Open+Sans'
 	rel='stylesheet' type='text/css'>
 
-<!-- Animate.css -->
-<link rel="stylesheet"
-	href="/GuiltyPleasure/design/mintstrap/outline/css/animate.css">
-<!-- Icomoon Icon Fonts-->
-<link rel="stylesheet"
-	href="/GuiltyPleasure/design/mintstrap/outline/css/icomoon.css">
-<!-- Simple Line Icons-->
-<link rel="stylesheet"
-	href="/GuiltyPleasure/design/mintstrap/outline/css/simple-line-icons.css">
-<!-- Magnific Popup -->
-<link rel="stylesheet"
-	href="/GuiltyPleasure/design/mintstrap/outline/css/magnific-popup.css">
-<!-- Owl Carousel -->
-<link rel="stylesheet"
-	href="/GuiltyPleasure/design/mintstrap/outline/css/owl.carousel.min.css">
-<link rel="stylesheet"
-	href="/GuiltyPleasure/design/mintstrap/outline/css/owl.theme.default.min.css">
 
-<!-- Theme Style -->
-<link rel="stylesheet"
-	href="/GuiltyPleasure/design/mintstrap/outline/css/style.css">
-<!-- Modernizr JS -->
-<script
-	src="/GuiltyPleasure/design/mintstrap/outline/js/modernizr-2.6.2.min.js"></script>
+
+	<!-- jQuery -->
+	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.waypoints.min.js"></script>
+	<!-- Magnific Popup -->
+	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.magnific-popup.min.js"></script>
+	<!-- Owl Carousel -->
+	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/owl.carousel.min.js"></script>
+	<!-- toCount -->
+	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.countTo.js"></script>
+	<!-- Main JS -->
+	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/main.js"></script>
+<!-- Animate.css -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/icomoon.css">
+	<!-- Simple Line Icons-->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/simple-line-icons.css">
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/magnific-popup.css">
+	<!-- Owl Carousel -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/owl.theme.default.min.css">
+	<!-- Salvattore -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/salvattore.css">
+	<!-- Theme Style -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/style.css">
+	<!-- Modernizr JS -->
+	<script src="js/modernizr-2.6.2.min.js"></script>
+	
+	
+	
 <!-- FOR IE9 below -->
 <!--[if lt IE 9]>
 	<script src="/GuiltyPleasure/design/mintstrap/outline/js/respond.min.js"></script>
 	<![endif]-->
 
-<!-- jQuery -->
-<script src="/GuiltyPleasure/design/mintstrap/outline/js/jquery.min.js"></script>
-<!-- Bootstrap -->
-<script
-	src="/GuiltyPleasure/design/mintstrap/outline/js/bootstrap.min.js"></script>
-<!-- jQuery Easing -->
-<script
-	src="/GuiltyPleasure/design/mintstrap/outline/js/jquery.easing.1.3.js"></script>
 
-<!-- Waypoints -->
-<script
-	src="/GuiltyPleasure/design/mintstrap/outline/js/jquery.waypoints.min.js"></script>
-<!-- Magnific Popup -->
-<script
-	src="/GuiltyPleasure/design/mintstrap/outline/js/jquery.magnific-popup.min.js"></script>
-<!-- Owl Carousel -->
-<script
-	src="/GuiltyPleasure/design/mintstrap/outline/js/owl.carousel.min.js"></script>
-<!-- toCount -->
-<script
-	src="/GuiltyPleasure/design/mintstrap/outline/js/jquery.countTo.js"></script>
-<!-- Main JS 
-	<script src="/GuiltyPleasure/design/mintstrap/outline/js/main.js"></script>
--->
 <style>
-.navbar-brand {
-  text-align: left;
-  font-weight: bold;
-  display: -moz-inline-stack;
-  display: inline-block;
-  zoom: 1;
-  *display: inline;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 20px;
-  float: left !important;
-  font-family: "Montserrat", arial, sans-serif;
-  color: #000000;
-  z-index: 10;
-  position: relative;
-}
+
 
 .fh5co-feature, .fh5co-figure {
   display: block;
@@ -146,53 +122,40 @@
   margin-bottom: 0em;
 }
 
-.navbar-brand > span {
-    display: -moz-inline-stack;
-    display: inline-block;
-    zoom: 1;
-    float: left;
-    border: 2px solid black;
-    padding: 7px 10px 7px 12px;
+
+
+	
+
+.fh5co-nav-toggle > span {color: #333;}	a {color: #333;}
+.navbar-brand {color: #333;}#fh5co-offcanvass .fh5co-lead {font-size: 15px;color: #333;}
+.navbar-brand > span {border: 2px solid #333;}
+.navbar-brand:hover {color: #3c763d;}
+a {color: #333;}
+#fh5co-offcanvass {background: #d3d9da;color: #878c93;}
+
+
+
+.fh5co-nav-toggle.active i::before, .fh5co-nav-toggle.active i::after {
+  background: #333;
 }
+.fh5co-nav-toggle i {
+  background: #333;
+}
+.fh5co-nav-toggle i::before, .fh5co-nav-toggle i::after {
+  background: #333;
+}
+
+
+
+
 </style>
 
 </head>
+
 <body>
-	<div id="fh5co-offcanvass">
-		<ul>
-			<li class="active"><a href="#" data-nav-section="home">Home</a></li>
-			<li><a href="#" data-nav-section="features">Features</a></li>
-			<li><a href="#" data-nav-section="design">Design</a></li>
-			<li><a href="#" data-nav-section="testimonies">Testimonies</a></li>
-			<li><a href="#" data-nav-section="products">Products</a></li>
-			<li><a href="#" data-nav-section="benefits">Benefits</a></li>
-			<li><a href="#" data-nav-section="pricing">Pricing</a></li>
-			<li><a href="#" data-nav-section="faqs">FAQs</a></li>
-		</ul>
-		<h3 class="fh5co-lead">Connect with us</h3>
-		<p class="fh5co-social-icons">
-			<a href="#"><i class="icon-twitter"></i></a> <a href="#"><i
-				class="icon-facebook"></i></a> <a href="#"><i class="icon-instagram"></i></a>
-			<a href="#"><i class="icon-dribbble"></i></a> <a href="#"><i
-				class="icon-youtube"></i></a>
-		</p>
-	</div>
+<jsp:include page="/test_nav.jsp"/>
 
-	<div id="fh5co-menu" class="navbar">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"
-						data-toggle="collapse" data-target="#fh5co-navbar"
-						aria-expanded="false" aria-controls="navbar"><span>Menu</span>
-						<i></i></a> <a href="index.html" class="navbar-brand"><span>Outline</span></a>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div id="fh5co-page">
-		<div id="fh5co-wrap">
+	
 			
 			<!-- END .header -->
 
@@ -249,6 +212,20 @@
 					});
 
 				
+					function noEvent() { // 새로 고침 방지
+			            if (event.keyCode == 116) {
+			                alert("새로고침을 할 수 없습니다.");
+			                event.keyCode = 2;
+			                return false;
+			            } else if (event.ctrlKey
+			                    && (event.keyCode == 78 || event.keyCode == 82)) {
+			                return false;
+			            }
+			        }
+					
+			  		  document.onkeydown = noEvent;
+
+
 				</script>
 				
 
@@ -298,7 +275,7 @@
 				%>
 
 				<div id="popup" class="main_pop" style="position: absolute;">
-					<form method="post" action="/GuiltyPleasure/shop">
+					<form method="post" action="/GuiltyPleasure/bonusPoint">
 						<div id="contents"
 							style="position: relative; top: <%=topPosition%>px; left: <%=leftPosition%>px; z-index:1000;">
 							<input type="image" name="submit" value="submit"
@@ -456,7 +433,7 @@
 											이거가격:
 											<%=item.getS_price()%><br> 니포인트:
 											<%=uDto.getPoint()%>
-											<form action="/GuiltyPleasure/shop" method="post"
+											<form action="/GuiltyPleasure/shopBuy" method="post"
 												id="buy${cnt}">
 												<%
 													//닉네임 변경아이템일경우 닉네임 변경란 추가
@@ -469,6 +446,7 @@
 														<input type="text" name="nickname" class="form-control">
 													</div>
 												</div>
+												<br><br>
 												<%
 													}
 												%>
@@ -529,7 +507,7 @@
 											<h3><%=item.getS_itemname()%></h3>
 										</div>
 										<div class="modal-body">
-											<form action="/GuiltyPleasure/shop" method="post"
+											<form action="/GuiltyPleasure/shopUpdate" method="post"
 												id="edit${cnt}" class="form-horizontal">
 
 												<br>
@@ -589,7 +567,7 @@
 
 												</div>
 												<div class="col-md-4 col-sm-4 col-xs-4 col-xxs-4">
-													<form action="/GuiltyPleasure/shop" method="post">
+													<form action="/GuiltyPleasure/shopDelete" method="post">
 														<input type="hidden" name="code"
 															value="<%=item.getS_itemcode()%>"> <input
 															type="hidden" name="cmd" value="SHOPDELETE">
@@ -625,7 +603,7 @@
 											<h3>추가해보자</h3>
 										</div>
 										<div class="modal-body">
-											<form action="/GuiltyPleasure/shop" method="post" id="add">
+											<form action="/GuiltyPleasure/shopAdd" method="post" id="add">
 												<p>
 													이름:<input type="text" name="name" value=""><br>
 													가격:<input type="text" name="price" value=""><br>
@@ -701,19 +679,16 @@
 					</div>
 				</div>
 				<!-- 템플릿 적용 페이지 끝 -->
-				<br>
+				<br><br><br><br><br>
 				<div align="center">
 					<font color=gray> <%=nowPage + 1%> / <%=totalPage%> Pages
-					</font> <br> <br>
+					</font> <br> <br><br><br><br>
 
 				</div>
 
 
 
 			</div>
-		</div>
-
 		
-	</div>
 </body>
 </html>
