@@ -34,6 +34,8 @@
 		gameUser[1] = (String)session.getAttribute("u_id");
 		dao.updateRoom(bangjang);
 	}
+	System.out.println(gameUser[0]);
+	System.out.println(gameUser[1]);
 	
 	if (room.getBr_people() == 2) {
 %>
@@ -78,6 +80,7 @@
 	<input type="hidden" value="<%=ip%>" id="ip">
 	<input type="hidden" value="<%=gameUser[0]%>" id="bangjang">
 	<input type="hidden" value="<%=gameUser[1]%>" id="gameUser">
+	<input type="hidden" value="<%=br_num%>" id="br_num">
 	<input type="hidden" value="<%=me%>" id="me">
 	<input type="hidden" id="url" value="ws://localhost:8080">
 	<p class="text-center">배틀 게임 시작</p>
@@ -149,6 +152,7 @@
 		var gameUser = document.getElementById('gameUser').value;
 		var bangjang = document.getElementById('bangjang').value;
 		var me = document.getElementById('me').value;
+		var br_num = document.getElementById('br_num').value;
 
 		webSocket.onerror = function(event) {
 			onError(event)
@@ -174,17 +178,18 @@
 			alert(event.data);
 		}
 		function onMessage(event) {
-			var abcd = (String) event;
-			alert(abcd);
-			textarea.value += abcd + "\n";
-			textarea.value += event.data + "\n";
+			var message = new String(event.data);
+			var strArray = message.split(':');
+			if(strArray[0]==br_num){
+				textarea.value += strArray[1] + " : " + strArray[2] + "\n";
+			}
 		}
 		
 		function send() {
 			if (inputMessage.value == "") {
 			} else {
-				textarea.value += "나 : " + inputMessage.value + "\n";
-				webSocket.send(me + " : " + inputMessage.value);
+				textarea.value += me + " : " + inputMessage.value + "\n";
+				webSocket.send(br_num + ":" + me +":"+inputMessage.value);
 				inputMessage.value = "";
 			}
 		}
