@@ -60,7 +60,9 @@
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
 <!-- nav바 수정부분 -->	
+
 <style>
+
 .fh5co-nav-toggle > span {color: #333;}	a {color: #333;}
 .navbar-brand {color: #333;}#fh5co-offcanvass .fh5co-lead {font-size: 15px;color: #333;}
 .navbar-brand > span {border: 2px solid #333;}
@@ -148,10 +150,10 @@ a {color: #333;}
 						<br>
 						<img src="https://cdn2.iconfinder.com/data/icons/new-year-s-hand-drawn-basic/64/question_mark-128.png">
 					</a>
-			</div>
-
+			</div>			
         </div>
 
+        <div class="col-md-3" id="pop"><jsp:include page="/chaticon3.jsp"/></div>
         <hr>
 
 
@@ -161,7 +163,6 @@ a {color: #333;}
                     <p>Copyright &copy; Guilty Pleasure</p>
                 </div>
             </div>
-
         </footer>
 
     </div>
