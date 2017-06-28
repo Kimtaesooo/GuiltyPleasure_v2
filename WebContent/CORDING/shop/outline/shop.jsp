@@ -108,84 +108,56 @@ a {color: #333;}
 
 				<br> <br>
 				<script>
-					jQuery(function() {
-
-						/*
-						$("a[role='explain']").click(function() {
-							$("#explainModal").modal();
-						});
-						 */
-						var explainButton = $("button[role='explain']");
-						var updateButton = $("button[role='update']");
-						var buyButton = $("button[role='buy']");
-
-						for (i = 1; i <= explainButton.length; i++) {
-							explainModal(i);
-						}
-						for (i = 1; i <= updateButton.length; i++) {
-							updateModal(i);
-						}
-						for (i = 1; i <= buyButton.length; i++) {
-							buyModal(i);
-						}
-
-					});
+					
 
 					function explainModal(i) {
-						$("#explainButton" + i).bind("click", function(e) {
 							$("#explainModal" + i).modal();
-						});
 					}
+					
 					function updateModal(i) {
-						$("#updataButton" + i).bind("click", function(e) {
 							$("#updateModal" + i).modal();
-						});
 					}
 
+					function addModal() {
+						
+						$("#addModal").modal();
+				
+					}
+					
 					function buyModal(i) {
-						var defaultText = $("#Check").text()
+						//유저의 포인트에서 상품의 가격을 뺀 잔액의 크기를 구함
+						var leftMoney = document.getElementById("getPoint").value - document.getElementById("getPrice"+ i).value;
 
-						$("#buyButton" + i)
-								.bind(
-										"click",
-										function(e) {
-											//유저의 포인트에서 상품의 가격을 뺀 잔액의 크기를 구함
-											var leftMoney = document
-													.getElementById("getPoint").value
-													- document
-															.getElementById("getPrice"
-																	+ i).value;
-
-											//상품 수량이 없을때 구매 불가능하도록
-											if (document
-													.getElementById("getLimit"
-															+ i).value < 1) {
-												$("#cantBuyModal").modal();
-												$("#Check").text(defaultText);
-											} else {
-												//잔액의 크기가 마이너스일경우 구매불가능하도록
-												if (leftMoney < 0) {
-													$("#Check")
-															.text(
-																	-leftMoney
-																			+ "원 더 갖고오세요^^");
-													$("#cantBuyModal").modal();
-												} else {
-													$("#buyModal" + i).modal();
-												}
-											}
-
-										});
-
+						//상품 수량이 없을때 구매 불가능하도록
+						if (document.getElementById("getLimit"+ i).value < 1) {
+							$("#check").text("재고가 부족합니다ㅠㅠ");
+							$("#cantBuyModal").modal();
+						} 
+						//잔액의 크기가 마이너스일경우 구매불가능하도록
+						else {
+							if (leftMoney < 0) {
+								$("#check").text(-leftMoney+ "원 더 갖고오세요^^");
+								$("#cantBuyModal").modal();
+							} else {
+								$("#buyModal" + i).modal();
+							}
+						}
 					}
 
-					$(function() {
-						$("#addButton").click(function() {
-							$("#addModal").modal();
+					
+					
+					$(document).ready(function(){
+						$('#contents').click(function(){
+							$('#popup').hide();
+							
 						});
 					});
-				</script>
 
+				
+				</script>
+				
+
+	
 				<%
 					request.setCharacterEncoding("euc-kr");
 				%>
@@ -216,24 +188,55 @@ a {color: #333;}
 					String id = (String) session.getAttribute("u_id");
 					UserInfoDTO uDto = userdao.searchUserInfo(id);
 				%>
-			
-				<br><br>
+
+
+
+				<!-- 보너스 포인트 적립 팝업 -->
+				<%
+				
+					//포인트 적립 피카츄 기능위해 랜덤좌표 변수
+					//5분의 1확률로 띄우기
+					int bonusPopup = (int) Math.floor(Math.random() * 5);
+					if(bonusPopup==1){
+					int topPosition = (int) Math.floor(Math.random() * 1000);
+					int leftPosition = (int) Math.floor(Math.random() * 1000);
+				%>
+
+				<div id="popup" class="main_pop" style="position: absolute;">
+					<form method="post" action="/GuiltyPleasure/shop">
+						<div id="contents"
+							style="position: relative; top: <%=topPosition%>px; left: <%=leftPosition%>px; z-index:1000;">
+							<input type="image" name="submit" value="submit"
+								src="/GuiltyPleasure/CORDING/shop/img/pikachu.gif" /> <input
+								type="hidden" name="id" value="<%=id%>"><input
+								type="hidden" name="cmd" value="bonusPoint">
+						</div>
+					</form>
+				</div>
+				<%
+				}
+				%>
+
+
+
+				<br>
+				<br>
 
 				<!-- 템플릿 적용 페이지 -->
 				<div class="row">
-					<div style="padding-top:0px; height:90px; background-color: #4fd2c2">
 					<div
-						class="col-md-8 col-md-offset-2 fh5co-section-heading text-center">
-						<h2
-							class="fh5co-lead animate-single product-animate-1 fadeIn animated">Item
-							Shop</h2>
-						<p 
-							class="fh5co-sub animate-single product-animate-2 fadeIn animated">
-							<font size="3">
-							실력이 구리면 어쩔 수 없죠. 템빨로 승부하세요!<%=id%>님!
-							</font> 
-						</p>
-					</div>
+						style="padding-top: 0px; height: 90px; background-color: #4fd2c2">
+						<div
+							class="col-md-8 col-md-offset-2 fh5co-section-heading text-center">
+							<h2
+								class="fh5co-lead animate-single product-animate-1 fadeIn animated">Item
+								Shop</h2>
+							<p
+								class="fh5co-sub animate-single product-animate-2 fadeIn animated">
+								<font size="3"> 실력이 구리면 어쩔 수 없죠. 템빨로 승부하세요!<%=id%>님!
+								</font>
+							</p>
+						</div>
 					</div>
 				</div>
 
@@ -275,11 +278,9 @@ a {color: #333;}
 								<a class="fh5co-figure to-animate fadeInUp animated">
 
 									<figure>
-										<input type="image" class="add" id="addButton"
+										<input type="image" class="add" onclick="addModal()"
 											src="/GuiltyPleasure/CORDING/shop/img/add.png" />
 									</figure>
-									<h3 class="fh5co-figure-lead">아이템 추가</h3>
-									<p class="fh5co-figure-text">아이템을 추가하자.</p>
 								</a>
 
 							</div>
@@ -292,33 +293,30 @@ a {color: #333;}
 							%>
 
 
-
-
-
-
 							<!-- 삼품 목록 출력 -->
 							<div class="col-md-3 col-sm-6 col-xs-6 col-xxs-12">
 
-								<a class="fh5co-figure to-animate fadeInUp animated" style="border:1px solid gray;">
+								<a class="fh5co-figure to-animate fadeInUp animated"
+									style="border: 1px solid gray;">
 									<figure>
 										<img
 											src="/GuiltyPleasure/CORDING/shop/img/<%=item.getS_itemcode()%>.png"
 											onERROR="this.src='/GuiltyPleasure/CORDING/shop/img/default.jpg'"
 											class="img-responsive">
 									</figure>
-									
-									<h3 class="fh5co-figure-lead"><hr><%=item.getS_itemname()%><hr></h3>
-									
+
+									<h3 class="fh5co-figure-lead">
+										<hr><%=item.getS_itemname()%><hr>
+									</h3>
+
 									<p class="fh5co-figure-text">
-										<font size="2">
-										상품가격 :
-										<%=item.getS_price()%><br> 사용기한:
-										<%=item.getS_deadline()%><br> 남은수량 :
-										<%=item.getS_limit_num()%>
+										<c:set var="cnt" value="${cnt+1}" />
+										<font size="2"> 상품가격 : <%=item.getS_price()%><br>
+											사용기한: <%=item.getS_deadline()%><br> 남은수량 : <%=item.getS_limit_num()%>
 										</font>
 									<p align="right">
 										<button type="button" role="buy"
-											class="btn btn-default btn-xs" id="buyButton${cnt=cnt+1}">
+											class="btn btn-default btn-xs" onclick="buyModal(${cnt})">
 											구매</button>
 
 										<!-- 히든 버튼으로 아이템의 수량, 가격 값 저장/ 값을 체크하여 구매 불가능한 상황에서는 jquery에서 구매 모달 대신 구매 불가 모달을 띄울수있도록 함-->
@@ -329,13 +327,14 @@ a {color: #333;}
 											value="<%=item.getS_price()%>">
 
 										<button type="button" role="explain"
-											class="btn btn-default btn-xs" id="explainButton${cnt}">설명</button>
+											class="btn btn-default btn-xs" onclick="explainModal(${cnt})">설명</button>
 
 										<!-- 관리자일경우 설정버튼 -->
 										<%
 											if (id.equals("master")) {
 										%>
-										<input type="image" class="update" id="updataButton${cnt}"
+										<input type="image" class="update"
+											onclick="updateModal(${cnt})"
 											src="/GuiltyPleasure/CORDING/shop/img/edit.png" />
 										<%
 											}
@@ -345,13 +344,6 @@ a {color: #333;}
 								</a>
 
 							</div>
-
-
-
-
-
-
-
 
 
 							<!-- 구매 버튼 모달 -->
@@ -411,18 +403,6 @@ a {color: #333;}
 									</div>
 								</div>
 							</div>
-
-
-
-
-
-
-
-
-
-
-
-
 
 							<!-- 설명 버튼 모달 -->
 							<div class="modal fade" id="explainModal${cnt}" data-backdrop=""
@@ -594,7 +574,7 @@ a {color: #333;}
 										</div>
 										<div class="modal-body">
 											<!-- 재고는있는데 포인트가 부족한경우에는 jquery에서 다른 메시지로 변경함 -->
-											<p id="Check">재고가 떨어졌어요ㅠㅠ 다음에 다시 들러주세요</p>
+											<p id="check"></p>
 										</div>
 										<div class="modal-footer">
 											<button type="button" class="btn btn-default"
@@ -603,16 +583,6 @@ a {color: #333;}
 									</div>
 								</div>
 							</div>
-
-
-
-
-
-
-
-
-
-							
 						</div>
 					</div>
 
@@ -636,23 +606,19 @@ a {color: #333;}
 					</div>
 				</div>
 				<!-- 템플릿 적용 페이지 끝 -->
-<br>
+				<br>
 				<div align="center">
 					<font color=gray> <%=nowPage + 1%> / <%=totalPage%> Pages
-					</font> <br> <br> 
+					</font> <br> <br>
 
 				</div>
+
+
 
 			</div>
 		</div>
 
 		
 	</div>
-
-
-
-
-
-
 </body>
 </html>
