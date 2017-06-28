@@ -48,6 +48,17 @@
 <meta name="twitter:url" content="" />
 <meta name="twitter:card" content="" />
 
+<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+<link rel="shortcut icon" href="favicon.ico">
+
+<!-- Google Webfonts -->
+<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700'
+	rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans'
+	rel='stylesheet' type='text/css'>
+
+
+
 	<!-- jQuery -->
 	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.min.js"></script>
 	<!-- jQuery Easing -->
@@ -81,23 +92,70 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/style.css">
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
-<!-- nav바 수정부분 -->	
+	
+	
+	
+<!-- FOR IE9 below -->
+<!--[if lt IE 9]>
+	<script src="/GuiltyPleasure/design/mintstrap/outline/js/respond.min.js"></script>
+	<![endif]-->
+
+
 <style>
+
+
+.fh5co-feature, .fh5co-figure {
+  display: block;
+  color: #444;
+  float: left;
+  width: 100%;
+  text-align: center;
+  background: #fff;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  border-radius: 4px;
+  padding: 0px 0px;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+  margin-bottom: 0em;
+}
+
+
+
+	
+
 .fh5co-nav-toggle > span {color: #333;}	a {color: #333;}
 .navbar-brand {color: #333;}#fh5co-offcanvass .fh5co-lead {font-size: 15px;color: #333;}
 .navbar-brand > span {border: 2px solid #333;}
 .navbar-brand:hover {color: #3c763d;}
 a {color: #333;}
 #fh5co-offcanvass {background: #d3d9da;color: #878c93;}
+
+
+
+.fh5co-nav-toggle.active i::before, .fh5co-nav-toggle.active i::after {
+  background: #333;
+}
+.fh5co-nav-toggle i {
+  background: #333;
+}
+.fh5co-nav-toggle i::before, .fh5co-nav-toggle i::after {
+  background: #333;
+}
+
+
+
+
 </style>
-<!-- nav바 수정부분 여기까지 -->
+
 </head>
+
 <body>
 <jsp:include page="/test_nav.jsp"/>
 
-
-	<div id="fh5co-page">
-		<div id="fh5co-wrap">
+	
 			
 			<!-- END .header -->
 
@@ -154,6 +212,20 @@ a {color: #333;}
 					});
 
 				
+					function noEvent() { // 새로 고침 방지
+			            if (event.keyCode == 116) {
+			                alert("새로고침을 할 수 없습니다.");
+			                event.keyCode = 2;
+			                return false;
+			            } else if (event.ctrlKey
+			                    && (event.keyCode == 78 || event.keyCode == 82)) {
+			                return false;
+			            }
+			        }
+					
+			  		  document.onkeydown = noEvent;
+
+
 				</script>
 				
 
@@ -203,7 +275,7 @@ a {color: #333;}
 				%>
 
 				<div id="popup" class="main_pop" style="position: absolute;">
-					<form method="post" action="/GuiltyPleasure/shop">
+					<form method="post" action="/GuiltyPleasure/bonusPoint">
 						<div id="contents"
 							style="position: relative; top: <%=topPosition%>px; left: <%=leftPosition%>px; z-index:1000;">
 							<input type="image" name="submit" value="submit"
@@ -361,7 +433,7 @@ a {color: #333;}
 											이거가격:
 											<%=item.getS_price()%><br> 니포인트:
 											<%=uDto.getPoint()%>
-											<form action="/GuiltyPleasure/shop" method="post"
+											<form action="/GuiltyPleasure/shopBuy" method="post"
 												id="buy${cnt}">
 												<%
 													//닉네임 변경아이템일경우 닉네임 변경란 추가
@@ -374,6 +446,7 @@ a {color: #333;}
 														<input type="text" name="nickname" class="form-control">
 													</div>
 												</div>
+												<br><br>
 												<%
 													}
 												%>
@@ -434,7 +507,7 @@ a {color: #333;}
 											<h3><%=item.getS_itemname()%></h3>
 										</div>
 										<div class="modal-body">
-											<form action="/GuiltyPleasure/shop" method="post"
+											<form action="/GuiltyPleasure/shopUpdate" method="post"
 												id="edit${cnt}" class="form-horizontal">
 
 												<br>
@@ -494,7 +567,7 @@ a {color: #333;}
 
 												</div>
 												<div class="col-md-4 col-sm-4 col-xs-4 col-xxs-4">
-													<form action="/GuiltyPleasure/shop" method="post">
+													<form action="/GuiltyPleasure/shopDelete" method="post">
 														<input type="hidden" name="code"
 															value="<%=item.getS_itemcode()%>"> <input
 															type="hidden" name="cmd" value="SHOPDELETE">
@@ -530,7 +603,7 @@ a {color: #333;}
 											<h3>추가해보자</h3>
 										</div>
 										<div class="modal-body">
-											<form action="/GuiltyPleasure/shop" method="post" id="add">
+											<form action="/GuiltyPleasure/shopAdd" method="post" id="add">
 												<p>
 													이름:<input type="text" name="name" value=""><br>
 													가격:<input type="text" name="price" value=""><br>
@@ -606,19 +679,16 @@ a {color: #333;}
 					</div>
 				</div>
 				<!-- 템플릿 적용 페이지 끝 -->
-				<br>
+				<br><br><br><br><br>
 				<div align="center">
 					<font color=gray> <%=nowPage + 1%> / <%=totalPage%> Pages
-					</font> <br> <br>
+					</font> <br> <br><br><br><br>
 
 				</div>
 
 
 
 			</div>
-		</div>
-
 		
-	</div>
 </body>
 </html>
