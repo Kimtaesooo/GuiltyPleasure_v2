@@ -48,148 +48,53 @@
 <meta name="twitter:url" content="" />
 <meta name="twitter:card" content="" />
 
-<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-<link rel="shortcut icon" href="favicon.ico">
-
-<!-- Google Webfonts -->
-<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700'
-	rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Open+Sans'
-	rel='stylesheet' type='text/css'>
-
+	<!-- jQuery -->
+	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.waypoints.min.js"></script>
+	<!-- Magnific Popup -->
+	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.magnific-popup.min.js"></script>
+	<!-- Owl Carousel -->
+	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/owl.carousel.min.js"></script>
+	<!-- toCount -->
+	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.countTo.js"></script>
+	<!-- Main JS -->
+	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/main.js"></script>
 <!-- Animate.css -->
-<link rel="stylesheet"
-	href="/GuiltyPleasure/design/mintstrap/outline/css/animate.css">
-<!-- Icomoon Icon Fonts-->
-<link rel="stylesheet"
-	href="/GuiltyPleasure/design/mintstrap/outline/css/icomoon.css">
-<!-- Simple Line Icons-->
-<link rel="stylesheet"
-	href="/GuiltyPleasure/design/mintstrap/outline/css/simple-line-icons.css">
-<!-- Magnific Popup -->
-<link rel="stylesheet"
-	href="/GuiltyPleasure/design/mintstrap/outline/css/magnific-popup.css">
-<!-- Owl Carousel -->
-<link rel="stylesheet"
-	href="/GuiltyPleasure/design/mintstrap/outline/css/owl.carousel.min.css">
-<link rel="stylesheet"
-	href="/GuiltyPleasure/design/mintstrap/outline/css/owl.theme.default.min.css">
-
-<!-- Theme Style -->
-<link rel="stylesheet"
-	href="/GuiltyPleasure/design/mintstrap/outline/css/style.css">
-<!-- Modernizr JS -->
-<script
-	src="/GuiltyPleasure/design/mintstrap/outline/js/modernizr-2.6.2.min.js"></script>
-<!-- FOR IE9 below -->
-<!--[if lt IE 9]>
-	<script src="/GuiltyPleasure/design/mintstrap/outline/js/respond.min.js"></script>
-	<![endif]-->
-
-<!-- jQuery -->
-<script src="/GuiltyPleasure/design/mintstrap/outline/js/jquery.min.js"></script>
-<!-- Bootstrap -->
-<script
-	src="/GuiltyPleasure/design/mintstrap/outline/js/bootstrap.min.js"></script>
-<!-- jQuery Easing -->
-<script
-	src="/GuiltyPleasure/design/mintstrap/outline/js/jquery.easing.1.3.js"></script>
-
-<!-- Waypoints -->
-<script
-	src="/GuiltyPleasure/design/mintstrap/outline/js/jquery.waypoints.min.js"></script>
-<!-- Magnific Popup -->
-<script
-	src="/GuiltyPleasure/design/mintstrap/outline/js/jquery.magnific-popup.min.js"></script>
-<!-- Owl Carousel -->
-<script
-	src="/GuiltyPleasure/design/mintstrap/outline/js/owl.carousel.min.js"></script>
-<!-- toCount -->
-<script
-	src="/GuiltyPleasure/design/mintstrap/outline/js/jquery.countTo.js"></script>
-<!-- Main JS 
-	<script src="/GuiltyPleasure/design/mintstrap/outline/js/main.js"></script>
--->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/icomoon.css">
+	<!-- Simple Line Icons-->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/simple-line-icons.css">
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/magnific-popup.css">
+	<!-- Owl Carousel -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/owl.theme.default.min.css">
+	<!-- Salvattore -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/salvattore.css">
+	<!-- Theme Style -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/style.css">
+	<!-- Modernizr JS -->
+	<script src="js/modernizr-2.6.2.min.js"></script>
+<!-- nav바 수정부분 -->	
 <style>
-.navbar-brand {
-  text-align: left;
-  font-weight: bold;
-  display: -moz-inline-stack;
-  display: inline-block;
-  zoom: 1;
-  *display: inline;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 20px;
-  float: left !important;
-  font-family: "Montserrat", arial, sans-serif;
-  color: #000000;
-  z-index: 10;
-  position: relative;
-}
-
-.fh5co-feature, .fh5co-figure {
-  display: block;
-  color: #444;
-  float: left;
-  width: 100%;
-  text-align: center;
-  background: #fff;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  border-radius: 4px;
-  padding: 0px 0px;
-  -webkit-transition: 0.5s;
-  -o-transition: 0.5s;
-  transition: 0.5s;
-  margin-bottom: 0em;
-}
-
-.navbar-brand > span {
-    display: -moz-inline-stack;
-    display: inline-block;
-    zoom: 1;
-    float: left;
-    border: 2px solid black;
-    padding: 7px 10px 7px 12px;
-}
+.fh5co-nav-toggle > span {color: #333;}	a {color: #333;}
+.navbar-brand {color: #333;}#fh5co-offcanvass .fh5co-lead {font-size: 15px;color: #333;}
+.navbar-brand > span {border: 2px solid #333;}
+.navbar-brand:hover {color: #3c763d;}
+a {color: #333;}
+#fh5co-offcanvass {background: #d3d9da;color: #878c93;}
 </style>
-
+<!-- nav바 수정부분 여기까지 -->
 </head>
 <body>
-	<div id="fh5co-offcanvass">
-		<ul>
-			<li class="active"><a href="#" data-nav-section="home">Home</a></li>
-			<li><a href="#" data-nav-section="features">Features</a></li>
-			<li><a href="#" data-nav-section="design">Design</a></li>
-			<li><a href="#" data-nav-section="testimonies">Testimonies</a></li>
-			<li><a href="#" data-nav-section="products">Products</a></li>
-			<li><a href="#" data-nav-section="benefits">Benefits</a></li>
-			<li><a href="#" data-nav-section="pricing">Pricing</a></li>
-			<li><a href="#" data-nav-section="faqs">FAQs</a></li>
-		</ul>
-		<h3 class="fh5co-lead">Connect with us</h3>
-		<p class="fh5co-social-icons">
-			<a href="#"><i class="icon-twitter"></i></a> <a href="#"><i
-				class="icon-facebook"></i></a> <a href="#"><i class="icon-instagram"></i></a>
-			<a href="#"><i class="icon-dribbble"></i></a> <a href="#"><i
-				class="icon-youtube"></i></a>
-		</p>
-	</div>
+<jsp:include page="/test_nav.jsp"/>
 
-	<div id="fh5co-menu" class="navbar">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"
-						data-toggle="collapse" data-target="#fh5co-navbar"
-						aria-expanded="false" aria-controls="navbar"><span>Menu</span>
-						<i></i></a> <a href="index.html" class="navbar-brand"><span>Outline</span></a>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<div id="fh5co-page">
 		<div id="fh5co-wrap">

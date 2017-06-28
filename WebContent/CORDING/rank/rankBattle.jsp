@@ -71,7 +71,7 @@ a {color: #333;}
 <body>
 <jsp:include page="/test_nav.jsp"/>
 <br><br><br>    
-<div class="container">   
+<div class="container" id="fh5co-main">   
         <div class="row col-lg-12">
             <div class="col-lg-12" >
             <div class="col-lg-12" align="center">

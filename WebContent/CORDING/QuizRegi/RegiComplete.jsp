@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,8 +58,9 @@ input, button, select, textarea {
 <body>
 <!--리스트로 안가져요 -->
 <jsp:include page="/test_nav.jsp"/>
-	<h1>퀴즈등록이 되었습니다. 버튼을 누르면 리스트로 복귀합니다.</h1>
-<form method="POST" action="/GuiltyPleasure/borad">
+	<br><br><br><br>
+	<h2 align="center">퀴즈등록이 되었습니다. <br>버튼을 누르면 리스트로 복귀합니다.</h2>
+<form method="POST" action="/GuiltyPleasure/borad" align="center">
 	<input type="hidden" name = "cmd"  value="QREGI_BOARD_LIST"/>
 	<input type="submit"  value="돌아가기">
 </form>

@@ -196,16 +196,16 @@ textarea.form-control {
 			<p>
 			<div class="col-lg-12">
 				<div class="col-lg-3">
-	  			<input type="button" class="btn btn-primary btn-lg" value="<%=quizlist.get(0)%>" id="text1"onclick="answerCheck(1);" /> 
+	  			<input type="button" class="btn btn-primary btn-lg btn-block" value="<%=quizlist.get(0)%>" id="text1"onclick="answerCheck(1);" /> 
 				</div>
 				<div class="col-lg-3">
-				<input type="button" class="btn btn-primary btn-lg" value="<%=quizlist.get(1)%>" id="text2" onclick="answerCheck(2);" />
+				<input type="button" class="btn btn-primary btn-lg btn-block" value="<%=quizlist.get(1)%>" id="text2" onclick="answerCheck(2);" />
 				</div>
 				<div class="col-lg-3">
-				<input type="button" class="btn btn-primary btn-lg" value="<%=quizlist.get(2)%>" id="text3" onclick="answerCheck(3);" />
+				<input type="button" class="btn btn-primary btn-lg btn-block" value="<%=quizlist.get(2)%>" id="text3" onclick="answerCheck(3);" />
 				</div>
 				<div class="col-lg-3">
-				<input type="button" class="btn btn-primary btn-lg" value="<%=quizlist.get(3)%>" id="text4" onclick="answerCheck(4);" />
+				<input type="button" class="btn btn-primary btn-lg btn-block" value="<%=quizlist.get(3)%>" id="text4" onclick="answerCheck(4);" />
 	  			</div>
   			</div>
 

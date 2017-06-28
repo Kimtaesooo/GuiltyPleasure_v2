@@ -34,7 +34,7 @@ public class QuziRegisterCommand implements Command{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "/CORDING/QuizRegi/RegiComplete.html";
+		return "/CORDING/QuizRegi/RegiComplete.jsp";
 	}
 	//db에 퀴즈 등록 메서드
 	private int RegiQuiz(U_Quiz uq){

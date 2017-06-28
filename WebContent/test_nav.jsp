@@ -46,6 +46,9 @@
 			<li><a href="${pageContext.request.contextPath}/CORDING/notice_board/n_list.jsp" data-nav-section="products">공지사항</a></li>
 			<li><a href="CORDING/board/BoardList.jsp" data-nav-section="benefits">자유게시판</a></li>
 			<li><a href="${pageContext.request.contextPath}/CORDING/custom/customer_main.jsp" data-nav-section="pricing">고객센터</a></li>
+				<%if(u_id.equals("master")) {%>
+			<li><a href="contact.html" data-nav-section="pricing">회원관리</a></li>
+				<%} %>
 		</ul>
 </div>
 <div id="fh5co-menu" class="navbar">
