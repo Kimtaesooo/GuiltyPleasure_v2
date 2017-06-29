@@ -211,57 +211,9 @@ a {color: #333;}
 	</div>
 	<h1 onclick="osaka();">Å¬¸¯</h1>
 </body>
-	<script>
-	/*
-	$(".osaka").click(
-			function(event) {
-				var $x = event.screenX;
-				var $y = event.screenY;
-				$("#inText").html(
-						'<font color=red>xÁÂÇ¥:' + $x
-								+ '</font> <font color=blue>yÁÂÇ¥:' + $y
-								+ '</font>');
-				$("#popLayer").show();
-			});
-	function osaka(){
-			var x = this.screenX;
-			var y = this.screenY;
-			alert(x);
-		  $('#popLayer').css("top", y); 
-		  $('#popLayer').css("left", x); 
-		  $("#popLayer").show();
-			}
-	
-	$('#osaka').click(function(event) {
-		x = event.clientX;
-		y = event.clientY;
-		alert('xÁÂÇ¥:' + x + ', yÁÂÇ¥:' + y);
-	});
-	
-	
-	
-	function osaka(){
-	
-	$(function() {	
-	$("#osaka").click(
-			function(event) {
-				var $x = event.clientX;
-				var $y = event.clientY;
-				 $('#popLayer').css("top", $y); 
-				 $('#popLayer').css("left", $x); 
-				 $("#popLayer").show();
-			});
-	});
-	}
-	
-	*/
-	 
-		function osaka(){
-			alert("Å¬¸¯ÇÔ");
-		}
-		
-
-	
-	
+<script>
+function osaka(){
+alert("Å¬¸¯ÇÔ")
+}
 </script>
 </html>

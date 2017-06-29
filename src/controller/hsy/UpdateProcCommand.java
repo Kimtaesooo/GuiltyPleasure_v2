@@ -8,27 +8,25 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.boardmodule.FreeBoard;
 import dto.Board;
-import dto.Reply;
 
-public class ReplyCommand implements CommandBoard{
+public class UpdateProcCommand  implements CommandBoard{
 	FreeBoard dao = new FreeBoard();
-	Reply dto2 = new Reply();
+	Board dto = new Board();
 	
 	@Override
 	public Object processCommand(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		String b_num = req.getParameter("b_num");
-		String u_id = req.getParameter("u_id");
-		String r_content = req.getParameter("r_content");
-		String r_regdate = req.getParameter("r_regdate");
+		String b_content = req.getParameter("b_content");
+		String b_title = req.getParameter("b_title");
 		
-		dto2.setB_num(b_num);
-		dto2.setU_id(u_id);
-		dto2.setR_content(r_content);
-		dto2.setR_regdate(r_regdate);
 		
-		dao.replyBoard(dto2);
+		dto.setB_title(b_title);
+		dto.setB_content(b_content);
+		dto.setB_num(b_num);
 		
-		return "/CORDING/board/BoardRead.jsp?b_num="+dto2.getB_num();
+		dao.updateBoard(dto);
+
+		return "/CORDING/board/BoardRead.jsp?b_num="+dto.getB_num();
 	}
 }

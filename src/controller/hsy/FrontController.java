@@ -22,12 +22,11 @@ public class FrontController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String cmd = req.getParameter("cmd");
+		System.out.println("cmd : " + cmd);
 		String url = null;
-		
 		CommandFactory factory = CommandFactory.newInstance();
 		CommandBoard command = factory.createCommand(cmd);
 		String state = (String)req.getSession().getAttribute("STATE");
-		
 		url = (String)command.processCommand(req, resp);
 		
 		RequestDispatcher view = req.getRequestDispatcher(url);

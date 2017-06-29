@@ -175,7 +175,7 @@ function inregquiz(){
 
         <div class="row">
 	        <div class="col-md-4 to-animate">
-					<a href="CORDING/board/BoardList.jsp" class="fh5co-figure">
+					<a href="/GuiltyPleasure/Board?cmd=BOARDLIST" class="fh5co-figure">
 						<span class="fh5co-price">자유게시판</span>
 						<br>
 						<img src="https://cdn2.iconfinder.com/data/icons/xomo-basics/128/document-05-128.png">

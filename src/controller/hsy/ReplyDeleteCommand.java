@@ -10,25 +10,20 @@ import dao.boardmodule.FreeBoard;
 import dto.Board;
 import dto.Reply;
 
-public class ReplyCommand implements CommandBoard{
+public class ReplyDeleteCommand implements CommandBoard {
 	FreeBoard dao = new FreeBoard();
+	Board dto = new Board();
 	Reply dto2 = new Reply();
 	
 	@Override
 	public Object processCommand(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		String r_reply = req.getParameter("r_reply");
 		String b_num = req.getParameter("b_num");
-		String u_id = req.getParameter("u_id");
-		String r_content = req.getParameter("r_content");
-		String r_regdate = req.getParameter("r_regdate");
 		
-		dto2.setB_num(b_num);
-		dto2.setU_id(u_id);
-		dto2.setR_content(r_content);
-		dto2.setR_regdate(r_regdate);
+		dao.deleteReply(r_reply);
+		dto = dao.getBoard(b_num, false);
 		
-		dao.replyBoard(dto2);
-		
-		return "/CORDING/board/BoardRead.jsp?b_num="+dto2.getB_num();
+		return "/CORDING/board/BoardRead.jsp?b_num="+dto.getB_num();
 	}
 }
