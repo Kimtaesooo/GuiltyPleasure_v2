@@ -65,7 +65,12 @@
                         		</div>
                             </div>
                             <div class="form-bottom">
+                            <%if(rightPw.equals("success")){ %>
 			                    <form role="form" action="/GuiltyPleasure/CORDING/login/login.html" method="post" class="login-form">
+			                 <%}else{ %>
+			                    <form role="form" action="/GuiltyPleasure/CORDING/login/idpw.jsp" method="post" class="login-form">
+			                  <%} %>
+			                 
 <%
 								if(rightPw.equals("success")){
 %>									
@@ -78,6 +83,7 @@
 								}
 %>
 									<br>
+									
 			                        <button type="submit" class="btn">돌아가기</button>
 			                    </form>
 		                    </div>
