@@ -17,6 +17,9 @@ public class ReplyCommand implements CommandBoard{
 	@Override
 	public Object processCommand(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		req.setCharacterEncoding("euc-kr");
+		resp.setCharacterEncoding("euc-kr");
+		
 		String b_num = req.getParameter("b_num");
 		String u_id = req.getParameter("u_id");
 		String r_content = req.getParameter("r_content");

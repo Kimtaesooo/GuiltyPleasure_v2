@@ -17,6 +17,9 @@ public class ListCommand implements CommandBoard {
 	@Override
 	public Object processCommand(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		req.setCharacterEncoding("euc-kr");
+		resp.setCharacterEncoding("euc-kr");
+		
 		String keyfield = req.getParameter("keyfield");
 		String keyword = req.getParameter("keyword");
 		

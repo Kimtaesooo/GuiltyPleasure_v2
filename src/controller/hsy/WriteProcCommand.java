@@ -16,6 +16,9 @@ public class WriteProcCommand implements CommandBoard {
 	@Override
 	public Object processCommand(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		req.setCharacterEncoding("euc-kr");
+		resp.setCharacterEncoding("euc-kr");
+		
 		String u_id = req.getParameter("u_id");
 		String title = req.getParameter("title");
 		String content = req.getParameter("content");

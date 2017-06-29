@@ -18,6 +18,9 @@ public class ReplyDeleteCommand implements CommandBoard {
 	@Override
 	public Object processCommand(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		req.setCharacterEncoding("euc-kr");
+		resp.setCharacterEncoding("euc-kr");
+		
 		String r_reply = req.getParameter("r_reply");
 		String b_num = req.getParameter("b_num");
 		

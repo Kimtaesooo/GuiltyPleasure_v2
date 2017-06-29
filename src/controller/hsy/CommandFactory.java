@@ -10,7 +10,6 @@ public class CommandFactory {
 	
 	public CommandBoard createCommand(String cmd){
 		if(cmd.equals("BOARDLIST")){
-			System.out.println("boardlist½ÇÇà");
 			return new ListCommand();
 		}
 		else if(cmd.equals("BOARDREAD")){
