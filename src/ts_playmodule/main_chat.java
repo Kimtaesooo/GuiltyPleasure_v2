@@ -13,6 +13,8 @@ import javax.websocket.RemoteEndpoint.Basic;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
+import dao.shopmodule.ShopManager;
+
 
 //@ServerEndpoint는 클라이언트에서 서버로 접속 할 주소로 지정합니다.
 //@OnMessage에서는 클라이언트로 부터 메시지가 도착했을때 처리입니다.
@@ -37,6 +39,7 @@ public class main_chat {
     static String str[];
     static String login;
     Random random = new Random();
+    ShopManager point = new ShopManager();
 	private static Set<Session> clients = Collections.synchronizedSet(new HashSet<Session>());
 	@OnOpen
 	public void onOpen(Session session) {
@@ -66,6 +69,7 @@ public class main_chat {
 		if(ans!=null&&ans.equals(str[1])){
 			quiz=null;
 			ans=null;
+			point.jaumPoint(str[0]);
 			sendAll(session, str[0]+"님 정답입니다.",3);
 		}
 		if(quiz!=null&&str[1].equals("포기")){
@@ -91,7 +95,6 @@ public class main_chat {
 	@OnClose
 	public void onClose(Session session) {
 		// Remove session from the connected sessions set
-		 
 		clients.remove(session);
 	}
 	
