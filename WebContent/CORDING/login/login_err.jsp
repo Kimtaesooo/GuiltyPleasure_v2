@@ -1,13 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"%>
-<!DOCTYPE html>
-<html lang="kor">
-
-    <head>
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%
+	request.setCharacterEncoding("euc-kr");
+	response.setCharacterEncoding("euc-kr");
+%>
+<html>
+<head>
 
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Search ID/PW</title>
+        <title>Guilty Pleasure Login</title>
+
         <!-- CSS -->
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
         <link rel="stylesheet" href="/GuiltyPleasure/CORDING/login/assets/bootstrap/css/bootstrap.min.css">
@@ -28,20 +32,10 @@
         <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/GuiltyPleasure/CORDING/login/assets/ico/apple-touch-icon-114-precomposed.png">
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/GuiltyPleasure/CORDING/login/assets/ico/apple-touch-icon-72-precomposed.png">
         <link rel="apple-touch-icon-precomposed" href="/GuiltyPleasure/CORDING/login/assets/ico/apple-touch-icon-57-precomposed.png">
-		<jsp:useBean id="search" class="dao.loginmodule.idpw"/>
-		<%
-		request.setCharacterEncoding("euc-kr");
-		response.setCharacterEncoding("euc-kr");		
-		
-		String rightPw = (String)request.getAttribute("rightPw");
-		String pw = (String)request.getAttribute("pw");
-		
-		
-		%>
+
     </head>
-	
+
     <body>
-    	
         <!-- Top content -->
         <div class="top-content">
         	
@@ -49,9 +43,9 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-8 col-sm-offset-2 text">
-                            <h1><strong>GuiltyPleasure</strong> 비밀번호 찾기</h1>
+                            <h1><strong>GuiltyPleasure</strong> 로그인</h1>
                             <div class="description">
-                            	<p>                           
+                            	<p>
 	                            	저희 Guilty Pleasure 페이지에 오신것을 환영합니다.<br> 아무런 도움이 안되는 퀴즈를 풀며 시간을 낭비해보세요.
                             	</p>
                             </div>
@@ -61,24 +55,24 @@
                         <div class="col-sm-6 col-sm-offset-3 form-box">
                         	<div class="form-top">
                         		<div class="form-top-left">
-                        			<h3>비밀번호 찾기</h3>
+                        			<h3>로그인</h3>
+                            		<p>아이디 또는 비밀번호가 틀렸습니다.</p>
+                        		</div>
+                        		<div class="form-top-right">
+                        			<i class="fa fa-key"></i>
                         		</div>
                             </div>
                             <div class="form-bottom">
-			                    <form role="form" action="/GuiltyPleasure/CORDING/login/login.html" method="post" class="login-form">
-<%
-								if(rightPw.equals("success")){
-%>									
-									<h4>회원님의 비밀번호는 </h4> <h3><%=pw%> 입니다.</h3>
-<%
-								}else{
-%>
-									<h3><%=pw%></h3>
-<%
-								}
-%>
-									<br>
-			                        <button type="submit" class="btn">돌아가기</button>
+			                    <form role="form" action="/GuiltyPleasure/logcheck?cmd=login" method="post" class="login-form">
+			                    	<div class="form-group">
+			                    		<label class="sr-only" for="form-username">Username</label>
+			                        	<input type="text" name="form-username" placeholder="아이디" class="form-username form-control" id="form-username">
+			                        </div>
+			                        <div class="form-group">
+			                        	<label class="sr-only" for="form-password">Password</label>
+			                        	<input type="password" name="form-password" placeholder="패스워드" class="form-password form-control" id="form-password">
+			                        </div>
+			                        <button type="submit" class="btn">로그인</button>
 			                    </form>
 		                    </div>
                         </div>
@@ -87,9 +81,10 @@
                         <div class="col-sm-6 col-sm-offset-3 social-login">
                         	<div>
                         		<br>
-	                        	<a href="resistration.html"><font size="4em" color="white">회원가입&nbsp;&nbsp;&nbsp;</font></a>
-	                        	<a href="idpw.jsp"><font size="4em" color="white">아이디/비밀번호 찾기&nbsp;&nbsp;&nbsp;</font></a>
-	                        	<a href="/GuiltyPleasure/CORDING/custom/customer_main.jsp"><font size="4em" color="white">고객센터</font></a>
+	                        	<a href="/GuiltyPleasure/CORDING/login/resistration.html"><font size="4em" color="white">회원가입&nbsp;&nbsp;&nbsp;</font></a>
+	                        	<a href="/GuiltyPleasure/CORDING/login/idpw.jsp"><font size="4em" color="white">아이디/비밀번호 찾기&nbsp;&nbsp;&nbsp;</font></a>
+	                        	<a href="/GuiltyPleasure/CORDING/custom/customer_main.jsp"><font size="4em" color="white">고객센터&nbsp;&nbsp;&nbsp;</font></a>
+	                        	<a href="/GuiltyPleasure/main.jsp"><font size="4em" color="white">메인&nbsp;&nbsp;&nbsp;</font></a>
                         	</div>
                         </div>
                     </div>
@@ -110,5 +105,4 @@
         <![endif]-->
 
     </body>
-
 </html>

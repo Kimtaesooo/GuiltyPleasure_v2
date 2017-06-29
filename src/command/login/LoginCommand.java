@@ -8,9 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import controller.Command;
-import dao.MyInfoDAO;
-import dao.loginmodule.Login;
 import dao.UserInfoDAO;
+import dao.loginmodule.Login;
 import dto.UserInfo;
 import dto.UserInfoDTO;
 
@@ -38,10 +37,11 @@ public class LoginCommand implements Command{
 		if(u_pw.equals(dto.getU_pw())){
 			if(userdto.getNo_entry() != null || dto.getU_delete().equals("Y")){
 				// response.sendRedirect("login_ban.html");
-				return "/GuiltyPleasure/CORDING/login/login_ban.html";
+				return "/CORDING/login/login_ban.jsp";
 			}
 			if(dto.getU_power() == 5000){
-				session.setAttribute("u_id", "master");			
+				session.setAttribute("u_id", "master");
+				session.setAttribute("u_pw", dto.getU_pw());
 				//response.sendRedirect("/GuiltyPleasure/main.jsp");
 				return "/main.jsp";
 			}
@@ -52,7 +52,7 @@ public class LoginCommand implements Command{
 		}
 		else{
 			//response.sendRedirect("login_err.html");
-			return "/GuiltyPleasure/CORDING/login/login_err.html";
+			return "/CORDING/login/login_err.jsp";
 		}
 		
 	}

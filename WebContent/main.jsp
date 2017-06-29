@@ -1,6 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"%>
-<jsp:useBean id="dao" class="dao.playmodule.BattlePlay"/>
-<jsp:useBean id="dto" class="dto.Battle_Room"/>
 <jsp:useBean id="userdao" class="dao.UserInfoDAO"/>
 <jsp:useBean id="userdto" class="dto.UserInfoDTO"/>
 <%

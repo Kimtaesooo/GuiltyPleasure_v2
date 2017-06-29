@@ -12,13 +12,13 @@ import dto.UserInfoDTO;
 import dbcp.DBConnectionMgr;
 
 public class UserInfoDAO {
-	DBConnectionMgr pool = DBConnectionMgr.getInstance();
+	DBConnectionMgr pool = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	Connection conn = null;
 	
 	public UserInfoDAO(){
-		DBConnectionMgr pool = DBConnectionMgr.getInstance();
+		pool = DBConnectionMgr.getInstance();
 		try {
 			conn = pool.getConnection();
 		}catch(Exception e){

@@ -25,7 +25,7 @@
             <div class="col-lg-12 panel panel-primary" id="id" >
             <h3>아이디 찾기</h3>
             <br>
-            <form action="id_proc.jsp" method="post" class="search-id">
+            <form action="/GuiltyPleasure/logcheck?cmd=logidfind" method="post" class="search-id">
             <div class="form-group">
      		 <label for="inputName" class="col-lg-2 control-label">이름</label>
     			  <div class="col-lg-10">
@@ -54,7 +54,7 @@
             <div class="col-lg-12 panel panel-primary" id="pw" >
             <h3>비밀번호 찾기</h3>
             <br>
-             <form action="pw_proc.jsp" method="post" class="search-id">
+             <form action="/GuiltyPleasure/logcheck?cmd=logpwfind" method="post" class="search-id">
             <div class="form-group">
      		 <label for="inputId" class="col-lg-2 control-label">아이디</label>
     			  <div class="col-lg-10">

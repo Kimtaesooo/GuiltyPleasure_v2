@@ -83,7 +83,6 @@ public class idpw {
 	
 	public String searchPw(String id, String email, String U_QUESTION, String U_ANSWER){
 		String pw="";
-		System.out.println("pwd 체크 확인");
 		sql = "select u_pw from userinfo where u_id = ? and u_email= ? and u_question = ? and u_answer= ? ";
 		try{
 			con = pool.getConnection();
