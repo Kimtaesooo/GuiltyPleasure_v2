@@ -11,6 +11,7 @@
 	
 	if(session.getAttribute("u_id")!=null){
 		u_id = (String)session.getAttribute("u_id");
+	
 	}
 	userdto = userdao.searchUserInfo(u_id);
 %>
@@ -166,7 +167,7 @@ function inregquiz(){
 					</a>
 			</div>
 			<div class="col-md-4 to-animate">
-					<a href="CORDING/notice_board/n_list.jsp" class="fh5co-figure">
+					<a href="/GuiltyPleasure/notice?cmd=list" class="fh5co-figure">
 						<span class="fh5co-price">공지사항</span>
 						<br>
 						<img src="https://cdn4.iconfinder.com/data/icons/business-finance-vol-12-2/512/24-128.png">
@@ -196,9 +197,15 @@ function inregquiz(){
 						<img src="https://cdn2.iconfinder.com/data/icons/new-year-s-hand-drawn-basic/64/question_mark-128.png">
 					</a>
 			</div>
-
+			<div class="col-md-4 to-animate">
+					<a href="CORDING/jaum/play_jaum.jsp" class="fh5co-figure"  data-toggle="modal">
+						<span class="fh5co-price">자음퀴즈</span>
+						<br>
+						<img src="https://cdn2.iconfinder.com/data/icons/new-year-s-hand-drawn-basic/64/question_mark-128.png">
+					</a>
+			</div>
         </div>
-
+			<!--<jsp:include page="/chaticon3.jsp"/>
         <hr>
 
 

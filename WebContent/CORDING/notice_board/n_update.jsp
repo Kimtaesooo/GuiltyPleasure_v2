@@ -84,23 +84,23 @@ a {color: #333;}
 				</div>
 				<br>
 				<div class="jumbotron">
-				<form action="n_ques_proc.jsp" method="post" name="que">
-				<div class="form-group">
-				<label class="control-label" >제목</label>
-				<input class="form-control"  type="text" name="title" >
-				<br>	
-				<label class="control-label" >중요도</label>
-				<select class="form-control" id="type" name="type">
-		          <option>중요함</option>
-		          <option>덜중요함</option>
-		        </select>
-		        <br>
-		        <label class="control-label" >내용</label>
-		        <textarea class="form-control" rows="10" id="content" name="content"></textarea>
-		        </div>
-		        <a href="javascript:check()" class="btn btn-primary">글쓰기</a>
-		        <button type="reset" class="btn btn-default">다시작성</button>	 
-		        </form>
+					<form action="/GuiltyPleasure/notice?cmd=reg" method="post" name="que">
+					<div class="form-group">
+					<label class="control-label" >제목</label>
+						<input class="form-control"  type="text" name="title" >
+					<br>	
+						<label class="control-label" >중요도</label>
+						<select class="form-control" id="type" name="type">
+			        	  <option>중요함</option>
+			        	  <option>덜중요함</option>
+			        </select>
+			        <br>
+			        <label class="control-label" >내용</label>
+			       		 <textarea class="form-control" rows="10" id="content" name="content"></textarea>
+			        </div>
+			        <a href="javascript:check()" class="btn btn-primary">글쓰기</a>
+			        <button type="reset" class="btn btn-default">다시작성</button>	 
+			        </form>
 		        </div>
 		        
 			</div>

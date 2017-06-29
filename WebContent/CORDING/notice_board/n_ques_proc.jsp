@@ -28,7 +28,7 @@
 <body>
 <script>
 			alert("등록되었습니다.");
-			location.replace("n_list.jsp");  
+			location.replace("/GuiltyPleasure/notice?cmd=list");  
 </script>
 
 </body>

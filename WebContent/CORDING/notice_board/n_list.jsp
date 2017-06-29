@@ -214,7 +214,7 @@ select[size] {
 				  
 				</table>
 				<%if(session.getAttribute("u_id")!=null&&id.equals("master")){ %>
-				<a href="n_update.jsp" class="btn btn-success">글쓰기</a>
+				<a href="/GuiltyPleasure/notice?cmd=update" class="btn btn-success">글쓰기</a>
 				<%} %>
 				</div>
 				
@@ -223,7 +223,7 @@ select[size] {
 	</div>
 </div>
 
-<form name="frmRead" method="post" action="n_read.jsp">
+<form name="frmRead" method="post" action="/GuiltyPleasure/notice?cmd=read">
 	<input type="hidden" name="num" />
 	<input type="hidden" name="keyField" value="<%=keyField%>"/>
 	<input type="hidden" name="keyWord" value="<%=keyWord%>"/>
