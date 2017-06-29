@@ -34,10 +34,11 @@ public class FreeBoard {
 	*/
 	
 	//BoardWrite_proc.jsp 글쓰기 기능
-	public void regBoard(String u_id, String b_title, String b_content){
+	public String regBoard(String u_id, String b_title, String b_content){
 		String u_nickname ="";
 		String sql = "select u_nickname from userinfo where u_id='"+ u_id + "'";
-		
+		int result = -1;
+		String b_num = "";
 		try{
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -59,7 +60,18 @@ public class FreeBoard {
 			pstmt.setString(2, u_id);
 			pstmt.setString(3, u_nickname);
 			pstmt.setString(4, b_content);
-			pstmt.executeUpdate();
+			result = pstmt.executeUpdate();
+			
+			// 글 등록 후 등록된 글을 BoardRead.jsp로 보여주기 위해 b_num 받기
+			if(result == 1){
+				sql = "select b_num from board where u_id = ? order by b_regdate desc";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, u_id);
+				rs = pstmt.executeQuery();
+				if(rs.next()){
+					b_num = rs.getString("b_num");
+				}
+			}
 		}
 		catch(Exception err){
 			System.out.println("regBoard() 2번째에서 오류 :"+err);
@@ -67,11 +79,12 @@ public class FreeBoard {
 		}
 		finally{
 			pool.freeConnection(con, pstmt);
-		}	
+		}
+		return b_num;
 	}
 
 	//BoardList.jsp - 게시판 글 리스트 가져오기
-	public List getBoardList(String keyword, String keyfield){
+	public List<Board> getBoardList(String keyword, String keyfield){
 		ArrayList list = new ArrayList();
 		String sql = "";
 			
@@ -80,7 +93,7 @@ public class FreeBoard {
 			sql = "select * from board order by b_num";
 		}
 		else{
-			sql = "select * from board where " + keyfield + " like '%" + keyword + "%' order by b_num";
+			sql = "select * from board where " + keyfield + " like '%" + keyword + "%' order by b_regdate desc";
 		}
 			
 		try{
@@ -137,12 +150,13 @@ public class FreeBoard {
 	        	 board.setB_content(rs.getString("b_content"));
 	         }
 	         
-	         // 이전 글, 다음 글..
+	         // 이전 글, 다음 글
 	         sql = "select b_num as prevnum, b_title as prevtitle from board where b_num = (select max(b_num) from board where b_num<?)";
 	         
 	         pstmt = con.prepareStatement(sql);
 	         pstmt.setString(1, b_num);
 	         rs = pstmt.executeQuery();
+	         
 	         if(rs.next()){
 	        	board.setPrevnum(rs.getString("prevnum"));
 	         	board.setPrevtitle(rs.getString("prevtitle"));
@@ -165,15 +179,42 @@ public class FreeBoard {
          return board;
 	}
 	
-	// Delete.jsp
-	public void deleteBoard(String b_num){
-		String sql = "delete from board where b_num='" + b_num + "'";
+	// 조회수 감소
+	public void minusCount(String b_num){
+		String sql = "update board set b_count = b_count-1 where b_num ='"+b_num+"'";
 		try{
 			pstmt = con.prepareStatement(sql);
 			pstmt.executeUpdate();
 		}
 		catch(Exception err){
-	       System.out.println("deleteBoard()에서 오류");
+			System.out.println("minusCount()에서 오류"+ err);
+		}
+		finally{
+			pool.freeConnection(con,pstmt);
+		}
+	}
+	
+	// Delete.jsp
+	public void deleteBoard(String b_num){
+		String sql = "";
+		
+		sql = "delete from reply where b_num='"+b_num+"'";
+		try{
+			pstmt = con.prepareStatement(sql);
+			pstmt.executeUpdate();
+		}
+		catch(Exception err){
+	       System.out.println("첫번째 deleteBoard()에서 오류");
+	       err.printStackTrace();
+	    }		
+		
+		sql = "delete from board where b_num='"+b_num+"'";
+		try{
+			pstmt = con.prepareStatement(sql);
+			pstmt.executeUpdate();
+		}
+		catch(Exception err){
+	       System.out.println("두번째 deleteBoard()에서 오류");
 	       err.printStackTrace();
 	    }
 	    finally{
@@ -191,6 +232,7 @@ public class FreeBoard {
 			pstmt.setString(2, board.getB_content());
 			pstmt.setString(3, board.getB_num());
 			pstmt.executeUpdate();
+			System.out.println("수정");
 		}
 		catch(Exception err){
 			System.out.println("updateBoard()에서 오류");

@@ -6,18 +6,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.boardmodule.FreeBoard;
-import dto.Board;
 
-public class UpdateCommand  implements CommandBoard{
-	FreeBoard dao = new FreeBoard();
-	Board dto = new Board();
+public class UpdateCommand implements CommandBoard {
 	
 	@Override
-	public Object processCommand(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		dao.updateBoard(dto);
-		
-		return "/CORDING/board/BoardRead.jsp?b_num="+dto.getB_num();
+	public Object processCommand(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String b_num = req.getParameter("b_num");
+		return "/CORDING/board/BoardUpdate.jsp?b_num="+b_num;
 	}
 }

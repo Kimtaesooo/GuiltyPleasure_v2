@@ -38,11 +38,10 @@
 		</div>
 	</div>
 </div>
-	
 	<div class="row">
 	<div class="col-md-2"></div>
 	<div class="col-md-8" align=center>
-	<form name="writeform" method="post" action="Boardwrite_proc.jsp">
+	<form name="writeform" method="post" action="/GuiltyPleasure/Board?cmd=BOARDWRITEPROC">
 		<table class="table table-condensed">
 			<br>
 			<tr height="1" bgcolor="#82B5DF">

@@ -54,7 +54,7 @@
 	<div class="row">
 		<div class="col-md-2"></div>
 		<div class="col-md-8" align=center>
-			<form name="updateform" method="post" action="BoardUpdate_proc.jsp">
+			<form name="updateform" method="post" action="/GuiltyPleasure/Board?cmd=BOARDUPDATEPROC">
 				<input type="hidden" name="b_num" value="<%=b_num%>" />
 				<table class="table table-condensed">
 					<br>

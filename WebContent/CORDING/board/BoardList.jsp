@@ -32,6 +32,14 @@
 		document.frmRead.b_num.value = b_num;
 		document.frmRead.submit();
 	}
+	// 1.페이징 번호 누를때 호출
+	function goList(b, p){
+		/*2.히든 태그에 값 전달 */
+		document.getElementById("nowBlock").value = b;
+		document.getElementById("nowPage").value = p;
+		/*3.조회 작업*/
+		document.search.submit();
+	}
 </script>
 </head>
 <body>
@@ -46,12 +54,11 @@
 <%
 		String keyfield = request.getParameter("keyfield");
 		String keyword = request.getParameter("keyword");
-		String reload = request.getParameter("reload");
-
-		List list = dao.getBoardList(keyword, keyfield);
-
+		
+		List<Board> list = (List<Board>)request.getAttribute("BoardList");
+		
 		// 페이징 기능 추가
-		int totalRecord = list.size(); //전체 글의 개수
+		int totalRecord = list==null?0:list.size(); //전체 글의 개수
 		int numPerPage = 10; //한 페이지 당 보여질 글의 개수
 		int totalPage = 0;
 		int nowPage = 0; //현재 내가 선택한(보고 있는) 페이지 번호
@@ -61,7 +68,7 @@
 		int nowBlock = 0; // 페이지당 시작 번호, 똑같은 글이 중복되서 보여주는 것을 방지
 
 		totalPage = (int) Math.ceil((double) totalRecord / numPerPage);//정수 - > 실수 -> 정수형으로 변환
-
+		/*7. 페지징 변수 받고 처리*/
 		if (request.getParameter("nowPage") != null)
 			nowPage = Integer.parseInt(request.getParameter("nowPage"));
 
@@ -86,7 +93,7 @@
 				<div class="col-md-4">
 					<table align=center border=0 width=100%>
 						<tr>
-							<td align=left>Total : <%=list.size()%> ( <font color=red>
+							<td align=left>Total : <%=totalRecord%> ( <font color=red>
 									<%=nowPage + 1%> / <%=totalPage%> pages
 							</font>)
 							</td>
@@ -144,19 +151,22 @@
 					<%
 							if (nowBlock > 0) {
 					%>
-					<a href="BoardList.jsp?nowBlock=<%=nowBlock-1%>&nowPage=<%=pagePerBlock*(nowBlock-1)%>">이전<%=pagePerBlock%>개</a>
+					<a href="/GuiltyPleasure/Board?cmd=BOARDLIST?nowBlock='<%=nowBlock-1%>'&nowPage='<%=pagePerBlock*(nowBlock-1)%>'">이전<%=pagePerBlock%>개</a>
 					<%}%>:::
 					<%
  					for (int i = 0; i < pagePerBlock; i++) {
  						if ((nowBlock * pagePerBlock) + i == totalPage)
  							break;
  					%>
-					<a href="BoardList.jsp?nowPage=<%=(nowBlock*pagePerBlock)+i%>&nowBlock=<%=nowBlock%>"><%=(nowBlock*pagePerBlock)+i+1%></a>&nbsp;
+					<a href="javascript:goList('<%=nowBlock %>', '<%=i %>')"><%=(nowBlock*pagePerBlock)+i+1%></a>&nbsp;
+					<!-- 
+					<a href="/GuiltyPleasure/Board?cmd=BOARDLIST?nowPage=<%=(nowBlock*pagePerBlock)+i%>&nowBlock=<%=nowBlock%>"><%=(nowBlock*pagePerBlock)+i+1%></a>&nbsp;
+					 -->
 					<%}%>:::
 					<%
 						if (totalBlock > nowBlock + 1) {
 					%>
-					<a href="BoardList.jsp?nowBlock=<%=nowBlock+1%>&nowPage=<%=pagePerBlock*(nowBlock+1)%>">다음<%=pagePerBlock%>개</a>
+					<a href="/GuiltyPleasure/Board?cmd=BOARDLIST?nowBlock=<%=nowBlock+1%>&nowPage=<%=pagePerBlock*(nowBlock+1)%>">다음<%=pagePerBlock%>개</a>
 					<%}%>
 				</div>
 				<div class="col-md-7"></div>
@@ -164,9 +174,9 @@
 					<%
 						if (session.getAttribute("u_id") != null) {
 					%>
-					<button type="button" class="btn btn-primary" onclick="window.location='BoardWrite.jsp'">글쓰기</button>
+					<button type="button" class="btn btn-primary" onclick="window.location='/GuiltyPleasure/Board?cmd=BOARDWRITE'">글쓰기</button>
 					<%}%>
-					<button type="button" class="btn btn-default" onclick="window.location='BoardList.jsp'">목록</button>
+					<button type="button" class="btn btn-default" onclick="window.location='/GuiltyPleasure/Board?cmd=BOARDLIST'">목록</button>
 				</div>
 			</div>
 		</div>
@@ -175,7 +185,9 @@
 		<div class="row">
 			<div class="col-md-4"></div>
 			<div class="col-md-4">
-				<form action="BoardList.jsp" name="search" method="post">
+				<form action="/GuiltyPleasure/Board?cmd=BOARDLIST" name="search" method="post">
+					<input type="hidden" name="nowBlock" id="nowBlock" />
+					<input type="hidden" name="nowPage" id="nowPage"/>
 					<div class="form-group">
 						<div class="col-xs-4">
 							<select class="form-control" name="keyfield">
@@ -207,7 +219,7 @@
 		<div class="col-md-2" align="right"></div>
 	<div class="col-md-2"></div>
 </div>
-	<form name="frmRead" method="post" action="BoardRead.jsp">
+	<form name="frmRead" method="post" action="/GuiltyPleasure/Board?cmd=BOARDREAD">
 		<input type="hidden" name="b_num" /> <input type="hidden" name="keyfield" value="<%=keyfield%>" /> 
 		<input type="hidden" name="keyword" value="<%=keyword %>" />
 	</form>

@@ -49,19 +49,27 @@
 	<jsp:useBean id="dto" class="dto.Board" />
 	<jsp:useBean id="dto2" class="dto.Reply" />
 	<%
-		String b_num = request.getParameter("b_num");
+		//write -> read / list -> read
+		String b_num = request.getParameter("b_num")==null?request.getAttribute("writeRead").toString():request.getParameter("b_num");
 		String keyfield = request.getParameter("keyfield");
 		String keyword = request.getParameter("keyword");
-
+		
 		dto = dao.getBoard(b_num, true);
-
-		pageContext.setAttribute("dto", dto);
 		
 		String sid = (String) session.getAttribute("u_id");
+		pageContext.setAttribute("dto", dto);
+		
 		String u_id = dto.getU_id();
 
+		if(sid.equals(u_id)){
+			dao.minusCount(b_num);
+			dto.setB_count(dto.getB_count()-1);
+		}
+	
 		ArrayList<Reply> rep_list = dao.getReplyList(b_num);
 		pageContext.setAttribute("list", rep_list);
+		
+
 %>
 	<div class="row">
 	<div style="padding-top:0px; height:90px; background-color: #4fd2c2">
@@ -131,17 +139,25 @@
 	<div class="row">
 		<div class="col-md-2"></div>
 			<div class="col-md-8" align=center>
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
 			<br>
 			<button type="button" class="btn btn-default" onclick="fnList()">목록</button>
 			<%
 				if (sid.equals(u_id)) {
  			%>
-			<button type="button" class="btn btn-primary"
-				OnClick="window.location='BoardUpdate.jsp?b_num=<%=b_num%>'">수정</button>
-			<button type="button" class="btn btn-primary"
-				OnClick="window.location='BoardDelete_proc.jsp?b_num=<%=b_num%>'">삭제</button>
+ 			<form method="post" action="/GuiltyPleasure/Board?cmd=BOARDUPDATE">
+ 				<input type="hidden" name="b_num" id="b_num" value="<%=b_num%>"/>
+					<button type="submit" class="btn btn-primary">수정</button>
+			</form>
+			<form method="post" action="/GuiltyPleasure/Board?cmd=BOARDDELETE">
+				<input type="hidden" name="b_num" id="b_num" value="<%=b_num%>"/>
+					<button type="submit" class="btn btn-primary">삭제</button>
+			</form>
 			<%}%>
 			<br>
+			</div>
+			<div class="col-md-4"></div>
 		</div>
 		<div class="col-md-2"></div>
 		</div>
@@ -149,7 +165,7 @@
 	<div class="row">
 		<div class="col-md-2"></div>
 		<div class="col-md-8" align="center">
-			<form name="delReplyForm" method="post" action="ReplyDelete_proc.jsp">
+			<form name="delReplyForm" method="post" action="/GuiltyPleasure/Board?cmd=BOARDREPLYDELETE">
 				<input type="hidden" name="r_reply"> 
 				<input type="hidden" name="b_num" value="<%=b_num%>">
 				<table>
@@ -199,9 +215,9 @@
 	<div class="row">
 		<div class="col-md-2"></div>
 		<div class="col-md-8" align="center">
-			<form name="replyform" method="post" action="Reply_proc.jsp">
-				<input type="hidden" name="b_num" value="<%=b_num%>"> <input
-					type="hidden" name="u_id" value="<%=sid%>">
+			<form name="replyform" method="post" action="/GuiltyPleasure/Board?cmd=BOARDREPLY">
+				<input type="hidden" name="b_num" value="<%=b_num%>"> 
+				<input type="hidden" name="u_id" value="<%=sid%>">
 				<table>
 					<tr align="center">
 						<td></td>
@@ -255,11 +271,11 @@
 		</div>
 		<div class="col-md-2"></div>
 	</div>
-	<form name="frmList" method="post" action="BoardList.jsp">
+	<form name="frmList" method="post" action="/GuiltyPleasure/Board?cmd=BOARDLIST">
 		<input type="hidden" name="keyfield" value="<%=keyfield %>" /> 
 		<input type="hidden" name="keyword" value="<%=keyword %>" />
 	</form>
-	<form name="frmRead2" method="post" action="BoardRead.jsp">
+	<form name="frmRead2" method="post" action="/GuiltyPleasure/Board?cmd=BOARDREAD">
 		<input type="hidden" name="b_num" />
 	</form>
 </body>
