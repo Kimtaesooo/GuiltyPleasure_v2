@@ -18,7 +18,12 @@
 	dao.N_Count_Update(num);
 	dto = dao.getRead(num);
 %>
-
+<script>
+function fnDelete(num){
+	document.frmDelete.num.value = num;
+	document.frmDelete.submit();
+}
+</script>
 <!-- jQuery -->
 <script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.min.js"></script>
 <!-- jQuery Easing -->
@@ -79,9 +84,9 @@ a {color: #333;}
 						<pre>등록일 : <%=dto.getN_regdate() %></pre>
 						<pre>작성자 : <%=dto.getU_nickname() %> </pre>
 						<pre><%=dto.getN_content() %></pre>
-						<a href="n_list.jsp" class="btn btn-success">목록으로</a>
+						<a href=/GuiltyPleasure/notice?cmd=list class="btn btn-success">목록으로</a>
 						<%if(session.getAttribute("u_id")!=null&&session.getAttribute("u_id").equals("master")){ %>
-						<a href="n_delete.jsp?n_num=<%=num%>" class="btn btn-danger">삭제하기</a>
+						<a href="javascript:fnDelete(<%=num%>)" class="btn btn-danger">삭제하기</a>
 						<%} %>
 		        </div>
 			</div>
@@ -89,5 +94,8 @@ a {color: #333;}
         </div>
 	</div>
 </div>
+<form name="frmDelete" method="post" action="/GuiltyPleasure/notice?cmd=delete">
+	<input type="hidden" name="num" />
+</form>
 </body>
 </html>

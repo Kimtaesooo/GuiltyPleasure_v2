@@ -7,7 +7,7 @@
 <jsp:useBean id="dto" class="dto.Notice"/>
 
 		<%
-			String n_num = request.getParameter("n_num");
+			String n_num = request.getParameter("num");
 			dao.deleteBoard(n_num);
-			response.sendRedirect("n_list.jsp");
+			response.sendRedirect("/GuiltyPleasure/notice?cmd=list");
 		%>
