@@ -10,13 +10,13 @@ import dto.MyInfoDTO;
 import dbcp.DBConnectionMgr;
 
 public class MyInfoDAO {
-	DBConnectionMgr pool = DBConnectionMgr.getInstance();
+	DBConnectionMgr pool = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	Connection conn = null;
 	
 	public MyInfoDAO(){
-		DBConnectionMgr pool = DBConnectionMgr.getInstance();
+		pool = DBConnectionMgr.getInstance();
 		try {
 			conn = pool.getConnection();
 		}catch(Exception e){
@@ -69,7 +69,7 @@ public class MyInfoDAO {
 
 	public MyInfoDTO searchMyBattleInfo(String id) {
 		MyInfoDTO dto = new MyInfoDTO();
-		String sql = "SELECT UB_WIN, UB_LOSE, (UB_WIN+UB_LOSE) AS UB_TOTAL, ROUND(UB_WIN/(UB_WIN+UB_LOSE) *100 ,'2') AS UB_PERCENT FROM U_BATTLE WHERE U_ID = ?";
+		String sql = "SELECT UB_WIN, UB_LOSE, (UB_WIN+UB_LOSE) AS UB_TOTAL, DECODE(UB_WIN+UB_LOSE,0,0,ROUND(UB_WIN/(UB_WIN+UB_LOSE) *100 ,'2')) AS UB_PERCENT FROM U_BATTLE WHERE U_ID = ?";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -89,9 +89,9 @@ public class MyInfoDAO {
 
 	public ArrayList<MyInfoDTO> searchMyBattlePoaInfo(String id) {
 		ArrayList<MyInfoDTO> list = new ArrayList<MyInfoDTO>();
-		String sql = "SELECT UP_TYPE , UP_A_CNT, UP_WA_CNT, ROUND(UP_A_CNT/(UP_A_CNT+UP_WA_CNT) *100 ,'2') AS TOTAL_PERCENT FROM U_POA WHERE U_ID = ? "
+		String sql = "SELECT UP_TYPE , UP_A_CNT, UP_WA_CNT, DECODE(UP_A_CNT+UP_WA_CNT,0,0,ROUND(UP_A_CNT/(UP_A_CNT+UP_WA_CNT) *100 ,'2')) AS TOTAL_PERCENT FROM U_POA WHERE U_ID = ? "
 					+"UNION ALL "
-					+" SELECT 'รัวี' AS UP_TYPE, SUM(UP_A_CNT) AS UP_A_CNT, SUM(UP_WA_CNT) AS UP_WA_CNT, ROUND(SUM(UP_A_CNT)/(SUM(UP_A_CNT)+SUM(UP_WA_CNT))*100,'2') AS TOTAL_PERCENT FROM U_POA WHERE U_ID = ?";
+					+" SELECT 'รัวี' AS UP_TYPE, SUM(UP_A_CNT) AS UP_A_CNT, SUM(UP_WA_CNT) AS UP_WA_CNT, DECODE((SUM(UP_A_CNT)+SUM(UP_WA_CNT)),0,0,ROUND(SUM(UP_A_CNT)/(SUM(UP_A_CNT)+SUM(UP_WA_CNT))*100,'2')) AS TOTAL_PERCENT FROM U_POA WHERE U_ID = ?";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);

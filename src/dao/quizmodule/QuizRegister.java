@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Command;
-import controller.CommandFactory;
+import command.quiz.CommandFactory;
 
 /**
  * Servlet implementation class QuizRegister
@@ -29,9 +29,9 @@ public class QuizRegister extends HttpServlet {
 		CommandFactory factory = CommandFactory.newInstance();
 		Command command = factory.createCommand(cmd);
 		String url = (String) command.processCommand(request, response);
-		
+		System.out.println("url = "+url);
 		RequestDispatcher view = request.getRequestDispatcher(url);
+		System.out.println("view = "+view);
 		view.forward(request, response);
 	}
-
 }

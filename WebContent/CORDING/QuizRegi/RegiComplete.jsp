@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"%>
 <!DOCTYPE html>
+<%
+	String cmd = request.getAttribute("cmd").toString();
+	System.out.println("cmd = "+cmd);
+%>
 <html>
 <head>
 <meta charset="EUC-KR">
@@ -59,7 +63,13 @@ input, button, select, textarea {
 <!--리스트로 안가져요 -->
 <jsp:include page="/test_nav.jsp"/>
 	<br><br><br><br>
-	<h2 align="center">퀴즈등록이 되었습니다. <br>버튼을 누르면 리스트로 복귀합니다.</h2>
+	<h2 align="center">
+<%if(cmd.equals("INSERT")){ %>퀴즈등록이 되었습니다.<%} %>
+<%if(cmd.equals("UPDATE")){ %>퀴즈수정이 완료습니다.<%} %>
+<%if(cmd.equals("DELETE")){ %>퀴즈삭제가 완료습니다.<%} %>
+<%if(cmd.equals("REG")){ %>퀴즈등록이 완료습니다.<%} %>
+<%if(cmd.equals("MINSERT")){ %>퀴즈등록이 완료습니다.<%} %>
+	<br>버튼을 누르면 리스트로 복귀합니다.</h2>
 <form method="POST" action="/GuiltyPleasure/borad" align="center">
 	<input type="hidden" name = "cmd"  value="QREGI_BOARD_LIST"/>
 	<input type="submit"  value="돌아가기">

@@ -1,4 +1,4 @@
-package controller;
+package command.quiz;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

@@ -1,4 +1,4 @@
-package controller;
+package command.quiz;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,28 +8,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.boardmodule.QBorad;
+import controller.Command;
+import dao.QuizRegDAO;
+import dto.U_Quiz;
 
 //퀴즈 등록 게시판을 가져온다
 public class QBoradRegisterCommand implements Command {
 
 	@Override
-	public Object processCommand(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
+	public Object processCommand(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		QuizRegDAO dao = new QuizRegDAO();
 		HttpSession session = req.getSession();
 		String id = (String) session.getAttribute("u_id");
 		System.out.println(id);
 	//	String power = req.getParameter("power"); 
-		ArrayList list = new ArrayList<>();
-		QBorad qb = new QBorad();
-		list = qb.getQBoard(id);
+		ArrayList<U_Quiz> list = new ArrayList<U_Quiz>();
+		list = dao.getQBoard(id);
 		req.setAttribute("Boardlist", list);
-		if(id.equals("master")){
-			return "/CORDING/QuizRegi/MQuizRegBorad.jsp";
-		}
-		else{
-			return "/CORDING/QuizRegi/QuizRegBorad.jsp";
-		}
+	
+		return "/CORDING/QuizRegi/QuizRegBorad.jsp";		
 	}
-
 }

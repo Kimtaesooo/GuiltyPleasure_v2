@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"%>
 <%@page import="dto.Battle_Room"%>
-<%@ page import="dao.playmodule.BattlePlay"%>
+<%@ page import="ts_playmodule.BattlePlay"%>
 <%@ page import="java.util.*"%>
 
 <!DOCTYPE html>

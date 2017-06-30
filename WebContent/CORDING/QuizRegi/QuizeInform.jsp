@@ -11,29 +11,63 @@
 	String u_id = (String) session.getAttribute("u_id");
 %>
 <script>
-	function Check() {
-		alert("체크를 시작합니다");
+	window.onload = function(){
+		document.form.genre.value = '<%=uq.getQ_type()%>';
+	};
+	function updatequiz() {		
+		if($("#regQuiz").val()== 'Y'){
+			alert('승인된 문제는 수정 불가능합니다.');
+			return ;
+		}
 		if ($("#problem").val() == "") {
 			alert("문제를 입력하세요");
 			return false;
-		} else if ($("#genre option:selected").val() == "") {
+		}
+
+		if ($("#genre option:selected").val() == "") {
 			alert("유형을 선택하세요");
 			return false;
-		} else if ($("#answer").val() == "") {
+		}
+		
+		if ($("#answer").val() == "") {
 			alert("정답을 입력하세요")
 			return false;
-		} else if ($("#wrong1").val() == "") {
+		}
+
+		if ($("#wrong1").val() == "") {
 			alert("오답1을 입력하세요")
 			return false;
-		} else if ($("form #wrong2").val() == "") {
+		}
+		
+		if ($("form #wrong2").val() == "") {
 			alert("오답2를 입력하세요")
 			return false;
-		} else if ($("#wrong3").val() = "") {
+		}
+
+		if ($("#wrong3").val() == "") {
 			alert("오답3을 입력하세요")
 			return false;
-		} else {
-			return true;
 		}
+		document.form.select.value = document.getElementById('genre').value;
+		document.form.action="/GuiltyPleasure/QuizRegister";
+		document.form.cmd.value="UPDATE";
+		document.form.submit();
+	}
+	
+	function delquiz(){
+		if($("#regQuiz").val()== 'Y'){
+			alert('승인된 문제는 삭제 불가능합니다.');
+			return ;
+		}
+		document.form.action="/GuiltyPleasure/QuizRegister";
+		document.form.cmd.value="DELETE";
+		document.form.submit();
+	}
+	
+	function regquiz(){
+		document.form.action="/GuiltyPleasure/QuizRegister";
+		document.form.cmd.value="REG";
+		document.form.submit();
 	}
 </script>
 <!-- jQuery -->
@@ -137,8 +171,11 @@ button, input, optgroup, select, textarea {
 	<div class="container">
 		<div class="col-lg-12 panel panel-success">
 			<div class="form-group">
-				<label for="textProblem"><h2>문제 수정</h2></label>
-				<form method="POST" action="" onSubmit="return Check()">
+				<label for="textProblem">문제 수정</label>
+				<form method="POST" id="form" name="form">
+					<input type="hidden" name="regQuiz" id="regQuiz" value="<%=uq.getUq_adopt() %>"/>
+					<input type="hidden" name="qnum" id="qnum" value="<%=uq.getUq_num() %>"/>
+					<input type="hidden" name="select" id="select" />
 					<input type="hidden" name="cmd" value="QUIZ_REGI" />
 					<div class="container">
 						<div class="row">
@@ -151,9 +188,10 @@ button, input, optgroup, select, textarea {
 								
 								<select name="genre" id="genre">
 									<option value="">문제 유형 선택</option>
-									<option value="넌센스">넌센스</option>
-									<option value="상식">상식</option>
-									<option value="기타">기타</option>
+									<option value="A">넌센스</option>
+									<option value="B">상식</option>
+									<option value="C">기타1</option>
+									<option value="D">기타2</option>
 								</select>
 								<br><br>
 								<div class="form-group">
@@ -174,12 +212,19 @@ button, input, optgroup, select, textarea {
 									name="w3" />
 								<div id="confirm"></div>
 								<br>
-								<input type="submit" value="수정" /> 
-								&nbsp;
+<%
+								if(u_id.equals("master")){
+%>
+									<input type="submit" onclick="javascript:regquiz()" value="관리자 퀴즈 등록" />&nbsp;
+<%
+								}else{
+%>
+									<input type="submit" onclick="javascript:updatequiz()" value="수정" /> &nbsp;									
+									<input type="submit" onclick="javascript:delquiz()" value="삭제" /> &nbsp;									
+<%
+								} 
+%>
 								<input type="reset" value="취소" />
-								<%if(u_id.equals("master")){%>
-									<input type="submit" value="관리자 퀴즈 등록" />
-								<%} %>
 							</div>
 						</div>
 					</div>

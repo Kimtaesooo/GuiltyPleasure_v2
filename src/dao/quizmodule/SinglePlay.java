@@ -11,10 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import command.quiz.CommandFactory;
 import controller.Command;
-import controller.CommandFactory;
 import dto.Quiz;
-import dto.QuizResult;
 
 @WebServlet(urlPatterns = "/quiz")
 public class SinglePlay extends HttpServlet {

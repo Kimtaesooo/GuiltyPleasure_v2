@@ -5,30 +5,41 @@
 <meta charset="EUC-KR">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>
-function Check(){
-	alert("체크를 시작합니다");
+function check(v){	
 	if($("#problem").val()==""){
 		alert("문제를 입력하세요");
 		return false;
-	}else if($("#genre option:selected").val()==""){
+	}
+	
+	if($("#genre option:selected").val()==""){
 		alert("유형을 선택하세요");
 		return false;
-	}else if($("#answer").val()==""){
+	}
+	
+	if($("#answer").val()==""){
 		alert("정답을 입력하세요")
 		return false;
-	}else if($("#wrong1").val()==""){
+	}
+	
+	if($("#wrong1").val()==""){
 		alert("오답1을 입력하세요")
 		return false;
-	}else if($("form #wrong2").val() == ""){
+	}
+	
+	if($("form #wrong2").val() == ""){
 		alert("오답2를 입력하세요")
 		return false;
-	}else if($("#wrong3").val()=""){
+	}
+	
+	if($("#wrong3").val()==""){
 		alert("오답3을 입력하세요")
 		return false;
-	}else{
-		return true;
 	}
-}
+	document.form.select.value = document.getElementById('genre').value;
+	document.form.cmd.value = v;
+	document.form.submit();
+	}
+
 </script>
 <title>quiz등록</title>
 <!-- jQuery -->
@@ -88,8 +99,9 @@ textarea {
 <body>
 <jsp:include page="/test_nav.jsp"/>
 <br><br><br><br><br>
-<form method="POST" action="../../../GuiltyPleasure/QuizRegister"  onSubmit="return Check()">
-<input type="hidden" name="cmd" value="QUIZ_REGI"/>
+<form method="POST" action="../../../GuiltyPleasure/QuizRegister" name="form" id="form">
+<input type="hidden" name="cmd"/>
+<input type="hidden" name="select" id="select"/>
 <div class="container">
 	<div class="col-lg-12 panel panel-success">
 				<div class="form-group">
@@ -98,9 +110,10 @@ textarea {
 					</div>
 				<select name="genre" id="genre">
 					<option value="">문제 유형 선택</option>
-					<option value="넌센스">넌센스</option>
-					<option value="상식">상식</option>
-					<option value="기타">기타</option>
+					<option value="A">넌센스</option>
+					<option value="B">상식</option>
+					<option value="C">기타1</option>
+					<option value="D">기타2</option>
 				</select>
 				<br><br>
 					<div class="form-group">
@@ -111,16 +124,20 @@ textarea {
 					<input type="text" class="form-control"  placeholder="오답2"  id ="wrong2"  name="w2"/><br>
 					<input type="text" class="form-control"  placeholder="오답3"  id ="wrong3"  name="w3"/><br>
 				<div id="confirm">
-				</div>
-					<input type= "submit" value="문제 제출" />
-					&nbsp;&nbsp;&nbsp;
+<%
+					if(u_id.equals("master")){ 
+%>
+						<input type ="button" onclick="javascript:check('MQUIZ_REGI')" value="바로 등록" />&nbsp;&nbsp;&nbsp;
+<%
+					}else{
+%>
+						<input type= "button" onclick="javascript:check('QUIZ_REGI')" value="문제 제출" />	&nbsp;&nbsp;&nbsp;
+<%
+					}
+%>
 					<input type ="reset" value="취소" />
-					<%if(u_id.equals("master")){ %>
-						&nbsp;&nbsp;&nbsp;
-						<input type ="reset" value="관리자 모드 바로 제출" />
-					<%} %>
 					<br><br>
-	
+				</div>
 	</div>
 </div>
 </form>

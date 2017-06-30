@@ -1,6 +1,9 @@
 <%@page import="dto.U_Quiz"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page contentType="text/html; charset=EUC-KR"%>
+<%
+	String id = session.getAttribute("u_id").toString();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,7 +66,9 @@ a {color: #333;}
 <body>
 <jsp:include page="/test_nav.jsp"/>
 <br><br><br><br><br>
-<h2 align="center">내가 출제한 문제 목록</h2>
+<h2 align="center">
+<%if(id.equals("master")){ %>유저 등록 문제 목록<%}else{ %>내가 출제한 문제 목록<%} %>
+</h2>
 <table align=center width=80% border=0 cellspacing=0 cellpadding=3>
 <tr>
 	<td align=center colspan=2>
@@ -101,7 +106,7 @@ a {color: #333;}
 <div class="col-md-12" align="center">
 <br>
 <form method="POST"  action ="CORDING/QuizRegi/QuizReg.jsp">
-	<input type ="submit"  value="문제 제출">
+	<%if(!id.equals("master")){ %><input type ="submit"  value="문제 제출"><%} %>
 </form>
 </div>
 </body>

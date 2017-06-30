@@ -68,9 +68,9 @@ $(document).ready(function(){
 			return ;
 		}
 		
-		if(enroll.length>0){
-			if(today > $("#inputenroll").val()){
-				alert('오늘보다 이전일을 글쓰기 금지일로 선택할수 없습니다.');
+		if($("#inputenroll").val().length>0){
+			if(today >= $("#inputenroll").val()){
+				alert(today+' 이후를 글쓰기 금지일로 선택할수 있습니다.');
 				return ;
 			}		
 			
@@ -90,9 +90,9 @@ $(document).ready(function(){
 			alert('채팅 금지된 정보가 있는 유저입니다. 채팅 금지일자를 삭제하실수 없습니다.');
 			return ;
 		}
-		if(chat.length>0){
-			if(today > $("#inputchat").val()){
-				alert('오늘보다 이전일을 채팅 금지일로 선택할수 없습니다.');
+		if($("#inputchat").val().length>0){
+			if(today >= $("#inputchat").val()){
+				alert(today+' 이후를 채팅 금지일로 선택할수 있습니다.');
 				return ;
 			}		
 			
@@ -102,7 +102,7 @@ $(document).ready(function(){
 			}
 			option += 'um_chat='+$("#inputchat").val()+' ';
 		}else{
-			if($("#inputchat").length>0){
+			if($("#inputchat").val().length>0){
 				option += 'um_chat='+$("#inputchat").val()+' ';
 			}
 		}
@@ -112,9 +112,9 @@ $(document).ready(function(){
 			alert('싱글플레이가 금지된 정보가 있는 유저입니다. 싱글플레이 금지일자를 삭제하실수 없습니다.');
 			return ;
 		}
-		if(single.length>0){
-			if(today > $("#inputsingle").val()){
-				alert('오늘보다 이전일을 싱글플레이 금지일로 선택할수 없습니다.');
+		if($("#inputsingle").val().length>0){
+			if(today >= $("#inputsingle").val()){
+				alert(today+' 이후를 싱글플레이 금지일로 선택할수 있습니다.');
 				return ;
 			}		
 			
@@ -134,9 +134,9 @@ $(document).ready(function(){
 			alert('배틀 금지된 정보가 있는 유저입니다. 배틀 금지일자를 삭제하실수 없습니다.');
 			return ;
 		}
-		if(battle.length>0){
-			if(today>$("#inputbattle").val()){
-				alert('오늘보다 이전일을 배틀 금지일로 선택할수 없습니다.');
+		if($("#inputbattle").val().length>0){
+			if(today>=$("#inputbattle").val()){
+				alert(today+' 이후를 배틀 금지일로 선택할수 있습니다.');
 				return ;
 			}		
 			
@@ -156,14 +156,14 @@ $(document).ready(function(){
 			alert('접속 정지 정보가 있는 유저입니다. 접속 정지일자를 삭제하실수 없습니다.');
 			return ;
 		}
-		if(entry.length>0){
+		if($("#inputentry").val().length>0){
 			if(today>$("#inputentry").val()){
 				alert('오늘보다 이전일을 접속정지일로 선택할수 없습니다.');
 				return ;
 			}		
 			
-			if(entry>$("#inputentry").val()){
-				alert('접속 정지 지정일은 저장된 날보다 이전일로 갱신할수 없습니다.');
+			if(entry>=$("#inputentry").val()){
+				alert(today+' 이후를 접속 금지일로 선택할수 있습니다.');
 				return ;
 			}
 			option += 'um_entry='+$("#inputentry").val()+' ';

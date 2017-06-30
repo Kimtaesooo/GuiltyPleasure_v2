@@ -12,13 +12,13 @@ import dto.UserInfoDTO;
 import dbcp.DBConnectionMgr;
 
 public class UserInfoDAO {
-	DBConnectionMgr pool = null;
+	DBConnectionMgr pool = DBConnectionMgr.getInstance();
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	Connection conn = null;
 	
 	public UserInfoDAO(){
-		pool = DBConnectionMgr.getInstance();
+		DBConnectionMgr pool = DBConnectionMgr.getInstance();
 		try {
 			conn = pool.getConnection();
 		}catch(Exception e){
@@ -222,10 +222,11 @@ public class UserInfoDAO {
 
 		String sql = "UPDATE U_MANAGE SET";
 		HashMap<String, String> map = new HashMap<String, String>();
-		
+		System.out.println("param = "+param);
 		String info[] = param.trim().split(" ");
 		
 		for(int i=0;i<info.length;i++){
+			System.out.println("info = "+info[i]);
 			map.put(info[i].split("=")[0], info[i].split("=")[1]);
 		}
 		

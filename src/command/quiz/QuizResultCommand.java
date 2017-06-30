@@ -1,4 +1,4 @@
-package controller;
+package command.quiz;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import controller.Command;
 import dao.quizmodule.GetQuiz;
 import dto.QuizResult;
 

@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONObject;
 
+import command.quiz.CommandFactory;
 import controller.Command;
-import controller.CommandFactory;
 
 @WebServlet(urlPatterns="/battle")
 public class BattleServlet extends HttpServlet{

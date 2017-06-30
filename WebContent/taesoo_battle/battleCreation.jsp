@@ -1,6 +1,6 @@
 <%@page import="java.net.Socket"%>
 <%@ page import="java.util.List"%>
-<%@ page import="dao.playmodule.BattlePlay"%>
+<%@ page import="ts_playmodule.BattlePlay"%>
 <%@ page import="dto.Battle_Room"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <%
@@ -9,7 +9,7 @@
 
 	String u_id = (String)session.getAttribute("u_id");
 %>
-	<jsp:useBean id="dao" class="dao.playmodule.BattlePlay"/>
+	<jsp:useBean id="dao" class="ts_playmodule.BattlePlay"/>
 	<jsp:useBean id="dto" class="dto.Battle_Room"/>
 	<jsp:setProperty name="dto" property="*"/>
 

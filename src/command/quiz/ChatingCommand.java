@@ -1,4 +1,4 @@
-package controller;
+package command.quiz;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -11,7 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import dao.DBConnectionMgr;
+import controller.Command;
+import dbcp.DBConnectionMgr;
 import dao.playmodule.ChatingDB;
 import dto.Battle_Chating;
 
