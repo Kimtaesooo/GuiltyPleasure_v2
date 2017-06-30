@@ -1,7 +1,6 @@
 package command.ts_battle;
 
 import controller.Command;
-import controller.ts_BattleController;
 
 public class CommandFactory {
 	private static CommandFactory instance = new CommandFactory();
@@ -15,7 +14,7 @@ public class CommandFactory {
 	}
 	public Command createCommand(String cmd){
 		
-		if(cmd.equals("MYINFO")){
+		if(cmd.equals("MAKEROOM")){
 			return new MakeRoomCommand();
 		}
 		return null;

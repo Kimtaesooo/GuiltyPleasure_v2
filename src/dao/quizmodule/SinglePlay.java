@@ -31,7 +31,6 @@ public class SinglePlay extends HttpServlet {
 		ArrayList resultList = null;
 		int counter = 0;
 		
-		System.out.println("¼­ºí¸´ ¿¬°á");
 		if(req.getParameter("counter")!=null){
 			counter = Integer.parseInt(req.getParameter("counter"));
 			counter--;

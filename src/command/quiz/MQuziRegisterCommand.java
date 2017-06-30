@@ -26,7 +26,6 @@ public class MQuziRegisterCommand implements Command{
 		int i = dao.MRegiQuiz(dao.setQuiz(request));
 		request.setAttribute("cmd", "MINSERT");
 		if(i>0){
-			System.out.println("문제가 들어갔습니다.");
 			return "/CORDING/QuizRegi/RegiComplete.jsp";
 		}
 		return "/CORDING/QuizRegi/QuizReg.jsp";

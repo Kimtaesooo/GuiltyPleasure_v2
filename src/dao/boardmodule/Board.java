@@ -24,10 +24,8 @@ public class Board extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String cmd = req.getParameter("cmd");
-		System.out.println("Board ¼­ºí¸´ ¿¬°á");
 		CommandFactory factory = CommandFactory.newInstance();
 		Command command = factory.createCommand(cmd);
-		System.out.println("cmd"+cmd);
 		
 		String url = (String) command.processCommand(req, resp);
 		RequestDispatcher dis = req.getRequestDispatcher(url);

@@ -20,7 +20,6 @@ public class QBoradRegisterCommand implements Command {
 		QuizRegDAO dao = new QuizRegDAO();
 		HttpSession session = req.getSession();
 		String id = (String) session.getAttribute("u_id");
-		System.out.println(id);
 	//	String power = req.getParameter("power"); 
 		ArrayList<U_Quiz> list = new ArrayList<U_Quiz>();
 		list = dao.getQBoard(id);

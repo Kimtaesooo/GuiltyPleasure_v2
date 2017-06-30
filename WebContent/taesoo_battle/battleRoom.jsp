@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"%>
 <%@page import="dto.Battle_Room"%>
-<%@ page import="ts_playmodule.BattlePlay"%>
+<%@ page import="dao.ts_battlemodule.BattlePlay"%>
 <%@ page import="java.util.*"%>
 
 <!DOCTYPE html>
@@ -109,7 +109,7 @@
 
 	<!-- 방만들기 모달 -->
 	<div class="modal fade" id="makeRoom" data-backdrop="static">
-		<form class="form-horizontal" action="/GuiltyPleasure/ts_battle?cmd=login">
+		<form class="form-horizontal" method="post" action="/GuiltyPleasure/ts_battle?cmd=MAKEROOM">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -135,7 +135,7 @@
 							<label for="inputPassword" class="col-sm-2 control-label">포인트</label>
 							<div class="col-sm-10">
 								<input type="text"  class="form-control onlyNumber" name="br_point"
-									id="BR_POINT" placeholder="포인트를 입력해주세요">									
+									id="br_point" placeholder="포인트를 입력해주세요">									
 							</div>
 						</div>
 						<div class="form-group">

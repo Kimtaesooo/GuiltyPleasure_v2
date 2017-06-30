@@ -1,7 +1,9 @@
-<%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@page import="dao.ts_battlemodule.BattlePlay"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="dto.Battle_Play"%>
 <%@ page import="dto.Battle_Room"%>
-<%@ page import="dao.playmodule.BattlePlay"%>
+<%@ page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,75 +16,44 @@
 <script src=/GuiltyPleasure/ajax.js></script>
 </head>
 <body>
-<jsp:useBean id="dao" class="dao.playmodule.BattlePlay"/>
-<jsp:useBean id="dto" class="dto.Battle_Room"/>
+<jsp:useBean id="roomDto" class="dto.Battle_Room"/>
+<jsp:useBean id="playDto" class="dto.Battle_Play"/>
 <%
-	String bangjang = request.getParameter("u_id");
+	request.setCharacterEncoding("euc-kr");
+	response.setCharacterEncoding("euc-kr");
+	// 유저 : 클릭해서 br_num, u_id(방 생성자) 받아온다. 방장(생성자) : 방 만들때 br_num, u_id 직접 가져온다.
 	String br_num = request.getParameter("br_num");
-	String me = (String)session.getAttribute("u_id");
-
-	String[] gameUser = new String[2];
-	gameUser[0] = bangjang;
+	String bangjang = request.getParameter("u_id");
+	String gameuser = "";
 	
-	String ip = request.getRemoteAddr();
-
-	List roominfo = dao.roomInfo(bangjang); // DB 연결
-	Battle_Room room = (Battle_Room)roominfo.get(0);
+	List roominfo = new ArrayList();
+	List playinfo = new ArrayList();
+	BattlePlay dao = new BattlePlay();
 	
-	// 방장외에 다른 사람이접속하면 방 인원수 카운팅
-	if(!session.getAttribute("u_id").equals(bangjang)){
-		gameUser[1] = (String)session.getAttribute("u_id");
-		dao.updateRoom(bangjang);
+	roominfo = dao.roomInfo(br_num);
+	Battle_Room battleroom = (Battle_Room)roominfo.get(0);
+	
+	playinfo = dao.playInfo(br_num);
+	Battle_Play battleplay = (Battle_Play)playinfo.get(0);
+	
+	String user01 = battleplay.getUser01(); // 방장
+	String user02 = battleplay.getUser02(); // 게임유저
+	
+	if(battleroom.getBr_people()==1){
+		if(!session.getAttribute("u_id").equals(bangjang)){
+			gameuser = (String) session.getAttribute("u_id");
+			// Br_people 인원 수 증가
+			dao.updatePlayRoom(br_num, gameuser);
+		}
 	}
-	System.out.println(gameUser[0]);
-	System.out.println(gameUser[1]);
 	
-	if (room.getBr_people() == 2) {
+	if(!session.getAttribute("u_id").equals("user01") || !session.getAttribute("u_id").equals("user02")){
 %>
 		<script> alert('인원이 꽉 찼습니다.'); 	location.href="battleRoom.jsp";	</script>
-<% }%>
-
-<!-- AJAX 부분 -->
-	<script>
-		function gameStart() {
-			var param = "";
-			sendRequest("POST", "startBattle.jsp", param, callback);
-		}
-		function callback() {
-			if (httpRequest.readyState == 4) {
-				if (httpRequest.status == 200) {
-					var windowQuiz = document.getElementById("windowQuiz");
-					windowQuiz.innerHTML = httpRequest.responseText;
-				} else {
-					alert(httpRequest.status);
-				}
-			}
-		}
-
-		function start() {
-
-		}
-		function callback2() {
-			if (httpRequest.readyState == 4) {
-				if (httpRequest.status == 200) {
-					var windowQuiz = document.getElementById("windowQuiz");
-					windowQuiz.innerHTML = httpRequest.responseText;
-				} else {
-					alert(httpRequest.status);
-				}
-			}
-		}
-	
-	</script>
+<% 	} %>
 	
 
 	<br><br>
-	<input type="hidden" value="<%=ip%>" id="ip">
-	<input type="hidden" value="<%=gameUser[0]%>" id="bangjang">
-	<input type="hidden" value="<%=gameUser[1]%>" id="gameUser">
-	<input type="hidden" value="<%=br_num%>" id="br_num">
-	<input type="hidden" value="<%=me%>" id="me">
-	<input type="hidden" id="url" value="ws://localhost:8080">
 	<p class="text-center">배틀 게임 시작</p>
 	<br><br>
 	<div class="row">
@@ -123,7 +94,7 @@
 					<input type="button" class="btn btn-default" value="전송" onclick="send()"/>
 				</div>
 			<br><br><br>
-			<%if(session.getAttribute("u_id").equals(bangjang)){%>
+			<%if(session.getAttribute("u_id").equals("A")){%>
 				<div class="col-xs-6">
 					<a class="btn btn-danger btn-lg btn-block" href="battleRoom.jsp" role="button">포기하기</a>
 				</div>

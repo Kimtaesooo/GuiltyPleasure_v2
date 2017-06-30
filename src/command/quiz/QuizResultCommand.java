@@ -27,7 +27,7 @@ public class QuizResultCommand implements Command {
 		ArrayList list = (ArrayList) session.getAttribute("resultlist");
 		for (int i = 0; i < list.size(); i++) {
 			String[] str = (String[]) list.get(i);
-			System.out.println(str[0]);
+			// System.out.println(str[0]);
 			array = str[0].split(",");
 			
 			re = new QuizResult();

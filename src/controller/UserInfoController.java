@@ -31,8 +31,6 @@ public class UserInfoController extends HttpServlet {
 		Command command = null;
 		command = instance.createCommand(cmd);	
 		
-		System.out.println("command = "+command);
-		
 		url = command.processCommand(request, response).toString();
 		
 		RequestDispatcher view = request.getRequestDispatcher(url);
