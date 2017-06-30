@@ -100,9 +100,10 @@ a {color: #333;}
 	           	</div>	
 	           	<div class="col-md-2">
 		           	<select class="form-control" name="up_type" id="up_type">
-		  						<option>A</option>
-		  						<option>B</option>
-		  						<option>C</option>
+		  						<option <%if(type.equals("A")){%>selected<%} %>>A</option>
+		  						<option <%if(type.equals("B")){%>selected<%} %>>B</option>
+		  						<option <%if(type.equals("C")){%>selected<%} %>>C</option>
+		  						<option <%if(type.equals("D")){%>selected<%} %>>D</option>
 					</select>
 				</div>
 				<div class="col-md-2">
@@ -112,12 +113,12 @@ a {color: #333;}
            	</form>
            	<br><br><br><br>
             </div>
- <%
- 	if(list.size()>0){
-			u_single One = (u_single)list.get(0);			
-			u_single Two = (u_single)list.get(1);			
-			u_single Three = (u_single)list.get(2);			
-%>		          	
+		 <%
+		 	if(list.size()>0){
+					u_single One = (u_single)list.get(0);			
+					u_single Two = (u_single)list.get(1);			
+					u_single Three = (u_single)list.get(2);			
+		%>		          	
           
       <div id="fh5co-page">
 		<div id="fh5co-wrap">

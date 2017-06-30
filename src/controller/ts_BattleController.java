@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import command.ts_battle.CommandFactory;
 
-@WebServlet(urlPatterns="ts_battle")
+@WebServlet(urlPatterns="/ts_battle")
 public class ts_BattleController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     CommandFactory instance;

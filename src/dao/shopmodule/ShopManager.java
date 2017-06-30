@@ -294,5 +294,21 @@ public class ShopManager {
 			pool.freeConnection(con, pstmt);
 		}
 	}
+	
+	
+	public void jaumPoint(String u_nickname) {
+		String sql = "update userinfo set u_point=u_point+5 where u_nickname = ?";
+		try {
+			con = pool.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, u_nickname);
+			pstmt.executeUpdate();
+		} catch (Exception err) {
+			System.out.println("u_nickname()에서오류");
+			err.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt);
+		}
+	}
 
 }

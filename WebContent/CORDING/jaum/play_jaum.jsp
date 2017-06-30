@@ -62,19 +62,29 @@ a {color: #333;}
 <br><br><br><br><br>
 <%if(id!=null){ %>
 <div class="container">
+<div class="col-md-2"> </div>
+<div class="col-md-10" 
+style="width:1000px; height:80px; 
+padding:10px; background-color: #d4d7da;" id="notice">
+<H3 align="center">진행중인 문제는 '문제줘'를 입력해서 확인하세요</H3>
+</div>
 <div class="col-md-1"> </div>
 <div id="chat" class="col-lg-8"
 style="overflow:scroll; width:700px; height:500px; 
 padding:10px; background-color: #d3e4e2;">
 자음퀴즈방 ~ 맞추면 5포인트 ~ '문제줘' 입력시 출제 모르면 '포기'<br>
+나가기를 통해서 나가주셔야 인원 확인이 돼요 ~<br>
 </div>
 <div class="col-md-4" id="state"
 style="overflow:scroll; width:300px; height:500px; 
-padding:10px; background-color: #d3e4e2;">
+padding:10px; background-color: #e5d1ea;">
 참여자 정보<br>
 </div>
 <br>
-<div class="col-md-12">
+<div class="col-md-1"> </div>
+<div class="col-md-10" 
+style="width:1000px; height:80px; 
+padding:10px; background-color: #d4d7da;">
 	<div class="col-md-1"></div>
 	<div class="col-md-9">
 	<input type="text" size="60" id="inputMessage" onkeyup="enterkey()">
@@ -92,11 +102,12 @@ padding:10px; background-color: #d3e4e2;">
 <input type="hidden" value="<%=num%>" id="num">
 <script>
 		var textarea = document.getElementById("chat");
+		var notice = document.getElementById("notice");
 		var state = document.getElementById("state");
 		var id = document.getElementById("id").value;
 		var nick = document.getElementById("nick").value;
 		var num =  document.getElementById("num").value;
-		var webSocket = new WebSocket("ws://70.12.110.113:8080/GuiltyPleasure/main_chat");
+		var webSocket = new WebSocket("ws://70.12.110.106:8080/GuiltyPleasure/main_chat");
 		var inputMessage = document.getElementById("inputMessage");
 		var strArr;
 		var rank="";
@@ -136,15 +147,23 @@ padding:10px; background-color: #d3e4e2;">
 	    	
 	    	else{
 	    		if(strArr[2]==null){
-	    			 textarea.innerHTML += "<h4>"+strArr[1]+"님이 들어오셨습니다.</h4>"
+	    			 textarea.innerHTML += "<h5>"+strArr[1]+"님이 들어오셨습니다.</h5>"
 	    			 if(strArr[0]=="out"){
-	 		    		textarea.innerHTML += "<h4>"+strArr[1]+"님이 나가셨습니다.</h4>"
+	 		    		textarea.innerHTML += "<h5>"+strArr[1]+"님이 나가셨습니다.</h5>"
 	 		    	}
 	    		}
 	    		
-	    		else{  textarea.innerHTML += 
-	        			"<h6>"+strArr[2]+" "+strArr[0]+" : "+strArr[1] +"</h6>";
-	       			 textarea.scrollTop = textarea.scrollHeight;}
+	    		else{  
+		    			if(strArr[0]=="system"){
+		    				notice.innerHTML = 
+			        			"<h3 align=center>"+strArr[1] +"</h3>";
+		    			}
+		    			else{
+		    			textarea.innerHTML += 
+		        			"<h6>"+strArr[2]+" "+strArr[0]+" : "+strArr[1] +"</h6>";
+		       			 textarea.scrollTop = textarea.scrollHeight;
+		    			}
+	       			 }
 	    	}
 	    }
 	    function send() {
