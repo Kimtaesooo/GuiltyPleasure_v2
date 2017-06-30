@@ -78,11 +78,11 @@ var result = new Array();
 		if(counter>0){
 			select = document.getElementById("text"+i).value;
 			combocheck(select, counter);
-			location.href="/GuiltyPleasure/quiz?cmd=QUIZ_RESULT&counter="+counter+"&result="+result;
+			location.href="/GuiltyPleasure/quiz?cmd=QUIZ_RESULT&counter="+counter+"&result="+result+"&method=SINGLE";
 		}else	if(counter==0){
 			select = document.getElementById("text"+i).value;
 			combocheck(select, counter);
-			location.href="/GuiltyPleasure/quiz?cmd=QUIZ_RESULT&result="+result+"&step=FINAL";
+			location.href="/GuiltyPleasure/quiz?cmd=QUIZ_RESULT&result="+result+"&step=FINAL"+"&method=SINGLE";
 		}else if(counter<0){
 				clearInterval(tid);
 			}

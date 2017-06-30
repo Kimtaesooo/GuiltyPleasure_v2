@@ -1,9 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"%>
+<%@ page contentType="text/html; charset=EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>싱글 플레이</title>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>Insert title here</title>
+</head>
 <!-- jQuery -->
 	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.min.js"></script>
 	<!-- jQuery Easing -->
@@ -59,12 +60,12 @@ a {color: #333;}
 			<div class="container">
 				<div class="row">							
 					<div class="col-md-6 fh5co-text">
-						<h2 class="to-animate intro-animate-1">싱글플레이 입니다. </h2>
+						<h2 class="to-animate intro-animate-1">주관식 퀴즈 풀기입니다. </h2>
 						<p class="to-animate intro-animate-2">문제수를 선택하고 시작버튼을 눌러주세요 ~ 유형은 랜덤</p>
 							<form method="get" action="/GuiltyPleasure/quiz">
 								<p class="to-animate intro-animate-3">
 								<input type="hidden"  name="cmd" value="QUIZ_GET"/>
-								<input type="hidden"  name="method"  value="SINGLE"/>
+								<input type="hidden" name="method" value="SHORT"/>
 								<select name = "counter">
 									<option value="3">3</option>
 									<option value="5">5</option>

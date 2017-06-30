@@ -30,8 +30,7 @@ public class SinglePlay extends HttpServlet {
 		String cmd = req.getParameter("cmd");
 		ArrayList resultList = null;
 		int counter = 0;
-		
-		System.out.println("서블릿 연결");
+		String method= req.getParameter("method");
 		if(req.getParameter("counter")!=null){
 			counter = Integer.parseInt(req.getParameter("counter"));
 			counter--;
@@ -39,16 +38,35 @@ public class SinglePlay extends HttpServlet {
 		}
 		
 		//싱글 퀴즈 결과가 들어갈 리스트
-		if(session.getAttribute("resultlist") != null){
-				resultList = (ArrayList) session.getAttribute("resultlist");
-		}else{
+		if(method.equals("SINGLE")){
+			//객관식
+			if(session.getAttribute("SingleResultlist") != null){
+				resultList = (ArrayList) session.getAttribute("SingleResultlist");
+			}else{
 				resultList = new ArrayList();
+			}
+			
+			if(cmd.equals("QUIZ_RESULT")){
+				String[] result = req.getParameterValues("result");
+				System.out.println("카운트 "+counter +"문제:"+result);
+				resultList.add(result);
+				session.setAttribute("SingleResultlist", resultList);
+			}
+		}else{
+			//주관식
+			if(session.getAttribute("ShortResultlist") != null){
+				resultList = (ArrayList) session.getAttribute("ShortResultlist");
+			}else{
+				resultList = new ArrayList();
+			}
+			
+			if(cmd.equals("QUIZ_RESULT")){
+				String[] result = req.getParameterValues("result");
+				resultList.add(result);
+				session.setAttribute("ShortResultlist", resultList);
+			}
 		}
-		if(cmd.equals("QUIZ_RESULT")){
-			String[] result = req.getParameterValues("result");
-			resultList.add(result);
-			session.setAttribute("resultlist", resultList);
-		}
+		
 		
 		CommandFactory factory = CommandFactory.newInstance();
 		Command command = factory.createCommand(cmd);

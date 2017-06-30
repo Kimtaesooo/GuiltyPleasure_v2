@@ -8,6 +8,28 @@ public class QuizResult {
 	int ca_sum = 0;
 	int wa_sum= 0;
 	String q_type;
+	String select = "";
+	String answer ="";
+	
+	
+	public String getAnswer() {
+		return answer;
+	}
+	public void setAnswer(String answer) {
+		this.answer = answer;
+	}
+	public String getSelect() {
+		return select;
+	}
+	public void setSelect(String select) {
+		this.select = select;
+	}
+	public void setCa_sum(int ca_sum) {
+		this.ca_sum = ca_sum;
+	}
+	public void setWa_sum(int wa_sum) {
+		this.wa_sum = wa_sum;
+	}
 	public String getQ_type() {
 		return q_type;
 	}
@@ -48,8 +70,11 @@ public class QuizResult {
 	}
 	@Override
 	public String toString() {
-		return "QuizResult [u_id=" + u_id + ", q_ca_count=" + q_ca_count + ", q_wa_count=" + q_wa_count + "]";
+		return "QuizResult [u_id=" + u_id + ", q_code=" + q_code + ", q_ca_count=" + q_ca_count + ", q_wa_count="
+				+ q_wa_count + ", ca_sum=" + ca_sum + ", wa_sum=" + wa_sum + ", q_type=" + q_type + ", select=" + select
+				+ "]";
 	}
+	
 	
 	
 }
