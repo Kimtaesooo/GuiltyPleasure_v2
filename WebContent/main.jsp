@@ -202,6 +202,13 @@ function inregquiz(){
 						<img src="https://cdn2.iconfinder.com/data/icons/new-year-s-hand-drawn-basic/64/question_mark-128.png">
 					</a>
 			</div>
+			<div class="col-md-4 to-animate">
+					<a href="CORDING/shop/outline/searchStart.jsp" class="fh5co-figure"  data-toggle="modal">
+						<span class="fh5co-price">테스트테스트</span>
+						<br>
+						<img src="https://cdn2.iconfinder.com/data/icons/new-year-s-hand-drawn-basic/64/question_mark-128.png">
+					</a>
+			</div>
         </div>
 			<!--<jsp:include page="/chaticon3.jsp"/>
         <hr>
