@@ -109,7 +109,7 @@
 
 	<!-- 방만들기 모달 -->
 	<div class="modal fade" id="makeRoom" data-backdrop="static">
-		<form class="form-horizontal" action="battleCreation.jsp">
+		<form class="form-horizontal" action="/GuiltyPleasure/ts_battle?cmd=login">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
