@@ -13,6 +13,14 @@
 <title>자유게시판 글 조회</title>
 </head>
 <script>
+	function LockF5() { 
+		if((event.ctrlKey == true && (event.keyCode == 78 || event.keyCode == 82))|| (event.keyCode == 116)){ 
+			event.keyCode = 0; 
+			event.cancelBubble = true; 
+			event.returnValue = false; 
+			}
+    } 
+	
 	function fnList() {
 		document.frmList.submit();
 	}
@@ -25,7 +33,7 @@
 	function inputBtn(b_num) {
 		var reply = document.getElementById("reply").value;
 		var form = document.replyform;
-		if (reply != null) {
+		if (reply.length>0) {
 			form.submit();
 		} else {
 			alert("내용을 입력해주세요.");
@@ -38,7 +46,7 @@
 		delForm.submit();
 	}
 </script>
-<body>
+<body onkeydown="LockF5()">
 	<jsp:include page="/top.jsp" />
 	<jsp:include page="/nav.jsp" />
 	<%
@@ -63,13 +71,11 @@
 
 		if(sid.equals(u_id)){
 			dao.minusCount(b_num);
-			dto.setB_count(dto.getB_count()-1);
+			//dto.setB_count(dto.getB_count()-1);
 		}
 	
 		ArrayList<Reply> rep_list = dao.getReplyList(b_num);
 		pageContext.setAttribute("list", rep_list);
-		
-
 %>
 	<div class="row">
 	<div style="padding-top:0px; height:90px; background-color: #4fd2c2">
@@ -82,7 +88,6 @@
 		<div class="col-md-2"></div>
 		<div class="col-md-8" align=center>
 			<table class="table table-condensed">
-				<br>
 				<tr height="1" bgcolor="#82B5DF">
 					<td colspan="4" width="407"></td>
 				</tr>
@@ -139,33 +144,40 @@
 	<div class="row">
 		<div class="col-md-2"></div>
 			<div class="col-md-8" align=center>
-			<div class="col-md-4"></div>
-			<div class="col-md-4">
-			<br>
+			<div class="col-md-10" align="left">
+				<br>
 			<button type="button" class="btn btn-default" onclick="fnList()">목록</button>
+			</div>
+			<div class="col-md-1" align="center">
+			<br>
 			<%
 				if (sid.equals(u_id)) {
  			%>
- 			<form method="post" action="/GuiltyPleasure/Board?cmd=BOARDUPDATE">
+ 			<form method="post" action="/GuiltyPleasure/Board">
+ 				<input type="hidden" name="cmd" value="BOARDUPDATE"/>
  				<input type="hidden" name="b_num" id="b_num" value="<%=b_num%>"/>
 					<button type="submit" class="btn btn-primary">수정</button>
 			</form>
-			<form method="post" action="/GuiltyPleasure/Board?cmd=BOARDDELETE">
+			</div>
+			<div class="col-md-1" align="left">
+			<br>
+			<form method="post" action="/GuiltyPleasure/Board">
+				<input type="hidden" name="cmd" value="BOARDDELETE"/>
 				<input type="hidden" name="b_num" id="b_num" value="<%=b_num%>"/>
 					<button type="submit" class="btn btn-primary">삭제</button>
 			</form>
 			<%}%>
+			</div>
 			<br>
 			</div>
-			<div class="col-md-4"></div>
-		</div>
 		<div class="col-md-2"></div>
 		</div>
 	<br>
 	<div class="row">
 		<div class="col-md-2"></div>
 		<div class="col-md-8" align="center">
-			<form name="delReplyForm" method="post" action="/GuiltyPleasure/Board?cmd=BOARDREPLYDELETE">
+			<form name="delReplyForm" method="post" action="/GuiltyPleasure/Board">
+				<input type="hidden" name="cmd" value="BOARDREPLYDELETE"/>
 				<input type="hidden" name="r_reply"> 
 				<input type="hidden" name="b_num" value="<%=b_num%>">
 				<table>
@@ -185,6 +197,7 @@
 							} else {
 								for (int i = 0; i < rep_list.size(); i++) {
 										dto2 = (Reply) rep_list.get(i);
+										System.out.println("content in jsp = "+dto2.getR_content());
 					%>
 					<tr height="25" align="center">
 						<td><%=dto2.getU_id()%></td>
@@ -215,7 +228,8 @@
 	<div class="row">
 		<div class="col-md-2"></div>
 		<div class="col-md-8" align="center">
-			<form name="replyform" method="post" action="/GuiltyPleasure/Board?cmd=BOARDREPLY">
+			<form name="replyform" method="post" action="/GuiltyPleasure/Board">
+				<input type="hidden" name="cmd" value="BOARDREPLY"/>
 				<input type="hidden" name="b_num" value="<%=b_num%>"> 
 				<input type="hidden" name="u_id" value="<%=sid%>">
 				<table>
@@ -268,14 +282,17 @@
 					<td colspan="4" width="407"></td>
 				</tr>
 			</table>
+			<br><br>
 		</div>
 		<div class="col-md-2"></div>
 	</div>
-	<form name="frmList" method="post" action="/GuiltyPleasure/Board?cmd=BOARDLIST">
+	<form name="frmList" method="post" action="/GuiltyPleasure/Board">
+		<input type="hidden" name="cmd" value="BOARDLIST"/>
 		<input type="hidden" name="keyfield" value="<%=keyfield %>" /> 
 		<input type="hidden" name="keyword" value="<%=keyword %>" />
 	</form>
-	<form name="frmRead2" method="post" action="/GuiltyPleasure/Board?cmd=BOARDREAD">
+	<form name="frmRead2" method="post" action="/GuiltyPleasure/Board">
+		<input type="hidden" name="cmd" value="BOARDREAD"/>
 		<input type="hidden" name="b_num" />
 	</form>
 </body>

@@ -110,9 +110,7 @@ function inregquiz(){
 }
 
 </script>
-
 <title>Main</title>
-	
 </head>
 <body>
 <jsp:include page="/test_nav.jsp"/>

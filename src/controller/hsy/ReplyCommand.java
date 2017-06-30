@@ -25,12 +25,25 @@ public class ReplyCommand implements CommandBoard{
 		String r_content = req.getParameter("r_content");
 		String r_regdate = req.getParameter("r_regdate");
 		
+		String before_u_id = req.getSession().getAttribute("u_id")==null?"":req.getSession().getAttribute("u_id").toString();
+		String before_b_num = req.getSession().getAttribute("b_num")==null?"":req.getSession().getAttribute("b_num").toString();
+		String before_r_content = req.getSession().getAttribute("r_content")==null?"":req.getSession().getAttribute("r_content").toString();
+		
+		if(before_u_id.equals(u_id) && before_b_num.equals(b_num) && before_r_content.equals(r_content)){
+			return "/CORDING/board/BoardRead.jsp?b_num="+b_num;
+		}
+		
+		System.out.println("comment = "+r_content);
 		dto2.setB_num(b_num);
 		dto2.setU_id(u_id);
 		dto2.setR_content(r_content);
 		dto2.setR_regdate(r_regdate);
 		
 		dao.replyBoard(dto2);
+		
+		req.getSession().setAttribute("b_num", b_num);
+		req.getSession().setAttribute("u_id", u_id);
+		req.getSession().setAttribute("r_content", r_content);
 		
 		return "/CORDING/board/BoardRead.jsp?b_num="+dto2.getB_num();
 	}
