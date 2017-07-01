@@ -81,12 +81,11 @@ public class BattlePlay {
 		return list;
 	}
 
-	// playRoom.jsp 방 정보 소환
+	// playRoom.jsp 방 정보 소환, 유저 아이디로 검색
 	public List roomInfo(String u_id) {
 		int br_people = 1;
 		ArrayList list = new ArrayList();
 		String sql = "select * from battle_room where u_id ='" + u_id + "'";
-
 		try {
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -113,6 +112,39 @@ public class BattlePlay {
 		}
 		return list;
 	}
+	
+	// playRoom.jsp 방 정보 소환, 방 번호로 검색
+		public List roomInfo2(String br_num) {
+			int br_people = 1;
+			ArrayList list = new ArrayList();
+			String sql = "select * from battle_room where br_num ='" + br_num + "'";
+
+			try {
+				pstmt = con.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+
+				if (rs.next()) {
+					Battle_Room room = new Battle_Room();
+					room.setBr_num(rs.getString("br_num"));
+					room.setBr_subject(rs.getString("br_subject"));
+					room.setBr_pw(rs.getInt("br_pw"));
+					room.setBr_type(rs.getString("br_type"));
+					room.setBr_cnt(rs.getInt("br_cnt"));
+					room.setBr_point(rs.getInt("br_point"));
+					room.setU_id(rs.getString("u_id"));
+					room.setBr_people(rs.getInt("br_people"));
+					room.setBr_gamestate(rs.getString("br_gamestate"));
+					room.setBr_ip(rs.getString("br_ip"));
+					list.add(room);
+				}
+			} catch (Exception err) {
+				System.out.println("roomInfo();에서 오류");
+				err.printStackTrace();
+			} finally {
+				pool.freeConnection(con, pstmt, rs);
+			}
+			return list;
+		}
 	
 	// playRoom.jsp battle_play 정보 소환
 		public List playInfo(String br_num) {

@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <%@ page import="dto.Battle_Room"%>
 <%@ page import="dao.playmodule.BattlePlay"%>	
-<%@ page import="ts_playmodule.*"%>	
+<%@ page import=dao.ts_battlemodule.*"%>	
 <!DOCTYPE html>
 <html>
 <head>

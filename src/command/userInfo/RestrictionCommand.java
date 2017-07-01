@@ -14,7 +14,7 @@ public class RestrictionCommand implements Command{
 	@Override
 	public Object processCommand(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String param = request.getParameter("param");
-		
+
 		if(param.isEmpty()){
 			return "WEB-INF/userInfo/userList.jsp";
 		}

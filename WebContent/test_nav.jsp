@@ -88,6 +88,7 @@ $(document).ready(function(){
 			<li><a href="${pageContext.request.contextPath}/CORDING/custom/customer_main.jsp" data-nav-section="pricing">고객센터</a></li>
 				<%if(u_id.equals("master")) {%>
 			<li><a href="/GuiltyPleasure/userinfo?cmd=LIST" data-nav-section="pricing">회원관리</a></li>
+			<li><a href="/GuiltyPleasure/quizinfo?cmd=LIST" data-nav-section="pricing">퀴즈관리</a></li>
 				<%} %>
 		</ul>
 </div>

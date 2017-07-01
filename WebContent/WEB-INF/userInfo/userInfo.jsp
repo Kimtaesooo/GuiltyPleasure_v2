@@ -212,6 +212,7 @@ $(document).ready(function(){
 			});
 		}
 	});
+	
 	function moveinfo(){
 		$("#cmd").val('LIST');
 		$("#pagesize").val('10');

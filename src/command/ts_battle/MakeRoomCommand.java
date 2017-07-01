@@ -51,7 +51,7 @@ public class MakeRoomCommand implements Command{
 		
 		
 		
-		return "/taesoo_battle/playRoom.jsp?u_id="+u_id+"&br_num="+br_num+"";
+		return "/taesoo_battle/playRoom.jsp?bangjang="+u_id+"&br_num="+br_num+"";
 	}
 
 }

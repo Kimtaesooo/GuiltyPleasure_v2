@@ -19,7 +19,7 @@
 	});
 	
 	function fnRead(u_id, br_num){
-		document.frmRead.u_id.value = u_id;
+		document.frmRead.bangjang.value = u_id;
 		document.frmRead.br_num.value = br_num;
 		document.frmRead.submit();
 	}
@@ -171,8 +171,8 @@
 		</form>
 	</div>
 	<!-- 방만들기 모달 종료-->
-<form name="frmRead" method="get" action="playRoom.jsp">
-	<input type="hidden" name="u_id"/>
+<form name="frmRead" method="post" action="playRoom.jsp">
+	<input type="hidden" name="bangjang"/>
 	<input type="hidden" name="br_num"/>
 </form>	
 <script>

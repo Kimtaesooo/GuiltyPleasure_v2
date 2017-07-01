@@ -23,14 +23,14 @@
 	response.setCharacterEncoding("euc-kr");
 	// 유저 : 클릭해서 br_num, u_id(방 생성자) 받아온다. 방장(생성자) : 방 만들때 br_num, u_id 직접 가져온다.
 	String br_num = request.getParameter("br_num");
-	String bangjang = request.getParameter("u_id");
+	String bangjang = request.getParameter("bangjang");
 	String gameuser = "";
 	
 	List roominfo = new ArrayList();
 	List playinfo = new ArrayList();
 	BattlePlay dao = new BattlePlay();
 	
-	roominfo = dao.roomInfo(br_num);
+	roominfo = dao.roomInfo2(br_num);
 	Battle_Room battleroom = (Battle_Room)roominfo.get(0);
 	
 	playinfo = dao.playInfo(br_num);
@@ -46,8 +46,12 @@
 			dao.updatePlayRoom(br_num, gameuser);
 		}
 	}
+	System.out.println("세션아이디 : " + session.getAttribute("u_id"));
+	System.out.println("방장아이디 : " + bangjang);
+	System.out.println("게임유저 아이디 : " + gameuser);
 	
-	if(!session.getAttribute("u_id").equals("user01") || !session.getAttribute("u_id").equals("user02")){
+	
+	if(!session.getAttribute("u_id").equals(bangjang) && !session.getAttribute("u_id").equals(gameuser)){
 %>
 		<script> alert('인원이 꽉 찼습니다.'); 	location.href="battleRoom.jsp";	</script>
 <% 	} %>
