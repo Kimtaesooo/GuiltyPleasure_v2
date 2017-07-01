@@ -33,7 +33,6 @@ public class ReplyCommand implements CommandBoard{
 			return "/CORDING/board/BoardRead.jsp?b_num="+b_num;
 		}
 		
-		System.out.println("comment = "+r_content);
 		dto2.setB_num(b_num);
 		dto2.setU_id(u_id);
 		dto2.setR_content(r_content);

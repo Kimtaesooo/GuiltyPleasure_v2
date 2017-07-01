@@ -1,5 +1,9 @@
 package dto;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Board {
 	private String b_num;
 	private String u_id;
@@ -69,6 +73,12 @@ public class Board {
 		this.b_content = b_content;
 	}
 	public String getB_regdate() {
+		try {
+			Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(b_regdate);
+			b_regdate = new SimpleDateFormat("yy/MM/dd HH:mm").format(date);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		return b_regdate;
 	}
 	public void setB_regdate(String b_regdate) {

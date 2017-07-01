@@ -279,7 +279,6 @@ public class FreeBoard {
 				+ "values('R'||LPAD((seq_r_reply.NEXTVAL),4,'0'),?,?,?,sysdate)";
 		try{
 			pstmt = con.prepareStatement(sql);
-			System.out.println("comment in dao = "+reply.getR_content());
 			pstmt.setString(1, reply.getB_num());
 			pstmt.setString(2, reply.getU_id());
 			pstmt.setString(3, reply.getR_content());

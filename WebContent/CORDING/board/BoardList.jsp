@@ -91,7 +91,7 @@
 				<div class="col-md-4">
 					<table align=center border=0 width=100%>
 						<tr>
-							<td align=left>Total : <%=totalRecord%> ( <font color=red>
+							<td align=left>Total : <%=totalRecord%> ( <font>
 									<%=nowPage + 1%> / <%=totalPage%> pages
 							</font>)
 							</td>
@@ -104,11 +104,11 @@
 			<table class="table table-bordered table-hover table-condensed">
 				<thead>
 					<tr>
-						<td width="73">번호</td>
-						<td width="379">제목</td>
-						<td width="73">작성자</td>
-						<td width="164">작성일</td>
-						<td width="58">조회수</td>
+						<td width="73" align="center">번호</td>
+						<td width="379" align="center">제목</td>
+						<td width="73" align="center">작성자</td>
+						<td width="164" align="center">작성일</td>
+						<td width="58" align="center">조회수</td>
 					</tr>
 				</thead>
 				<%

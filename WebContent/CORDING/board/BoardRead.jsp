@@ -71,7 +71,6 @@
 
 		if(sid.equals(u_id)){
 			dao.minusCount(b_num);
-			//dto.setB_count(dto.getB_count()-1);
 		}
 	
 		ArrayList<Reply> rep_list = dao.getReplyList(b_num);
@@ -197,7 +196,6 @@
 							} else {
 								for (int i = 0; i < rep_list.size(); i++) {
 										dto2 = (Reply) rep_list.get(i);
-										System.out.println("content in jsp = "+dto2.getR_content());
 					%>
 					<tr height="25" align="center">
 						<td><%=dto2.getU_id()%></td>

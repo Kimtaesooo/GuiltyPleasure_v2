@@ -1,5 +1,9 @@
 package dto;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Reply {
 	private String r_reply;
 	private String b_num;
@@ -32,6 +36,12 @@ public class Reply {
 		this.r_content = r_content;
 	}
 	public String getR_regdate() {
+		try {
+			Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(r_regdate);
+			r_regdate = new SimpleDateFormat("yy/MM/dd HH:mm").format(date);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		return r_regdate;
 	}
 	public void setR_regdate(String r_regdate) {
