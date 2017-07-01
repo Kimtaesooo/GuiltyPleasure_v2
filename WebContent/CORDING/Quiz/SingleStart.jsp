@@ -59,7 +59,7 @@ a {color: #333;}
 			<div class="container">
 				<div class="row">							
 					<div class="col-md-6 fh5co-text">
-						<h2 class="to-animate intro-animate-1">싱글플레이 입니다. </h2>
+						<h2 class="to-animate intro-animate-1">객관식 </h2>
 						<p class="to-animate intro-animate-2">문제수를 선택하고 시작버튼을 눌러주세요 ~ 유형은 랜덤</p>
 							<form method="get" action="/GuiltyPleasure/quiz">
 								<p class="to-animate intro-animate-3">
