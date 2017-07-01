@@ -17,6 +17,7 @@ public class notice {
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	private DBConnectionMgr pool;
+	//쿼리문 쓰일 변수
 	private String sql = "";
 	
 	public notice(){
@@ -27,6 +28,7 @@ public class notice {
 			System.out.println("DBCP 인스턴스 참조 실패 : "+err);
 		}
 	}
+	//유저 닉네임 가져오는 메서드
 	public String getUserNick (String u_id){
 		String nickname=null;
 		sql = "select * from userinfo where U_ID='"+u_id+"'";
@@ -47,7 +49,7 @@ public class notice {
 		}
 		return nickname;
 	}
-	//List.jsp
+	//글 등록
 	public void regN_board(Notice dto){
 	
 		sql = "INSERT INTO NOTICE (N_NUM, U_ID, U_NICKNAME, N_TITLE, N_CONTENT, N_REGDATE, N_COUNT, N_IMPORTANT)"+
@@ -58,6 +60,7 @@ public class notice {
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setString(1, dto.getU_id());
+			//작성자는 무조건 운영자
 			pstmt.setString(2, "운영자");
 			pstmt.setString(3, dto.getN_title());
 			pstmt.setString(4, dto.getN_content());
@@ -71,7 +74,7 @@ public class notice {
 			pool.freeConnection(con,pstmt, rs);
 		}
 	}
-	
+	//게시판 뿌려주기
 	public List getBoardList(String id, String type, String key){
 		ArrayList list = new ArrayList();
 		
@@ -107,7 +110,7 @@ public class notice {
 		}
 		return list;
 	}
-	
+	//글읽기
 	public Notice getRead (String num){
 		Notice dto = new Notice();
 		
@@ -136,7 +139,7 @@ public class notice {
 		return dto;
 	}
 	
-	
+	//조회수증가
 	public void N_Count_Update(String num){
 		
 		sql = "UPDATE NOTICE SET N_COUNT=N_COUNT+1 WHERE N_NUM='"+num+"'";
@@ -153,7 +156,7 @@ public class notice {
 			pool.freeConnection(con,pstmt, rs);
 		}
 	}
-	
+	//유저 비밀번호 가져오기
 	public String getUserPw (String u_id){
 		String as=null;
 		sql = "select * from userinfo where U_ID='"+u_id+"'";
@@ -175,35 +178,7 @@ public class notice {
 		return as;
 	}
 	
-	public void DeleteUserQ (String sc_num){
-		sql = "delete from service_center where sc_num='"+sc_num+"'";
-		try{	
-			con = pool.getConnection();
-			pstmt = con.prepareStatement(sql);
-			pstmt.executeUpdate();
-		}
-		catch(Exception err){
-			System.out.println("DeleteUserQ() 에서 오류 : "+err);
-		}
-		finally{
-			pool.freeConnection(con,pstmt, rs);
-		}
-	}
-	
-	public void DeleteAns (String sc_num){
-		sql = "delete from service_center_as where sc_num='"+sc_num+"'";
-		try{	
-			con = pool.getConnection();
-			pstmt = con.prepareStatement(sql);
-			pstmt.executeUpdate();
-		}
-		catch(Exception err){
-			System.out.println("DeleteAns() 에서 오류 : "+err);
-		}
-		finally{
-			pool.freeConnection(con,pstmt, rs);
-		}
-	}
+	//글 지우기
 	public void deleteBoard(String n_num){
 		String sql = "delete from NOTICE where n_num=?";
 		try{

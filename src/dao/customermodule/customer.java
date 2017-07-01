@@ -27,7 +27,7 @@ public class customer {
 		}
 	}
 	
-	//List.jsp
+	//글 등록
 	public void regC_board(c_board dto){
 	
 		sql = "INSERT INTO SERVICE_CENTER (SC_NUM, U_ID, SC_TYPE, SC_TITLE, SC_CONTENT, SC_REGDATE, SC_IMAGE, SC_STATE)"+
@@ -52,10 +52,12 @@ public class customer {
 			pool.freeConnection(con,pstmt, rs);
 		}
 	}
-	
+	//글 뿌려주기
 	public List getBoardList(String id, String type, String key){
 		ArrayList list = new ArrayList();
+		//게시글 검색에 조건 안달렸을 때
 		if(key.length()==0||key==null){
+			//마스터일경우 고객센터 글 전부 가져옴
 			if(id.equals("master")){
 				sql = "select * from service_center  order by sc_state asc, sc_regdate desc";
 			}else{
@@ -93,7 +95,7 @@ public class customer {
 		}
 		return list;
 	}
-	
+	//글 읽기
 	public c_board getRead (String num){
 		c_board dto = new c_board();
 		
@@ -122,7 +124,7 @@ public class customer {
 		}
 		return dto;
 	}
-	
+	//답변 읽기
 	public String getReadAs (String num){
 		String as=null;
 		sql = "select * from service_center_as where sc_num='"+num+"'";
@@ -143,9 +145,9 @@ public class customer {
 		}
 		return as;
 	}
-	
+	//답변 등록
 	public void reg_Ans(String num, String ans){
-		
+	
 		sql = "INSERT INTO SERVICE_CENTER_AS (SC_NUM, SCA_ANSWER) VALUES (?,?)";
 		try{
 			con = pool.getConnection();
@@ -163,7 +165,7 @@ public class customer {
 			pool.freeConnection(con,pstmt, rs);
 		}
 	}
-	
+	//답변 달았을시 완료로 변경
 	public void reg_Ans_fin(String num){
 		
 		sql = "UPDATE SERVICE_CENTER SET SC_STATE='완료' WHERE SC_NUM='"+num+"'";
@@ -180,7 +182,7 @@ public class customer {
 			pool.freeConnection(con,pstmt, rs);
 		}
 	}
-	
+	//유저 비밀번호 가져오기
 	public String getUserPw (String u_id){
 		String as=null;
 		sql = "select * from userinfo where U_ID='"+u_id+"'";
@@ -201,7 +203,7 @@ public class customer {
 		}
 		return as;
 	}
-	
+	//유저 글 지우기
 	public void DeleteUserQ (String sc_num){
 		sql = "delete from service_center where sc_num='"+sc_num+"'";
 		try{	
@@ -216,7 +218,7 @@ public class customer {
 			pool.freeConnection(con,pstmt, rs);
 		}
 	}
-	
+	//답변 삭제
 	public void DeleteAns (String sc_num){
 		sql = "delete from service_center_as where sc_num='"+sc_num+"'";
 		try{	
