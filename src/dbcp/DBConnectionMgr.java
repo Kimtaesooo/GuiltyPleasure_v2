@@ -40,8 +40,8 @@ public class DBConnectionMgr {
     private Vector<ConnectionObject> connections = new Vector<ConnectionObject>(10);
     
     private String _driver = "oracle.jdbc.driver.OracleDriver",
-    //_url = "jdbc:oracle:thin:@70.12.110.106:1521:orcl",
-    _url = "jdbc:oracle:thin:@localhost:1521:orcl",
+    //_url = "jdbc:oracle:thin:@localhost:1521:orcl",
+    _url = "jdbc:oracle:thin:@70.12.110.106:1521:orcl",
     _user = "GP",
     _password = "1111";
 
