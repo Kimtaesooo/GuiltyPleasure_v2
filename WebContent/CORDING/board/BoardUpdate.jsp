@@ -54,10 +54,10 @@
 	<div class="row">
 		<div class="col-md-2"></div>
 		<div class="col-md-8" align=center>
-			<form name="updateform" method="post" action="/GuiltyPleasure/Board?cmd=BOARDUPDATEPROC">
+			<form name="updateform" method="post" action="/GuiltyPleasure/Board">
+				<input type="hidden" name="cmd" value="BOARDUPDATEPROC"/>
 				<input type="hidden" name="b_num" value="<%=b_num%>" />
 				<table class="table table-condensed">
-					<br>
 					<tr height="1" bgcolor="#82B5DF">
 						<td colspan="4" width="407"></td>
 					</tr>

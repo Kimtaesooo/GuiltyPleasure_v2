@@ -15,8 +15,6 @@
 .table-hover>tbody>tr:hover {
 	background-color: #EEEEEE
 }
-
-
 </style>
 <script>
 	function check() {
@@ -69,10 +67,10 @@
 
 		totalPage = (int) Math.ceil((double) totalRecord / numPerPage);//정수 - > 실수 -> 정수형으로 변환
 		/*7. 페지징 변수 받고 처리*/
-		if (request.getParameter("nowPage") != null)
+		if (request.getParameter("nowPage") != null && request.getParameter("nowPage").length() >0)
 			nowPage = Integer.parseInt(request.getParameter("nowPage"));
 
-		if (request.getParameter("nowBlock") != null)
+		if (request.getParameter("nowBlock") != null && request.getParameter("nowBlock").length() >0)
 			nowBlock = Integer.parseInt(request.getParameter("nowBlock"));
 
 		totalBlock = (int) Math.ceil((double) totalPage / pagePerBlock);
@@ -93,7 +91,7 @@
 				<div class="col-md-4">
 					<table align=center border=0 width=100%>
 						<tr>
-							<td align=left>Total : <%=totalRecord%> ( <font color=red>
+							<td align=left>Total : <%=totalRecord%> ( <font>
 									<%=nowPage + 1%> / <%=totalPage%> pages
 							</font>)
 							</td>
@@ -106,11 +104,11 @@
 			<table class="table table-bordered table-hover table-condensed">
 				<thead>
 					<tr>
-						<td width="73">번호</td>
-						<td width="379">제목</td>
-						<td width="73">작성자</td>
-						<td width="164">작성일</td>
-						<td width="58">조회수</td>
+						<td width="73" align="center">번호</td>
+						<td width="379" align="center">제목</td>
+						<td width="73" align="center">작성자</td>
+						<td width="164" align="center">작성일</td>
+						<td width="58" align="center">조회수</td>
 					</tr>
 				</thead>
 				<%
@@ -143,7 +141,7 @@
 				</tbody>
 				<%
 					}
-					}
+				}
 					%>
 			</table>
 			<div class="row">
@@ -159,9 +157,6 @@
  							break;
  					%>
 					<a href="javascript:goList('<%=nowBlock %>', '<%=i %>')"><%=(nowBlock*pagePerBlock)+i+1%></a>&nbsp;
-					<!-- 
-					<a href="/GuiltyPleasure/Board?cmd=BOARDLIST?nowPage=<%=(nowBlock*pagePerBlock)+i%>&nowBlock=<%=nowBlock%>"><%=(nowBlock*pagePerBlock)+i+1%></a>&nbsp;
-					 -->
 					<%}%>:::
 					<%
 						if (totalBlock > nowBlock + 1) {
@@ -185,7 +180,8 @@
 		<div class="row">
 			<div class="col-md-4"></div>
 			<div class="col-md-4">
-				<form action="/GuiltyPleasure/Board?cmd=BOARDLIST" name="search" method="post">
+				<form action="/GuiltyPleasure/Board" name="search" method="post">
+					<input type="hidden" name="cmd" value="BOARDLIST"/>
 					<input type="hidden" name="nowBlock" id="nowBlock" />
 					<input type="hidden" name="nowPage" id="nowPage"/>
 					<div class="form-group">
@@ -219,7 +215,8 @@
 		<div class="col-md-2" align="right"></div>
 	<div class="col-md-2"></div>
 </div>
-	<form name="frmRead" method="post" action="/GuiltyPleasure/Board?cmd=BOARDREAD">
+	<form name="frmRead" method="post" action="/GuiltyPleasure/Board">
+		<input type="hidden" name="cmd" value="BOARDREAD"/>
 		<input type="hidden" name="b_num" /> <input type="hidden" name="keyfield" value="<%=keyfield%>" /> 
 		<input type="hidden" name="keyword" value="<%=keyword %>" />
 	</form>

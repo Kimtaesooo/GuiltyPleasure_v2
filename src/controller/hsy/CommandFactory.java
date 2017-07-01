@@ -36,11 +36,6 @@ public class CommandFactory {
 		else if(cmd.equals("BOARDREPLYDELETE")){
 			return new ReplyDeleteCommand();
 		}
-		/*
-		else if(cmd.equals("MAIN")){
-			return new MainCommand();
-		}
-		*/
 		else{
 			return null;
 		}
