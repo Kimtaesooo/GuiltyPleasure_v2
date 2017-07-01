@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
+<title>주관식 싱글 플레이</title>
 </head>
 <!-- jQuery -->
 	<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.min.js"></script>
@@ -60,7 +60,7 @@ a {color: #333;}
 			<div class="container">
 				<div class="row">							
 					<div class="col-md-6 fh5co-text">
-						<h2 class="to-animate intro-animate-1">주관식 퀴즈 풀기입니다. </h2>
+						<h2 class="to-animate intro-animate-1">주관식</h2>
 						<p class="to-animate intro-animate-2">문제수를 선택하고 시작버튼을 눌러주세요 ~ 유형은 랜덤</p>
 							<form method="get" action="/GuiltyPleasure/quiz">
 								<p class="to-animate intro-animate-3">
