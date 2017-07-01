@@ -41,6 +41,7 @@
 	
 	String user01 = battleplay.getUser01(); // 방장
 	String user02 = battleplay.getUser02(); // 게임유저
+	int people = battleroom.getBr_people();
 	
 	if(battleroom.getBr_people()==1){
 		if(!session.getAttribute("u_id").equals(bangjang)){
@@ -56,11 +57,14 @@
 <% 		}
 	}%>
 	
+	
+	
 	<input type="hidden" value="<%=user01%>" id="user01">
 	<input type="hidden" value="<%=user02%>" id="user02">
 	<input type="hidden" value="<%=br_num%>" id="br_num">
 	<input type="hidden" value="<%=me%>" id="me">
 	<input type="hidden" value="<%=ip%>" id="ip">
+	<input type="hidden" value="<%=people%>" id="people">
 	<br><br>
 	<p class="text-center">배틀 게임 시작</p>
 	<br><br>
@@ -102,12 +106,12 @@
 					<input type="button" class="btn btn-default" value="전송" onclick="send()"/>
 				</div>
 			<br><br><br>
-			<%if(session.getAttribute("u_id").equals("A")){%>
+			<%if(session.getAttribute("u_id").equals(user01)){%>
 				<div class="col-xs-6">
 					<a class="btn btn-danger btn-lg btn-block" href="battleRoom.jsp" role="button">포기하기</a>
 				</div>
 				<div class="col-xs-6">
-					<a class="btn btn-success btn-lg btn-block" role="button" onclick="gameStart();">시작</a>
+					<a class="btn btn-success btn-lg btn-block" role="button" onclick="start();">시작</a>
 				</div>
 			<%}else{%>
 				<div class="col-xs-12">
@@ -132,6 +136,7 @@
 		var user02 = document.getElementById('user02').value;
 		var br_num = document.getElementById('br_num').value;
 		var me = document.getElementById('me').value;
+		var people = document.getElementById('people').value;
 
 		webSocket.onerror = function(event) {
 			onError(event)
@@ -144,6 +149,7 @@
 		};
 
 		function onOpen(event) {
+			webSocket.send("sessionValue:"+br_num+":"+me);
 			textarea.value += "연결 성공\n";
 			connectionCheck.value += ip + "\n";
 		}
@@ -157,8 +163,16 @@
 		function onMessage(event) {
 			var message = new String(event.data);
 			var strArray = message.split(':');
-			if(strArray[0]==br_num){
-				textarea.value += strArray[1] + " : " + strArray[2] + "\n";
+			
+			// 채팅
+			if(strArray[0]=="messageSend" && strArray[1]==br_num){
+				textarea.value += strArray[2] + " : " + strArray[3] + "\n";
+			}
+			
+			// 방장이 게임 시작 버튼을 눌러서 메세지를 받을 때
+			// message = "게임이 곧 시작됩니다.:"+br_num;
+			if(strArray[0]=="게임이 곧 시작됩니다." && strArray[1]==br_num){
+				windowQuiz.value = strArray[0];
 			}
 		}
 		
@@ -166,9 +180,14 @@
 			if (inputMessage.value == "") {
 			} else {
 				textarea.value += me + " : " + inputMessage.value + "\n";
-				webSocket.send(br_num + ":" + me +":"+inputMessage.value);
+				webSocket.send("messageSend:" + br_num + ":" + me +":"+inputMessage.value);
 				inputMessage.value = "";
 			}
+		}
+		
+		// 방장이 게임 시작 버튼을 눌렀을 때
+		function start() {
+				webSocket.send("gameStart:"+ br_num+":"+me);
 		}
 
 		function enterkey() {

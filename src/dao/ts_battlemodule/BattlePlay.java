@@ -3,11 +3,13 @@ package dao.ts_battlemodule;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import dbcp.DBConnectionMgr;
 import dto.Battle_Room;
+import dto.Quiz;
 import dto.Battle_Play;
 
 public class BattlePlay {
@@ -214,5 +216,65 @@ public class BattlePlay {
 		}
 	}
 	
+	// battleRoom.jsp 배틀 룸 목록 생성
+		public List getQuiz() {
+			ArrayList list = new ArrayList();
+			String sql = "select * from battle_room order by br_gamestate";
+
+			try {
+				pstmt = con.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+
+				while (rs.next()) {
+					Battle_Room battleliset = new Battle_Room();
+					battleliset.setBr_num(rs.getString("br_num"));
+					battleliset.setBr_subject(rs.getString("br_subject"));
+					battleliset.setBr_pw(rs.getInt("br_pw"));
+					battleliset.setBr_type(rs.getString("br_type"));
+					battleliset.setBr_cnt(rs.getInt("br_cnt"));
+					battleliset.setBr_point(rs.getInt("br_point"));
+					battleliset.setU_id(rs.getString("u_id"));
+					battleliset.setBr_people(rs.getInt("br_people"));
+					battleliset.setBr_gamestate(rs.getString("br_gamestate"));
+
+					list.add(battleliset);
+				}
+			} catch (Exception err) {
+				System.out.println("getlistRoom();에서 오류");
+				err.printStackTrace();
+			} finally {
+				pool.freeConnection(con, pstmt, rs);
+			}
+			return list;
+		}
+		
+		//배틀 퀴즈 가지고오기
+		public ArrayList getQuiz(int val) {
+			PreparedStatement pre = null;
+			ResultSet rs = null;
+			Quiz q = null;
+			ArrayList array = new ArrayList<>();
+			String sql = "select * from(select * from quiz order by dbms_random.value) where rownum <= ?";
+			try {
+				pre = con.prepareStatement(sql);
+				pre.setInt(1, val);
+				rs = pre.executeQuery();
+				while (rs.next()) {
+					q = new Quiz();
+					q.setQ_code(rs.getString("Q_CODE"));
+					q.setQ_answer(rs.getString("Q_ANSWER"));
+					q.setQ_question(rs.getString("Q_QUESTION"));
+					q.setQ_wa_a(rs.getString("Q_WA_A"));
+					q.setQ_wa_b(rs.getString("Q_WA_B"));
+					q.setQ_wa_c(rs.getString("Q_WA_C"));
+					q.setQ_type(rs.getString("Q_TYPE"));
+					
+					array.add(q);
+				}
+			} catch (SQLException e) {
+				System.out.println("getquiz : " + e);
+			}
+			return array;
+		}
 	
 }

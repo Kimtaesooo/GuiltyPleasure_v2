@@ -57,7 +57,7 @@ public class GetQuiz {
 		ResultSet rs = null;
 		Quiz q = null;
 		ArrayList array = new ArrayList<>();
-		String sql = "select * from(select * from quiz order by dbms_random.value) where rownum < ?";
+		String sql = "select * from(select * from quiz order by dbms_random.value) where rownum <= ?";
 		try {
 			pre = con.prepareStatement(sql);
 			pre.setInt(1, val);
