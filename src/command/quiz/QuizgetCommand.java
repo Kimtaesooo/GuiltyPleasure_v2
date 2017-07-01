@@ -17,6 +17,14 @@ public class QuizgetCommand implements Command {
 		GetQuiz quiz = new GetQuiz();
 		Quiz q = quiz.makeQuiz();
 		req.setAttribute("quiz", q);
-		return "/CORDING/Quiz/SinglePlay.jsp";
+		String method = req.getParameter("method");
+		req.setAttribute("method", method);
+		if("SINGLE".equals(method)){
+			return "/CORDING/Quiz/SinglePlay.jsp";
+		}else if("SHORT".equals(method)){
+			return "/CORDING/Quiz/ShortPlay.jsp";
+		}
+			return "/CORDING/Quiz/SingleStrart.html";
+		
 	}
 }
