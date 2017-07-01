@@ -68,7 +68,7 @@ for(int i =0; i<list.size(); i++){
 }
 	System.out.println(sList.get(1));
 %>
-<body>
+<body> 
 <jsp:include page="/test_nav.jsp"/>
 <br><br><br>
 <H1 align="center">게임 결과</H1>

@@ -15,6 +15,7 @@ public class rank {
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	private DBConnectionMgr pool;
+	//쿼리문 변수
 	private String sql = "";
 	
 	public rank(){
@@ -26,7 +27,7 @@ public class rank {
 		}
 	}
 	
-	//List.jsp
+	//배틀 랭킹 리스트 가져오기
 	public List getBoardList(){
 		ArrayList list = new ArrayList();
 		sql = "select u_battle.u_id, userinfo.u_nickname, userinfo.u_comment, u_battle.ub_win, u_battle.ub_lose, userinfo.u_point from u_battle  inner join userinfo on u_battle.u_id = userinfo.u_id where u_battle.ub_win+u_battle.ub_lose>200 order by u_battle.ub_win/(u_battle.ub_win+u_battle.ub_lose) desc";
@@ -55,7 +56,7 @@ public class rank {
 		}
 		return list;
 	}
-	
+	//자신의 배틀 랭킹 가져오기
 	public int BattleMyRank(String id){
 		
 		int rank=0;
@@ -83,6 +84,7 @@ public class rank {
 		return myrank;
 	}
 	
+	//싱글 랭킹 가져오기
 	public List getBoardList2(String type){
 		ArrayList list = new ArrayList();
 		sql = "select u_poa.u_id, userinfo.u_nickname, userinfo.u_comment, u_poa.up_wa_cnt, u_poa.up_a_cnt, u_poa.up_type, userinfo.u_point from u_poa  inner join userinfo on u_poa.u_id = userinfo.u_id where u_poa.up_type='"+type+"' and u_poa.up_a_cnt+u_poa.up_wa_cnt>200 order by u_poa.up_a_cnt/(u_poa.up_a_cnt+u_poa.up_wa_cnt) desc";
@@ -112,6 +114,8 @@ public class rank {
 		}
 		return list;
 	}
+	
+	//내 싱글 랭킹 등수 가져오기
 	public int SingleMyRank(String id, String type){
 		
 		int rank=0;
