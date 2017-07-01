@@ -3,6 +3,7 @@
 <%@ page import="dto.Battle_Play"%>
 <%@ page import="dto.Battle_Room"%>
 <%@ page import="java.util.List"%>
+<%@page import="java.net.Socket"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
@@ -25,6 +26,8 @@
 	String br_num = request.getParameter("br_num");
 	String bangjang = request.getParameter("bangjang");
 	String gameuser = "";
+	String me = (String) session.getAttribute("u_id");
+	String ip = request.getRemoteAddr();
 	
 	List roominfo = new ArrayList();
 	List playinfo = new ArrayList();
@@ -46,17 +49,18 @@
 			dao.updatePlayRoom(br_num, gameuser);
 		}
 	}
-	System.out.println("세션아이디 : " + session.getAttribute("u_id"));
-	System.out.println("방장아이디 : " + bangjang);
-	System.out.println("게임유저 아이디 : " + gameuser);
-	
-	
-	if(!session.getAttribute("u_id").equals(bangjang) && !session.getAttribute("u_id").equals(gameuser)){
+	if(battleroom.getBr_people()==2){
+		if(!session.getAttribute("u_id").equals(user01) && !session.getAttribute("u_id").equals(user02)){
 %>
 		<script> alert('인원이 꽉 찼습니다.'); 	location.href="battleRoom.jsp";	</script>
-<% 	} %>
+<% 		}
+	}%>
 	
-
+	<input type="hidden" value="<%=user01%>" id="user01">
+	<input type="hidden" value="<%=user02%>" id="user02">
+	<input type="hidden" value="<%=br_num%>" id="br_num">
+	<input type="hidden" value="<%=me%>" id="me">
+	<input type="hidden" value="<%=ip%>" id="ip">
 	<br><br>
 	<p class="text-center">배틀 게임 시작</p>
 	<br><br>
@@ -122,12 +126,12 @@
 		var textarea = document.getElementById("messageWindow");
 		var connectionCheck = document.getElementById("connectionCheck");
 		var ip = document.getElementById('ip').value;
-		var webSocket = new WebSocket("ws://70.12.110.106:8080/GuiltyPleasure/websocket");
+		var webSocket = new WebSocket("ws://70.12.110.106:8080/GuiltyPleasure/battlesocket");
 		var inputMessage = document.getElementById('inputMessage');
-		var gameUser = document.getElementById('gameUser').value;
-		var bangjang = document.getElementById('bangjang').value;
-		var me = document.getElementById('me').value;
+		var user01 = document.getElementById('user01').value;
+		var user02 = document.getElementById('user02').value;
 		var br_num = document.getElementById('br_num').value;
+		var me = document.getElementById('me').value;
 
 		webSocket.onerror = function(event) {
 			onError(event)
@@ -145,8 +149,6 @@
 		}
 		function onClose(session) {
 			webSocket.onClose(event);
-			document.myForm.action = "battleRoom.jsp";
-			document.myForm.method = "post";
 			document.myForm.submit();
 		}
 		function onError(event) {
