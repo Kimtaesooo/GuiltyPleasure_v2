@@ -88,6 +88,7 @@
 				style="background-color: transparent;" readonly>
 상대방이 먼저 문제를 맞출경우 자동으로 다음 문제로 넘어갑니다.
 오답을 선택할 시 상대방이 문제를 다 풀때까지 기다려야 합니다.
+키패드의 1,2,3,4 버튼을 이용하여 정답을 전송할 수 있습니다.
 방을 만들 때 설정한 문제 개수를 모두 맞추는 유저가 이기며, 상대방의 포인트를 뺏어갑니다.
 테스트중이므로 중복된 문제가 나올 수 있습니다.
 			</textarea>
@@ -114,7 +115,7 @@
 			<textarea class="form-control" rows="4" placeholder="접속자 확인 하는 곳"
 				id="connectionCheck" style="background-color: transparent;" readonly></textarea>
 			<br>
-			<textarea class="form-control" rows="15" id="messageWindow"
+			<textarea class="form-control" rows="9" id="messageWindow"
 				style="background-color: transparent;" readonly></textarea>
 			<br>
 			<div class="col-xs-9">
@@ -130,8 +131,7 @@
 				if (session.getAttribute("u_id").equals(user01)) {
 			%>
 			<div class="col-xs-6">
-				<a class="btn btn-danger btn-lg btn-block" href="battleRoom.jsp"
-					role="button">포기하기</a>
+				<a class="btn btn-danger btn-lg btn-block" onclick="giveUp();" role="button">포기하기</a>
 			</div>
 			<div class="col-xs-6">
 				<a class="btn btn-success btn-lg btn-block" role="button"
@@ -141,8 +141,7 @@
 				} else {
 			%>
 			<div class="col-xs-12">
-				<a class="btn btn-danger btn-lg btn-block" href="battleRoom.jsp"
-					role="button">포기하기</a>
+				<a class="btn btn-danger btn-lg btn-block" onclick="giveUp();" role="button">포기하기</a>
 			</div>
 
 			<%
@@ -188,9 +187,8 @@
 		};
 
 		function onOpen(event) {
+			connectionCheck.value += user01 + "\n";
 			webSocket.send("sessionValue:" + br_num + ":" + me);
-			textarea.value += "연결 성공\n";
-			connectionCheck.value += ip + "\n";
 		}
 		function onClose(session) {
 			webSocket.onClose(event);
@@ -207,7 +205,12 @@
 			if (strArray[0] == "messageSend" && strArray[1] == br_num) {
 				textarea.value += strArray[2] + " : " + strArray[3] + "\n";
 			}
-
+			
+			// 접속자 확인
+			// message = "checkPeople:" + br_num + ":" + me;
+			if (strArray[0] == "checkPeople" && strArray[1] == br_num) {
+				connectionCheck.value += strArray[2] + "\n";
+			}
 			// 방장이 게임 시작 버튼을 눌러서 메세지를 받을 때
 			// message = "getget:" +br_num+":"+code+":"+question+":"+answer+":"+wa1+":"+wa2+":"+wa3+":";
 			// 0.구분문자 1.방번호 2.코드 3.문제 4.정답 5.오답1 6.오답2 7.오답3
@@ -281,6 +284,12 @@
 		function exit() {
 			webSocket.close();
 			window.location.href="/GuiltyPleasure/battle?cmd=EXIT&br_num="+br_num+"";
+		}
+		
+		// 게임을 포기하고 나간다.
+		function giveUp() {
+			webSocket.close();
+			window.location.href="/GuiltyPleasure/battle?cmd=GIVEUP&br_num="+br_num+"&u_id="+me+"";
 		}
 
 		// 유저가 답을 눌렀을 때

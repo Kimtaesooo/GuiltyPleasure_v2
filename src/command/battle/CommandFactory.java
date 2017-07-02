@@ -20,6 +20,9 @@ public class CommandFactory {
 		else if(cmd.equals("EXIT")){
 			return new ExitCommand();
 		}
+		else if(cmd.equals("GIVEUP")){
+			return new GiveUpCommand();
+		}
 		return null;
 	}
 }

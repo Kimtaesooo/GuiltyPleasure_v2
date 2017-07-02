@@ -53,11 +53,16 @@ public class Websocket {
 		}
 
 		// 세션 값 매핑
+		// "sessionValue:" + br_num + ":" + me
 		if (strArray[0].equals("sessionValue")) {
 			// 0-sessionValue, 1-방번호, 2-u_id
 			me = strArray[2];
 			map.put(me, session);
 			Session usersession = map.get(me);
+			message = "checkPeople:" + br_num + ":" + me;
+			for (Session client : clients) {
+					client.getBasicRemote().sendText(message);
+			}
 		}
 
 		// 방장이 게임시작 버튼을 눌렀을 때
