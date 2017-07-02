@@ -28,6 +28,7 @@ public class MakeRoomCommand implements Command{
 		
 
 		String u_id = (String)session.getAttribute("u_id");
+		int br_cnt = Integer.parseInt(request.getParameter("br_cnt"));
 		
 		dto.setBr_subject(request.getParameter("br_subject"));
 		dto.setBr_pw(Integer.parseInt(request.getParameter("br_pw")));
@@ -47,7 +48,7 @@ public class MakeRoomCommand implements Command{
 		u_id = room.getU_id();
 		
 		// 배틀 플레이방 추가
-		dao.playRoom(br_num, u_id);
+		dao.playRoom(br_num, u_id, br_cnt);
 		
 		
 		

@@ -18,9 +18,14 @@
 		});
 	});
 	
-	function fnRead(u_id, br_num){
+	function fnRead(u_id, br_num, br_type){
 		document.frmRead.bangjang.value = u_id;
 		document.frmRead.br_num.value = br_num;
+		if(br_type=="연예"){br_type = "A"};
+		if(br_type=="넌센스"){br_type = "B"};
+		if(br_type=="상식"){br_type = "C"};
+		if(br_type=="아재"){br_type = "D"};
+		document.frmRead.br_type.value = br_type;
 		document.frmRead.submit();
 	}
 </script>
@@ -37,7 +42,7 @@
 <title>배틀 대기방</title>
 </head>  
 <body>
-	<jsp:useBean id="dao" class="dao.playmodule.BattlePlay"/>
+	<jsp:useBean id="dao" class="dao.ts_battlemodule.BattlePlay"/>
 	<jsp:useBean id="dto" class="dto.Battle_Room"/>
 <%
 	List list = dao.getListRoom();
@@ -54,14 +59,14 @@
 		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th>번호</th>
-					<th>제목</th>
-					<th>퀴즈 유형</th>
-					<th>문제 개수</th>
-					<th>포인트</th>
-					<th>생성자</th>
-					<th>인원수</th>
-					<th>게임상태</th>
+					<th class="text-center">번호</th>
+					<th class="text-center">제목</th>
+					<th class="text-center">퀴즈 유형</th>
+					<th class="text-center">문제 개수</th>
+					<th class="text-center">포인트</th>
+					<th class="text-center">생성자</th>
+					<th class="text-center">인원수</th>
+					<th class="text-center">게임상태</th>
 				</tr>
 			</thead>
 			
@@ -75,15 +80,19 @@
 				<%for(int i=0; i<list.size(); i++){
 					Battle_Room room = (Battle_Room)list.get(i);
 				%>
-				<tr>
+				<tr class="text-center">
 					<td><%=i+1%></td>
-					<td><a href="javascript:fnRead('<%=room.getU_id()%>','<%=room.getBr_num()%>')"><%=room.getBr_subject() %></a></td>
+					<td><a href="javascript:fnRead('<%=room.getU_id()%>','<%=room.getBr_num()%>', '<%=room.getBr_type()%>')"><%=room.getBr_subject() %></a></td>
 					<td><%=room.getBr_type() %></td>
 					<td><%=room.getBr_cnt() %></td>
 					<td><%=room.getBr_point() %></td>
 					<td><%=room.getU_id() %></td>
 					<td><%=room.getBr_people() %></td>
-					<td><%=room.getBr_gamestate() %></td>
+					<%if(room.getBr_gamestate().equals("Y")){%>
+						<td><font color="red"><%=room.getBr_gamestate() %></font></td>
+					<%}else{ %>
+						<td><%=room.getBr_gamestate() %></td>
+					<%} %>
 				</tr>
 				<%} 
 				}%>
@@ -156,7 +165,7 @@
 									<option value="A">연예</option>
 									<option value="B">넌센스</option>
 									<option value="C">상식</option>
-									<option value="D">안녕</option>
+									<option value="D">아재</option>
 								</select>
 							</div>
 						</div>
@@ -174,6 +183,7 @@
 <form name="frmRead" method="post" action="playRoom.jsp">
 	<input type="hidden" name="bangjang"/>
 	<input type="hidden" name="br_num"/>
+	<input type="hidden" name="br_type"/>
 </form>	
 <script>
 $(".onlyNumber").keyup(function(event){

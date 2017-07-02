@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dbcp.DBConnectionMgr;
+import dto.Battle_Play;
 import dto.Battle_Room;
 import dto.Quiz;
-import dto.Battle_Play;
 
 public class BattlePlay {
 	private Connection con;
@@ -54,7 +54,9 @@ public class BattlePlay {
 	// battleRoom.jsp 배틀 룸 목록 생성
 	public List getListRoom() {
 		ArrayList list = new ArrayList();
-		String sql = "select * from battle_room order by br_gamestate";
+		String sql = "select br_num, br_subject, br_pw, decode (br_type, 'A', '연예', 'B','넌센스','C','상식','D','아재') as br_type, "
+						+ "br_cnt, br_point, u_id, br_people, br_gamestate, br_ip "
+						+ "from battle_room order by br_gamestate";
 
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -75,7 +77,7 @@ public class BattlePlay {
 				list.add(battleliset);
 			}
 		} catch (Exception err) {
-			System.out.println("getlistRoom();에서 오류");
+			System.out.println("getListRoom();에서 오류");
 			err.printStackTrace();
 		} finally {
 			pool.freeConnection(con, pstmt, rs);
@@ -162,6 +164,10 @@ public class BattlePlay {
 				room.setQ_code(rs.getString("q_code"));
 				room.setUser01(rs.getString("user01"));
 				room.setUser02(rs.getString("user02"));
+				room.setBp_01cnt(rs.getInt("bp_01cnt"));
+				room.setBp_02cnt(rs.getInt("bp_02cnt"));
+				room.setBp_count(rs.getInt("bp_count"));
+				room.setBp_state(rs.getInt("bp_state"));
 				list.add(room);
 			}
 		} catch (Exception err) {
@@ -173,13 +179,16 @@ public class BattlePlay {
 		return list;
 	}
 
-	public void playRoom(String br_num, String u_id) {
+	// playRoom DB에 방번호와 방장 아이디 집어넣기
+	public void playRoom(String br_num, String u_id, int br_cnt) {
 		String sql = "";
-		sql = "insert into battle_play(br_num, q_code, user01, user02) " + "values(?,'',?,'')";
+		sql = "insert into battle_play(br_num, q_code, user01, user02, bp_01cnt, bp_02cnt, bp_count, bp_state) "
+				+ "values(?,'',?,'',0,0,?,0)";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, br_num);
 			pstmt.setString(2, u_id);
+			pstmt.setInt(3, br_cnt);
 			pstmt.executeUpdate();
 
 		} catch (Exception err) {
@@ -216,50 +225,17 @@ public class BattlePlay {
 		}
 	}
 
-	// battleRoom.jsp 배틀 룸 목록 생성
-	public List getlistRoom() {
-		ArrayList list = new ArrayList();
-		String sql = "select * from battle_room order by br_gamestate";
-
-		try {
-			pstmt = con.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				Battle_Room battleliset = new Battle_Room();
-				battleliset.setBr_num(rs.getString("br_num"));
-				battleliset.setBr_subject(rs.getString("br_subject"));
-				battleliset.setBr_pw(rs.getInt("br_pw"));
-				battleliset.setBr_type(rs.getString("br_type"));
-				battleliset.setBr_cnt(rs.getInt("br_cnt"));
-				battleliset.setBr_point(rs.getInt("br_point"));
-				battleliset.setU_id(rs.getString("u_id"));
-				battleliset.setBr_people(rs.getInt("br_people"));
-				battleliset.setBr_gamestate(rs.getString("br_gamestate"));
-
-				list.add(battleliset);
-			}
-		} catch (Exception err) {
-			System.out.println("getlistRoom();에서 오류");
-			err.printStackTrace();
-		} finally {
-			pool.freeConnection(con, pstmt, rs);
-		}
-		return list;
-	}
-
 	// 배틀 퀴즈 가지고오기
-	public List getQuiz(int val) {
+	public List getQuiz(String q_type) {
 		PreparedStatement pre = null;
 		ResultSet rs = null;
 		Quiz q = null;
-		ArrayList array = new ArrayList<>();
-		String sql = "select * from(select * from quiz order by dbms_random.value) where rownum <= ?";
+		ArrayList list = new ArrayList();
+		String sql = "select * from(select * from quiz where q_type ='"+q_type+"' order by dbms_random.value) where rownum <= 1";
 		try {
 			pre = con.prepareStatement(sql);
-			pre.setInt(1, val);
 			rs = pre.executeQuery();
-			while (rs.next()) {
+			if (rs.next()) {
 				q = new Quiz();
 				q.setQ_code(rs.getString("Q_CODE"));
 				q.setQ_answer(rs.getString("Q_ANSWER"));
@@ -269,12 +245,147 @@ public class BattlePlay {
 				q.setQ_wa_c(rs.getString("Q_WA_C"));
 				q.setQ_type(rs.getString("Q_TYPE"));
 
-				array.add(q);
+				list.add(q);
 			}
 		} catch (SQLException e) {
 			System.out.println("getquiz : " + e);
+		} finally {
+			pool.freeConnection(con, pstmt, rs);
 		}
-		return array;
+		return list;
+	}
+
+	// 배틀게임 시작하면 방 상태 변경
+	public String updateBattleRoomState(String br_num) {
+		String startFlag = "";
+		String sql = "";
+
+		// 게임 상태 받아온다.
+		sql = "select * from battle_room where br_num = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, br_num);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				startFlag = rs.getString("br_gamestate");
+			}
+		} catch (Exception err) {
+			System.out.println("updateBattleRoomState 첫번째에서 오류");
+			err.printStackTrace();
+		}
+
+		if (startFlag.equals("N")) {
+			sql = "update battle_room set br_gamestate = 'Y' where br_num = '" + br_num + "'";
+			try {
+				pstmt = con.prepareStatement(sql);
+				pstmt.executeUpdate();
+
+			} catch (Exception err) {
+				System.out.println("updateBattleRoomState 두번째에서 오류");
+				err.printStackTrace();
+			} finally {
+				pool.freeConnection(con, pstmt, rs);
+			}
+		} else if (true) {
+			pool.freeConnection(con, pstmt, rs);
+		}
+
+		return startFlag;
+	}
+
+	// 배틀 플레이 유저 정답 처리
+	public void updatePlayCnt(String br_num, String gameuser) {
+		String sql = "";
+		String user01 = "";
+		String user02 = "";
+		sql = "select * from battle_play where br_num = '" + br_num + "'";
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				user01 = rs.getString("USER01");
+				user02 = rs.getString("USER02");
+			}
+		} catch (Exception err) {
+			System.out.println("updatePlayCnt(인자2개) 첫번째에서 오류");
+			err.printStackTrace();
+		}
+
+		if (gameuser.equals(user01)) {
+			sql = "update battle_play set bp_01cnt = bp_01cnt+1, bp_count=bp_count+1 where br_num = '" + br_num + "'";
+		} else {
+			sql = "update battle_play set bp_02cnt = bp_02cnt+1, bp_count=bp_count+1 where br_num = '" + br_num + "'";
+		}
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.executeUpdate();
+
+		} catch (Exception err) {
+			System.out.println("updatePlayCnt(인자2개) 두번째에서 오류");
+			err.printStackTrace();
+		}
+
+		sql = "update battle_play set bp_state = 0 where br_num = '" + br_num + "'";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.executeUpdate();
+		} catch (Exception err) {
+			System.out.println("updatePlayCnt(인자2개) 세번째에서 오류");
+			err.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt, rs);
+		}
+	}
+	
+	// playroom bp_state 상태 0으로 만들기
+	public void updatePlayCnt(String br_num) {
+		String sql = "update battle_play set bp_state = 0 where br_num = '" + br_num + "'";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.executeUpdate();
+		} catch (Exception err) {
+			System.out.println("updatePlayCnt(인자1개) 첫번째에서 오류");
+			err.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt, rs);
+		}
+	}
+
+	// 배틀 정답 체크
+	public String checkanswer(String q_code) {
+		String sql = "";
+		String answer = "";
+		sql = "select * from quiz where q_code = '" + q_code + "'";
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				answer = rs.getString("q_answer");
+			}
+		} catch (Exception err) {
+			System.out.println("checkanswer 첫번째에서 오류");
+			err.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt, rs);
+		}
+		return answer;
+	}
+
+	// 배틀게임 오답 카운트 넣기
+	public void updatePlayRoomState(String br_num) {
+		String sql = "";
+		// 게임 상태 받아온다.
+		sql = "update battle_play set bp_state = bp_state+1 where br_num = '" + br_num + "'";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.executeQuery();
+		} catch (Exception err) {
+			System.out.println("updatePlayRoomState 첫번째에서 오류");
+			err.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt, rs);
+		}
 	}
 
 }

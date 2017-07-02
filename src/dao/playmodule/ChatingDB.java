@@ -18,7 +18,7 @@ public class ChatingDB {
 	PreparedStatement psmt = null;
 	ResultSet rs = null;
 	public ChatingDB() {
-		String sql = "연결이 안됬습니다";
+		String sql = "연결이 안되었습니다.";
 		try {
 			db = DBConnectionMgr.getInstance();
 			con = db.getConnection();

@@ -5,6 +5,10 @@ public class Battle_Play {
 	String q_code;
 	String user01;
 	String user02;
+	int bp_01cnt;
+	int bp_02cnt;
+	int bp_count;
+	int bp_state;
 	
 	public String getBr_num() {
 		return br_num;
@@ -30,4 +34,29 @@ public class Battle_Play {
 	public void setUser02(String user02) {
 		this.user02 = user02;
 	}
+	public int getBp_01cnt() {
+		return bp_01cnt;
+	}
+	public void setBp_01cnt(int bp_01cnt) {
+		this.bp_01cnt = bp_01cnt;
+	}
+	public int getBp_02cnt() {
+		return bp_02cnt;
+	}
+	public void setBp_02cnt(int bp_02cnt) {
+		this.bp_02cnt = bp_02cnt;
+	}
+	public int getBp_count() {
+		return bp_count;
+	}
+	public void setBp_count(int bp_count) {
+		this.bp_count = bp_count;
+	}
+	public int getBp_state() {
+		return bp_state;
+	}
+	public void setBp_state(int bp_state) {
+		this.bp_state = bp_state;
+	}
+	
 }
