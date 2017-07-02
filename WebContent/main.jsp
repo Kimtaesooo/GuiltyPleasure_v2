@@ -98,7 +98,7 @@
 			alert('배틀 플레이가 금지된 유저입니다.');
 			return;
 		}
-		location.href = "taesoo_battle/battleRoom.jsp";
+		location.href = "CORDING/battle/battleRoom.jsp";
 	}
 
 	function inshop() {

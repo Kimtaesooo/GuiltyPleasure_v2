@@ -1,4 +1,4 @@
-package command.ts_battle;
+package command.battle;
 
 import controller.Command;
 
@@ -16,6 +16,9 @@ public class CommandFactory {
 		
 		if(cmd.equals("MAKEROOM")){
 			return new MakeRoomCommand();
+		}
+		else if(cmd.equals("EXIT")){
+			return new ExitCommand();
 		}
 		return null;
 	}

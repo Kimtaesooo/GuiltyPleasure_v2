@@ -1,4 +1,4 @@
-package command.ts_battle;
+package command.battle;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import controller.Command;
-import dao.ts_battlemodule.BattlePlay;
+import dao.battlemodule.BattlePlay;
 import dto.Battle_Room;
 
 // 게임방 생성
@@ -52,7 +52,7 @@ public class MakeRoomCommand implements Command{
 		
 		
 		
-		return "/taesoo_battle/playRoom.jsp?bangjang="+u_id+"&br_num="+br_num+"";
+		return "/CORDING/battle/playRoom.jsp?bangjang="+u_id+"&br_num="+br_num+"";
 	}
 
 }

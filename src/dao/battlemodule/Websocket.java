@@ -1,4 +1,4 @@
-package dao.ts_battlemodule;
+package dao.battlemodule;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -62,7 +62,7 @@ public class Websocket {
 
 		// 방장이 게임시작 버튼을 눌렀을 때
 		if (strArray[0].equals("gameStart")) {
-			// message =  "gameStart:" + br_num + ":" + me + ":" + q_type;
+			// message = "gameStart:" + br_num + ":" + me + ":" + q_type;
 			br_num = strArray[1];
 			me = strArray[2];
 			String q_type = strArray[3];
@@ -157,17 +157,16 @@ public class Websocket {
 			me = strArray[2];
 			String q_code = strArray[3];
 			String value = strArray[4];
-			
+
 			// 초기 버튼 누를때 아무 동작 하지 않게 막아버린다.
-			if(value.equals("키패드1") || value.equals("키패드2") || value.equals("키패드3") || value.equals("키패드4") ||
-				value.equals("undefined"))
-			{
+			if (value.equals("키패드1") || value.equals("키패드2") || value.equals("키패드3") || value.equals("키패드4")
+					|| value.equals("undefined")) {
 				return;
 			}
-			
+
 			BattlePlay battleplay = new BattlePlay();
 			Battle_Play roomdto = new Battle_Play();
-			// 오답이 2개인지 확인하는 것
+			// 둘 다 틀린 경우 확인 하는 것 Bp_state
 			List list = battleplay.playInfo(br_num);
 			roomdto = (Battle_Play) list.get(0);
 			int bp_state = roomdto.getBp_state();
@@ -195,12 +194,28 @@ public class Websocket {
 					// 정답을 맞춘 경우
 					// bp_01cnt, bp_02cnt 카운팅한다.
 					battleplay.updatePlayCnt(br_num, me);
+					// 정답 개수 가지고 온다.
+					List playinfo = battleplay.playInfo(br_num);
+					Battle_Play result = (Battle_Play) playinfo.get(0);
+					int bp_01cnt = result.getBp_01cnt();
+					int bp_02cnt = result.getBp_02cnt();
+					int bp_count = result.getBp_count();
+
+					
+					if (bp_01cnt == bp_count || bp_02cnt == bp_count) {
+						message = "exit:" + br_num + ":";
+						synchronized (clients) {
+							for (Session client : clients) {
+								client.getBasicRemote().sendText(message);
+							}
+						}
+						return;
+					}
+
 					message = "next:" + br_num + ":";
 					synchronized (clients) {
 						for (Session client : clients) {
-							if (client.equals(session)) {
-								client.getBasicRemote().sendText(message);
-							}
+							client.getBasicRemote().sendText(message);
 						}
 					}
 					return;
@@ -208,26 +223,43 @@ public class Websocket {
 			}
 			// 문제를 늦게 푼 경우
 			else {
+				// 먼저 푼 유저가 문제 푸는거 방지
 				if (!value.equals("ㅋㅋㅋㅋㅋ")) {
+					// 정답일 때
 					if (value.equals(checkFlag)) {
 						battleplay.updatePlayCnt(br_num, me);
-						message = "next:" + br_num + ":";
-						synchronized (clients) {
-							for (Session client : clients) {
-								if (client.equals(session)) {
+
+						// 정답 개수 가지고 온다.
+						List playinfo = battleplay.playInfo(br_num);
+						Battle_Play result = (Battle_Play) playinfo.get(0);
+						int bp_01cnt = result.getBp_01cnt();
+						int bp_02cnt = result.getBp_02cnt();
+						int bp_count = result.getBp_count();
+						
+						if (bp_01cnt == bp_count || bp_02cnt == bp_count) {
+							message = "exit:" + br_num + ":";
+							synchronized (clients) {
+								for (Session client : clients) {
 									client.getBasicRemote().sendText(message);
 								}
 							}
+							return;
+						}
+						message = "next:" + br_num + ":";
+						synchronized (clients) {
+							for (Session client : clients) {
+								client.getBasicRemote().sendText(message);
+							}
 						}
 						return;
-					} else {
+					}
+					// 오답일 때
+					else {
 						battleplay.updatePlayCnt(br_num);
 						message = "next:" + br_num + ":";
 						synchronized (clients) {
 							for (Session client : clients) {
-								if (client.equals(session)) {
-									client.getBasicRemote().sendText(message);
-								}
+								client.getBasicRemote().sendText(message);
 							}
 						}
 						return;

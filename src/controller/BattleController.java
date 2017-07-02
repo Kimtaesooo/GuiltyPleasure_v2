@@ -9,14 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import command.ts_battle.CommandFactory;
+import command.battle.CommandFactory;
 
-@WebServlet(urlPatterns="/ts_battle")
-public class ts_BattleController extends HttpServlet {
+@WebServlet(urlPatterns="/battle")
+public class BattleController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     CommandFactory instance;
 
-    public ts_BattleController() {
+    public BattleController() {
         super();
         instance =CommandFactory.getInstance();
     }

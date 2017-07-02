@@ -1,4 +1,4 @@
-package dao.ts_battlemodule;
+package dao.battlemodule;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -55,8 +55,7 @@ public class BattlePlay {
 	public List getListRoom() {
 		ArrayList list = new ArrayList();
 		String sql = "select br_num, br_subject, br_pw, decode (br_type, 'A', '연예', 'B','넌센스','C','상식','D','아재') as br_type, "
-						+ "br_cnt, br_point, u_id, br_people, br_gamestate, br_ip "
-						+ "from battle_room order by br_gamestate";
+				+ "br_cnt, br_point, u_id, br_people, br_gamestate, br_ip " + "from battle_room order by br_gamestate";
 
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -231,7 +230,8 @@ public class BattlePlay {
 		ResultSet rs = null;
 		Quiz q = null;
 		ArrayList list = new ArrayList();
-		String sql = "select * from(select * from quiz where q_type ='"+q_type+"' order by dbms_random.value) where rownum <= 1";
+		String sql = "select * from(select * from quiz where q_type ='" + q_type
+				+ "' order by dbms_random.value) where rownum <= 1";
 		try {
 			pre = con.prepareStatement(sql);
 			rs = pre.executeQuery();
@@ -313,9 +313,9 @@ public class BattlePlay {
 		}
 
 		if (gameuser.equals(user01)) {
-			sql = "update battle_play set bp_01cnt = bp_01cnt+1, bp_count=bp_count+1 where br_num = '" + br_num + "'";
+			sql = "update battle_play set bp_01cnt = bp_01cnt+1 where br_num = '" + br_num + "'";
 		} else {
-			sql = "update battle_play set bp_02cnt = bp_02cnt+1, bp_count=bp_count+1 where br_num = '" + br_num + "'";
+			sql = "update battle_play set bp_02cnt = bp_02cnt+1 where br_num = '" + br_num + "'";
 		}
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -337,7 +337,7 @@ public class BattlePlay {
 			pool.freeConnection(con, pstmt, rs);
 		}
 	}
-	
+
 	// playroom bp_state 상태 0으로 만들기
 	public void updatePlayCnt(String br_num) {
 		String sql = "update battle_play set bp_state = 0 where br_num = '" + br_num + "'";
@@ -384,6 +384,60 @@ public class BattlePlay {
 			System.out.println("updatePlayRoomState 첫번째에서 오류");
 			err.printStackTrace();
 		} finally {
+			pool.freeConnection(con, pstmt, rs);
+		}
+	}
+
+	// 승자 포인트 처리
+	public void win(String u_id, int u_point) {
+		String sql = "update userinfo set u_point = u_point + " + u_point + " where u_id = '" + u_id + "'";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.executeUpdate();
+		} catch (Exception err) {
+			System.out.println("win 첫번째에서 오류");
+			err.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt, rs);
+		}
+	}
+
+	// 패자 포인트 처리
+	public void lose(String u_id, int u_point) {
+		String sql = "update userinfo set u_point = u_point - " + u_point + " where u_id = '" + u_id + "'";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.executeUpdate();
+		} catch (Exception err) {
+			System.out.println("lose 첫번째에서 오류");
+			err.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt, rs);
+		}
+	}
+
+	// 방 정보 삭제
+	public void deletPlayRoom(String br_num) {
+		String sql = "";
+		sql = "delete from battle_play where br_num = '" + br_num + "'";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.executeUpdate();
+		} catch (Exception err) {
+			System.out.println("deletPlayRoom 첫번째에서 오류");
+			err.printStackTrace();
+		}
+		
+		sql = "delete from battle_room where br_num = '" + br_num + "'";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.executeUpdate();
+		} catch (Exception err) {
+			System.out.println("deletPlayRoom 두번째에서 오류");
+			err.printStackTrace();
+		}
+
+		finally {
 			pool.freeConnection(con, pstmt, rs);
 		}
 	}

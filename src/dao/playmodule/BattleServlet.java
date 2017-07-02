@@ -14,7 +14,7 @@ import org.json.simple.JSONObject;
 import command.quiz.CommandFactory;
 import controller.Command;
 
-@WebServlet(urlPatterns="/battle")
+//@WebServlet(urlPatterns="/battle")
 public class BattleServlet extends HttpServlet{
 
 	@Override

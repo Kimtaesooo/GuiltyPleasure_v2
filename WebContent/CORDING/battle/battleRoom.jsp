@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"%>
 <%@page import="dto.Battle_Room"%>
-<%@ page import="dao.ts_battlemodule.BattlePlay"%>
+<%@ page import="dao.battlemodule.BattlePlay"%>
 <%@ page import="java.util.*"%>
 
 <!DOCTYPE html>
@@ -42,7 +42,7 @@
 <title>배틀 대기방</title>
 </head>  
 <body>
-	<jsp:useBean id="dao" class="dao.ts_battlemodule.BattlePlay"/>
+	<jsp:useBean id="dao" class="dao.battlemodule.BattlePlay"/>
 	<jsp:useBean id="dto" class="dto.Battle_Room"/>
 <%
 	List list = dao.getListRoom();
@@ -118,7 +118,7 @@
 
 	<!-- 방만들기 모달 -->
 	<div class="modal fade" id="makeRoom" data-backdrop="static">
-		<form class="form-horizontal" method="post" action="/GuiltyPleasure/ts_battle?cmd=MAKEROOM">
+		<form class="form-horizontal" method="post" action="/GuiltyPleasure/battle?cmd=MAKEROOM">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">

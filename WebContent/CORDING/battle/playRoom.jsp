@@ -1,4 +1,4 @@
-<%@page import="dao.ts_battlemodule.BattlePlay"%>
+<%@page import="dao.battlemodule.BattlePlay"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="dto.Battle_Play"%>
 <%@ page import="dto.Battle_Room"%>
@@ -33,7 +33,6 @@
 		String gameuser = "";
 		String me = (String) session.getAttribute("u_id");
 		String q_type = request.getParameter("br_type");
-		System.out.println(q_type);
 		String ip = request.getRemoteAddr();
 
 		List roominfo = new ArrayList();
@@ -160,8 +159,7 @@
 		var textarea = document.getElementById("messageWindow");
 		var connectionCheck = document.getElementById("connectionCheck");
 		var ip = document.getElementById('ip').value;
-		var webSocket = new WebSocket(
-				"ws://192.168.200.104:8080/GuiltyPleasure/battlesocket");
+		var webSocket = new WebSocket("ws://192.168.200.104:8080/GuiltyPleasure/battlesocket");
 		var inputMessage = document.getElementById('inputMessage');
 		var user01 = document.getElementById('user01').value;
 		var user02 = document.getElementById('user02').value;
@@ -251,6 +249,12 @@
 			if (strArray[0] == "next" && strArray[1] == br_num) {
 				nextsend();
 			}
+			
+			// 정답 개수를 다 채웠을 때
+			// message = "exit:" + br_num + ":";
+			if (strArray[0] == "exit" && strArray[1] == br_num) {
+				exit();
+			}
 		}
 
 		function messagesend() {
@@ -271,6 +275,12 @@
 		// 유저가 답을 누르면 다음 문제로 넘어가기 위한 버튼
 		function nextsend() {
 			webSocket.send("nextSend:" + br_num + ":" + me + ":" + q_type);
+		}
+		
+		// 게임이 끝나고 나간다.
+		function exit() {
+			webSocket.close();
+			window.location.href="/GuiltyPleasure/battle?cmd=EXIT&br_num="+br_num+"";
 		}
 
 		// 유저가 답을 눌렀을 때

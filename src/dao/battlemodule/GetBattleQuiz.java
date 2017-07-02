@@ -1,4 +1,4 @@
-package dao.ts_battlemodule;
+package dao.battlemodule;
 
 import java.util.List;
 
