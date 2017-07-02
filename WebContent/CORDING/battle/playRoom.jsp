@@ -158,7 +158,7 @@
 		var textarea = document.getElementById("messageWindow");
 		var connectionCheck = document.getElementById("connectionCheck");
 		var ip = document.getElementById('ip').value;
-		var webSocket = new WebSocket("ws://192.168.200.104:8080/GuiltyPleasure/battlesocket");
+		var webSocket = new WebSocket("ws://70.12.110.106:8080/GuiltyPleasure/battlesocket");
 		var inputMessage = document.getElementById('inputMessage');
 		var user01 = document.getElementById('user01').value;
 		var user02 = document.getElementById('user02').value;
