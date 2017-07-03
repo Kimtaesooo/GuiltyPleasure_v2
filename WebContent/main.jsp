@@ -86,7 +86,7 @@
 			alert("싱글 플레이가 금지된 유저 입니다.");
 			return;
 		}
-		location.href = "CORDING/Quiz/SingleStart.jsp";
+		location.href = "CORDING/Quiz/SingleMain.jsp";
 	}
 
 	function inbattle() {
@@ -115,6 +115,18 @@
 			return;
 		}
 		location.href = "CORDING/QuizRegi/QuizRegInfo.jsp";
+	}
+	
+	function inmagic(){
+		if($("#u_id").val().length ==0){
+			alert('로그인 후 사용 가능합니다.');
+			return ;
+		}
+		if($("#battle").val()!= 'null'){
+			alert('배틀 플레이가 금지된 유저입니다.');
+			return ;
+		}
+		location.href="CORDING/magic/magicEyeStart.jsp";
 	}
 </script>
 

@@ -65,18 +65,20 @@ a {color: #333;}
 <div class="col-md-2"> </div>
 <div class="col-md-10" 
 style="width:1000px; height:80px; 
-padding:10px; background-color: #d4d7da;" id="notice">
+padding:10px; background-color: #d4d7da; border: 1px solid #101010;" id="notice" >
 <H3 align="center">진행중인 문제는 '문제줘'를 입력해서 확인하세요</H3>
 </div>
 <div class="col-md-1"> </div>
 <div id="chat" class="col-lg-8"
-style="overflow:scroll; width:700px; height:500px; 
+style=" overflow-x:hidden; 
+ 		overflow-y:auto;  width:700px; height:500px; border: 1px solid #101010;
 padding:10px; background-color: #d3e4e2;">
 자음퀴즈방 ~ 맞추면 5포인트 ~ '문제줘' 입력시 출제 모르면 '포기'<br>
 나가기를 통해서 나가주셔야 인원 확인이 돼요 ~<br>
 </div>
 <div class="col-md-4" id="state"
-style="overflow:scroll; width:300px; height:500px; 
+style=" overflow-x:hidden; 
+ overflow-y:auto;  width:300px; height:500px;border: 1px solid #101010; 
 padding:10px; background-color: #e5d1ea;">
 참여자 정보<br>
 </div>
@@ -84,7 +86,7 @@ padding:10px; background-color: #e5d1ea;">
 <div class="col-md-1"> </div>
 <div class="col-md-10" 
 style="width:1000px; height:80px; 
-padding:10px; background-color: #d4d7da;">
+padding:10px; background-color: #d4d7da;border: 1px solid #101010;">
 	<div class="col-md-1"></div>
 	<div class="col-md-9">
 	<input type="text" size="60" id="inputMessage" onkeyup="enterkey()">

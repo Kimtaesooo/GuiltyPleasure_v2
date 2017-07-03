@@ -26,7 +26,7 @@ public class ListCommand implements Command {
 		
 		String order = request.getParameter("order")==null?"Q.Q_TYPE":request.getParameter("order");
 		String pageno = request.getParameter("pageno")==null?"1":request.getParameter("pageno");
-		
+		String orderInfo = "";
 		if("".equals(pageno)){
 			pageno = "1";
 		}
@@ -36,21 +36,25 @@ public class ListCommand implements Command {
 		}
 		
 		String orderType = request.getParameter("ordertype")==null?"asc":request.getParameter("ordertype");
+		System.out.println("order type = "+orderType);
 		
 		if("desc".equals(orderType)){
-			order += " DESC";
+			orderInfo = order + " DESC";
+		}else{
+			orderInfo = order;
 		}
 		
 		dto.setU_id(u_id);
 		dto.setQ_type(q_type);
 		dto.setQ_question(q_question);
 		
-		ArrayList<QuizInfoDTO> list = dao.searchList(dto , 10, Integer.parseInt(pageno), order);
+		ArrayList<QuizInfoDTO> list = dao.searchList(dto , 10, Integer.parseInt(pageno), orderInfo);
 		int count = dao.listCount(dto);
 		
 		request.setAttribute("list", list);
 		request.setAttribute("searchInfo", dto);
 		request.setAttribute("ordertype", orderType);
+		request.setAttribute("order", order);
 		request.setAttribute("total", count);
 		request.setAttribute("pageno", pageno);
 		

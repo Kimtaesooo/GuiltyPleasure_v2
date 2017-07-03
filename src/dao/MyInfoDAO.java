@@ -48,6 +48,8 @@ public class MyInfoDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			pool.freeConnection(conn, pstmt, rs);
 		}
 		return dto;
 	}
@@ -62,6 +64,8 @@ public class MyInfoDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			pool.freeConnection(conn, pstmt, rs);
 		}
 		
 		return result;
@@ -83,6 +87,8 @@ public class MyInfoDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			pool.freeConnection(conn, pstmt, rs);
 		}
 		return dto;
 	}
@@ -110,6 +116,8 @@ public class MyInfoDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			pool.freeConnection(conn, pstmt, rs);
 		}
 		return list;
 	}
@@ -136,6 +144,8 @@ public class MyInfoDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			pool.freeConnection(conn, pstmt, rs);
 		}
 		return list;
 	}

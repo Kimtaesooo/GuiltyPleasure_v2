@@ -51,6 +51,13 @@ public class CommandFactory {
 		if(cmd.equals("CHATING")){
 			return new ChatingCommand();
 		}
+		if(cmd.equals("MAGIC")){
+			return new MagiceyeCommand();
+			}
+		if(cmd.equals("GIVEUP")){
+			return new GiveupCommand();
+		}
+		
 		return null;
 	}	
 }

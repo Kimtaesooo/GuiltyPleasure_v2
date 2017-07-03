@@ -64,7 +64,7 @@ a {color: #333;}
 			<div class="col-md-6 to-animate">
 					<a href="SingleStart.jsp" class="fh5co-figure">
 						<span class="fh5co-price">
-						<font size=6>按包侥
+						<font size=3>按包侥
 						</font></span>
 						<br>
 						<img src="https://cdn2.iconfinder.com/data/icons/interface-12/24/interface-80-128.png">
@@ -73,7 +73,7 @@ a {color: #333;}
 			<div class="col-md-6 to-animate">
 					<a href="ShortStart.jsp" class="fh5co-figure">
 						<span class="fh5co-price">
-						<font size=6>林包侥
+						<font size=3>林包侥
 						</font></span>
 						<br>
 						<img src="https://cdn3.iconfinder.com/data/icons/mini-icon-set-general-office/91/General_-_Office_09-128.png">

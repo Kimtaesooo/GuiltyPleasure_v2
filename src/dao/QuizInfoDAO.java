@@ -36,7 +36,7 @@ public class QuizInfoDAO {
 		int inpstmt = 1;
 		
 		String sql = "SELECT * FROM ( SELECT Q.Q_CODE , DECODE(Q.Q_TYPE,'A','연애','B','넌센스','C','언어','D','상식','기타') AS Q_TYPE , Q.Q_QUESTION , Q.Q_ANSWER , Q.Q_WA_A , Q.Q_WA_B , Q.Q_WA_C " 
-					+" , U.U_ID , ROW_NUMBER() OVER (ORDER BY "+order+") AS NUM FROM QUIZ Q INNER JOIN USERINFO U "
+					+" , U.U_ID , ROW_NUMBER() OVER (ORDER BY "+order+" ) AS NUM FROM QUIZ Q INNER JOIN USERINFO U "
 				    +" ON Q.U_ID = U.U_ID ";
 		
 		if(quiz.getQ_type().length()>0){
@@ -108,7 +108,8 @@ public class QuizInfoDAO {
 	
 	public int listCount(QuizInfoDTO quiz){
 		int count = 0;
-		String sql = "SELECT COUNT(Q_CODE) AS COUNT FROM QUIZ ";
+		String sql = "SELECT COUNT(Q.Q_CODE) AS COUNT FROM QUIZ Q INNER JOIN USERINFO U "
+				    +" ON Q.U_ID = U.U_ID ";
 		
 		boolean question = false;
 		boolean type = false;
@@ -119,9 +120,9 @@ public class QuizInfoDAO {
 		
 		if(quiz.getQ_type().length()>0){
 			if(insql == 1){
-			sql += " WHERE Q_TYPE = ? "; 
+			sql += " WHERE Q.Q_TYPE LIKE '%'||?||'%' "; 
 			}else{
-				sql += " AND Q_TYPE = ? ";
+				sql += " AND Q.Q_TYPE LIKE '%'||?||'%' ";
 			}
 			insql++;
 			type = true;
@@ -129,9 +130,9 @@ public class QuizInfoDAO {
 		
 		if(quiz.getQ_question().length()>0){
 			if(insql == 1){
-				sql += " WHERE Q_QUESTION = ? "; 
+				sql += " WHERE Q.Q_QUESTION LIKE '%'||?||'%' "; 
 			}else{
-				sql += " AND Q_QUESTION = ? ";
+				sql += " AND Q.Q_QUESTION LIKE '%'||?||'%' ";
 			}
 			insql++;
 			question = true;
@@ -139,13 +140,15 @@ public class QuizInfoDAO {
 		
 		if(quiz.getU_id().length()>0){
 			if(insql == 1){
-				sql += " WHERE U_ID = ? "; 
+				sql += " WHERE Q.U_ID LIKE '%'||?||'%' "; 
 			}else{
-				sql += " AND U_ID = ? ";
+				sql += " AND Q.U_ID LIKE '%'||?||'%' ";
 			}
 			insql++;
 			id = true;
 		}
+		
+		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
@@ -218,6 +221,8 @@ public class QuizInfoDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			pool.freeConnection(conn, pstmt, rs);
 		}
 		
 		return result;
@@ -225,7 +230,6 @@ public class QuizInfoDAO {
 	
 	public int deleteQuiz(String id){
 		int result = -1;
-		System.out.println("id dao = "+id);
 		String sql = "DELETE FROM QUIZ WHERE Q_CODE = ? ";
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -234,7 +238,9 @@ public class QuizInfoDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}		
+		}finally{
+			pool.freeConnection(conn, pstmt, rs);
+		}	
 		return result;
 	}
 }

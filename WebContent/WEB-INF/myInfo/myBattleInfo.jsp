@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/sub.css">
 <link href="${pageContext.request.contextPath}/font/NotoSansKR.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/pagenav.js" charset='utf-8'></script>
 <script>
 $(document).ready(function(){
 	$('#btnInfo').click(function(){
@@ -100,6 +101,49 @@ $(document).ready(function(){
 		</c:forEach>
 	</table>
 	</c:if>
+	<hr class="margin20">
+<h2>구매 아이템</h2>
+<hr class="margin10">
+<c:if test="${empty itemList}">
+	<hr class="margin10">
+	<h2 style="text-align: center;">아이템 구매내역이  없습니다.</h2>
+	<hr class="margin20">
+</c:if>
+<c:if test="${fn:length(itemList) > 0}">
+<table class="infoTable">
+	<colgroup>
+		<col style="width:30%;">
+		<col style="width:30%;">
+		<col style="width:20%;">
+		<col style="width:20%;">
+	</colgroup>
+	<tr>
+		<th style="text-align: center;">아이템명</th>
+		<th style="text-align: center;">구매일</th>
+		<th style="text-align: center;">유효기간</th>
+		<th style="text-align: center;">가격</th>
+	</tr>
+	<c:forEach var="item" items="${itemList}">
+		<tr>
+			<td style="text-align: center;">${item.item_name }</td>
+			<td style="text-align: center;">${item.buy_date }</td>
+			<td style="text-align: center;">${item.item_limit }</td>
+			<td style="text-align: center;">${item.price }</td>
+		</tr>
+	</c:forEach>
+</table>
+</c:if>
+<table id="pageNavi" style="margin-left: auto; margin-right: auto;">
+	<tr>
+		<td align="center">
+			<div>
+				<script type="text/javascript">
+					document.write(pageNav( "gotoPage", <c:out value="${pageno}"/>, '5', <c:out value="${itemtotal}"/>,'INFO', 'userInfoForm'));
+				</script>
+			</div>
+		</td>
+	</tr>
+</table>
 	<hr class="margin20">
 	<h3>내가 만든 문제</h3>
 	<hr class="margin10">

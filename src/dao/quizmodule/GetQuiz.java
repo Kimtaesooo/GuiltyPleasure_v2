@@ -47,6 +47,8 @@ public class GetQuiz {
 			}
 		} catch (SQLException e) {
 			System.out.println("getquiz : " + e);
+		}finally{
+			db.freeConnection(con, pre, rs);
 		}
 		return q;
 	}
@@ -76,6 +78,8 @@ public class GetQuiz {
 			}
 		} catch (SQLException e) {
 			System.out.println("getquiz : " + e);
+		}finally{
+			db.freeConnection(con, pre, rs);
 		}
 		return array;
 	}
@@ -120,6 +124,8 @@ public class GetQuiz {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			}finally{
+				db.freeConnection(con, psmt, rs);
 			}
 
 		}

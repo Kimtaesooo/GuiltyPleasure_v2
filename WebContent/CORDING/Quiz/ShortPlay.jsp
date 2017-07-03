@@ -129,6 +129,10 @@ var result = new Array();
 			}
 		}
 	}
+	
+	function giveup() {
+		location.href="/GuiltyPleasure/giveup?cmd=GIVEUP"
+	}
 	window.onload = function(){
 		tid = setInterval('timer()', 1000);
 	}
@@ -175,7 +179,7 @@ var result = new Array();
 			</table>
 			<br><br>
 				  <div class="col-lg-4">
-	  			<input type="button" value="포기하기" class="btn btn-danger btn-lg"/>
+	  			<input type="button" value="포기하기" class="btn btn-danger btn-lg" onclick="giveup()"/>
   				</div>
 
 		</div>

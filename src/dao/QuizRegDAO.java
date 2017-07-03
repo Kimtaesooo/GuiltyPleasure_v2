@@ -37,7 +37,6 @@ public class QuizRegDAO {
 		uq.setUq_wa_c(request.getParameter("w3"));
 		uq.setQ_type(request.getParameter("select"));
 		uq.setUq_question(request.getParameter("textProblem"));
-		System.out.println("uq 확인" +uq.toString());
 		
 		return uq;		
 	}
@@ -62,7 +61,6 @@ public class QuizRegDAO {
 			System.out.println("퀴즈 데이터를 넣는 과정에서 오류 발생");
 			e.printStackTrace();
 		}
-		System.out.println(i+" 건 들어감");
 		return i;		
 	}
 	
@@ -117,8 +115,9 @@ public class QuizRegDAO {
 				pstmt.setString(1, id);
 				rs = pstmt.executeQuery();
 				while(rs.next()){
+					uqinform.setUq_num(rs.getString("uq_num"));
 					uqinform.setQ_type(rs.getString("Q_TYPE"));
-					uqinform.setU_id(rs.getString("UQ_NUM"));
+					uqinform.setU_id(rs.getString("u_id"));
 					uqinform.setUq_adopt(rs.getString("UQ_ADOPT"));
 					uqinform.setUq_answer(rs.getString("UQ_ANSWER"));
 					uqinform.setUq_num(rs.getString("UQ_NUM"));
@@ -230,6 +229,8 @@ public class QuizRegDAO {
 		int result = -1;
 		int total = -1;
 		U_Quiz quiz = getU_Quzi(num);
+		
+		
 		String sql = "";
 		sql = "UPDATE U_QREG SET UQ_ADOPT = 'Y' WHERE UQ_NUM = ? ";
 		try {
@@ -241,6 +242,8 @@ public class QuizRegDAO {
 				conn.rollback();
 				return total;				
 			}
+			
+			
 			
 			sql = "INSERT INTO QUIZ (Q_CODE, Q_TYPE, Q_QUESTION, Q_ANSWER, Q_CA_CNT, Q_WA_CNT, U_ID, Q_WA_A, Q_WA_B, Q_WA_C) "
 					+ " VALUES ('Q'||LPAD(SEQ_Q_CODE.NEXTVAL, 9,'0'), ?,?,?,0,0,?,?,?,?) ";

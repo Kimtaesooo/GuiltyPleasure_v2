@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Insert title here</title>
+<title>Insert title here</title>"G:/0730/web-inf/quizInfo/quizList.jsp"
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/sub.css">
 <link href="${pageContext.request.contextPath}/font/NotoSansKR.css" rel="stylesheet" type="text/css">
@@ -126,17 +126,17 @@ $(document).ready(function(){
 	</td>
 </tr>
 <tr><th>문제</th>
-	<td colspan="3"><input type="text" name="q_question" id="q_question" value="${dto.q_question}" size="100"/></td>
+	<td colspan="3"><input type="text" name="q_question" id="q_question" value="${dto.q_question}" size="100" maxlength="100"/></td>
 </tr>
 <tr><th>정답</th>
-	<td><input type="text" name="q_answer" id="q_answer"value="${dto.q_answer}" /></td>
+	<td><input type="text" name="q_answer" id="q_answer"value="${dto.q_answer}" maxlength="15"/></td>
 	<th>오답1</th>
-	<td><input type="text" name="q_wa_a" id="q_wa_a" value="${dto.q_wa_a}" /></td>
+	<td><input type="text" name="q_wa_a" id="q_wa_a" value="${dto.q_wa_a}" maxlength="10"/></td>
 </tr>
 <tr><th>오답2</th>
-	<td><input type="text" name="q_wa_b" id="q_wa_b" value="${dto.q_wa_b}" /></td>
+	<td><input type="text" name="q_wa_b" id="q_wa_b" value="${dto.q_wa_b}" maxlength="10" /></td>
 	<th>오답3</th>
-	<td><input type="text" name="q_wa_c" id="q_wa_c" value="${dto.q_wa_c}" /></td>
+	<td><input type="text" name="q_wa_c" id="q_wa_c" value="${dto.q_wa_c}" maxlength="10"/></td>
 </tr>
 </table>
 <hr class="margin20">

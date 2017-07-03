@@ -50,7 +50,7 @@ $(document).ready(function(){
 <input type="hidden" name="cmd" id="cmd"/>
 <input type="hidden" name="qcode" id="qcode"/>
 <input type="hidden" name="pageno" value="${pageno }"/>
-<input type="hidden" name="order" id="order"/>
+<input type="hidden" name="order" id="order" value="${order }"/>
 <input type="hidden" name="select" id="select"/>
 <input type="hidden" name="ordertype" id="ordertype" value="${ordertype }"/>
 <div class="subCC">

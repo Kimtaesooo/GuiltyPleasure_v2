@@ -10,20 +10,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/bootstrap332/css/bootstrap.min.css">
-<script
-	src="${pageContext.request.contextPath}/bootstrap332/js/jquery-3.2.1.min.js"></script>
-<script
-	src="${pageContext.request.contextPath}/bootstrap332/js/bootstrap.min.js"></script>
-<script type="text/javascript"
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
-<title>게임방</title>
-<script src=/GuiltyPleasure/ajax.js></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap332/css/bootstrap.min.css">
+<script	src="${pageContext.request.contextPath}/bootstrap332/js/jquery-3.2.1.min.js"></script>
+<script	src="${pageContext.request.contextPath}/bootstrap332/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<jsp:useBean id="roomDto" class="dto.Battle_Room" />
-	<jsp:useBean id="playDto" class="dto.Battle_Play" />
+
 	<%
 		request.setCharacterEncoding("euc-kr");
 		response.setCharacterEncoding("euc-kr");
@@ -79,33 +71,38 @@
 	<input type="hidden" value="<%=people%>" id="people">
 	<br>
 	<br>
-	<p class="text-center">배틀 게임 시작</p>
+	<h3 align=center>배틀 게임 시작</h3>
 	<br>
 	<br>
 	<div class="row">
 		<div class="col-md-7 col-md-offset-1" id="exam">
-			<textarea class="form-control" rows="16" id="windowQuiz"
-				style="background-color: transparent;" readonly>
+			<div class="col-md-10" id="windowQuiz"
+			style="width:700px; height:500px;  overflow-x:hidden; 
+ 			overflow-y:auto; 
+			padding:10px; background-color: #dae5f1;border: 1px solid #101010;">
 상대방이 먼저 문제를 맞출경우 자동으로 다음 문제로 넘어갑니다.
 오답을 선택할 시 상대방이 문제를 다 풀때까지 기다려야 합니다.
 키패드의 1,2,3,4 버튼을 이용하여 정답을 전송할 수 있습니다.
 방을 만들 때 설정한 문제 개수를 모두 맞추는 유저가 이기며, 상대방의 포인트를 뺏어갑니다.
 테스트중이므로 중복된 문제가 나올 수 있습니다.
-			</textarea>
-			<br> <br> <br>
+			</div>
 			<div class="col-md-3">
+			<br><br>
 				<a class="btn btn-success btn-lg btn-block" role="button"
 					id="button1" onclick="buttonA()">키패드1</a>
 			</div>
 			<div class="col-md-3">
+			<br><br>
 				<a class="btn btn-success btn-lg btn-block" role="button"
 					id="button2" onclick="buttonB();">키패드2</a>
 			</div>
 			<div class="col-md-3">
+			<br><br>
 				<a class="btn btn-success btn-lg btn-block" role="button"
 					id="button3" onclick="buttonC();">키패드3</a>
 			</div>
 			<div class="col-md-3">
+			<br><br>
 				<a class="btn btn-success btn-lg btn-block" role="button"
 					id="button4" onclick="buttonD();">키패드4</a>
 			</div>
@@ -115,23 +112,30 @@
 			<textarea class="form-control" rows="4" placeholder="접속자 확인 하는 곳"
 				id="connectionCheck" style="background-color: transparent;" readonly></textarea>
 			<br>
-			<textarea class="form-control" rows="9" id="messageWindow"
-				style="background-color: transparent;" readonly></textarea>
+			<div class="col-md-10" id="messageWindow"
+			style="width:300px; height:300px;  overflow-x:hidden; 
+ 			overflow-y:auto; 
+			padding:10px; background-color: #d4d7da;border: 1px solid #101010;"></div>
+			<br>
 			<br>
 			<div class="col-xs-9">
+			<br>
 				<input type="text" class="form-control" id="inputMessage"
 					onkeyup="enterkey();">
 			</div>
+			
 			<div class="col-xs-3">
+			<br>
 				<input type="button" class="btn btn-default" value="전송"
 					onclick="messagesend();" />
+				<br><br><br><br>
 			</div>
 			<br> <br> <br>
 			<%
 				if (session.getAttribute("u_id").equals(user01)) {
 			%>
 			<div class="col-xs-6">
-				<a class="btn btn-danger btn-lg btn-block" onclick="giveUp();" role="button">포기하기</a>
+				<a class="btn btn-danger btn-lg btn-block" onclick="giveUp();" role="button">포기</a>
 			</div>
 			<div class="col-xs-6">
 				<a class="btn btn-success btn-lg btn-block" role="button"
@@ -203,7 +207,8 @@
 
 			// 채팅
 			if (strArray[0] == "messageSend" && strArray[1] == br_num) {
-				textarea.value += strArray[2] + " : " + strArray[3] + "\n";
+				textarea.innerHTML += strArray[2] + " : " + strArray[3] + "<br>";
+				 textarea.scrollTop = textarea.scrollHeight;
 			}
 			
 			// 접속자 확인
@@ -216,7 +221,7 @@
 			// 0.구분문자 1.방번호 2.코드 3.문제 4.정답 5.오답1 6.오답2 7.오답3
 			if (strArray[0] == "getget" && strArray[1] == br_num) {
 				code = strArray[2];
-				windowQuiz.value = strArray[3];
+				windowQuiz.innerHTML = "<h3>Q</h3>"+strArray[3];
 				button1.innerHTML = strArray[4];
 				button2.innerHTML = strArray[5];
 				button3.innerHTML = strArray[6];
@@ -231,12 +236,12 @@
 			// 게임 시작인원 부족할 때 받는 메시지
 			// message = "people_cnt_check:"+br_num+":인원이 부족합니다.:";
 			if (strArray[0] == "people_cnt_check" && strArray[1] == br_num) {
-				windowQuiz.value = strArray[2];
+				windowQuiz.innerHTML = strArray[2];
 			}
 
 			// message = "wrong:"+br_num+":틀렸습니다. 상대방이 문제를 풀 동안 기다려 주세요:ㅋㅋㅋㅋㅋ";
 			if (strArray[0] == "wrong" && strArray[1] == br_num) {
-				windowQuiz.value = strArray[2];
+				windowQuiz.innerHTML = strArray[2];
 				button1.innerHTML = strArray[3];
 				button2.innerHTML = strArray[3];
 				button3.innerHTML = strArray[3];
@@ -263,10 +268,11 @@
 		function messagesend() {
 			if (inputMessage.value == "") {
 			} else {
-				textarea.value += me + " : " + inputMessage.value + "\n";
+				textarea.innerHTML += "<h5 align=right>"+  inputMessage.value + "</h5>";
 				webSocket.send("messageSend:" + br_num + ":" + me + ":"
 						+ inputMessage.value);
 				inputMessage.value = "";
+				 textarea.scrollTop = textarea.scrollHeight;
 			}
 		}
 

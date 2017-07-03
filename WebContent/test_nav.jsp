@@ -151,6 +151,19 @@ $(document).ready(function(){
 		}
 		location.href="CORDING/QuizRegi/QuizRegInfo.jsp";
 	}
+	
+	function inmagic(){
+		if($("#u_id").val().length ==0){
+			alert('로그인 후 사용 가능합니다.');
+			return ;
+		}
+		if($("#battle").val()!= 'null'){
+			alert('배틀 플레이가 금지된 유저입니다.');
+			return ;
+		}
+		location.href="CORDING/magic/magicEyeStart.jsp";
+	}
+	
 });
 </script>
 <%
@@ -201,6 +214,9 @@ $(document).ready(function(){
 			<li class="active"><a href="${pageContext.request.contextPath}/main.jsp" >MAIN</a></li>
 			<li><a href="javascript:insingle()">싱글플레이</a></li>
 			<li><a href="javascript:inbattle()">배틀플레이</a></li>
+			<li><a href="javascript:inmagic()">매직아이</a></li>
+			<li><a href="/GuiltyPleasure/CORDING/shop/outline/searchStart.jsp">틀린그림찾기</a></li>
+			<li><a href="/GuiltyPleasure/CORDING/jaum/play_jaum.jsp">자음퀴즈</a></li>
 			<li><a href="${pageContext.request.contextPath}/CORDING/rank/rankBattle.jsp">랭킹</a></li>
 			<li><a href="javascript:inregquiz()">퀴즈출제</a></li>
 			<li><a href="javascript:inshop()">상점</a></li>
@@ -209,6 +225,7 @@ $(document).ready(function(){
 			<li><a href="${pageContext.request.contextPath}/CORDING/custom/customer_main.jsp">고객센터</a></li>
 				<%if(u_id.equals("master")) {%>
 			<li><a href="/GuiltyPleasure/userinfo?cmd=LIST">회원관리</a></li>
+			<li><a href="/GuiltyPleasure/quizinfo?cmd=LIST">퀴즈관리</a></li>
 				<%} %>
 		</ul>
 </div>
