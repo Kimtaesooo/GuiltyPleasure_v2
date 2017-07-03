@@ -36,7 +36,6 @@ public class ListCommand implements Command {
 		}
 		
 		String orderType = request.getParameter("ordertype")==null?"asc":request.getParameter("ordertype");
-		System.out.println("order type = "+orderType);
 		
 		if("desc".equals(orderType)){
 			orderInfo = order + " DESC";

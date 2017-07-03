@@ -16,7 +16,6 @@ public class DeleteCommand implements Command {
 		String id = request.getParameter("q_code");
 		System.out.println("comm id = "+id);
 		int result = dao.deleteQuiz(id);
-		System.out.println("comm result = "+result);
 		if(result != 1){
 			System.out.println("실패장소");
 			return "";

@@ -221,7 +221,7 @@
 			// 0.구분문자 1.방번호 2.코드 3.문제 4.정답 5.오답1 6.오답2 7.오답3
 			if (strArray[0] == "getget" && strArray[1] == br_num) {
 				code = strArray[2];
-				windowQuiz.innerHTML = "<h3>Q</h3>"+strArray[3];
+				windowQuiz.innerHTML = "<h1><font color=green>Q</font></h1>"+ "<h1>"+strArray[3];+"<h1>"
 				button1.innerHTML = strArray[4];
 				button2.innerHTML = strArray[5];
 				button3.innerHTML = strArray[6];
