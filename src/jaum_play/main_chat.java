@@ -13,6 +13,7 @@ import javax.websocket.RemoteEndpoint.Basic;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
+import dao.shopmodule.BonusManager;
 import dao.shopmodule.ShopManager;
 
 
@@ -39,7 +40,7 @@ public class main_chat {
     static String str[];
     static String login;
     Random random = new Random();
-    ShopManager point = new ShopManager();
+    BonusManager point = new BonusManager();
 	private static Set<Session> clients = Collections.synchronizedSet(new HashSet<Session>());
 	@OnOpen
 	public void onOpen(Session session) {

@@ -14,8 +14,8 @@ import dao.shopmodule.ShopManager;
 import dto.Shop;
 
 
-@WebServlet(urlPatterns="/shopUpdate")
-public class ShopUpdateCommand2 extends HttpServlet {
+@WebServlet(urlPatterns="/shopDelete")
+public class ShopDeleteComand extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -28,22 +28,8 @@ public class ShopUpdateCommand2 extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		
 		req.setCharacterEncoding("euc-kr");
 		String code=req.getParameter("code");
-		String name=req.getParameter("name");
-		int price=Integer.parseInt(req.getParameter("price"));
-		int deadline=Integer.parseInt(req.getParameter("deadline"));
-		int limit=Integer.parseInt(req.getParameter("limit"));
-		String content=req.getParameter("content");
-		
-		Shop dto = new Shop();
-		dto.setS_itemcode(code);
-		dto.setS_itemname(name);
-		dto.setS_price(price);
-		dto.setS_deadline(deadline);
-		dto.setS_limit_num(limit);
-		dto.setS_content(content);
-		
 		ShopManager sDao = ShopManager.getInstance();
-		sDao.updateItem(dto);
+		sDao.deleteItemByCode(code);
 		resp.sendRedirect("/GuiltyPleasure/CORDING/shop/outline/shop.jsp?cmd=SHOPLIST");
 	}
 }

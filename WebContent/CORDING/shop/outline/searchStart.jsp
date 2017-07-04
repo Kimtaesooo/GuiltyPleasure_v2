@@ -222,7 +222,7 @@ a {
 						<h2 class="to-animate intro-animate-1"><font color="black">귀한 시간과 귀한 눈 함께 날려버리기 </font></h2>
 						<p class="to-animate intro-animate-2">틀린부분 5개를 찾자!</p>
 					</font>
-							<form method="post" action="/GuiltyPleasure/CORDING/shop/outline/shop2.jsp">
+							<form method="post" action="/GuiltyPleasure/CORDING/shop/outline/searchgame.jsp">
 								<p class="to-animate intro-animate-3">
 								
 								<button type="submit" class="btn btn-default btn-xs">시작!</button>

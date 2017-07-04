@@ -10,12 +10,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.shopmodule.BonusManager;
 import dao.shopmodule.ShopManager;
 import dto.Shop;
 
 
-@WebServlet(urlPatterns="/applyItem")
-public class ApplyItemCommand2 extends HttpServlet {
+@WebServlet(urlPatterns="/searchQuiz")
+public class SearchQuiz extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -27,15 +28,12 @@ public class ApplyItemCommand2 extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		
 		req.setCharacterEncoding("euc-kr");
-		String code=req.getParameter("code");
+		
 		String id=req.getParameter("id");
 		
+		BonusManager bDao = BonusManager.getInstance();
+		bDao.searchQuiz(id);
 		
-		Shop dto = new Shop();
-		
-		
-		ShopManager sDao = ShopManager.getInstance();
-		
-		resp.sendRedirect("/GuiltyPleasure/CORDING/shop/outline/shop.jsp?cmd=SHOPLIST");
+		resp.sendRedirect("/GuiltyPleasure/CORDING/shop/outline/searchResult.jsp");
 	}
 }

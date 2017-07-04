@@ -233,7 +233,7 @@ a {
 		</div>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<button type="button" class="btn btn-default btn-xs" onclick="location.href='/GuiltyPleasure/main.jsp'">메인으로</button>
-								<button type="button" class="btn btn-default btn-xs" onclick="location.href='/GuiltyPleasure/CORDING/shop/outline/shop2.jsp'">한판 더</button>
+								<button type="button" class="btn btn-default btn-xs" onclick="location.href='/GuiltyPleasure/CORDING/shop/outline/searchgame.jsp'">한판 더</button>
 	</header>
 	</div>
 
