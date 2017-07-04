@@ -181,7 +181,6 @@ a {
 .fh5co-nav-toggle i::before, .fh5co-nav-toggle i::after {
 	background: #333;
 }
-
 </style>
 
 </head>
@@ -189,12 +188,10 @@ a {
 <body>
 	<jsp:include page="/test_nav.jsp" />
 
-<br>
-			<br>
-			<br>
-			<br>
-
-	<!-- END .header -->
+	<br>
+	<br>
+	<br>
+	<br>
 
 
 
@@ -207,35 +204,43 @@ a {
 					class="col-md-8 col-md-offset-2 fh5co-section-heading text-center">
 					<h2>Spot the difference!</h2>
 				</div>
-				
-				</div>
-				</div>
 
-
-	<div>
-	<header id="fh5co-hero" data-section="home" style="background: WHITE top left; background-size: cover;" >
-		<div class="fh5co-intro">
-			<div class="container">
-									
-					<div class="fh5co-text">
-					<font color="black">
-						<h2 class="to-animate intro-animate-1"><font color="black">축하합니다 <%=session.getAttribute("u_id")%>님!! </font></h2>
-						<p class="to-animate intro-animate-2">눈건강과 100포인트를 성공적으로 뒤바꾸셨습니다!</p>
-					</font>
-							
-								
-								
-								
-							
-					</div>
-			
-			</div>						
+			</div>
 		</div>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<button type="button" class="btn btn-default btn-xs" onclick="location.href='/GuiltyPleasure/main.jsp'">메인으로</button>
-								<button type="button" class="btn btn-default btn-xs" onclick="location.href='/GuiltyPleasure/CORDING/shop/outline/searchgame.jsp'">한판 더</button>
-	</header>
-	</div>
 
+
+		<div>
+			<header id="fh5co-hero" data-section="home"
+				style="background: WHITE top left; background-size: cover;">
+				<div class="fh5co-intro">
+					<div class="container">
+
+						<div class="fh5co-text">
+							<font color="black">
+								<h2 class="to-animate intro-animate-1">
+									<font color="black">축하합니다 <%=session.getAttribute("u_id")%>님!!
+									</font>
+								</h2>
+								<p class="to-animate intro-animate-2">눈건강과 100포인트를 성공적으로
+									뒤바꾸셨습니다!</p>
+							</font>
+
+
+
+
+
+						</div>
+
+					</div>
+				</div>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<button type="button" class="btn btn-default btn-xs"
+					onclick="location.href='/GuiltyPleasure/main.jsp'">메인으로</button>
+				<button type="button" class="btn btn-default btn-xs"
+					onclick="location.href='/GuiltyPleasure/CORDING/shop/outline/searchgame.jsp'">한판
+					더</button>
+			</header>
+		</div>
+	</div>
 </body>
 </html>
