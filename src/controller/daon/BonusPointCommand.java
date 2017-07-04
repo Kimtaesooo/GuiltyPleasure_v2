@@ -10,12 +10,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.shopmodule.BonusManager;
 import dao.shopmodule.ShopManager;
 import dto.Shop;
 
 
-@WebServlet(urlPatterns="/shopAdd")
-public class ShopAddCommand2 extends HttpServlet {
+@WebServlet(urlPatterns="/bonusPoint")
+public class BonusPointCommand extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -27,21 +28,11 @@ public class ShopAddCommand2 extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		
 		req.setCharacterEncoding("euc-kr");
-		String name=req.getParameter("name");
-		int price=Integer.parseInt(req.getParameter("price"));
-		int limit=Integer.parseInt(req.getParameter("limit"));
-		int deadline=Integer.parseInt(req.getParameter("deadline"));
-		String content=req.getParameter("content");
+		BonusManager bDao = BonusManager.getInstance();
 		
-		Shop dto = new Shop();
-		dto.setS_itemname(name);
-		dto.setS_price(price);
-		dto.setS_limit_num(limit);
-		dto.setS_deadline(deadline);
-		dto.setS_content(content);
+		String id=req.getParameter("id");
 		
-		ShopManager sDao = ShopManager.getInstance();
-		sDao.addItem(dto);
+		bDao.bonusPoint(id);
 		resp.sendRedirect("/GuiltyPleasure/CORDING/shop/outline/shop.jsp?cmd=SHOPLIST");
 	}
 }

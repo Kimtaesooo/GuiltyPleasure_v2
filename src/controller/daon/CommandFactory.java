@@ -12,21 +12,7 @@ public class CommandFactory {
 		if (cmd.equals("SHOPLIST")) {
 			return new ShopListCommand();
 		}
-		else if (cmd.equals("SHOPBUY")) {
-			return new ShopBuyCommand();
-		}
-		else if (cmd.equals("SHOPUPDATE")) {
-			return new ShopUpdateCommand();
-		}
-		else if (cmd.equals("SHOPADD")) {
-			return new ShopAddCommand();
-		}
-		else if (cmd.equals("SHOPDELETE")) {
-			return new ShopDeleteCommand();
-		}
-		else if (cmd.equals("bonusPoint")) {
-			return new bonusPointCommand();
-		}
+		
 		else{
 			return null;
 		}

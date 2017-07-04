@@ -181,7 +181,6 @@ a {
 .fh5co-nav-toggle i::before, .fh5co-nav-toggle i::after {
 	background: #333;
 }
-
 </style>
 
 </head>
@@ -189,13 +188,10 @@ a {
 <body>
 	<jsp:include page="/test_nav.jsp" />
 
-<br>
-			<br>
-			<br>
-			<br>
-
-	<!-- END .header -->
-
+	<br>
+	<br>
+	<br>
+	<br>
 
 
 
@@ -207,33 +203,37 @@ a {
 					class="col-md-8 col-md-offset-2 fh5co-section-heading text-center">
 					<h2>Spot the difference!</h2>
 				</div>
-				
-				</div>
-				</div>
+
+			</div>
+		</div>
 
 
-	<div>
-	<header id="fh5co-hero" data-section="home" style="background: WHITE top left; background-size: cover;" >
-		<div class="fh5co-intro">
-			<div class="container">
-									
-					<div class="fh5co-text">
-					<font color="black">
-						<h2 class="to-animate intro-animate-1"><font color="black">귀한 시간과 귀한 눈 함께 날려버리기 </font></h2>
-						<p class="to-animate intro-animate-2">틀린부분 5개를 찾자!</p>
-					</font>
-							<form method="post" action="/GuiltyPleasure/CORDING/shop/outline/shop2.jsp">
+		<div>
+			<header id="fh5co-hero" data-section="home"
+				style="background: WHITE top left; background-size: cover;">
+				<div class="fh5co-intro">
+					<div class="container">
+
+						<div class="fh5co-text">
+							<font color="black">
+								<h2 class="to-animate intro-animate-1">
+									<font color="black">귀한 시간과 귀한 눈 함께 날려버리기 </font>
+								</h2>
+								<p class="to-animate intro-animate-2">틀린부분 5개를 찾자!</p>
+							</font>
+							<form method="post"
+								action="/GuiltyPleasure/CORDING/shop/outline/searchgame.jsp">
 								<p class="to-animate intro-animate-3">
-								
-								<button type="submit" class="btn btn-default btn-xs">시작!</button>
+
+									<button type="submit" class="btn btn-default btn-xs">시작!</button>
 								</p>
 							</form>
-					</div>
-			
-			</div>						
-		</div>
-	</header>
-	</div>
+						</div>
 
+					</div>
+				</div>
+			</header>
+		</div>
+	</div>
 </body>
 </html>

@@ -1,5 +1,4 @@
 package jaum_play;
-import java.io.*;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.HashSet;
@@ -9,11 +8,10 @@ import java.util.Set;
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
-import javax.websocket.RemoteEndpoint.Basic;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
-import dao.shopmodule.ShopManager;
+import dao.shopmodule.BonusManager;
 /**
  * 	자음퀴즈 클래스 입니다.
  *
@@ -34,6 +32,7 @@ public class main_chat {
  	 */
 
 	//출제된 문제, 정답, 장르 변수
+	static int chk=0;
     static String quiz=null;
     static String ans=null;
     static String jang=null;
@@ -51,7 +50,7 @@ public class main_chat {
     //문제 랜덤 출제를 위한 메소드
     Random random = new Random();
     //정답시 사용자에게 포인트 줄때 사용
-    ShopManager point = new ShopManager();
+    BonusManager point = new BonusManager();
     //세션값을 클라이언트에 저장
 	private static Set<Session> clients = Collections.synchronizedSet(new HashSet<Session>());
 	@OnOpen
