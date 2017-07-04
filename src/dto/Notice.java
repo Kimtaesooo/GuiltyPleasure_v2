@@ -1,7 +1,9 @@
 package dto;
 
 import java.sql.Timestamp;
-
+/**
+ * 공지사항 dto 입니다.
+ */
 public class Notice {
 	private String n_num;
 	private String u_id;

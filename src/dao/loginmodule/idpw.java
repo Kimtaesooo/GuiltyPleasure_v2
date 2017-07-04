@@ -9,6 +9,10 @@ import java.util.List;
 import dbcp.DBConnectionMgr;
 import dto.u_battle;
 import dto.u_single;
+/**
+ * 아이디/ 비밀번호 조회 클래스 입니다.
+ * 
+ */
 
 public class idpw {
 	private Connection con;
@@ -28,6 +32,9 @@ public class idpw {
 	
 	//List.jsp
 	public String[] getBoardList(){
+		/**
+		 * 회원 목록을 가져올 메소드 입니다.
+		 */
 		String [] u_find = new String [20];
 		String [] arr = null;
 		sql = "select * from u_find";
@@ -54,8 +61,11 @@ public class idpw {
 		}
 		return arr;
 	}
-	
+	//아이디 찾기
 	public String searchId(String name, String email){
+		/**
+		 * 아이디 찾기 메소드입니다.
+		 */
 		String id="";
 
 		sql = "select u_id from userinfo where u_name = ? and u_email= ?";
@@ -80,8 +90,13 @@ public class idpw {
 		}
 		return id;
 	}
-	
+	//비밀번호 찾기
 	public String searchPw(String id, String email, String U_QUESTION, String U_ANSWER){
+		/**
+		 * 비밀번호 찾기 메소드입니다.
+		 * @param String pw 사용자의 패스워드 변수
+		 * @return String pw 사용자의 패스워드를 반환
+		 */
 		String pw="";
 		sql = "select u_pw from userinfo where u_id = ? and u_email= ? and u_question = ? and u_answer= ? ";
 		try{

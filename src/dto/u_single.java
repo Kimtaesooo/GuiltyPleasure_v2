@@ -1,5 +1,7 @@
 package dto;
-
+/**
+ * 유저 싱글 게임 dto 입니다.
+ */
 public class u_single {
 	private String u_id, u_comment, u_nickname, up_type;
 	private int a_cnt, wa_cnt, u_point;

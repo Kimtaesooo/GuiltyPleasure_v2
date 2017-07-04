@@ -1,5 +1,7 @@
 package dto;
-
+/**
+ * 유저 배틀 게임 dto 입니다.
+ */
 public class u_battle {
 	private String u_id, u_comment, u_nickname;
 	private int u_win, u_lose, u_point;

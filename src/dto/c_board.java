@@ -1,5 +1,7 @@
 package dto;
-
+/**
+ * 고객센터 dto 입니다.
+ */
 public class c_board {
 	private String sc_num, u_id, sc_type, sc_title, sc_content,
 	sc_regdate,sc_state,sc_answer;

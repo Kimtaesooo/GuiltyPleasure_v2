@@ -9,7 +9,9 @@ import java.util.List;
 import dbcp.DBConnectionMgr;
 import dto.u_battle;
 import dto.u_single;
-
+/**
+ * 랭킹 클레스 입니다.
+ */
 public class rank {
 	private Connection con;
 	private PreparedStatement pstmt;
@@ -29,6 +31,10 @@ public class rank {
 	
 	//배틀 랭킹 리스트 가져오기
 	public List getBoardList(){
+		/**
+		 * 랭킹 목록 가져오기 메소드입니다.
+		 * @return List list 리스트로 반환합니다.
+		 */
 		ArrayList list = new ArrayList();
 		sql = "select u_battle.u_id, userinfo.u_nickname, userinfo.u_comment, u_battle.ub_win, u_battle.ub_lose, userinfo.u_point from u_battle  inner join userinfo on u_battle.u_id = userinfo.u_id where u_battle.ub_win+u_battle.ub_lose>200 order by u_battle.ub_win/(u_battle.ub_win+u_battle.ub_lose) desc";
 		try{
@@ -58,7 +64,12 @@ public class rank {
 	}
 	//자신의 배틀 랭킹 가져오기
 	public int BattleMyRank(String id){
-		
+		/**
+		 * 자신의 랭킹 찾기 메소드입니다.
+		 * @param int rank 자신의 랭킹이 나올때 까지 1씩 더하여 저장됩니다.
+		 * @param int myrank 자신의 랭킹이 나오면 rank 의 값으로 저장합니다.
+		 * @return int myrank 자신의 순위를 반환합니다.
+		 */
 		int rank=0;
 		int myrank=0;
 		sql = "select u_battle.u_id, userinfo.u_nickname, userinfo.u_comment, u_battle.ub_win, u_battle.ub_lose, userinfo.u_point from u_battle  inner join userinfo on u_battle.u_id = userinfo.u_id where u_battle.ub_win+u_battle.ub_lose>200 order by u_battle.ub_win/(u_battle.ub_win+u_battle.ub_lose) desc";
@@ -86,6 +97,10 @@ public class rank {
 	
 	//싱글 랭킹 가져오기
 	public List getBoardList2(String type){
+		/**
+		 * 퀴즈 정답률 메소드입니다.
+		 * @return List list 리스트로 반환합니다.
+		 */
 		ArrayList list = new ArrayList();
 		sql = "select u_poa.u_id, userinfo.u_nickname, userinfo.u_comment, u_poa.up_wa_cnt, u_poa.up_a_cnt, u_poa.up_type, userinfo.u_point from u_poa  inner join userinfo on u_poa.u_id = userinfo.u_id where u_poa.up_type='"+type+"' and u_poa.up_a_cnt+u_poa.up_wa_cnt>200 order by u_poa.up_a_cnt/(u_poa.up_a_cnt+u_poa.up_wa_cnt) desc";
 		try{
@@ -117,7 +132,12 @@ public class rank {
 	
 	//내 싱글 랭킹 등수 가져오기
 	public int SingleMyRank(String id, String type){
-		
+		/**
+		 * 정답률 자신의 랭킹 찾기 메소드입니다.
+		 * @param int rank 자신의 랭킹이 나올때 까지 1씩 더하여 저장됩니다.
+		 * @param int myrank 자신의 랭킹이 나오면 rank 의 값으로 저장합니다.
+		 * @return int myrank 자신의 순위를 반환합니다.
+		 */
 		int rank=0;
 		int myrank=0;
 		sql = "select u_poa.u_id, userinfo.u_nickname, userinfo.u_comment, u_poa.up_wa_cnt, u_poa.up_a_cnt, u_poa.up_type, userinfo.u_point from u_poa  inner join userinfo on u_poa.u_id = userinfo.u_id where u_poa.up_type='"+type+"' and u_poa.up_a_cnt+u_poa.up_wa_cnt>200 order by u_poa.up_a_cnt/(u_poa.up_a_cnt+u_poa.up_wa_cnt) desc";

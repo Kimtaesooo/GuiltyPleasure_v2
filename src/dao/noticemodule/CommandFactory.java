@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.*;
-
+/**
+ * 공지사항 커맨드 펙토리 클레스입니다.
+ */
 @WebServlet(urlPatterns = "/notice")
 public class CommandFactory extends HttpServlet {
 	@Override
@@ -20,6 +22,11 @@ public class CommandFactory extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		
+		/**
+		 * 페이지 이동 메소드입니다.
+		 * @param String cmd 사용자가 요청한 cmd 를 저장할 변수
+		 * @param String url 이동될 페이지를 저장할 변수
+		 */
 		req.setCharacterEncoding("euc-kr");
 		//명령어 가져오기
 		String cmd = req.getParameter("cmd");
