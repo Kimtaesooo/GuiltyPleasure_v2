@@ -5,6 +5,11 @@
 
 <!DOCTYPE html>
 <html>
+<!-- 
+
+	배틀 대기실 페이지
+
+ -->
 <head>
 <meta charset="EUC-KR">
 <meta name="viewport" content="width=device-width, initial-scale=1">

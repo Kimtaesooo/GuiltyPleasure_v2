@@ -26,6 +26,12 @@ public class Login {
 	}
 	
 	// 유저정보 얻기
+	/**
+	 * 유저 정보 얻는 메서드
+	 * @param u_id
+	 * 			유저 정보를 얻기 위한 id값 받음
+	 * @return UserInfo dto 리턴
+	 */
 	public UserInfo getUser(String u_id){
 		UserInfo dto = new UserInfo();
 		String sql = "select * from userinfo where u_id = '"+ u_id +"'";

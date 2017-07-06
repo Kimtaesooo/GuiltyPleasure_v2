@@ -6,6 +6,11 @@
 %>
 <html>
 <head>
+<!-- 
+
+	회원 가입을 완료하게 되면 들어오게 되는 폼
+
+ -->
 
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">

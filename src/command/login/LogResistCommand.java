@@ -12,6 +12,7 @@ import dao.loginmodule.Resistration;
 import dto.UserInfo;
 
 public class LogResistCommand implements Command {
+	// 회원가입
 	private List<UserInfo> userinfo;
 	@Override
 	public Object processCommand(HttpServletRequest request, HttpServletResponse response)	throws ServletException, IOException {

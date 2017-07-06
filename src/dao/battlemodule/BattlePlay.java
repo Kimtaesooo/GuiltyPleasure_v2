@@ -11,7 +11,11 @@ import dbcp.DBConnectionMgr;
 import dto.Battle_Play;
 import dto.Battle_Room;
 import dto.Quiz;
-
+/**
+ * 배틀 플레이 DAO
+ * @author KimTaesoo
+ *
+ */
 public class BattlePlay {
 	private Connection con;
 	private PreparedStatement pstmt;

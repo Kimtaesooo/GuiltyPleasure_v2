@@ -13,26 +13,35 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
+import command.battle.GetBattleQuiz;
 import dto.Battle_Play;
 import dto.Battle_Room;
-import dto.Quiz;
 
 @ServerEndpoint("/battlesocket")
 public class Websocket {
-	static HashMap<String, Session> map = new HashMap<String, Session>();
+	static HashMap<String, Session> map = new HashMap<String, Session>(); // 세션과 아이디 맵핑할려고 했지만 안씀
 
 	private static Set<Session> clients = Collections.synchronizedSet(new HashSet<Session>());
-	String me = "";
-	String br_num = "";
-	String user01 = "";
-	String user02 = "";
-	Boolean startFlag = false;
+	String me = ""; // 정보를 보내는 유저
+	String br_num = ""; // 게임방 번호
+	String user01 = ""; // 게임방 유저1
+	String user02 = ""; // 게임장 유저2
+	Boolean startFlag = false; // 게임방이 시작되었는지 안되었는지 확인하는 변수
 
+	/**
+	 * 유저가 보낸 메서지를 받는 메서드
+	 * @param message
+	 * 			메시지를 받는다.
+	 * @param session
+	 * 			세션을 받는다.(최초 한번)
+	 * @throws IOException
+	 * 			예외 처리
+	 */
 	@OnMessage
 	public void onMessage(String message, Session session) throws IOException {
 		System.out.println(message);
 
-		// 받아온 텍스트 문자열로 분리
+		// 받아온 문자열을 ':' 구분자를 통하여 배열로 저장
 		String strArray[] = message.split(":");
 
 		/*
@@ -76,6 +85,7 @@ public class Websocket {
 			List list = battleplay.roomInfo(me);
 			Battle_Room room = (Battle_Room) list.get(0);
 			int people_cnt = room.getBr_people();
+			// 게임방 인원이 2명 이하일떄 (즉, 나 혼자일때)
 			if (people_cnt < 2) {
 				message = "people_cnt_check:" + br_num + ":인원이 부족합니다.:";
 				synchronized (clients) {
@@ -88,8 +98,10 @@ public class Websocket {
 				return;
 			}
 
+			// DB로 부터 게임방이 시작되었는지 안되었는지 확인하기 위해 값을 꺼내 온다. Y는 실행중, N는 대기중
 			String startFlag = battleplay.updateBattleRoomState(br_num);
 
+			// 게임방이 시작하고 있지 않은 상태
 			if (startFlag.equals("N")) {
 				String question = "";
 				String answer = "";
@@ -98,6 +110,7 @@ public class Websocket {
 				String wa3 = "";
 				String code = "";
 
+				// 퀴즈유형을 변수로 넘겨주고 퀴즈 유형에 따른 퀴즈를 랜덤적으로 얻어온다.
 				GetBattleQuiz getBattleQuiz = new GetBattleQuiz();
 				String quiz = getBattleQuiz.getQuiz(q_type);
 
@@ -275,12 +288,21 @@ public class Websocket {
 
 	}
 
+	/**
+	 * 유저가 최초 웹소켓에 접속할 때 세션을 부여하는 메서드
+	 * @param session
+	 * 			세션값을 받는다. 세션값은 서버가 랜덤적으로 부여한다.
+	 */
 	@OnOpen
 	public void onOpen(Session session) {
 		// Add session to the connected sessions set
 		clients.add(session);
 	}
 
+	/**
+	 * 세션 닫기
+	 * @param session
+	 */
 	@OnClose
 	public void onClose(Session session) {
 		// Remove session from the connected sessions set

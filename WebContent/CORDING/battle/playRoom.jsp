@@ -1,13 +1,17 @@
-<%@page import="dao.battlemodule.BattlePlay"%>
+<%@ page import="dao.battlemodule.BattlePlay"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="dto.Battle_Play"%>
 <%@ page import="dto.Battle_Room"%>
 <%@ page import="java.util.List"%>
-<%@page import="java.net.Socket"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page import="java.net.Socket"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
+<!-- 
+
+	유저가 플레이하는 배틀 게임 플레이방
+
+ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap332/css/bootstrap.min.css">
@@ -23,18 +27,19 @@
 		String br_num = request.getParameter("br_num");
 		String bangjang = request.getParameter("bangjang");
 		String gameuser = "";
-		String me = (String) session.getAttribute("u_id");
+		String me = (String) session.getAttribute("u_id"); // 내 아이디 세션값으로 저장(웹소켓에 보낼때 쓴다.)
 		String q_type = request.getParameter("br_type");
 		String ip = request.getRemoteAddr();
 
+		// dto, dao 선언
 		List roominfo = new ArrayList();
 		List playinfo = new ArrayList();
 		BattlePlay dao = new BattlePlay();
 
-		roominfo = dao.roomInfo2(br_num);
+		roominfo = dao.roomInfo2(br_num); // 방에 대한 정보(battleroom) - 문제개수, 유형 등등
 		Battle_Room battleroom = (Battle_Room) roominfo.get(0);
 
-		playinfo = dao.playInfo(br_num);
+		playinfo = dao.playInfo(br_num); // 방에 속한 유저들의 정보(playroom) - 방장ID, 유저ID, 정답 카운팅 등
 		Battle_Play battleplay = (Battle_Play) playinfo.get(0);
 
 		String user01 = battleplay.getUser01(); // 방장

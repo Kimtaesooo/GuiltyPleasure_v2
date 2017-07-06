@@ -10,7 +10,7 @@ import controller.Command;
 import dao.loginmodule.idpw;
 
 public class PwFindCommand implements Command{
-
+	// 비밀번호 찾기
 	@Override
 	public Object processCommand(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
 		idpw search = new idpw();

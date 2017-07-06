@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="ko">
     <head>
+<!-- 
+
+	회원가입 등록 폼
+
+ -->
         <meta charset="EUC-KR">
         <!-- meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0"/ -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,6 +23,7 @@
         
         
 <script>
+	// AJAX 아이디 유효성 검사 부분
 	function fnSubmit(){
     	var u_id = document.getElementById("u_id").value;
     	var param = "u_id=" + u_id;
@@ -35,6 +41,7 @@
     	}
     }
 </script>
+
     </head>
     <body>
 <nav class="navbar navbar-default" role="navigation">

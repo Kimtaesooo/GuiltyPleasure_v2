@@ -15,18 +15,23 @@ public class CommandFactory {
 	}
 	public Command createCommand(String cmd){
 		
+		// 로그인
 		if(cmd.equals("login")){
 			return new LoginCommand();
 		}
+		// 로그아웃
 		else if(cmd.equals("logout")){
 			return new LogoutCommand();
 		}
+		// 회원가입
 		else if(cmd.equals("logreg")){
 			return new LogResistCommand();
 		}
+		// 아이디 찾기
 		else if(cmd.equals("logidfind")){
 			return new IdFindCommand();
 		}
+		// 패스워드 찾기
 		else if(cmd.equals("logpwfind")){
 			return new PwFindCommand();
 		}

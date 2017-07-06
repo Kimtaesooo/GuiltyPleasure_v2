@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"%>
 <!DOCTYPE html>
 <html lang="kor">
-
+<!-- 아이디 찾기 프로세서 -->
     <head>
-
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -31,13 +30,12 @@
         <link rel="apple-touch-icon-precomposed" href="/GuiltyPleasure/CORDING/login/assets/ico/apple-touch-icon-57-precomposed.png">
 		<jsp:useBean id="search" class="dao.loginmodule.idpw"/>
 		<%
+		// 인코딩
 		request.setCharacterEncoding("euc-kr");
 		response.setCharacterEncoding("euc-kr");
-		
-		String rightId = (String)request.getAttribute("rightId");
-		String id = (String)request.getAttribute("id");
-		String email = (String)request.getAttribute("email");
-		String name = (String)request.getAttribute("name");
+		String rightId = (String)request.getAttribute("rightId"); // DB에 조회한 ID 값
+		String id = (String)request.getAttribute("id"); // 유저가 입력한 ID 값
+		String name = (String)request.getAttribute("name"); // 유저가 입력한 이름
 		%>
     </head>
 	

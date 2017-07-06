@@ -6,6 +6,11 @@
 %>
 <html>
 <head>
+<!-- 
+
+	로그인이 제한된 유저가 들어오게 될 폼
+
+ -->
 
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">

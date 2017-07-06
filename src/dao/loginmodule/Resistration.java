@@ -23,9 +23,13 @@ public class Resistration {
 		}
 	}
 	
-	// 회원가입 등록, UserInfo는 dto 클래스
+	/**
+	 * 회원가입 등록, UserInfo는 dto 클래스 
+	 * @param dto UserInfo 정보
+	 */
 	public void regUser(UserInfo dto){
 		String sql ="";
+		// 유저 등록(회원가입)
 		sql = "insert into userinfo(u_id, u_pw, u_name, u_nickname, u_phone, u_email, u_addr, u_postnumber, "
 				+ "u_birth, u_gender, u_introduce, u_regdate, u_point, u_power, u_delete, u_question, u_answer, u_comment) "
 				+ "values(?,?,?,?,?,?,?,?,?,?,?,sysdate,0,1000,'N',?,?,?)";
@@ -58,6 +62,7 @@ public class Resistration {
 			return;
 		}
 		
+		// 유저 A정답률 초기화
 		sql = "insert into u_poa(u_id, up_type, up_a_cnt, up_wa_cnt) values(?,'A',0,0)";
 		try{
 			pstmt = con.prepareStatement(sql);
@@ -69,6 +74,7 @@ public class Resistration {
 			err.printStackTrace();
 		}
 		
+		// 유저 B정답률 초기화
 		sql = "insert into u_poa(u_id, up_type, up_a_cnt, up_wa_cnt) values(?,'B',0,0)";
 		try{
 			pstmt = con.prepareStatement(sql);
@@ -80,6 +86,7 @@ public class Resistration {
 			err.printStackTrace();
 		}
 		
+		// 유저 C정답률 초기화
 		sql = "insert into u_poa(u_id, up_type, up_a_cnt, up_wa_cnt) values(?,'C',0,0)";
 		try{
 			pstmt = con.prepareStatement(sql);
@@ -91,6 +98,7 @@ public class Resistration {
 			err.printStackTrace();
 		}
 		
+		// 유저 D정답률 초기화
 		sql = "insert into u_poa(u_id, up_type, up_a_cnt, up_wa_cnt) values(?,'D',0,0)";
 		try{
 			pstmt = con.prepareStatement(sql);
@@ -102,6 +110,7 @@ public class Resistration {
 			err.printStackTrace();
 		}
 		
+		// 유저 전적 초기화
 		sql = "insert into u_battle(u_id, ub_win, ub_lose) values(?,0,0)";
 		try{
 			pstmt = con.prepareStatement(sql);
@@ -113,6 +122,7 @@ public class Resistration {
 			err.printStackTrace();
 		}
 		
+		// 유저관리 상태 초기화
 		sql = "insert into u_manage(u_id, um_chat, um_single, um_battle, um_entry, um_enroll) values(?,'','','','','')";
 		try{
 			pstmt = con.prepareStatement(sql);
@@ -123,8 +133,6 @@ public class Resistration {
 			System.out.println("regUser 일곱번째에서 오류");
 			err.printStackTrace();
 		}
-		
-		
 		
 		finally{
 			pool.freeConnection(con, pstmt, rs);

@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import controller.Command;
 
 public class GiveUpCommand implements Command{
-
 	@Override
 	public Object processCommand(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("euc-kr");

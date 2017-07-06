@@ -30,11 +30,12 @@ public class idpw {
 		}
 	}
 	
-	//List.jsp
+	/**
+	 * List.jsp 페이지에서 사용
+	 * 회원 목록을 가져오는 메서드
+	 * @return arr[] 반환, 회원 목록 리스트 리턴
+	 */
 	public String[] getBoardList(){
-		/**
-		 * 회원 목록을 가져올 메소드 입니다.
-		 */
 		String [] u_find = new String [20];
 		String [] arr = null;
 		sql = "select * from u_find";
@@ -61,11 +62,17 @@ public class idpw {
 		}
 		return arr;
 	}
-	//아이디 찾기
+	
+	/**
+	 * 아이디찾기
+	 * @param name
+	 * 			유저 이름을 받는다.
+	 * @param email
+	 * 			유저 이메일을 받는다.
+	 * @return String id, 유저 id 반환
+	 */
 	public String searchId(String name, String email){
-		/**
-		 * 아이디 찾기 메소드입니다.
-		 */
+		
 		String id="";
 
 		sql = "select u_id from userinfo where u_name = ? and u_email= ?";
@@ -90,13 +97,21 @@ public class idpw {
 		}
 		return id;
 	}
-	//비밀번호 찾기
+	
+	
+	/**
+	 * 비밀번호 찾기 메서드
+	 * @param id
+	 * 			유저 id 받음
+	 * @param email
+	 * 			유저 email 받음
+	 * @param U_QUESTION
+	 * 			유저가 입력한 질문 값
+	 * @param U_ANSWER
+	 * 			유저가 입력한 질문 답
+	 * @return
+	 */
 	public String searchPw(String id, String email, String U_QUESTION, String U_ANSWER){
-		/**
-		 * 비밀번호 찾기 메소드입니다.
-		 * @param String pw 사용자의 패스워드 변수
-		 * @return String pw 사용자의 패스워드를 반환
-		 */
 		String pw="";
 		sql = "select u_pw from userinfo where u_id = ? and u_email= ? and u_question = ? and u_answer= ? ";
 		try{

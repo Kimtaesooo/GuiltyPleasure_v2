@@ -3,6 +3,12 @@
 <html lang="kor">
 
     <head>
+ <!-- 
+ 
+ 	비밀번호 찾은 후 결과 폼
+ 
+ 
+  -->
 
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -33,8 +39,8 @@
 		request.setCharacterEncoding("euc-kr");
 		response.setCharacterEncoding("euc-kr");		
 		
-		String rightPw = (String)request.getAttribute("rightPw");
-		String pw = (String)request.getAttribute("pw");
+		String rightPw = (String)request.getAttribute("rightPw"); // DB에서 조회한 패스워드
+		String pw = (String)request.getAttribute("pw"); // 유저가 입력한 비밀번호
 		
 		
 		%>
@@ -65,14 +71,16 @@
                         		</div>
                             </div>
                             <div class="form-bottom">
+                            <!-- 유저가 입력한 비밀번호가 맞다면 login.html로 이동 -->
                             <%if(rightPw.equals("success")){ %>
 			                    <form role="form" action="/GuiltyPleasure/CORDING/login/login.html" method="post" class="login-form">
+			                <!-- 유저가 입력한 비밀번호가 틀리다면 idpw.jsp로 이동-->
 			                 <%}else{ %>
 			                    <form role="form" action="/GuiltyPleasure/CORDING/login/idpw.jsp" method="post" class="login-form">
 			                  <%} %>
 			                 
 <%
-								if(rightPw.equals("success")){
+								if(rightPw.equals("success")){ // 유저가 입력한 비밀번호가 맞으면 비밀번호를 알려준다.
 %>									
 									<h4>회원님의 비밀번호는 </h4> <h3><%=pw%> 입니다.</h3>
 <%

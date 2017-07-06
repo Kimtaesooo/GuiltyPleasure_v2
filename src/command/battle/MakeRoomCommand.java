@@ -27,15 +27,15 @@ public class MakeRoomCommand implements Command{
 		BattlePlay dao = new BattlePlay();
 		
 
-		String u_id = (String)session.getAttribute("u_id");
-		int br_cnt = Integer.parseInt(request.getParameter("br_cnt"));
+		String u_id = (String)session.getAttribute("u_id"); // 방 생성자 아이디 받아옴
+		int br_cnt = Integer.parseInt(request.getParameter("br_cnt")); // 방 인원수 받아옴
 		
-		dto.setBr_subject(request.getParameter("br_subject"));
-		dto.setBr_pw(Integer.parseInt(request.getParameter("br_pw")));
-		dto.setBr_type(request.getParameter("br_type"));
-		dto.setBr_cnt(Integer.parseInt(request.getParameter("br_cnt")));
-		dto.setBr_point(Integer.parseInt(request.getParameter("br_point")));
-		dto.setBr_ip(request.getParameter("br_ip"));
+		dto.setBr_subject(request.getParameter("br_subject")); // 제목
+		dto.setBr_pw(Integer.parseInt(request.getParameter("br_pw"))); // 패스워드
+		dto.setBr_type(request.getParameter("br_type")); // 퀴즈 유형
+		dto.setBr_cnt(Integer.parseInt(request.getParameter("br_cnt")));  // 방 인원
+		dto.setBr_point(Integer.parseInt(request.getParameter("br_point"))); // 배틀 포인트
+		dto.setBr_ip(request.getParameter("br_ip")); // ip 주소
 
 		// 배틀 대기방 생성
 		dao.regRoom(dto, u_id);

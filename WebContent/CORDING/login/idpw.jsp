@@ -3,6 +3,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- 
+
+	ID/PW 찾는 페이지 폼
+
+ -->
 <meta charset="EUC-KR">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../../bootstrap332/css/bootstrap.min.css">

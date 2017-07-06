@@ -6,6 +6,11 @@
 %>
 <html>
 <head>
+<!-- 
+
+	ID 또는 PW가 틀렸을 때 들어오게 되는 폼
+
+ -->
 
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
