@@ -13,7 +13,6 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
-import command.battle.GetBattleQuiz;
 import dto.Battle_Play;
 import dto.Battle_Room;
 
