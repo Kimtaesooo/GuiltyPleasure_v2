@@ -1,5 +1,7 @@
 package dao.boardmodule;
-
+/**
+ * @author 황선영
+ */
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,12 +12,17 @@ import dbcp.DBConnectionMgr;
 import dto.Board;
 import dto.Reply;
 
+
 public class FreeBoard {
 	private Connection con;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	private DBConnectionMgr pool;
 	
+	/**
+	 * DB연결
+	 * 
+	 * */
 	public FreeBoard(){
 		try{
 			pool = DBConnectionMgr.getInstance();
@@ -26,7 +33,14 @@ public class FreeBoard {
 		}
 	}
 	
-	// BoardWrite.jsp - 게시판 글등록
+	/**
+	 * 게시판 글 등록 - BoardWrite.jsp 
+	 * 
+	 * @param u_id 유저 아이디
+	 * @param b_title 글 제목
+	 * @param b_content 글 내용
+	 * @return b_num 글 번호
+	 * */
 	public String regBoard(String u_id, String b_title, String b_content){
 		String u_nickname ="";
 		String sql = "select u_nickname from userinfo where u_id=?";
@@ -76,8 +90,14 @@ public class FreeBoard {
 		}
 		return b_num;
 	}
-
-	// BoardList.jsp - 게시판 글 리스트 가져오기
+	
+	/**
+	 * 게시판 글 리스트 가져오기 - BoardList.jsp
+	 * 
+	 * @param keyword
+	 * @param keyfield
+	 * @return list 게시판 글 리스트 
+	 */
 	public List<Board> getBoardList(String keyword, String keyfield){
 		ArrayList list = new ArrayList();
 		String sql = "";
@@ -117,7 +137,13 @@ public class FreeBoard {
 		return list;
 	}
 	
-	// BoardList.jsp, BoardRead.jsp, BoardUpdate.jsp - 글 가져오기
+	/**
+	 * 글 가져오기 -  BoardList.jsp, BoardRead.jsp, BoardUpdate.jsp
+	 * 
+	 * @param b_num
+	 * @param isRead
+	 * @return
+	 */
 	public Board getBoard(String b_num, boolean isRead){
 		Board board = new Board();
 		String sql = null;
@@ -176,7 +202,11 @@ public class FreeBoard {
          return board;
 	}
 	
-	// 작성자 자신의 글 조회시 조회수 감소 
+	/**
+	 * 작성자 자신의 글 조회시 조회수 감소
+	 * 
+	 * @param b_num 글 번호
+	 */
 	public void minusCount(String b_num){
 		String sql = "update board set b_count = b_count-1 where b_num =?";
 		try{
@@ -192,7 +222,11 @@ public class FreeBoard {
 		}
 	}
 	
-	// Delete - 글 삭제 처리
+	/**
+	 * 글 삭제 처리
+	 * 
+	 * @param b_num 글 번호
+	 */
 	public void deleteBoard(String b_num){
 		String sql = "";
 		
@@ -222,7 +256,11 @@ public class FreeBoard {
 	    }
 	}
 	
-	// Update - 게시판 업데이트 처리
+	/**
+	 * 게시판 업데이트 처리
+	 * 
+	 * @param board 게시판 dto
+	 */
 	public void updateBoard(Board board){
 		String sql = "update board set b_title=?, b_content=? where b_num=?";
 		
@@ -242,7 +280,12 @@ public class FreeBoard {
 		}
 	}
 	
-	// Reply List - 댓글목록 가져오기
+	/**
+	 * 댓글목록 가져오기
+	 * 
+	 * @param b_num 글 번호
+	 * @return rep_list 댓글목록
+	 */
 	public ArrayList<Reply> getReplyList(String b_num){
 		ArrayList<Reply> rep_list = new ArrayList<Reply>();
 		String sql = "select * from reply where b_num= ? order by r_reply";
@@ -273,7 +316,11 @@ public class FreeBoard {
 		return rep_list;
 	}
 	
-	// ReplyWrite - 댓글 입력
+	/**
+	 * 댓글 입력
+	 * 
+	 * @param reply 댓글 dto
+	 */
 	public void replyBoard(Reply reply){
 		String sql = "insert into reply(r_reply, b_num, u_id, r_content, r_regdate) "
 				+ "values('R'||LPAD((seq_r_reply.NEXTVAL),4,'0'),?,?,?,sysdate)";
@@ -293,7 +340,11 @@ public class FreeBoard {
 		   }
 	}
 	
-	// ReplyDelete - 댓글 삭제
+	/**
+	 * 댓글 삭제
+	 * 
+	 * @param r_reply 댓글 번호
+	 */
 	public void deleteReply(String r_reply){
 		String sql = "delete from reply where r_reply= ? ";
 		

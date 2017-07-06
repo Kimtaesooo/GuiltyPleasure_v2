@@ -9,17 +9,25 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.boardmodule.FreeBoard;
 import dto.Board;
-
+/**
+ * 
+ * @author 황선영
+ * @version 1.0 2017.07.03
+ */
 public class ListCommand implements CommandBoard {
 	FreeBoard dao = new FreeBoard();
 	Board dto = new Board();
 	
+	/**
+	 * 게시글 리스트 가져와서 화면에 뿌리기 위한 처리 -> 리스트 페이지
+	 */
 	@Override
 	public Object processCommand(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		req.setCharacterEncoding("euc-kr");
 		resp.setCharacterEncoding("euc-kr");
 		
+		//검색 기능을 위한 변수 받기
 		String keyfield = req.getParameter("keyfield");
 		String keyword = req.getParameter("keyword");
 		

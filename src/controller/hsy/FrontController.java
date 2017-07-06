@@ -10,7 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.hsy.CommandFactory;
-
+/**
+ * 
+ * @author È²¼±¿µ
+ * @version 1.0 2017.07.03
+ */
 @WebServlet(urlPatterns="/Board")
 public class FrontController extends HttpServlet{
 

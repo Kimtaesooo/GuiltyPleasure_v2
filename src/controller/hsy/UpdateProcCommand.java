@@ -8,11 +8,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.boardmodule.FreeBoard;
 import dto.Board;
-
+/**
+ * 
+ * @author 황선영
+ * @version 1.0 2017.07.03
+ */
 public class UpdateProcCommand  implements CommandBoard{
 	FreeBoard dao = new FreeBoard();
 	Board dto = new Board();
 	
+	/**
+	 * 글 수정 처리 -> 글 상세보기 페이지
+	 */
 	@Override
 	public Object processCommand(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {

@@ -151,7 +151,7 @@
 		// 페이징 기능 추가
 		int totalRecord = list==null?0:list.size(); //전체 글의 개수
 		int numPerPage = 10; //한 페이지 당 보여질 글의 개수
-		int totalPage = 0;
+		int totalPage = 0; //총 페이지 수
 		int nowPage = 0; //현재 내가 선택한(보고 있는) 페이지 번호
 		int beginPerPage = 0; //각 페이지당 시작번호
 		int pagePerBlock = 3; //한 블럭당 묶을 페이지수
@@ -205,6 +205,7 @@
 					</tr>
 				</thead>
 				<%
+					// 게시판에 등록된 글이 없을 때
 					if (list.size() == 0) {
 				%>
 				<tbody>

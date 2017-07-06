@@ -1,5 +1,9 @@
 package controller.hsy;
-
+/**
+ * 
+ * @author 황선영
+ * @version 1.0 2017.07.03
+ */
 public class CommandFactory {
 	private CommandFactory(){}
 	private static CommandFactory instance = new CommandFactory();
@@ -8,6 +12,12 @@ public class CommandFactory {
 		return instance;
 	}
 	
+	/**
+	 * 게시판 페이지연결을 위한 커맨드팩토리
+	 * 
+	 * @param cmd 페이지 커멘드
+	 * @return 해당 페이지
+	 */
 	public CommandBoard createCommand(String cmd){
 		if(cmd.equals("BOARDLIST")){
 			return new ListCommand();
