@@ -13,8 +13,22 @@ import dao.quizmodule.GetPoint;
 import dao.quizmodule.GetQuiz;
 import dto.QuizResult;
 
+/**
+ * 게임이 끝나고 결과를 처리하는 클래스
+ * @author 김현수
+ * */
 public class QuizResultCommand implements Command {
-
+	
+	/**
+	 * @param HttpServletRequest 요청한 페이지의 request변수
+	 * @param HttpServletResponse 요청한 페이지의 response변수
+	 * @return String request의 method 파라메터의 값에 따라 결과를 보여주는 페이지의 url을 반환
+	 * 
+	 * 
+	 * @see GetQuiz db에 저장된 퀴즈를 가져오는 작업을 하는 클래스
+	 * @see QuizResult 퀴즈의 정보와 맞혔는지의 여부등을 저장해주는 dto클래스
+	 * @see ArrayList 게임의 결과를 저장하는 ArrayList
+	 * */
 	@Override
 	public Object processCommand(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {

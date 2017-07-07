@@ -5,6 +5,7 @@
 <meta charset="EUC-KR">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>
+//문제등록시 설정된 입력공간이 빈공간인지 비교하여 처리하는 함수
 function check(v){	
 	if($("#problem").val()==""){
 		alert("문제를 입력하세요");

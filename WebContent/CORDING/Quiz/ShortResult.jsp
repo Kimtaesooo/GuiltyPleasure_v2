@@ -53,12 +53,15 @@ a {color: #333;}
 </style>
 </head>
 <%
+//서버에 저장된 퀴즈 결과를 가져와  ArrayList에 저장한다.
 request.setCharacterEncoding("euc-kr");
 ArrayList list = (ArrayList)request.getAttribute("list");
 QuizResult result;
 ArrayList sList = new ArrayList();
 ArrayList aList = new ArrayList();
 int csum =0 , wsum = 0;
+
+//ArrayList에 저장된 결과를 비교하여 정답과 오답을 기록하는 반복문
 for(int i =0; i<list.size(); i++){
 	result = (QuizResult)list.get(i);
 	csum+=result.getCa_sum();
@@ -66,7 +69,6 @@ for(int i =0; i<list.size(); i++){
 	sList.add(result.getSelect());
 	aList.add(result.getAnswer());
 }
-	System.out.println(sList.get(1));
 %>
 <body> 
 <jsp:include page="/test_nav.jsp"/>

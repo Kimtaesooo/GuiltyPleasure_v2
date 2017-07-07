@@ -12,9 +12,20 @@ import controller.Command;
 import dao.QuizRegDAO;
 import dto.U_Quiz;
 
-//퀴즈 등록 게시판을 가져온다
+/**
+ * @author 김현수
+ * 퀴즈 등록 게시판을 가져오는 클래스
+ * */
 public class QBoradRegisterCommand implements Command {
 
+	
+	/**
+	 * @param HttpServletRequest 요청한 페이지의 request변수
+	 * @param HttpServletResponse 요청한 페이지의 response변수
+	 * @return String 임시 퀴즈 등록 게시판의 주소를 반환
+	 * 
+	 * @see QuizRegDAO 퀴즈 등록에 필요한 db연결과 작업을 해주는 클래스
+	 * */
 	@Override
 	public Object processCommand(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		QuizRegDAO dao = new QuizRegDAO();

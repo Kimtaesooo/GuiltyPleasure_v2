@@ -7,9 +7,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>결과</title>
 <%
+//서버에 저장된 퀴즈 결과를 가져와  ArrayList에 저장한다.
 ArrayList list = (ArrayList)request.getAttribute("list");
 QuizResult result;
 int csum =0 , wsum = 0;
+
+//ArrayList에 저장된 결과를 비교하여 정답과 오답을 기록하는 반복문
 for(int i =0; i<list.size(); i++){
 	result = (QuizResult)list.get(i);
 	csum+=result.getCa_sum();

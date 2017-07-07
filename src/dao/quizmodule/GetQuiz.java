@@ -10,12 +10,17 @@ import dbcp.DBConnectionMgr;
 import dto.Quiz;
 import dto.QuizResult;
 
-//퀴즈게임과 관련된 db연결및 작업기능은 여기에서 만듬
+/**
+ * 퀴즈게임과 관련된 db연결및 작업기능은 여기에서 만듬
+ * */
 public class GetQuiz {
 	DBConnectionMgr db = null;
 	Connection con = null;
 
-	// 먼저 db와 연결하기위해 부르고 이 객체를 통해 퀴즈를 생성한다.
+	/**
+	 * 먼저 db와 연결하기위해 부르고 이 객체를 통해 퀴즈를 생성한다.
+	 * @see GetQuiz db와 연결을 해주는 생성자
+	 * */
 	public GetQuiz() {
 		try {
 			this.db = DBConnectionMgr.getInstance();
@@ -26,7 +31,10 @@ public class GetQuiz {
 		}
 	}
 
-	// 퀴즈 한개를 생성하는 메서드
+	/**
+	 *  퀴즈 한개를 생성하는 메서드
+	 *  @return Quiz db에서 퀴즈의 정보를 임의로 한개 가져와 Quiz객체를 생성하고 데이터를 저장해서 반환
+	 * */
 	public Quiz makeQuiz() {
 		PreparedStatement pre = null;
 		ResultSet rs = null;
@@ -53,7 +61,12 @@ public class GetQuiz {
 		return q;
 	}
 	
-	//퀴즈의 숫자만큼 추출하는 메서드
+	/**
+	 * 퀴즈의 숫자만큼 추출하는 메서드
+	 * @param int 추출하고자할 문제수를 받는 매개변수
+	 * @See Quiz  퀴즈정보를 저장하는 Quiz클래스
+	 * @return ArrayList 매개변수만큼의 문제를 임의로 가져와 Quiz클래스가 담긴 ArrayList를 반환
+	 * */
 	public ArrayList makeQuiz(int val) {
 		PreparedStatement pre = null;
 		ResultSet rs = null;
@@ -85,7 +98,11 @@ public class GetQuiz {
 	}
 
 	
-	//퀴즈 정답 오답과 이용자의 정답수 오답수를 기록하는 메서드
+	/**
+	 * 퀴즈 정답 오답과 이용자의 정답수 오답수를 기록하는 메서드
+	 * 
+	 * @param ArrayList 퀴즈 결과들이 저장된 ArrayList를 매개변수로 받음
+	 * */
 	public void setResult(ArrayList list) {
 		QuizResult qrs = null;
 		ResultSet rs = null;

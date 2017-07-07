@@ -61,12 +61,15 @@ a {color: #333;}
 var magic_val = 0
 var u_id ="";
 var magic_img=""
+	//버튼을 클릭시 버튼에 해당하는 이미지를 화면에 뿌려주는 function
 	function magic_eye(eye){
 		magic_img = document.getElementById("magic_img");
 		magic_val = document.getElementById("magic_val");
 		magic_img.src ="/GuiltyPleasure/CORDING/magic/img/"+eye.value+"magiceye3d.jpg" //매직아이 이미지
 		magic_val.value = eye.value;
 	}
+	
+	//정답 입력시 매직아이의 그림과 정답이 맞는지 확인하는 함수
 	function magic_eye_answer()	{
 		var answer = document.getElementById("magic_answer").value;
 		u_id = "<%=u_id%>";
@@ -82,7 +85,7 @@ var magic_img=""
 			swal("그림을 선택해주세요")
 		}
 	}
-	//이부분 처리
+	//정답이 맞으면 사용자아이디를 갖고 db에 포인트를 적립하는 함수
 	function savepoint(id){
 		$.ajax({
 			type:"POST",
@@ -98,10 +101,6 @@ var magic_img=""
 		    }  
 		});
 	}
-	function test(){
-		swal("Message");
-	}
-	swal("Message");
 </script>
 <body>
 <jsp:include page="/test_nav.jsp"/>

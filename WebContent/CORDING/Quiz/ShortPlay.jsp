@@ -75,9 +75,8 @@ a {color: #333;}
 %>
 <script>
 var result = new Array();
+//보기를 눌렀을시 정답인지 오답인지 확인후 확인된 결과를 servlet으로 가서 저장 하는 함수
 	function answerCheck(){
-	<%//출력된 문제의 정보 일부를 클래스에 저장해서 보관
-			//result.setU_id(session.getAttribute("u_id")); 유저 아이디도 집어넣을것%>	
 		if(counter>0){
 			text = document.getElementById("text").value;
 			combocheck(text, counter);
@@ -90,6 +89,7 @@ var result = new Array();
 				clearInterval(tid);
 			}
 	}
+//보기가 정답인지 오답인지 확인하는 클래스
 	function combocheck(text, j){
 		result[0] ="<%=quiz.getQ_code()%>"
 		result[1]= "<%=quiz.getQ_type()%>"
@@ -107,6 +107,7 @@ var result = new Array();
 	}
 	}
 	
+//페이지에 타이머 기능을 부여하여 제한시간을 두는 함수
 	var counter = <%=counter%>
 	time = 30;
 	function timer(){
@@ -130,6 +131,7 @@ var result = new Array();
 		}
 	}
 	
+//게임 포기 버튼을 클릭시 servlet으로 보내는 함수
 	function giveup() {
 		location.href="/GuiltyPleasure/giveup?cmd=GIVEUP"
 	}
