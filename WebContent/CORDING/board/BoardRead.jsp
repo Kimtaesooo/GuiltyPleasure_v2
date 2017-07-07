@@ -279,6 +279,7 @@
 				<input type="hidden" name="b_num" value="<%=b_num%>">
 				<table>
 					<%
+							// 등록된 댓글이 없을 때
 							if (rep_list.size() == 0) {
 					%>
 					<tr height="25" align="center">

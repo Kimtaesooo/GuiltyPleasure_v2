@@ -17,7 +17,6 @@ public class Board extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doPost(req, resp);
 	}
 
@@ -32,5 +31,4 @@ public class Board extends HttpServlet{
 		dis.forward(req, resp);
 		
 	}
-
 }
