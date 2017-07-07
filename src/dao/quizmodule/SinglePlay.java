@@ -15,14 +15,33 @@ import command.quiz.CommandFactory;
 import controller.Command;
 import dto.Quiz;
 
+/**
+ * @author 김현수
+ * 싱글플레이 서블릿 클래스
+ * */
 @WebServlet(urlPatterns = "/quiz")
 public class SinglePlay extends HttpServlet {
 	Quiz q;
+	
+	/**
+	 * @param HttpServletRequest 요청한 페이지의 request변수
+	 * @param HttpServletResponse 요청한 페이지의 response변수
+	 * 
+	 * @see doPost post방식으로 처리하게끔 해주는 클래스
+	 * */
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		doPost(req, resp);
 	}
+	
+	/**
+	 * @param HttpServletRequest 요청한 페이지의 request변수
+	 * @param HttpServletResponse 요청한 페이지의 response변수
+	 * 
+	 * @see QuizRegDAO 퀴즈 등록에 필요한 db연결과 작업을 해주는 클래스
+	 * @see Quiz 퀴즈가 등록되는 객체 클래스
+	 * */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("euc-kr");

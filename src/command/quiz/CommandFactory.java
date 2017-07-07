@@ -1,15 +1,25 @@
 package command.quiz;
 
 import controller.Command;
-
+/**
+ * 커맨드 팩토리 클래스
+ * @author 김현수
+ * */
 public class CommandFactory {
 	private CommandFactory(){}
 	private static CommandFactory instance = new CommandFactory();
 	
+	/**
+	 * CommandFactory instance를 생성하는 메서드
+	 * */
 	public static CommandFactory newInstance(){
 		return instance;
 	}
-	
+	/**
+	 * @param String cmd 커맨드를 생성할때 매개변수로 값을 주어 원하는 인스턴스를 생성한다
+	 * @return Instance String매개변수에 따라 command객체를 반환한다.
+	 * 
+	 * */
 	public Command createCommand(String cmd){
 		if (cmd.equals("QUIZ_GET")) {
 			return new QuizgetCommand();

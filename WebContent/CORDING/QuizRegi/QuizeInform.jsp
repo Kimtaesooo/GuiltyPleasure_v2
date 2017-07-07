@@ -14,6 +14,8 @@
 	window.onload = function(){
 		document.form.genre.value = '<%=uq.getQ_type()%>';
 	};
+	
+	//문제수정시 설정된 입력공간이 빈공간인지 비교하여 처리하는 함수
 	function updatequiz() {		
 		if($("#regQuiz").val()== 'Y'){
 			alert('승인된 문제는 수정 불가능합니다.');
@@ -54,6 +56,7 @@
 		document.form.submit();
 	}
 	
+	//삭제버튼 클릭시 처리되는 함수
 	function delquiz(){
 		if($("#regQuiz").val()== 'Y'){
 			alert('승인된 문제는 삭제 불가능합니다.');
@@ -64,6 +67,7 @@
 		document.form.submit();
 	}
 	
+	//퀴즈 등록시 처리되는 함수
 	function regquiz(){
 		document.form.action="/GuiltyPleasure/QuizRegister";
 		document.form.cmd.value="REG";

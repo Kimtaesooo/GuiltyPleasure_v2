@@ -12,6 +12,7 @@
 
 <jsp:useBean id="uq" class="dto.U_Quiz"></jsp:useBean>
 <script>
+//게시판에서 게시물을 클릭시 그게시물에 해당되는 id값을 servlet으로 보내는 함수
 	function qinform(id){
 		location.href="/GuiltyPleasure/borad?cmd=QREGI_BOARD_GET&id="+id;
 	}
