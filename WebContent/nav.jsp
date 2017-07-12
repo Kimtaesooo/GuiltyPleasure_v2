@@ -189,7 +189,7 @@ $(document).ready(function(){
 	<%if(u_id.length()==0) {%>
 	<br><br>
 	<hr>
-	<h2 class="fh5co-lead"><a href="${pageContext.request.contextPath}/CORDING/login/login.html">로그인</a></h2>
+	<h2 class="fh5co-lead"><a href="/GuiltyPleasure/logcheck?cmd=loginpage">로그인</a></h2>
 	<h2 class="fh5co-lead"><a href="${pageContext.request.contextPath}/CORDING/login/idpw.jsp">아이디/비밀번호 찾기</a></h2>
 	<hr>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

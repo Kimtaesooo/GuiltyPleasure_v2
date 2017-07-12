@@ -15,23 +15,27 @@ public class CommandFactory {
 	}
 	public Command createCommand(String cmd){
 		
-		// ·Î±×ÀÎ
-		if(cmd.equals("login")){
+		// ë¡œê·¸ì¸ í˜ì´ì§€ ì´ë™
+		if(cmd.equals("loginpage")){
+			return new LoginPageCommand();
+		}
+		// ë¡œê·¸ì¸
+		else if(cmd.equals("login")){
 			return new LoginCommand();
 		}
-		// ·Î±×¾Æ¿ô
+		// ë¡œê·¸ì•„ì›ƒ
 		else if(cmd.equals("logout")){
 			return new LogoutCommand();
 		}
-		// È¸¿ø°¡ÀÔ
+		// íšŒì›ê°€ì…
 		else if(cmd.equals("logreg")){
 			return new LogResistCommand();
 		}
-		// ¾ÆÀÌµğ Ã£±â
+		// ì•„ì´ë”” ì°¾ê¸°
 		else if(cmd.equals("logidfind")){
 			return new IdFindCommand();
 		}
-		// ÆĞ½º¿öµå Ã£±â
+		// íŒ¨ìŠ¤ì›Œë“œ ì°¾ê¸°
 		else if(cmd.equals("logpwfind")){
 			return new PwFindCommand();
 		}

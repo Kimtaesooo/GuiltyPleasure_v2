@@ -4,7 +4,7 @@ jQuery(document).ready(function() {
     /*
         Fullscreen background
     */
-    $.backstretch("/GuiltyPleasure/CORDING/login/assets/img/backgrounds/1.jpg");
+    $.backstretch("/GuiltyPleasure/assets/img/backgrounds/1.jpg");
     
     /*
         Form validation
