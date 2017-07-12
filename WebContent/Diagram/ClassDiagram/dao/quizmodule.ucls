@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.0" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="dao.quizmodule.GetPoint" project="GuiltyPleasure" 
+    file="/GuiltyPleasure/src/dao/quizmodule/GetPoint.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="196" width="175" x="125" y="36"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="dao.quizmodule.CheckQuiz" project="GuiltyPleasure" 
+    file="/GuiltyPleasure/src/dao/quizmodule/CheckQuiz.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="250" width="176" x="340" y="36"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="dao.quizmodule.QuizRegister" project="GuiltyPleasure" 
+    file="/GuiltyPleasure/src/dao/quizmodule/QuizRegister.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="142" width="337" x="556" y="36"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="dao.quizmodule.SinglePlay" project="GuiltyPleasure" 
+    file="/GuiltyPleasure/src/dao/quizmodule/SinglePlay.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="142" width="337" x="933" y="36"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="dao.quizmodule.GetQuiz" project="GuiltyPleasure" 
+    file="/GuiltyPleasure/src/dao/quizmodule/GetQuiz.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="178" width="167" x="1310" y="36"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

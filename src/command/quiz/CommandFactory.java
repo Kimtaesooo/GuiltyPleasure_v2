@@ -46,9 +46,6 @@ public class CommandFactory {
 		if(cmd.equals("MQUIZ_REGI")){
 			return new MQuziRegisterCommand();
 		}
-		if(cmd.equals("CHATING")){
-			return new ChatingCommand();
-		}
 		if(cmd.equals("UPDATE")){
 			return new UpdateQuizCommand();
 		}
@@ -57,9 +54,6 @@ public class CommandFactory {
 		}
 		if(cmd.equals("REG")){
 			return new RegQuizCommand();
-		}
-		if(cmd.equals("CHATING")){
-			return new ChatingCommand();
 		}
 		if(cmd.equals("MAGIC")){
 			return new MagiceyeCommand();

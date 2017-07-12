@@ -1,27 +1,27 @@
-<%@ page contentType="text/html; charset=EUC-KR"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page import="dbcp.DBConnectionMgr"%>
 <%@ page import="java.sql.*" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-<h1> ¿À¶óÅ¬ ¿¬°á Å×½ºÆ®</h1>
+<h1> ì˜¤ë¼í´ ì—°ê²° í…ŒìŠ¤íŠ¸</h1>
 <%
 	try{
 		DBConnectionMgr pool = DBConnectionMgr.getInstance();
 		Connection con = pool.getConnection();		
 		
 		if(con != null){
-			System.out.println("¿¬°á ¼º°ø");
-			out.println("¿¬°á ¼º°ø");
+			System.out.println("ì—°ê²° ì„±ê³µ");
+			out.println("ì—°ê²° ì„±ê³µ");
 		}
 		pool.freeConnection(con);
 	}
 	catch(Exception err){
-		System.out.println("¿¬°á ½ÇÆĞ : " + err);
+		System.out.println("ì—°ê²° ì‹¤íŒ¨ : " + err);
 	}
 	finally{
 		

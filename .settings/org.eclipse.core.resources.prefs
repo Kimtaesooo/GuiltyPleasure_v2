@@ -1,2 +1,3 @@
 eclipse.preferences.version=1
-encoding//WebContent/CORDING/board/BoardRead.jsp=euc-kr
+encoding//WebContent/WEB-INF/views/board/BoardRead.jsp=euc-kr
+encoding/<project>=UTF-8

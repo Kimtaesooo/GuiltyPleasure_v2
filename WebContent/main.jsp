@@ -1,26 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"%>
-<jsp:useBean id="userdao" class="dao.UserInfoDAO" />
-<jsp:useBean id="userdto" class="dto.UserInfoDTO" />
-<%
-	request.setCharacterEncoding("euc-kr");
-	response.setCharacterEncoding("euc-kr");
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-	String u_id = "";
-
-	if (session.getAttribute("u_id") != null) {
-		u_id = (String) session.getAttribute("u_id");
-
-	}
-	userdto = userdao.searchUserInfo(u_id);
-%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap332/css/bootstrap.min.css">
 <!-- jQuery -->
-<script	src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.min.js"></script>
 <!-- jQuery Easing -->
 <script	src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.easing.1.3.js"></script>
 <!-- Bootstrap -->
@@ -60,11 +49,11 @@
 	});
 	function insingle() {
 		if ($("#u_id").val().length == 0) {
-			alert('·Î±×ÀÎ ÈÄ »ç¿ë °¡´ÉÇÕ´Ï´Ù.');
+			alert('ë¡œê·¸ì¸ í›„ ì‚¬ìš© ê°€ëŠ¥í•©ë‹ˆë‹¤.');
 			return;
 		}
 		if ($("#single").val() != 'null') {
-			alert("½Ì±Û ÇÃ·¹ÀÌ°¡ ±ÝÁöµÈ À¯Àú ÀÔ´Ï´Ù.");
+			alert("ì‹±ê¸€ í”Œë ˆì´ê°€ ê¸ˆì§€ëœ ìœ ì € ìž…ë‹ˆë‹¤.");
 			return;
 		}
 		location.href = "CORDING/Quiz/SingleMain.jsp";
@@ -72,11 +61,11 @@
 
 	function inbattle() {
 		if ($("#u_id").val().length == 0) {
-			alert('·Î±×ÀÎ ÈÄ »ç¿ë °¡´ÉÇÕ´Ï´Ù.');
+			alert('ë¡œê·¸ì¸ í›„ ì‚¬ìš© ê°€ëŠ¥í•©ë‹ˆë‹¤.');
 			return;
 		}
 		if ($("#battle").val() != 'null') {
-			alert('¹èÆ² ÇÃ·¹ÀÌ°¡ ±ÝÁöµÈ À¯ÀúÀÔ´Ï´Ù.');
+			alert('ë°°í‹€ í”Œë ˆì´ê°€ ê¸ˆì§€ëœ ìœ ì €ìž…ë‹ˆë‹¤.');
 			return;
 		}
 		location.href = "CORDING/battle/battleRoom.jsp";
@@ -84,7 +73,7 @@
 
 	function inshop() {
 		if ($("#u_id").val().length == 0) {
-			alert('·Î±×ÀÎ ÈÄ »ç¿ë °¡´ÉÇÕ´Ï´Ù.');
+			alert('ë¡œê·¸ì¸ í›„ ì‚¬ìš© ê°€ëŠ¥í•©ë‹ˆë‹¤.');
 			return;
 		}
 		location.href = "/GuiltyPleasure/shop?cmd=SHOPLIST";
@@ -92,22 +81,22 @@
 
 	function inregquiz() {
 		if ($("#u_id").val().length == 0) {
-			alert('·Î±×ÀÎ ÈÄ »ç¿ë °¡´ÉÇÕ´Ï´Ù.');
+			alert('ë¡œê·¸ì¸ í›„ ì‚¬ìš© ê°€ëŠ¥í•©ë‹ˆë‹¤.');
 			return;
 		}
 		location.href = "CORDING/QuizRegi/QuizRegInfo.jsp";
 	}
-	
-	function inmagic(){
-		if($("#u_id").val().length ==0){
-			alert('·Î±×ÀÎ ÈÄ »ç¿ë °¡´ÉÇÕ´Ï´Ù.');
-			return ;
+
+	function inmagic() {
+		if ($("#u_id").val().length == 0) {
+			alert('ë¡œê·¸ì¸ í›„ ì‚¬ìš© ê°€ëŠ¥í•©ë‹ˆë‹¤.');
+			return;
 		}
-		if($("#battle").val()!= 'null'){
-			alert('¹èÆ² ÇÃ·¹ÀÌ°¡ ±ÝÁöµÈ À¯ÀúÀÔ´Ï´Ù.');
-			return ;
+		if ($("#battle").val() != 'null') {
+			alert('ë°°í‹€ í”Œë ˆì´ê°€ ê¸ˆì§€ëœ ìœ ì €ìž…ë‹ˆë‹¤.');
+			return;
 		}
-		location.href="CORDING/magic/magicEyeStart.jsp";
+		location.href = "CORDING/magic/magicEyeStart.jsp";
 	}
 </script>
 
@@ -115,7 +104,7 @@
 
 </head>
 <body>
-	<jsp:include page="/test_nav.jsp" />
+	<jsp:include page="/nav.jsp" />
 
 	<style>
 #fh5co-hero {
@@ -160,13 +149,14 @@
 .fh5co-section-heading .fh5co-lead {
 	font-size: 20px;
 }
+
 .fh5co-section-heading .fh5co-sub {
-	font-size:15px;
+	font-size: 15px;
 }
 </style>
-	<input type="hidden" id="u_id" value="<%=u_id%>" />
-	<input type="hidden" id="single" value="<%=userdto.getNo_single()%>" />
-	<input type="hidden" id="battle" value="<%=userdto.getNo_battle()%>" />
+	<input type="hidden" id="u_id" value="${u_id}" />
+	<input type="hidden" id="single" value="${udto.no_single}" />
+	<input type="hidden" id="battle" value="${udto.no_battle}" />
 	<div id="fh5co-main">
 
 		<header id="fh5co-hero" data-section="home"
@@ -178,21 +168,7 @@
 				<div class="fh5co-intro">
 					<div class="container">
 						<div class="fh5co-text">
-							<br>
-							<br>
-							<br>
-							<br>
-							<br>
-							<br>
-							<br>
-							<br>
-							<br>
-							<br>
-							<br>
-							<br>
-							<br>
-							<br>
-							<br>
+							<br><br><br><br><br><br><br><br><br><br><br><br>
 							<div class="col-md-8 col-md-offset-2 text-left">
 								<hr width="60" size="5" align="left"
 									style="border-top: 4px solid white;">
@@ -200,23 +176,16 @@
 								<br>
 								<h4
 									class="fh5co-sub to-animate animate-single intro-animate-2 fadeIn animated text-left">
-									<font color="white" style="font-weight: 400;">:ÁËÃ¥°¨À» ´À³¢°Å³ª
-										ÇÏ¸é ¾ÈµÈ´Ù´Â°ÍÀ» ¾ËÁö¸¸<br> <br> ÀÚ½Å¿¡°Ô ¸¸Á·°¨À» °¡Á®´ÙÁÖ´Â °Í ¶Ç´Â ±×·¯ÇÑ ÇàÀ§
+									<font color="white" style="font-weight: 400;">:ì£„ì±…ê°ì„ ëŠë¼ê±°ë‚˜
+										í•˜ë©´ ì•ˆëœë‹¤ëŠ”ê²ƒì„ ì•Œì§€ë§Œ<br> <br> ìžì‹ ì—ê²Œ ë§Œì¡±ê°ì„ ê°€ì ¸ë‹¤ì£¼ëŠ” ê²ƒ ë˜ëŠ” ê·¸ëŸ¬í•œ í–‰ìœ„
 									</font>
 								</h4>
-
-
 							</div>
 						</div>
 					</div>
-
-
 				</div>
-
 			</div>
 		</header>
-
-
 
 		<div class="animated"
 			style="background: black; color: white; padding-bottom: 0px; font-weight: lighter;">
@@ -227,265 +196,134 @@
 					style="margin-bottom: 0px;">
 
 					<p class="fh5co-sub to-animate fadeIn animated">
-						<br>¿ì¸®¿¡°Ô ÁÖ¾îÁø °¡Àå ¼ÒÁßÇÑ ½Ã°£! ½Ã°£À» ¹ö¸®¸ç ¹«ÀÇ¹ÌÇÑ Áñ°Å¿òÀ» ´À²¸º¾½Ã´Ù
+						<br>ìš°ë¦¬ì—ê²Œ ì£¼ì–´ì§„ ê°€ìž¥ ì†Œì¤‘í•œ ì‹œê°„! ì‹œê°„ì„ ë²„ë¦¬ë©° ë¬´ì˜ë¯¸í•œ ì¦ê±°ì›€ì„ ëŠê»´ë´…ì‹œë‹¤
 				</div>
 			</div>
-
 
 		</div>
 		<div class="animated" style="border-top: solid 1px gray;">
 			<div class="row">
-			<br>
-				<br>
+				<br> <br>
 
 				<div
 					class="col-md-8 col-md-offset-2 fh5co-section-heading text-left">
 					<div class="row">
 						<div class="col-md-3 to-animate">
-						
-							<a href="javascript:insingle()" class="fh5co-figure"> <br><br>
-								<img src="/GuiltyPleasure/src/singleimg.png"><br>
+
+							<a href="javascript:insingle()" class="fh5co-figure"> <br>
+							<br> <img src="/GuiltyPleasure/src/singleimg.png"><br>
 							</a>
 						</div>
 
 						<div class="col-md-9">
-							<h2 class="fh5co-lead to-animate fadeIn animated">| ½Ì±Û ÇÃ·¹ÀÌ</h2>
+							<h2 class="fh5co-lead to-animate fadeIn animated">| ì‹±ê¸€ í”Œë ˆì´</h2>
 							<p class="fh5co-sub to-animate fadeIn animated">
-								¾ö¼±µÈ ÄûÁî¸¦ Ç®¸ç<br> ´ç½ÅÀÇ ¾ÆÀç·Â°ú ¾Æ½Î·ÂÀ» Å×½ºÆ®ÇØº¸¼¼¿ä!
+								ì—„ì„ ëœ í€´ì¦ˆë¥¼ í’€ë©°<br> ë‹¹ì‹ ì˜ ì•„ìž¬ë ¥ê³¼ ì•„ì‹¸ë ¥ì„ í…ŒìŠ¤íŠ¸í•´ë³´ì„¸ìš”!
 							</p>
 						</div>
 					</div>
 				</div>
 			</div>
-	</div>
+		</div>
 		<div class="animated" style="border-top: solid 1px gray;">
 			<div class="row">
-			<br>
-				<br>
+				<br> <br>
 
 				<div
 					class="col-md-8 col-md-offset-2 fh5co-section-heading text-right">
 					<div class="row">
 
 						<div class="col-md-9">
-							<h2 class="fh5co-lead to-animate fadeIn animated">¹èÆ² ÇÃ·¹ÀÌ |</h2>
+							<h2 class="fh5co-lead to-animate fadeIn animated">ë°°í‹€ í”Œë ˆì´ |</h2>
 							<p class="fh5co-sub to-animate fadeIn animated">
-								ÀÎÅÍ³Ý¿¡¼­Á¶Â÷ È¥ÀÚ¸é ³Ê¹« ½½ÇÁ°ÚÁÒ...<br> ÀÌÁ¨ ¸ð´ÏÅÍ Ä£±¸µé°ú ÇÔ²²ÇÏ¼¼¿ä!
+								ì¸í„°ë„·ì—ì„œì¡°ì°¨ í˜¼ìžë©´ ë„ˆë¬´ ìŠ¬í”„ê² ì£ ...<br> ì´ì   ëª¨ë‹ˆí„° ì¹œêµ¬ë“¤ê³¼ í•¨ê»˜í•˜ì„¸ìš”!
 							</p>
 						</div>
 						<div class="col-md-3 to-animate">
-						
-							<a href="javascript:inbattle()" class="fh5co-figure"> <br><br>
-								<img src="/GuiltyPleasure/src/battleimg.png"><br>
+
+							<a href="javascript:inbattle()" class="fh5co-figure"> <br>
+							<br> <img src="/GuiltyPleasure/src/battleimg.png"><br>
 							</a>
 						</div>
 					</div>
 				</div>
 			</div>
-	</div>
-	
-	
-	<div class="animated" style="border-top: solid 1px gray;">
+		</div>
+
+
+		<div class="animated" style="border-top: solid 1px gray;">
 			<div class="row">
-			<br>
-				<br>
+				<br> <br>
 
 				<div
 					class="col-md-8 col-md-offset-2 fh5co-section-heading text-left">
 					<div class="row">
 						<div class="col-md-3 to-animate">
-						
-							<a href="CORDING/jaum/play_jaum.jsp" class="fh5co-figure"> <br><br>
-								<img src="/GuiltyPleasure/src/gndl.gif"><br>
+
+							<a href="CORDING/jaum/play_jaum.jsp" class="fh5co-figure"> <br>
+							<br> <img src="/GuiltyPleasure/src/gndl.gif"><br>
 							</a>
 						</div>
 
 						<div class="col-md-9">
-							<h2 class="fh5co-lead to-animate fadeIn animated">| ÀÚÀ½ ÄûÁî</h2>
+							<h2 class="fh5co-lead to-animate fadeIn animated">| ìžìŒ í€´ì¦ˆ</h2>
 							<p class="fh5co-sub to-animate fadeIn animated">
-								Áö·çÇÑ ½Ã°£À» º¸³»±â¿¡ µü!<br> ¿µÈ­,¾Ö´Ï ´Ù¾çÇÑ ºÐ¾ßÀÇ ¿À´ö·ÂÀ» ÀÚ¶ûÇØº¸¼¼¿ä.
+								ì§€ë£¨í•œ ì‹œê°„ì„ ë³´ë‚´ê¸°ì— ë”±!<br> ì˜í™”,ì• ë‹ˆ ë‹¤ì–‘í•œ ë¶„ì•¼ì˜ ì˜¤ë•ë ¥ì„ ìžëž‘í•´ë³´ì„¸ìš”.
 							</p>
 						</div>
 					</div>
 				</div>
 			</div>
-	</div>
-	
+		</div>
+
 		<div class="animated" style="border-top: solid 1px gray;">
 			<div class="row">
-			<br>
-				<br>
+				<br> <br>
 
 				<div
 					class="col-md-8 col-md-offset-2 fh5co-section-heading text-right">
 					<div class="row">
 
 						<div class="col-md-9">
-							<h2 class="fh5co-lead to-animate fadeIn animated">Æ²¸° ±×¸² Ã£±â |</h2>
+							<h2 class="fh5co-lead to-animate fadeIn animated">í‹€ë¦° ê·¸ë¦¼ ì°¾ê¸° |</h2>
 							<p class="fh5co-sub to-animate fadeIn animated">
-								¹æ±¸¼®¿¡¼­ ¶°³ª´Â ¼¼°è¿©Çà!<br> ³ª»©°í ¸ðµÎ°¡ ´Ù³à¿Â °ü±¤ ¸í¼ÒÀÇ Æ²¸° ºÎºÐÀ» Ã£¾Æº¾½Ã´Ù.
+								ë°©êµ¬ì„ì—ì„œ ë– ë‚˜ëŠ” ì„¸ê³„ì—¬í–‰!<br> ë‚˜ë¹¼ê³  ëª¨ë‘ê°€ ë‹¤ë…€ì˜¨ ê´€ê´‘ ëª…ì†Œì˜ í‹€ë¦° ë¶€ë¶„ì„ ì°¾ì•„ë´…ì‹œë‹¤.
 							</p>
 						</div>
 						<div class="col-md-3 to-animate">
-						
-							<a href="CORDING/shop/outline/searchStart.jsp" class="fh5co-figure"> <br><br>
-								<img src="/GuiltyPleasure/src/find.png"><br>
+
+							<a href="CORDING/shop/outline/searchStart.jsp"
+								class="fh5co-figure"> <br>
+							<br> <img src="/GuiltyPleasure/src/find.png"><br>
 							</a>
 						</div>
 					</div>
 				</div>
 			</div>
-	</div>
-	
+		</div>
 
 
-	<div class="animated" style="border-top: solid 1px gray;">
-		<div class="row">
-			<div
-				class="col-md-8 col-md-offset-2 fh5co-section-heading text-center">
-				<a href="index.html"><br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>Guilty Pleasure</a>
-				<p class="fh5co-copyright">
-					<small>&copy; 2017. All Rights Reserved.</small>
-				</p>
-				<p class="fh5co-social-icons">
-					<a href="#"><i class="icon-twitter"></i></a> <a href="#"><i
-						class="icon-facebook"></i></a> <a href="#"><i
-						class="icon-instagram"></i></a> <a href="#"><i
-						class="icon-dribbble"></i></a> <a href="#"><i class="icon-youtube"></i></a>
-				</p>
+
+		<div class="animated" style="border-top: solid 1px gray;">
+			<div class="row">
+				<div
+					class="col-md-8 col-md-offset-2 fh5co-section-heading text-center">
+					<a href="index.html"><br> <br>
+					<br><br><br><br><br>
+					<br><br>Guilty Pleasure</a>
+					<p class="fh5co-copyright">
+						<small>&copy; 2017. All Rights Reserved.</small>
+					</p>
+					<p class="fh5co-social-icons">
+						<a href="#"><i class="icon-twitter"></i></a> <a href="#"><i
+							class="icon-facebook"></i></a> <a href="#"><i
+							class="icon-instagram"></i></a> <a href="#"><i
+							class="icon-dribbble"></i></a> <a href="#"><i
+							class="icon-youtube"></i></a>
+					</p>
+				</div>
 			</div>
 		</div>
 	</div>
-
-
-
-
-	<!-- 
-
-
-		<br><br><br><br><br><br><br>
-		<div class="row">
-			<div
-				class="col-md-8 col-md-offset-2 fh5co-section-heading text-center">
-
-				<div class="col-md-3 to-animate">
-					<a href="javascript:insingle()" class="fh5co-figure">
-						<br> <img
-						src="/GuiltyPleasure/src/single.png"><br>
-					 <span>½Ì±ÛÇÃ·¹ÀÌ</span>
-					</a>
-				</div>
-				<div class="col-md-3 to-animate">
-					<a href="javascript:inbattle()" class="fh5co-figure"> <span>¹èÆ²ÇÃ·¹ÀÌ</span>
-						<br> <img
-						src="/GuiltyPleasure/src/battle.png">
-					</a>
-				</div>
-				<div class="col-md-3 to-animate">
-					<a href="javascript:inshop()" class="fh5co-figure"> <span>»óÁ¡</span>
-						<br> <img
-						src="/GuiltyPleasure/src/item.png">
-					</a>
-				</div>
-				<div class="col-md-3 to-animate">
-					<a href="CORDING/custom/customer_main.jsp" class="fh5co-figure">
-						<span">°í°´¼¾ÅÍ</span> <br> <img
-						src="/GuiltyPleasure/src/customerlove.png">
-					</a>
-				</div>
-			</div>
-		</div>
-
-		<div class="row">
-			<div
-				class="col-md-8 col-md-offset-2 fh5co-section-heading text-center">
-				<div class="col-md-3 to-animate">
-					<a href="CORDING/rank/rankBattle.jsp" class="fh5co-figure"> <span
-						class="fh5co-price">·©Å·</span> <br> <img
-						src="/GuiltyPleasure/src/rank.png">
-					</a>
-				</div>
-				<div class="col-md-3 to-animate">
-					<a href="/GuiltyPleasure/notice?cmd=list" class="fh5co-figure">
-						<span class="fh5co-price">°øÁö»çÇ×</span> <br> <img
-						src="/GuiltyPleasure/src/notice.png">
-					</a>
-				</div>
-
-				<div class="col-md-3 to-animate">
-					<a href="/GuiltyPleasure/Board?cmd=BOARDLIST" class="fh5co-figure">
-						<span class="fh5co-price">ÀÚÀ¯°Ô½ÃÆÇ</span> <br> <img
-						src="/GuiltyPleasure/src/board.png">
-					</a>
-				</div>
-				<div class="col-md-3 to-animate">
-					<a href="javascript:inregquiz()" class="fh5co-figure"> <span
-						class="fh5co-price">ÄûÁîµî·Ï</span> <br> <img
-						src="/GuiltyPleasure/src/regquiz.png">
-					</a>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div
-				class="col-md-8 col-md-offset-2 fh5co-section-heading text-center">
-				<div class="col-md-3 to-animate">
-					<a href="CORDING/jaum/play_jaum.jsp" class="fh5co-figure"
-						data-toggle="modal"> <span class="fh5co-price">ÀÚÀ½ÄûÁî</span> <br>
-						<img
-						src="/GuiltyPleasure/src/iniQuiz.png">
-					</a>
-				</div>
-				<div class="col-md-3 to-animate">
-					<a href="CORDING/shop/outline/searchStart.jsp" class="fh5co-figure"
-						data-toggle="modal"> <span class="fh5co-price">Æ²¸°±×¸²Ã£±â</span> <br>
-						<img
-						src="/GuiltyPleasure/src/spotD.png">
-					</a>
-				</div>
-			</div>
-		</div>
-		</div>
-		<!--<jsp:include page="/chaticon3.jsp"/>
-        <hr>
-
-
-        <footer>
-            <div class="row">
-                <div class="col-md-12">
-                    <p>Copyright &copy; Guilty Pleasure</p>
-                </div>
-            </div>
-
-        </footer>
-
-    </div>
-    
- <div class="modal fade" id="theModal" data-backdrop="static">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h3>»ý°¢¾ø´Â ÄûÁî»çÀÌÆ® ÀÔ´Ï´Ù.</h3>
-							</div>
-							<div class="modal-body">
-								<p>¹®Á¦¸¦ °øÀ¯ÇÏ°í ³²µéÀÌ ÃâÁ¦ÇÑ ¹®Á¦¸¦ Ç®¾î</p>
-								<p>·©Å·¿¡ µµÀüÇÏ¼¼¿ä</p>
-							</div>
-							<div class="modal-footer">
-							<button class="btn btn-primary" data-dismiss="modal">´Ý±â</button>
-							</div>
-						</div>
-					</div>
- </div><!-- ¸ð´Þ -->
-</div>
 </body>
 </html>

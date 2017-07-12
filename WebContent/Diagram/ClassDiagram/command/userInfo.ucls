@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.0" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="command.userInfo.DeleteRestrictionCommand" project="GuiltyPleasure" 
+    file="/GuiltyPleasure/src/command/userInfo/DeleteRestrictionCommand.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="124" width="417" x="-25" y="219"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="command.userInfo.CommandFactory" project="GuiltyPleasure" 
+    file="/GuiltyPleasure/src/command/userInfo/CommandFactory.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="124" width="226" x="432" y="219"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="command.userInfo.PopCommand" project="GuiltyPleasure" 
+    file="/GuiltyPleasure/src/command/userInfo/PopCommand.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="106" width="417" x="708" y="219"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="command.userInfo.QuitCommand" project="GuiltyPleasure" 
+    file="/GuiltyPleasure/src/command/userInfo/QuitCommand.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="124" width="417" x="1165" y="219"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="command.userInfo.ListCommand" project="GuiltyPleasure" 
+    file="/GuiltyPleasure/src/command/userInfo/ListCommand.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="124" width="417" x="1622" y="219"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="command.userInfo.RestrictionCommand" project="GuiltyPleasure" 
+    file="/GuiltyPleasure/src/command/userInfo/RestrictionCommand.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="124" width="417" x="2079" y="219"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="command.userInfo.InfoCommand" project="GuiltyPleasure" 
+    file="/GuiltyPleasure/src/command/userInfo/InfoCommand.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="124" width="417" x="2536" y="219"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="8">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="9" name="instance"/>      
+      <multiplicity id="10" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
