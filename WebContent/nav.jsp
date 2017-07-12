@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<jsp:useBean id="userdao" class="dao.UserInfoDAO"/>
-<jsp:useBean id="userdto" class="dto.UserInfoDTO"/>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -166,47 +166,36 @@ $(document).ready(function(){
 	
 });
 </script>
-<%
-	request.setCharacterEncoding("UTF-8");
-	response.setCharacterEncoding("UTF-8");
-	String u_id ="";
-	if(session.getAttribute("u_id")!=null){
-		u_id = (String)session.getAttribute("u_id");
-	}
-	
-	userdto = userdao.searchUserInfo(u_id);
-%>
-<title>Insert title here</title>
-
 </head>
 <body>
-<input type="hidden" id="u_id" value="<%=u_id %>" />
-<input type="hidden" id="single" value="<%=userdto.getNo_single() %>" />
-<input type="hidden" id="battle" value="<%=userdto.getNo_battle() %>" />
+<input type="hidden" id="u_id" value="${u_id}" />
+<input type="hidden" id="single" value="${udto.no_single}" />
+<input type="hidden" id="battle" value="${udto.no_battle}" />
 <div id="fh5co-offcanvass" style="padding-top: 0px;">
 <div class="row" align="center">
 				<div class="col-md-12">
-	<%if(u_id.length()==0) {%>
+	<c:if test="${u_id eq null}">
 	<br><br>
 	<hr>
 	<h2 class="fh5co-lead"><a href="/GuiltyPleasure/logcheck?cmd=loginpage">로그인</a></h2>
-	<h2 class="fh5co-lead"><a href="${pageContext.request.contextPath}/CORDING/login/idpw.jsp">아이디/비밀번호 찾기</a></h2>
+	<h2 class="fh5co-lead"><a href="/GuiltyPleasure/logcheck?cmd=idpwpage">아이디/비밀번호 찾기</a></h2>
 	<hr>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<a href="/GuiltyPleasure/CORDING/login/resistration.html">회원가입</a>
-	<%}else{ %>
+	<a href="/GuiltyPleasure/logcheck?cmd=resistrationpage">회원가입</a>
+	</c:if>
+	<c:if test="${u_id != null}">
 	<br><br>
 	<hr>
-	<h2 class="fh5co-lead"><%=u_id %>님 환영합니다!</h2>
-	<h2 class="fh5co-lead">포인트 : <%=userdto.getPoint() %></h2>
+	<h2 class="fh5co-lead">${u_id}님 환영합니다!</h2>
+	<h2 class="fh5co-lead">포인트 : ${udto.point}</h2>
 	<hr>
 	<a href="/GuiltyPleasure/myinfo?cmd=MYINFO">MY PAGE</a>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<a href="${pageContext.request.contextPath}/CORDING/login/logout.html">LOGOUT</a>
-	<%} %>
+	<a href="/GuiltyPleasure/logcheck?cmd=logoutpage">LOGOUT</a>
+	</c:if>
 	</div>
 	</div>
 	<br><br>
@@ -223,10 +212,10 @@ $(document).ready(function(){
 			<li><a href="${pageContext.request.contextPath}/CORDING/notice_board/n_list.jsp">공지사항</a></li>
 			<li><a href="/GuiltyPleasure/Board?cmd=BOARDLIST">자유게시판</a></li>
 			<li><a href="${pageContext.request.contextPath}/CORDING/custom/customer_main.jsp">고객센터</a></li>
-				<%if(u_id.equals("master")) {%>
-			<li><a href="/GuiltyPleasure/userinfo?cmd=LIST">회원관리</a></li>
-			<li><a href="/GuiltyPleasure/quizinfo?cmd=LIST">퀴즈관리</a></li>
-				<%} %>
+			<c:if test="${u_id eq 'master'}">
+				<li><a href="/GuiltyPleasure/userinfo?cmd=LIST">회원관리</a></li>
+				<li><a href="/GuiltyPleasure/quizinfo?cmd=LIST">퀴즈관리</a></li>
+			</c:if>
 		</ul>
 </div>
 <div id="fh5co-menu" class="navbar">

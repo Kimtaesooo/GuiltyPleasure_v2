@@ -13,52 +13,49 @@ import dao.loginmodule.Login;
 import dto.UserInfo;
 import dto.UserInfoDTO;
 
-// ·Î±×ÀÎ
-public class LoginCommand implements Command{
+// ë¡œê·¸ì¸
+public class LoginCommand implements Command {
 	@Override
-	public Object processCommand(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public Object processCommand(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		Login dao = new Login();
 		UserInfo dto = new UserInfo();
 		UserInfoDAO userdao = new UserInfoDAO();
 		UserInfoDTO userdto = new UserInfoDTO();
-		
+
 		HttpSession session = request.getSession();
-		
+
 		request.setCharacterEncoding("euc-kr");
 		response.setCharacterEncoding("euc-kr");
-		
+
 		String u_id = request.getParameter("form-username");
 		String u_pw = request.getParameter("form-password");
 		String message = "";
-		
+
 		dto = dao.getUser(u_id);
 		userdto = userdao.searchUserInfo(u_id);
-		
-		if(u_pw.equals(dto.getU_pw())){
-			// ·Î±×ÀÎ Á¦Á¦¸¦ ´çÇÑ°æ¿ì
-			if(userdto.getNo_entry() != null || dto.getU_delete().equals("Y")){
+
+		if (u_pw.equals(dto.getU_pw())) {
+			if (userdto.getNo_entry() != null || dto.getU_delete().equals("Y")) {
 				// response.sendRedirect("login_ban.html");
 				return "/CORDING/login/login_ban.jsp";
 			}
-			// Á¢¼ÓÇÑ ¾ÆÀÌµğ°¡ ¿î¿µÀÚÀÎ °æ¿ì
-			if(dto.getU_power() == 5000){
+			if (dto.getU_power() == 5000) {
 				session.setAttribute("u_id", "master");
 				session.setAttribute("u_pw", dto.getU_pw());
-				//response.sendRedirect("/GuiltyPleasure/main.jsp");
+				// response.sendRedirect("/GuiltyPleasure/main.jsp");
 				return "/main.jsp";
 			}
-			// ·Î±×ÀÎÀÌ ¼º‚‹ÇÑ °æ¿ì
 			session.setAttribute("u_id", u_id);
 			session.setAttribute("u_nickname", dto.getU_nickname());
-			//response.sendRedirect("/GuiltyPleasure/main.jsp");
+			session.setAttribute("udto", userdto);
+			// response.sendRedirect("/GuiltyPleasure/main.jsp");
 			return "/main.jsp";
-		}
-		else{
-			// ·Î±×ÀÎ ¿¡·¯°¡ ÀÏ¾î³­ °æ¿ì(¾ÆÀÌµğ°¡ ¾ø°Å³ª, ºñ¹Ğ¹øÈ£°¡ Æ²·È°Å³ª)
-			//response.sendRedirect("login_err.html");
+		} else {
+			// response.sendRedirect("login_err.html");
 			return "/CORDING/login/login_err.jsp";
 		}
-		
+
 	}
-	
+
 }

@@ -10,9 +10,9 @@
  -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../../bootstrap332/css/bootstrap.min.css">
-<script src="../../bootstrap332/js/jquery-3.2.1.min.js"></script>
-<script src="../../bootstrap332/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/design/bootstrap332/css/bootstrap.min.css">
+<script src="${pageContext.request.contextPath}/design/bootstrap332/js/jquery-3.2.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/design/bootstrap332/js/bootstrap.min.js"></script>
 <jsp:useBean id="dao" class="dao.loginmodule.idpw"/>
 <%
 	request.setCharacterEncoding("UTF-8");

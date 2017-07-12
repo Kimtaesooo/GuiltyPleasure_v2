@@ -15,12 +15,9 @@ public class CommandFactory {
 	}
 	public Command createCommand(String cmd){
 		
-		// 로그인 페이지 이동
-		if(cmd.equals("loginpage")){
-			return new LoginPageCommand();
-		}
+		
 		// 로그인
-		else if(cmd.equals("login")){
+		if(cmd.equals("login")){
 			return new LoginCommand();
 		}
 		// 로그아웃

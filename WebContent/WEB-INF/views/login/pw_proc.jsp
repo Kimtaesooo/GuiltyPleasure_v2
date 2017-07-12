@@ -16,10 +16,10 @@
         <title>Search ID/PW</title>
         <!-- CSS -->
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-        <link rel="stylesheet" href="/GuiltyPleasure/CORDING/login/assets/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/GuiltyPleasure/CORDING/login/assets/font-awesome/css/font-awesome.min.css">
-		<link rel="stylesheet" href="/GuiltyPleasure/CORDING/login/assets/css/form-elements.css">
-        <link rel="stylesheet" href="/GuiltyPleasure/CORDING/login/assets/css/style.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/design/assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/design/assets/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/design/assets/css/form-elements.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/design/assets/css/style.css">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -29,11 +29,11 @@
         <![endif]-->
 
         <!-- Favicon and touch icons -->
-        <link rel="shortcut icon" href="/GuiltyPleasure/CORDING/login/assets/ico/favicon.png">
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/GuiltyPleasure/CORDING/login/assets/ico/apple-touch-icon-144-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/GuiltyPleasure/CORDING/login/assets/ico/apple-touch-icon-114-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/GuiltyPleasure/CORDING/login/assets/ico/apple-touch-icon-72-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" href="/GuiltyPleasure/CORDING/login/assets/ico/apple-touch-icon-57-precomposed.png">
+        <link rel="shortcut icon" href="${pageContext.request.contextPath}/design/assets/ico/favicon.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="${pageContext.request.contextPath}/design/assets/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="${pageContext.request.contextPath}/design/assets/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="${pageContext.request.contextPath}/design/assets/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="${pageContext.request.contextPath}/design/assets/ico/apple-touch-icon-57-precomposed.png">
 		<jsp:useBean id="search" class="dao.loginmodule.idpw"/>
 		<%
 		request.setCharacterEncoding("UTF-8");
@@ -73,10 +73,10 @@
                             <div class="form-bottom">
                             <!-- 유저가 입력한 비밀번호가 맞다면 login.html로 이동 -->
                             <%if(rightPw.equals("success")){ %>
-			                    <form role="form" action="/GuiltyPleasure/CORDING/login/login.html" method="post" class="login-form">
+			                    <form role="form" action="/GuiltyPleasure/logcheck?cmd=loginpage" method="post" class="login-form">
 			                <!-- 유저가 입력한 비밀번호가 틀리다면 idpw.jsp로 이동-->
 			                 <%}else{ %>
-			                    <form role="form" action="/GuiltyPleasure/CORDING/login/idpw.jsp" method="post" class="login-form">
+			                    <form role="form" action="/GuiltyPleasure/logcheck?cmd=idpwpage" method="post" class="login-form">
 			                  <%} %>
 			                 
 <%
@@ -101,8 +101,8 @@
                         <div class="col-sm-6 col-sm-offset-3 social-login">
                         	<div>
                         		<br>
-	                        	<a href="resistration.html"><font size="4em" color="white">회원가입&nbsp;&nbsp;&nbsp;</font></a>
-	                        	<a href="idpw.jsp"><font size="4em" color="white">아이디/비밀번호 찾기&nbsp;&nbsp;&nbsp;</font></a>
+	                        	<a href="/GuiltyPleasure/logcheck?cmd=resistrationpage"><font size="4em" color="white">회원가입&nbsp;&nbsp;&nbsp;</font></a>
+	                        	<a href="/GuiltyPleasure/logcheck?cmd=idpwpage"><font size="4em" color="white">아이디/비밀번호 찾기&nbsp;&nbsp;&nbsp;</font></a>
 	                        	<a href="/GuiltyPleasure/CORDING/custom/customer_main.jsp"><font size="4em" color="white">고객센터</font></a>
                         	</div>
                         </div>
@@ -114,10 +114,10 @@
 
 
         <!-- Javascript -->
-        <script src="/GuiltyPleasure/CORDING/login/assets/js/jquery-1.11.1.min.js"></script>
-        <script src="/GuiltyPleasure/CORDING/login/assets/bootstrap/js/bootstrap.min.js"></script>
-        <script src="/GuiltyPleasure/CORDING/login/assets/js/jquery.backstretch.min.js"></script>
-        <script src="/GuiltyPleasure/CORDING/login/assets/js/scripts.js"></script>
+        <script src="${pageContext.request.contextPath}/design/assets/js/jquery-1.11.1.min.js"></script>
+        <script src="${pageContext.request.contextPath}/design/assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="${pageContext.request.contextPath}/design/assets/js/jquery.backstretch.min.js"></script>
+        <script src="${pageContext.request.contextPath}/design/assets/js/scripts.js"></script>
         
         <!--[if lt IE 10]>
             <script src="assets/js/placeholder.js"></script>
