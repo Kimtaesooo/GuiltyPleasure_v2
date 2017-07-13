@@ -8,19 +8,19 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * 
- * @author È²¼±¿µ
+ * @author È²ï¿½ï¿½ï¿½ï¿½
  * @version 1.0 2017.07.03
  */
 public class UpdateCommand implements CommandBoard {
 	/**
-	 * ±Û ¼öÁ¤ ÆäÀÌÁö·Î ÀÌµ¿
+	 * ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
 	 */
 	@Override
 	public Object processCommand(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.setCharacterEncoding("euc-kr");
-		resp.setCharacterEncoding("euc-kr");
+		req.setCharacterEncoding("utf-8");
+		resp.setCharacterEncoding("utf-8");
 		
 		String b_num = req.getParameter("b_num");
-		return "/CORDING/board/BoardUpdate.jsp?b_num="+b_num;
+		return "/WEB-INF/views/board/BoardUpdate.jsp?b_num="+b_num;
 	}
 }

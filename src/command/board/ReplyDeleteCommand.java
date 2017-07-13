@@ -20,13 +20,13 @@ public class ReplyDeleteCommand implements CommandBoard {
 	Reply dto2 = new Reply();
 	
 	/**
-	 * ´ñ±Û »èÁ¦ Ã³¸® -> ±Û »ó¼¼º¸±â ÆäÀÌÁö
+	 * ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ -> ï¿½ï¿½ ï¿½ó¼¼ºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	@Override
 	public Object processCommand(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		req.setCharacterEncoding("euc-kr");
-		resp.setCharacterEncoding("euc-kr");
+		req.setCharacterEncoding("utf-8");
+		resp.setCharacterEncoding("utf-8");
 		
 		String r_reply = req.getParameter("r_reply");
 		String b_num = req.getParameter("b_num");
@@ -34,6 +34,6 @@ public class ReplyDeleteCommand implements CommandBoard {
 		dao.deleteReply(r_reply);
 		dto = dao.getBoard(b_num, false);
 		
-		return "/CORDING/board/BoardRead.jsp?b_num="+dto.getB_num();
+		return "/WEB-INF/views/board/BoardRead.jsp?b_num="+dto.getB_num();
 	}
 }

@@ -10,7 +10,7 @@ import dao.boardmodule.FreeBoard;
 import dto.Board;
 /**
  * 
- * @author È²¼±¿µ
+ * @author È²ï¿½ï¿½ï¿½ï¿½
  * @version 1.0 2017.07.03
  */
 public class UpdateProcCommand  implements CommandBoard{
@@ -18,13 +18,13 @@ public class UpdateProcCommand  implements CommandBoard{
 	Board dto = new Board();
 	
 	/**
-	 * ±Û ¼öÁ¤ Ã³¸® -> ±Û »ó¼¼º¸±â ÆäÀÌÁö
+	 * ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ -> ï¿½ï¿½ ï¿½ó¼¼ºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	@Override
 	public Object processCommand(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		req.setCharacterEncoding("euc-kr");
-		resp.setCharacterEncoding("euc-kr");
+		req.setCharacterEncoding("utf-8");
+		resp.setCharacterEncoding("utf-8");
 		
 		String b_num = req.getParameter("b_num");
 		String b_content = req.getParameter("b_content");
@@ -37,6 +37,6 @@ public class UpdateProcCommand  implements CommandBoard{
 		
 		dao.updateBoard(dto);
 
-		return "/CORDING/board/BoardRead.jsp?b_num="+dto.getB_num();
+		return "/WEB-INF/views/board/BoardRead.jsp?b_num="+dto.getB_num();
 	}
 }

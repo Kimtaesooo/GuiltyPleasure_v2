@@ -26,17 +26,17 @@ public class ShopBuyCommand extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		
-		req.setCharacterEncoding("euc-kr");
+		req.setCharacterEncoding("utf-8");
 		ShopManager sDao = ShopManager.getInstance();
 		String code=req.getParameter("code");
 		String id=req.getParameter("id");
 		
 		int userPoint=Integer.parseInt(req.getParameter("userPoint"));
-		Shop dto=sDao.selectOneItemByCode(code); //¾ÆÀÌÅÛ ÄÚµå°ªÀ¸·Î ¾ÆÀÌÅÛ dto±¸¼º
-		sDao.minusOneItem(code, dto.getS_limit_num()); //¾ÆÀÌÅÛ ¼ö·® ÇÏ³ª °¨¼Ò
-		sDao.setUserPoint(id, userPoint); //À¯Àú Æ÷ÀÎÆ® °¨¼Ò
-		sDao.addPurchaseList(id,dto); //±¸¸Å¸®½ºÆ®¿¡Ãß°¡
-		sDao.addItemFunction(id, dto); //¾ÆÀÌÅÛ ±â´É Ãß°¡
+		Shop dto=sDao.selectOneItemByCode(code); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµå°ªï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ dtoï¿½ï¿½ï¿½ï¿½
+		sDao.minusOneItem(code, dto.getS_limit_num()); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï³ï¿½ ï¿½ï¿½ï¿½ï¿½
+		sDao.setUserPoint(id, userPoint); //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
+		sDao.addPurchaseList(id,dto); //ï¿½ï¿½ï¿½Å¸ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ß°ï¿½
+		sDao.addItemFunction(id, dto); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
 		
 		String nickname=req.getParameter("nickname");
 		if(nickname!=null){

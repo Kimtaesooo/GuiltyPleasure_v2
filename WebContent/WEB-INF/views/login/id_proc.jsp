@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="kor">
 <!-- 아이디 찾기 프로세서 -->
@@ -10,10 +12,10 @@
 
         <!-- CSS -->
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-        <link rel="stylesheet" href="/GuiltyPleasure/CORDING/login/assets/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/GuiltyPleasure/CORDING/login/assets/font-awesome/css/font-awesome.min.css">
-		<link rel="stylesheet" href="/GuiltyPleasure/CORDING/login/assets/css/form-elements.css">
-        <link rel="stylesheet" href="/GuiltyPleasure/CORDING/login/assets/css/style.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/design/assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/design/assets/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/design/assets/css/form-elements.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/design/assets/css/style.css">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,24 +25,15 @@
         <![endif]-->
 
         <!-- Favicon and touch icons -->
-        <link rel="shortcut icon" href="/GuiltyPleasure/CORDING/login/assets/ico/favicon.png">
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/GuiltyPleasure/CORDING/login/assets/ico/apple-touch-icon-144-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/GuiltyPleasure/CORDING/login/assets/ico/apple-touch-icon-114-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/GuiltyPleasure/CORDING/login/assets/ico/apple-touch-icon-72-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" href="/GuiltyPleasure/CORDING/login/assets/ico/apple-touch-icon-57-precomposed.png">
-		<jsp:useBean id="search" class="dao.loginmodule.idpw"/>
-		<%
-		// 인코딩
-		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
-		String rightId = (String)request.getAttribute("rightId"); // DB에 조회한 ID 값
-		String id = (String)request.getAttribute("id"); // 유저가 입력한 ID 값
-		String name = (String)request.getAttribute("name"); // 유저가 입력한 이름
-		%>
+        <link rel="shortcut icon" href="${pageContext.request.contextPath}/design/login/assets/ico/favicon.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="${pageContext.request.contextPath}/design/assets/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="${pageContext.request.contextPath}/design/assets/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="${pageContext.request.contextPath}/design/assets/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="${pageContext.request.contextPath}/design/assets/ico/apple-touch-icon-57-precomposed.png">
+		
     </head>
 	
     <body>
-    	
         <!-- Top content -->
         <div class="top-content">
         	
@@ -64,18 +57,13 @@
                         		</div>
                             </div>
                             <div class="form-bottom">
-			                    <form role="form" action="/GuiltyPleasure/CORDING/login/idpw.jsp" method="post" class="login-form">
-<%
-								if(rightId.equals("success")){
-%>									
-									<h4>회원님의 아이디는 </h4><h3><%=id%> 입니다.</h3>
-<%
-								}else{
-%>
-									<h3><%=id%></h3>
-<%
-								}
-%>
+			                    <form role="form" action="/GuiltyPleasure/logcheck?cmd=idpwpage" method="post" class="login-form">
+								<c:if test="${rightId eq 'success'}">
+									<h4>회원님의 아이디는 </h4><h3>${id} 입니다.</h3>
+								</c:if>
+								<c:if test="${rightId eq 'failed'}">
+									<h3>${id}</h3>
+								</c:if>
 									<br>
 			                        <button type="submit" class="btn">돌아가기</button>
 			                    </form>
@@ -99,10 +87,10 @@
 
 
         <!-- Javascript -->
-        <script src="/GuiltyPleasure/CORDING/login/assets/js/jquery-1.11.1.min.js"></script>
-        <script src="/GuiltyPleasure/CORDING/login/assets/bootstrap/js/bootstrap.min.js"></script>
-        <script src="/GuiltyPleasure/CORDING/login/assets/js/jquery.backstretch.min.js"></script>
-        <script src="/GuiltyPleasure/CORDING/login/assets/js/scripts.js"></script>
+        <script src="${pageContext.request.contextPath}/design/assets/js/jquery-1.11.1.min.js"></script>
+        <script src="${pageContext.request.contextPath}/design/assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="${pageContext.request.contextPath}/design/assets/js/jquery.backstretch.min.js"></script>
+        <script src="${pageContext.request.contextPath}/design/assets/js/scripts.js"></script>
         
         <!--[if lt IE 10]>
             <script src="assets/js/placeholder.js"></script>

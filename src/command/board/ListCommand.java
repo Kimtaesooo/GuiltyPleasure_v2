@@ -11,7 +11,7 @@ import dao.boardmodule.FreeBoard;
 import dto.Board;
 /**
  * 
- * @author È²¼±¿µ
+ * @author È²ï¿½ï¿½ï¿½ï¿½
  * @version 1.0 2017.07.03
  */
 public class ListCommand implements CommandBoard {
@@ -19,29 +19,29 @@ public class ListCommand implements CommandBoard {
 	Board dto = new Board();
 	
 	/**
-	 * °Ô½Ã±Û ¸®½ºÆ® °¡Á®¿Í¼­ È­¸é¿¡ »Ñ¸®±â À§ÇÑ Ã³¸® -> ¸®½ºÆ® ÆäÀÌÁö
+	 * ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ È­ï¿½é¿¡ ï¿½Ñ¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ -> ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	@Override
 	public Object processCommand(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		req.setCharacterEncoding("euc-kr");
-		resp.setCharacterEncoding("euc-kr");
+		req.setCharacterEncoding("utf-8");
+		resp.setCharacterEncoding("utf-8");
 		
-		//°Ë»ö ±â´ÉÀ» À§ÇÑ º¯¼ö ¹Þ±â
+		//ï¿½Ë»ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ±ï¿½
 		String keyfield = req.getParameter("keyfield");
 		String keyword = req.getParameter("keyword");
 		
-		/*4.ÆäÀÌÂ¡À» À§ÇÑ º¯¼ö(ÆäÀÌÁö¿¡¼­ ¹Þ¾Æ¿À±â)*/
+		/*4.ï¿½ï¿½ï¿½ï¿½Â¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¿ï¿½ï¿½ï¿½)*/
 		String nowPage = req.getParameter("nowPage");
 		String nowBlock = req.getParameter("nowBlock");
 
 		List<Board> BoardList = dao.getBoardList(keyword, keyfield);
 		req.setAttribute("BoardList", BoardList);
 		
-		/*5.ÆäÀÌÂ¡À» À§ÇÑ º¯¼ö (ÆäÀÌÁö¿¡ º¸³»±â)*/
+		/*5.ï¿½ï¿½ï¿½ï¿½Â¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)*/
 		req.setAttribute("nowPage", nowPage);
 		req.setAttribute("nowBlock", nowBlock);
 		
-		return "/CORDING/board/BoardList.jsp";
+		return "/WEB-INF/views/board/BoardList.jsp";
 	}
 }

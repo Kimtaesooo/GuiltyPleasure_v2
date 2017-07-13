@@ -13,7 +13,7 @@ import command.board.CommandBoard;
 import command.board.CommandFactory;
 /**
  * 
- * @author È²¼±¿µ
+ * @author È²ï¿½ï¿½ï¿½ï¿½
  * @version 1.0 2017.07.03
  */
 @WebServlet(urlPatterns="/Board")
@@ -26,7 +26,7 @@ public class BoardController extends HttpServlet{
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.setCharacterEncoding("euc-kr");
+		req.setCharacterEncoding("utf-8");
 		String cmd = req.getParameter("cmd");
 		String url = null;
 		CommandFactory factory = CommandFactory.newInstance();

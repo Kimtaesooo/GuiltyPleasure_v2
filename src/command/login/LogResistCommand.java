@@ -12,7 +12,7 @@ import dao.loginmodule.Resistration;
 import dto.UserInfo;
 
 public class LogResistCommand implements Command {
-	// È¸¿ø°¡ÀÔ
+	// íšŒì›ê°€ì…
 	private List<UserInfo> userinfo;
 	@Override
 	public Object processCommand(HttpServletRequest request, HttpServletResponse response)	throws ServletException, IOException {
@@ -37,7 +37,7 @@ public class LogResistCommand implements Command {
 		
 		dao.regUser(dto);
 		
-		return "/CORDING/login/login_reg.jsp";
+		return "/WEB-INF/views/login/login_reg.jsp";
 	}
 
 }

@@ -26,7 +26,7 @@ public class ShopAddCommand extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		
-		req.setCharacterEncoding("euc-kr");
+		req.setCharacterEncoding("utf-8");
 		String name=req.getParameter("name");
 		int price=Integer.parseInt(req.getParameter("price"));
 		int limit=Integer.parseInt(req.getParameter("limit"));

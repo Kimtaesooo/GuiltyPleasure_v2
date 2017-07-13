@@ -8,39 +8,40 @@ import javax.servlet.http.HttpServletResponse;
 
 import controller.Command;
 import dao.loginmodule.idpw;
-//¾ÆÀÌµğ Ã£±â Ä¿¸Çµå
-public class IdFindCommand implements Command{
+
+//ì•„ì´ë”” ì°¾ê¸° ì»¤ë§¨ë“œ
+public class IdFindCommand implements Command {
 
 	@Override
-	public Object processCommand(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("euc-kr");
-		response.setCharacterEncoding("euc-kr");
-		//¾ÆÀÌµğ ºñ¹øÃ£´Â ±â´É »ı¼º
+	public Object processCommand(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// ì•„ì´ë”” ë¹„ë²ˆì°¾ëŠ” ê¸°ëŠ¥ ìƒì„±
 		idpw search = new idpw();
-		//°á°ú ½ÇÆĞ, ¼º°ø ¹İÈ¯ÇÒ ¹®ÀÚ¿­
+		// ê²°ê³¼ ì‹¤íŒ¨, ì„±ê³µ ë°˜í™˜í•  ë¬¸ìì—´
 		String rightId = "";
-		//ÀÌ¸§°ª ¹Ş±â
+		// ì´ë¦„ê°’ ë°›ê¸°
 		String name = request.getParameter("name");
-		//ÀÌ¸ŞÀÏ ¹Ş±â
+		// ì´ë©”ì¼ ë°›ê¸°
 		String email = request.getParameter("email");
-		//Ã£´Â ¾ÆÀÌµğ 
+		System.out.println(name);
+		System.out.println(email);
+		// ì°¾ëŠ” ì•„ì´ë””
 		String id = search.searchId(name, email);
-		//¾ÆÀÌµğ¸¦ ±æÀÌ·Î ºñ±³ÇØ ±æÀÌ°¡ 0ÀÏ°æ¿ì
-		if(id.length()==0){
+		// ì•„ì´ë””ë¥¼ ê¸¸ì´ë¡œ ë¹„êµí•´ ê¸¸ì´ê°€ 0ì¼ê²½ìš°
+		if (id.length() == 0) {
 			rightId = "failed";
-			id = "Àß¸ø ÀÔ·ÂÇÏ¼Ì°Å³ª ¾ø´Â Á¤º¸ÀÔ´Ï´Ù..";
+			id = "ì˜ëª» ì…ë ¥í•˜ì…¨ê±°ë‚˜ ì—†ëŠ” ì •ë³´ì…ë‹ˆë‹¤..";
 			request.setAttribute("id", id);
 			request.setAttribute("rightId", rightId);
 		}
-		//±×¿Ü¿¡ Ã³¸®
-		else{
+		//ê·¸ì™¸ì— ì²˜ë¦¬
+		else {
 			rightId = "success";
 			request.setAttribute("id", id);
 			request.setAttribute("rightId", rightId);
 			request.setAttribute("email", email);
 		}
-		
-		return "/CORDING/login/id_proc.jsp";
+		return "/WEB-INF/views/login/id_proc.jsp";
 	}
 
 }

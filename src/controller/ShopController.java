@@ -22,8 +22,8 @@ public class ShopController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		
-		req.setCharacterEncoding("euc-kr");
-		//³Ñ°Ü¿À´Â °ª ¹Þ¾Æ¾ßÁö~
+		req.setCharacterEncoding("utf-8");
+		//ï¿½Ñ°Ü¿ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Þ¾Æ¾ï¿½ï¿½ï¿½~
 		String cmd = req.getParameter("cmd");
 		String url = null;
 		

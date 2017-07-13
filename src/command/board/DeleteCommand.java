@@ -11,35 +11,35 @@ import dao.boardmodule.FreeBoard;
 import dto.Board;
 /**
  * 
- * @author È²¼±¿µ
+ * @author í™©ì„ ì˜
  * @version 1.0 2017.07.03
  */
 public class DeleteCommand implements CommandBoard {
 	FreeBoard dao = new FreeBoard();
 	
 	/**
-	 * °Ô½Ã±ÛÀ» DB¿¡¼­ »èÁ¦ÇÏ±â À§ÇÑ Ã³¸® -> ¸®½ºÆ® ÆäÀÌÁö
+	 * ê²Œì‹œê¸€ì„ DBì—ì„œ ì‚­ì œí•˜ê¸° ìœ„í•œ ì²˜ë¦¬ -> ë¦¬ìŠ¤íŠ¸ í˜ì´ì§€
 	 */
 	@Override
 	public Object processCommand(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		req.setCharacterEncoding("euc-kr");
-		resp.setCharacterEncoding("euc-kr");
+		req.setCharacterEncoding("utf-8");
+		resp.setCharacterEncoding("utf-8");
 		
-		//»èÁ¦ Ã³¸®
+		//ì‚­ì œ ì²˜ë¦¬
 		String b_num = req.getParameter("b_num");
 		dao.deleteBoard(b_num);
 		
-		//º¯°æ»çÇ×À» Àû¿ëÇÏ¿© °Ô½Ã±Û ¸®½ºÆ® »Ñ¸®±â
+		//ë³€ê²½ì‚¬í•­ì„ ì ìš©í•˜ì—¬ ê²Œì‹œê¸€ ë¦¬ìŠ¤íŠ¸ ë¿Œë¦¬ê¸°
 		String keyfield ="";
 		String keyword ="";
 		List<Board> BoardList = dao.getBoardList(keyword, keyfield);
 		req.setAttribute("BoardList", BoardList);
 		
-		//ÆäÀÌÂ¡À» À§ÇÑ º¯¼ö (ÆäÀÌÁö¿¡ º¸³»±â)
+		//í˜ì´ì§•ì„ ìœ„í•œ ë³€ìˆ˜ (í˜ì´ì§€ì— ë³´ë‚´ê¸°)
 		req.setAttribute("nowPage", 0);
 		req.setAttribute("nowBlock", 0);
 	
-		return "/CORDING/board/BoardList.jsp";
+		return "/WEB-INF/views/board/BoardList.jsp";
 	}
 }

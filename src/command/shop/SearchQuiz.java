@@ -27,7 +27,7 @@ public class SearchQuiz extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		
-		req.setCharacterEncoding("euc-kr");
+		req.setCharacterEncoding("utf-8");
 		
 		String id=req.getParameter("id");
 		

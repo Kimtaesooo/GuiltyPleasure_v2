@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,12 +14,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/design/bootstrap332/css/bootstrap.min.css">
 <script src="${pageContext.request.contextPath}/design/bootstrap332/js/jquery-3.2.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/design/bootstrap332/js/bootstrap.min.js"></script>
-<jsp:useBean id="dao" class="dao.loginmodule.idpw"/>
-<%
-	request.setCharacterEncoding("UTF-8");
-	response.setCharacterEncoding("UTF-8");
-	String [] u_find = dao.getBoardList();
-%>
 
 <title>Id/Pw Search</title>
 </head>
@@ -78,10 +73,9 @@
      		 <label for="inputQuiz" class="col-lg-2 control-label">퀴즈선택</label>
      		 <div class="col-lg-10">
     		 <select class="form-control" id="select" name="select">
-    		 <%for(int i=0; i<u_find.length ;i++){ %>
-    		 	
-	          <option><%=u_find[i]%></option>
-	          <%} %>
+    		 <c:forEach items="${u_find}" var="find">
+    		 	<option>${find}</option>
+    		 </c:forEach>
 	         </select>
 	        </div>
 	      	</div>

@@ -12,13 +12,13 @@ import controller.Command;
 import dao.battlemodule.BattlePlay;
 import dto.Battle_Room;
 
-// °ÔÀÓ¹æ »ý¼º
+// ï¿½ï¿½ï¿½Ó¹ï¿½ ï¿½ï¿½ï¿½ï¿½
 public class MakeRoomCommand implements Command{
 
 	@Override
 	public Object processCommand(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("euc-kr");
-		response.setCharacterEncoding("euc-kr");
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
 		
 		
 		HttpSession session = request.getSession();
@@ -27,27 +27,27 @@ public class MakeRoomCommand implements Command{
 		BattlePlay dao = new BattlePlay();
 		
 
-		String u_id = (String)session.getAttribute("u_id"); // ¹æ »ý¼ºÀÚ ¾ÆÀÌµð ¹Þ¾Æ¿È
-		int br_cnt = Integer.parseInt(request.getParameter("br_cnt")); // ¹æ ÀÎ¿ø¼ö ¹Þ¾Æ¿È
+		String u_id = (String)session.getAttribute("u_id"); // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Þ¾Æ¿ï¿½
+		int br_cnt = Integer.parseInt(request.getParameter("br_cnt")); // ï¿½ï¿½ ï¿½Î¿ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¿ï¿½
 		
-		dto.setBr_subject(request.getParameter("br_subject")); // Á¦¸ñ
-		dto.setBr_pw(Integer.parseInt(request.getParameter("br_pw"))); // ÆÐ½º¿öµå
-		dto.setBr_type(request.getParameter("br_type")); // ÄûÁî À¯Çü
-		dto.setBr_cnt(Integer.parseInt(request.getParameter("br_cnt")));  // ¹æ ÀÎ¿ø
-		dto.setBr_point(Integer.parseInt(request.getParameter("br_point"))); // ¹èÆ² Æ÷ÀÎÆ®
-		dto.setBr_ip(request.getParameter("br_ip")); // ip ÁÖ¼Ò
+		dto.setBr_subject(request.getParameter("br_subject")); // ï¿½ï¿½ï¿½ï¿½
+		dto.setBr_pw(Integer.parseInt(request.getParameter("br_pw"))); // ï¿½Ð½ï¿½ï¿½ï¿½ï¿½ï¿½
+		dto.setBr_type(request.getParameter("br_type")); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		dto.setBr_cnt(Integer.parseInt(request.getParameter("br_cnt")));  // ï¿½ï¿½ ï¿½Î¿ï¿½
+		dto.setBr_point(Integer.parseInt(request.getParameter("br_point"))); // ï¿½ï¿½Æ² ï¿½ï¿½ï¿½ï¿½Æ®
+		dto.setBr_ip(request.getParameter("br_ip")); // ip ï¿½Ö¼ï¿½
 
-		// ¹èÆ² ´ë±â¹æ »ý¼º
+		// ï¿½ï¿½Æ² ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		dao.regRoom(dto, u_id);
 
-		// »ý¼ºµÈ °ÔÀÓ¹æ Á¶È¸
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ó¹ï¿½ ï¿½ï¿½È¸
 		List roominfo = dao.roomInfo(u_id);
 		Battle_Room room = (Battle_Room) roominfo.get(0);
 		
 		String br_num = room.getBr_num();
 		u_id = room.getU_id();
 		
-		// ¹èÆ² ÇÃ·¹ÀÌ¹æ Ãß°¡
+		// ï¿½ï¿½Æ² ï¿½Ã·ï¿½ï¿½Ì¹ï¿½ ï¿½ß°ï¿½
 		dao.playRoom(br_num, u_id, br_cnt);
 		
 		

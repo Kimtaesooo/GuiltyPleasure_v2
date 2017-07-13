@@ -10,17 +10,17 @@ import dao.boardmodule.FreeBoard;
 import dto.Board;
 /**
  * 
- * @author È²¼±¿µ
+ * @author È²ï¿½ï¿½ï¿½ï¿½
  * @version 1.0 2017.07.03
  */
 public class WriteCommand implements CommandBoard {
 	
 	/**
-	 * ±Û ¾²±â ÆäÀÌÁö·Î ÀÌµ¿
+	 * ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
 	 */
 	@Override
 	public Object processCommand(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		return "/CORDING/board/BoardWrite.jsp";
+		return "/WEB-INF/views/board/BoardWrite.jsp";
 	}
 }

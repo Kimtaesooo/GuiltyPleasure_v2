@@ -28,7 +28,7 @@ public class LoginController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("euc-kr");
+		request.setCharacterEncoding("utf-8");
 
 		String cmd = request.getParameter("cmd");
 		String url = "";
@@ -48,19 +48,12 @@ public class LoginController extends HttpServlet {
 			view.forward(request, response);
 			return;
 		// 아이디, 패스워드 찾기 페이지
-		} else if (cmd.equals("idpwpage")) {
-			url = "/WEB-INF/views/login/idpw.jsp";
-			RequestDispatcher view = request.getRequestDispatcher(url);
-			view.forward(request, response);
-			return;
-		// 회원가입 페이지 이동
 		} else if (cmd.equals("resistrationpage")) {
 			url = "/WEB-INF/views/login/resistration.jsp";
 			RequestDispatcher view = request.getRequestDispatcher(url);
 			view.forward(request, response);
 			return;
 		}
-
 		command = instance.createCommand(cmd);
 
 		url = command.processCommand(request, response).toString();

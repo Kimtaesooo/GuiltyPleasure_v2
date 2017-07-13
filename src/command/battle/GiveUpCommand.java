@@ -11,8 +11,8 @@ import controller.Command;
 public class GiveUpCommand implements Command{
 	@Override
 	public Object processCommand(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("euc-kr");
-		response.setCharacterEncoding("euc-kr");
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
 		
 		String u_id = request.getParameter("u_id");
 		String br_num = request.getParameter("br_num");

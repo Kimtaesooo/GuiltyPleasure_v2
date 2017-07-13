@@ -2,7 +2,7 @@ package command.board;
 
 /**
  * 
- * @author È²¼±¿µ
+ * @author í™©ì„ ì˜
  * @version 1.0 2017.07.03
  */
 public class CommandFactory {
@@ -14,10 +14,10 @@ public class CommandFactory {
 	}
 	
 	/**
-	 * °Ô½ÃÆÇ ÆäÀÌÁö¿¬°áÀ» À§ÇÑ Ä¿¸ÇµåÆÑÅä¸®
+	 * ê²Œì‹œíŒ í˜ì´ì§€ì—°ê²°ì„ ìœ„í•œ ì»¤ë§¨ë“œíŒ©í† ë¦¬
 	 * 
-	 * @param cmd ÆäÀÌÁö Ä¿¸àµå
-	 * @return ÇØ´ç ÆäÀÌÁö
+	 * @param cmd í˜ì´ì§€ ì»¤ë©˜ë“œ
+	 * @return í•´ë‹¹ í˜ì´ì§€
 	 */
 	public CommandBoard createCommand(String cmd){
 		if(cmd.equals("BOARDLIST")){

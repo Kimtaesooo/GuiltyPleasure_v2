@@ -11,7 +11,7 @@ import dto.Board;
 import dto.Reply;
 /**
  * 
- * @author È²¼±¿µ
+ * @author È²ï¿½ï¿½ï¿½ï¿½
  * @version 1.0 2017.07.03
  */
 public class ReplyCommand implements CommandBoard{
@@ -19,30 +19,30 @@ public class ReplyCommand implements CommandBoard{
 	Reply dto2 = new Reply();
 	
 	/**
-	 * ´ñ±Û µî·Ï Ã³¸® -> ±Û »ó¼¼º¸±â ÆäÀÌÁö
+	 * ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ -> ï¿½ï¿½ ï¿½ó¼¼ºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	@Override
 	public Object processCommand(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		req.setCharacterEncoding("euc-kr");
-		resp.setCharacterEncoding("euc-kr");
+		req.setCharacterEncoding("utf-8");
+		resp.setCharacterEncoding("utf-8");
 		
-		// ´ñ±Û µî·ÏÀ» À§Çì ÇÊ¿äÇÑ º¯¼ö ¹Þ±â - ±Û ¹øÈ£, À¯Àú¾ÆÀÌµð, ´ñ±Û ³»¿ë, ´ñ±Û µî·Ï½Ã°£
+		// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ±ï¿½ - ï¿½ï¿½ ï¿½ï¿½È£, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½, ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ ï¿½ï¿½Ï½Ã°ï¿½
 		String b_num = req.getParameter("b_num");
 		String u_id = req.getParameter("u_id");
 		String r_content = req.getParameter("r_content");
 		String r_regdate = req.getParameter("r_regdate");
 		
-		// refreshÇØµµ ÀÛ¾÷ÀÌ ÇÑ¹ø ´õ Ã³¸®µÇÁö ¾Ê±â À§ÇÑ Ã³¸®
+		// refreshï¿½Øµï¿½ ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½Ñ¹ï¿½ ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 		String before_u_id = req.getSession().getAttribute("u_id")==null?"":req.getSession().getAttribute("u_id").toString();
 		String before_b_num = req.getSession().getAttribute("b_num")==null?"":req.getSession().getAttribute("b_num").toString();
 		String before_r_content = req.getSession().getAttribute("r_content")==null?"":req.getSession().getAttribute("r_content").toString();
 		
 		if(before_u_id.equals(u_id) && before_b_num.equals(b_num) && before_r_content.equals(r_content)){
-			return "/CORDING/board/BoardRead.jsp?b_num="+b_num;
+			return "/WEB-INF/views/board/BoardRead.jsp?b_num="+b_num;
 		}
 		
-		// ´ñ±Û µðºñ µî·Ï ¹× ÆäÀÌÁö¿¡ º¸¿©ÁÖ±â À§ÇÑ Ã³¸®
+		// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 		dto2.setB_num(b_num);
 		dto2.setU_id(u_id);
 		dto2.setR_content(r_content);
@@ -54,6 +54,6 @@ public class ReplyCommand implements CommandBoard{
 		req.getSession().setAttribute("u_id", u_id);
 		req.getSession().setAttribute("r_content", r_content);
 		
-		return "/CORDING/board/BoardRead.jsp?b_num="+dto2.getB_num();
+		return "/WEB-INF/views/board/BoardRead.jsp?b_num="+dto2.getB_num();
 	}
 }

@@ -26,7 +26,7 @@ public class ShopDeleteComand extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		
-		req.setCharacterEncoding("euc-kr");
+		req.setCharacterEncoding("utf-8");
 		String code=req.getParameter("code");
 		ShopManager sDao = ShopManager.getInstance();
 		sDao.deleteItemByCode(code);

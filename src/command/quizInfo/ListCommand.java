@@ -18,7 +18,7 @@ public class ListCommand implements Command {
 	@Override
 	public Object processCommand(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.setCharacterEncoding("euc-kr");
+		request.setCharacterEncoding("utf-8");
 		
 		String u_id = request.getParameter("uid")==null?"":request.getParameter("uid");
 		String q_type = request.getParameter("select")==null?"":request.getParameter("select");

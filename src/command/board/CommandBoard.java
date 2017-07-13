@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 /**
  * 
- * @author È²¼±¿µ
+ * @author í™©ì„ ì˜
  * @version 1.0 2017.07.03
  */
 public interface CommandBoard {

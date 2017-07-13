@@ -10,7 +10,7 @@ import controller.Command;
 import dao.loginmodule.idpw;
 
 public class PwFindCommand implements Command{
-	// ºñ¹Ð¹øÈ£ Ã£±â
+	// ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°
 	@Override
 	public Object processCommand(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
 		idpw search = new idpw();
@@ -23,14 +23,14 @@ public class PwFindCommand implements Command{
 		
 		if(pw.length()==0){
 			request.setAttribute("rightPw", "failed");
-			request.setAttribute("pw", "Àß¸ø ÀÔ·ÂÇÏ¼Ì°Å³ª ¾ø´Â Á¤º¸ÀÔ´Ï´Ù..");
+			request.setAttribute("pw", "ìž˜ëª» ìž…ë ¥í•˜ì…¨ê±°ë‚˜ ì—†ëŠ” ì •ë³´ìž…ë‹ˆë‹¤..");
 		}
 		else{
 			request.setAttribute("rightPw", rightPw);
 			request.setAttribute("pw", pw);
 		}
 		
-		return "/CORDING/login/pw_proc.jsp";
+		return "/WEB-INF/views/login/pw_proc.jsp";
 	}
 
 }

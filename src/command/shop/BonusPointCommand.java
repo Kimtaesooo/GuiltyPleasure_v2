@@ -27,7 +27,7 @@ public class BonusPointCommand extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		
-		req.setCharacterEncoding("euc-kr");
+		req.setCharacterEncoding("utf-8");
 		BonusManager bDao = BonusManager.getInstance();
 		
 		String id=req.getParameter("id");

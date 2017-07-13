@@ -10,7 +10,7 @@ import dao.boardmodule.FreeBoard;
 import dto.Board;
 /**
  * 
- * @author È²¼±¿µ
+ * @author È²ï¿½ï¿½ï¿½ï¿½
  * @version 1.0 2017.07.03
  */
 public class WriteProcCommand implements CommandBoard {
@@ -18,13 +18,13 @@ public class WriteProcCommand implements CommandBoard {
 	Board dto = new Board();
 	
 	/**
-	 * ±Û µî·Ï Ã³¸® -> ±Û »ó¼¼º¸±â ÆäÀÌÁö
+	 * ï¿½ï¿½ ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ -> ï¿½ï¿½ ï¿½ó¼¼ºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	@Override
 	public Object processCommand(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		req.setCharacterEncoding("euc-kr");
-		resp.setCharacterEncoding("euc-kr");
+		req.setCharacterEncoding("utf-8");
+		resp.setCharacterEncoding("utf-8");
 		
 		String u_id = req.getParameter("u_id");
 		String title = req.getParameter("title");
@@ -33,6 +33,6 @@ public class WriteProcCommand implements CommandBoard {
 		String writeRead = dao.regBoard(u_id, title, content);
 		req.setAttribute("writeRead", writeRead);
 		
-		return "/CORDING/board/BoardRead.jsp";
+		return "/WEB-INF/views/board/BoardRead.jsp";
 	}
 }

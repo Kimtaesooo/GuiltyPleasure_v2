@@ -24,7 +24,7 @@ public class UserInfoController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("euc-kr");
+		request.setCharacterEncoding("utf-8");
 		
 		String cmd = request.getParameter("cmd");
 		String url = "";

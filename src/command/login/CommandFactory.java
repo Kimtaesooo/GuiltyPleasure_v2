@@ -36,6 +36,9 @@ public class CommandFactory {
 		else if(cmd.equals("logpwfind")){
 			return new PwFindCommand();
 		}
+		else if(cmd.equals("idpwpage")){
+			return new IdPwPageCommand();
+		}
 		return null;
 	}
 }

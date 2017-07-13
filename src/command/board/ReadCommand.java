@@ -7,17 +7,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 /**
  * 
- * @author È²¼±¿µ
+ * @author È²ï¿½ï¿½ï¿½ï¿½
  *
  */
 public class ReadCommand  implements CommandBoard{
 	
 	/**
-	 * °Ô½Ã±Û »ó¼¼º¸±â ÆäÀÌÁö·Î ¿¬°á
+	 * ï¿½Ô½Ã±ï¿½ ï¿½ó¼¼ºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	 */
 	@Override
 	public Object processCommand(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		return "/CORDING/board/BoardRead.jsp";
+		return "/WEB-INF/views/board/BoardRead.jsp";
 	}
 }
