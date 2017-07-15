@@ -40,7 +40,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<%@include file="../../top2.jsp" %>
+<%@include file="/nav.jsp" %>
 <form method="post" action="/GuiltyPleasure/userinfo" name="userListForm" id="userListForm">
 <input type="hidden" name="cmd" id="cmd"/>
 <input type="hidden" name="userid" id="userid"/>

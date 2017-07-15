@@ -32,7 +32,7 @@ public class UpdateCommand implements Command {
 		}
 		
 		
-		return "WEB-INF/quizInfo/quizList.jsp";
+		return "WEB-INF/views/quizInfo/quizList.jsp";
 	}
 
 }

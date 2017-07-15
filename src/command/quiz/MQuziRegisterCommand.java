@@ -17,15 +17,15 @@ import dto.U_Quiz;
 
 
 /**
- * ¿î¿µÀÚ ÀÔÀå¿¡¼­ ¹®Á¦¸¦ µî·ÏÇÏ´Â Å¬·¡½º
+ * ï¿½î¿µï¿½ï¿½ ï¿½ï¿½ï¿½å¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
  * */
 public class MQuziRegisterCommand implements Command{
 	/**
-	 * @param HttpServletRequest ¿äÃ»ÇÑ ÆäÀÌÁöÀÇ requestº¯¼ö
-	 * @param HttpServletResponse ¿äÃ»ÇÑ ÆäÀÌÁöÀÇ responseº¯¼ö
-	 * @return String DBµî·Ï ¿©ºÎ¿¡µû¶ó µî·Ï¿Ï·áÆäÀÌÁö¿Í ÆäÀÌÁö µî·ÏÀü ÆäÀÌÁöÁÖ¼Ò¸¦ ¹ÝÈ¯
+	 * @param HttpServletRequest ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ requestï¿½ï¿½ï¿½ï¿½
+	 * @param HttpServletResponse ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ responseï¿½ï¿½ï¿½ï¿½
+	 * @return String DBï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ï¿Ï·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼Ò¸ï¿½ ï¿½ï¿½È¯
 	 * 
-	 * @see QuizRegDAO ÄûÁî µî·Ï¿¡ ÇÊ¿äÇÑ db¿¬°á°ú ÀÛ¾÷À» ÇØÁÖ´Â Å¬·¡½º
+	 * @see QuizRegDAO ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ï¿ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ dbï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö´ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
 	 * */
 	
 	@Override
@@ -34,8 +34,8 @@ public class MQuziRegisterCommand implements Command{
 		int i = dao.MRegiQuiz(dao.setQuiz(request));
 		request.setAttribute("cmd", "MINSERT");
 		if(i>0){
-			return "/CORDING/QuizRegi/RegiComplete.jsp";
+			return "WEB-INF/views/QuizRegi/RegiComplete.jsp";
 		}
-		return "/CORDING/QuizRegi/QuizReg.jsp";
+		return "WEB-INF/views/QuizRegi/QuizReg.jsp";
 	}
 }

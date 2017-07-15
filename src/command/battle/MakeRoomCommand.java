@@ -52,7 +52,7 @@ public class MakeRoomCommand implements Command{
 		
 		
 		
-		return "/CORDING/battle/playRoom.jsp?bangjang="+u_id+"&br_num="+br_num+"";
+		return "/WEB-INF/views/battle/playRoom.jsp?bangjang="+u_id+"&br_num="+br_num+"";
 	}
 
 }

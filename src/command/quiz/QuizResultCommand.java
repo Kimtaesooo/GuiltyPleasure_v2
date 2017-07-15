@@ -14,20 +14,20 @@ import dao.quizmodule.GetQuiz;
 import dto.QuizResult;
 
 /**
- * ░╘└╙└╠ │б│к░э ░с░·╕ж ├│╕о╟╧┤┬ ┼м╖б╜║
- * @author ▒ш╟Ў╝Ў
+ * я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜ ├│я┐╜я┐╜я┐╜╧┤я┐╜ ┼мя┐╜я┐╜я┐╜я┐╜
+ * @author я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
  * */
 public class QuizResultCommand implements Command {
 	
 	/**
-	 * @param HttpServletRequest ┐ф├╗╟╤ ╞ф└╠┴Ў└╟ request║п╝Ў
-	 * @param HttpServletResponse ┐ф├╗╟╤ ╞ф└╠┴Ў└╟ response║п╝Ў
-	 * @return String request└╟ method ╞─╢є╕▐┼═└╟ ░к┐б ╡√╢є ░с░·╕ж ║╕┐й┴╓┤┬ ╞ф└╠┴Ў└╟ url└╗ ╣▌╚п
+	 * @param HttpServletRequest я┐╜я┐╜├╗я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ requestя┐╜я┐╜я┐╜я┐╜
+	 * @param HttpServletResponse я┐╜я┐╜├╗я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ responseя┐╜я┐╜я┐╜я┐╜
+	 * @return String requestя┐╜я┐╜ method я┐╜─╢я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜╓┤я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ urlя┐╜я┐╜ я┐╜я┐╜╚п
 	 * 
 	 * 
-	 * @see GetQuiz db┐б └·└х╡╚ ─√┴ю╕ж ░б┴о┐└┤┬ └█╛ў└╗ ╟╧┤┬ ┼м╖б╜║
-	 * @see QuizResult ─√┴ю└╟ ┴д║╕┐═ ╕┬╟√┤┬┴Ў└╟ ┐й║╬╡ю└╗ └·└х╟╪┴╓┤┬ dto┼м╖б╜║
-	 * @see ArrayList ░╘└╙└╟ ░с░·╕ж └·└х╟╧┤┬ ArrayList
+	 * @see GetQuiz dbя┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜ю╕ж я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜█╛я┐╜я┐╜я┐╜ я┐╜╧┤я┐╜ ┼мя┐╜я┐╜я┐╜я┐╜
+	 * @see QuizResult я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜╬╡я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜╓┤я┐╜ dto┼мя┐╜я┐╜я┐╜я┐╜
+	 * @see ArrayList я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜╧┤я┐╜ ArrayList
 	 * */
 	@Override
 	public Object processCommand(HttpServletRequest req, HttpServletResponse resp)
@@ -59,7 +59,7 @@ public class QuizResultCommand implements Command {
 						session.removeAttribute("SingleResultlist");
 					}
 					
-					//╞ў└╬╞о░б ├▀░б╡╟┤┬ ║╬║╨
+					//я┐╜я┐╜я┐╜я┐╜╞оя┐╜я┐╜ я┐╜▀░я┐╜я┐╜╟┤я┐╜ я┐╜╬║я┐╜
 					int csum =0 , wsum = 0;
 					
 					for(int i =0; i<Qarray.size(); i++){
@@ -68,13 +68,13 @@ public class QuizResultCommand implements Command {
 						wsum+=result.getWa_sum();
 					}
 					int sum = (csum * 10) + wsum;
-					System.out.println("╞ў└╬╞о └√┐ы╡╚╝Ў ="+sum);
+					System.out.println("я┐╜я┐╜я┐╜я┐╜╞о я┐╜я┐╜я┐╜я┐╜╚╝я┐╜ ="+sum);
 					GetPoint point = new GetPoint();
 					point.SavePoint(u_id, sum);
 
 					req.setAttribute("list", Qarray);
 					gq.setResult(Qarray);
-					return "/CORDING/Quiz/SingleResult.jsp";
+					return "WEB-INF/views/Quiz/SingleResult.jsp";
 			}else if("SHORT".equals(method)){
 				ArrayList list = (ArrayList) session.getAttribute("ShortResultlist");
 				for (int i = 0; i < list.size(); i++) {
@@ -95,7 +95,7 @@ public class QuizResultCommand implements Command {
 					session.removeAttribute("ShortResultlist");
 				}
 				
-				//╞ў└╬╞о░б ├▀░б╡╟┤┬ ║╬║╨
+				//я┐╜я┐╜я┐╜я┐╜╞оя┐╜я┐╜ я┐╜▀░я┐╜я┐╜╟┤я┐╜ я┐╜╬║я┐╜
 				int csum =0 , wsum = 0;
 				
 				for(int i =0; i<Qarray.size(); i++){
@@ -109,8 +109,8 @@ public class QuizResultCommand implements Command {
 				
 				req.setAttribute("list", Qarray);
 				gq.setResult(Qarray);
-				System.out.println("┴╓░№╜─ ╣о┴ж │б");
-				return "/CORDING/Quiz/ShortResult.jsp";
+				System.out.println("я┐╜╓░я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜");
+				return "WEB-INF/views/Quiz/ShortResult.jsp";
 			}
 		}
 		return new QuizgetCommand().processCommand(req, resp) ;

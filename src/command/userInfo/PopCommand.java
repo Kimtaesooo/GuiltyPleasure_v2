@@ -14,7 +14,7 @@ public class PopCommand implements Command{
 	public Object processCommand(HttpServletRequest req,
 			HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		return "WEB-INF/userInfo/erasePop.jsp";
+		return "/WEB-INF/views/userInfo/erasePop.jsp";
 	}
 
 }

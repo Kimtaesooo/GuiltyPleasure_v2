@@ -44,7 +44,7 @@ public class ListCommand implements Command{
 		request.setAttribute("total", count);
 		request.setAttribute("pageno", pageno);
 		
-		return "WEB-INF/userInfo/userList.jsp";
+		return "/WEB-INF/views/userInfo/userList.jsp";
 	}
 
 }

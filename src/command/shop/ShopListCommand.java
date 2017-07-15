@@ -17,7 +17,7 @@ public class ShopListCommand implements Command{
 		ShopManager sDao = ShopManager.getInstance();
 		List itemList=sDao.getItemList();
 		req.setAttribute("itemList",itemList);
-		return "/CORDING/shop/outline/shop.jsp";
+		return "/WEB-INF/views/shop/outline/shop.jsp";
 	}
 
 }

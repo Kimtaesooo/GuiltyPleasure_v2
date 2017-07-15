@@ -17,7 +17,7 @@ public class ExitCommand implements Command{
 		
 		String br_num = request.getParameter("br_num");
 		
-		return "/CORDING/battle/battleResult.jsp?br_num="+br_num+"";
+		return "/WEB-INF/views/battle/battleResult.jsp?br_num="+br_num+"";
 	}
 
 }

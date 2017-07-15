@@ -36,6 +36,6 @@ public class ApplyItemCommand extends HttpServlet {
 		
 		ShopManager sDao = ShopManager.getInstance();
 		
-		resp.sendRedirect("/GuiltyPleasure/CORDING/shop/outline/shop.jsp?cmd=SHOPLIST");
+		resp.sendRedirect("/WEB-INF/views/shop/outline/shop.jsp?cmd=SHOPLIST");
 	}
 }

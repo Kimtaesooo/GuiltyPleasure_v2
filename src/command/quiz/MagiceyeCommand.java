@@ -11,18 +11,18 @@ import dao.QuizRegDAO;
 import dao.quizmodule.GetPoint;
 
 /**
- *  ¸ÅÁ÷¾ÆÀÌ°ÔÀÓÀ» ÇÏ°í Æ÷ÀÎÆ®¸¦ Àû¸³ÇÒ¶§ »ç¿ëµÇ´Â Å¬·¡½º
- * @author ±èÇö¼ö
- * @see GetPoint Æ÷ÀÎÆ®¸¦ Àû¸³ÇÏ´Â ±â´ÉÀÌ ÀÖ´Â Å¬·¡½º*/
+ *  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½ ï¿½ï¿½ï¿½Ç´ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
+ * @author ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ * @see GetPoint ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½*/
 public class MagiceyeCommand implements Command{
 	GetPoint point = new GetPoint();
 	
 	/**
-	 * @param HttpServletRequest ¿äÃ»ÇÑ ÆäÀÌÁöÀÇ requestº¯¼ö
-	 * @param HttpServletResponse ¿äÃ»ÇÑ ÆäÀÌÁöÀÇ responseº¯¼ö
-	 * @return String ¸ÅÁ÷¾ÆÀÌ °ÔÀÓÀÇ ÆäÀÌÁö ÁÖ¼Ò¸¦ ¹ÝÈ¯
+	 * @param HttpServletRequest ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ requestï¿½ï¿½ï¿½ï¿½
+	 * @param HttpServletResponse ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ responseï¿½ï¿½ï¿½ï¿½
+	 * @return String ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼Ò¸ï¿½ ï¿½ï¿½È¯
 	 * 
-	 * @see QuizRegDAO ÄûÁî µî·Ï¿¡ ÇÊ¿äÇÑ db¿¬°á°ú ÀÛ¾÷À» ÇØÁÖ´Â Å¬·¡½º
+	 * @see QuizRegDAO ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ï¿ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ dbï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö´ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
 	 * */
 	@Override
 	public Object processCommand(HttpServletRequest req, HttpServletResponse resp)
@@ -30,10 +30,10 @@ public class MagiceyeCommand implements Command{
 		String id = req.getParameter("id");
 		int i = point.SavePoint(id);
 		if(i!=0){
-			System.out.println("Á¤´ä");
-			return "/CORDING/magic/magicEyePlay.jsp";
+			System.out.println("ï¿½ï¿½ï¿½ï¿½");
+			return "WEB-INF/views/magic/magicEyePlay.jsp";
 		}else{
-			return "/CORDING/magic/magicEyePlay.jsp";
+			return "WEB-INF/views/magic/magicEyePlay.jsp";
 		}
 	}
 	

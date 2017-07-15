@@ -52,7 +52,7 @@
 </script>
 </head>
 <body>
-<%@include file="../../top2.jsp" %>
+<%@include file="/nav.jsp" %>
 <form method="post" action="/GuiltyPleasure/myinfo" name="myInfoForm" id="myInfoForm">
 <input type="hidden" name="cmd" id="cmd"/>
 <input type="hidden" name="delete" id="delete" value="${dto.delete }"/>

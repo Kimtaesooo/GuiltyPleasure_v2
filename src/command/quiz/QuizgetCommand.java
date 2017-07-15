@@ -10,22 +10,22 @@ import dto.Quiz;
 
 /**
  * 
- * @author ±èÇö¼ö
- * ½Ì±Û°ÔÀÓÀ» ÇÒ¶§ ÄûÁî¸¦ db¿¡¼­ °¡Á®¿À´Â Å¬·¡½º
+ * @author ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ * ï¿½Ì±Û°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò¶ï¿½ ï¿½ï¿½ï¿½î¸¦ dbï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
  * */
 public class QuizgetCommand implements Command {
 	/**
-	 * @param HttpServletRequest ¿äÃ»ÇÑ ÆäÀÌÁöÀÇ requestº¯¼ö
-	 * @param HttpServletResponse ¿äÃ»ÇÑ ÆäÀÌÁöÀÇ responseº¯¼ö
-	 * @return String request¿¡ Æ÷ÇÔµÈ method ÆÄ¶ó¹ÌÅÍ¿¡ µû¶ó °´°ü½Ä ÄûÁî°ÔÀÓ, ÁÖ°ü½Ä ÄûÁî°×ÀÇ urlÁÖ¼Ò¸¦ ¹ÝÈ¯, ¿À·ù½Ã ½Ì±Û°ÔÀÓÀÇ ÆäÀÌÁö ÁÖ¼Ò¸¦ ¹ÝÈ¯
+	 * @param HttpServletRequest ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ requestï¿½ï¿½ï¿½ï¿½
+	 * @param HttpServletResponse ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ responseï¿½ï¿½ï¿½ï¿½
+	 * @return String requestï¿½ï¿½ ï¿½ï¿½ï¿½Ôµï¿½ method ï¿½Ä¶ï¿½ï¿½ï¿½Í¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½Ö°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ urlï¿½Ö¼Ò¸ï¿½ ï¿½ï¿½È¯, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì±Û°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼Ò¸ï¿½ ï¿½ï¿½È¯
 	 * 
-	 * @see GetQuiz db¿¡ ÀúÀåµÈ ÄûÁî¸¦ °¡Á®¿À´Â ÀÛ¾÷À» ÇÏ´Â Å¬·¡½º
-	 * @see Quiz ÄûÁî¸¦ °´Ã¼·Î ÀúÀåÇÒ ¶§ ¾²ÀÌ´Â Å¬·¡½º
+	 * @see GetQuiz dbï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½î¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
+	 * @see Quiz ï¿½ï¿½ï¿½î¸¦ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ì´ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
 	 * */
 	@Override
 	public Object processCommand(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		// TODO ÄûÁî¸¦ °¡Á®¿À´Â Å¬·¡½º
+		// TODO ï¿½ï¿½ï¿½î¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
 		GetQuiz quiz = new GetQuiz();
 		Quiz q = quiz.makeQuiz();
 		req.setAttribute("quiz", q);
@@ -34,9 +34,9 @@ public class QuizgetCommand implements Command {
 		if("SINGLE".equals(method)){
 			return "/CORDING/Quiz/SinglePlay.jsp";
 		}else if("SHORT".equals(method)){
-			return "/CORDING/Quiz/ShortPlay.jsp";
+			return "WEB-INF/views/Quiz/ShortPlay.jsp";
 		}
-			return "/CORDING/Quiz/SingleStrart.html";
+			return "WEB-INF/views/Quiz/SingleStrart.html";
 		
 	}
 }

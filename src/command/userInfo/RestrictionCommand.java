@@ -16,7 +16,7 @@ public class RestrictionCommand implements Command{
 		String param = request.getParameter("param");
 
 		if(param.isEmpty()){
-			return "WEB-INF/userInfo/userList.jsp";
+			return "/WEB-INF/views/userInfo/userList.jsp";
 		}
 		
 		String id = request.getParameter("id")==null?"":request.getParameter("id");
@@ -25,6 +25,6 @@ public class RestrictionCommand implements Command{
 		if(result != 1){
 			return "";
 		}
-		return "WEB-INF/userInfo/userList.jsp";
+		return "/WEB-INF/views/userInfo/userList.jsp";
 	}	
 }

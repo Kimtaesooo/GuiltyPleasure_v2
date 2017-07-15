@@ -18,7 +18,7 @@ public class MyinfoCommand implements Command{
 		MyInfoDTO dto = dao.searchMyInfo(id);
 		
 		request.setAttribute("dto", dto);
-		return "WEB-INF/myInfo/myInfo.jsp";
+		return "WEB-INF/views/myInfo/myInfo.jsp";
 	}
 
 }

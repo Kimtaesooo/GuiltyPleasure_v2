@@ -34,7 +34,7 @@ public class InfoCommand implements Command {
 		request.setAttribute("itemtotal", count);
 		request.setAttribute("pageno", pageno);
 		
-		return "WEB-INF/userInfo/userInfo.jsp";
+		return "/WEB-INF/views/userInfo/userInfo.jsp";
 	}
 
 }

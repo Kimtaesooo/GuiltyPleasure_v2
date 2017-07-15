@@ -47,9 +47,14 @@ public class LoginController extends HttpServlet {
 			RequestDispatcher view = request.getRequestDispatcher(url);
 			view.forward(request, response);
 			return;
-		// 아이디, 패스워드 찾기 페이지
+		// 회원가입 페이지
 		} else if (cmd.equals("resistrationpage")) {
 			url = "/WEB-INF/views/login/resistration.jsp";
+			RequestDispatcher view = request.getRequestDispatcher(url);
+			view.forward(request, response);
+			return;
+		} else if (cmd.equals("idcheck")) {
+			url = "/WEB-INF/views/login/idCheck.jsp";
 			RequestDispatcher view = request.getRequestDispatcher(url);
 			view.forward(request, response);
 			return;

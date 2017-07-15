@@ -2,6 +2,8 @@
 <%@page import="dto.Board"%>
 <%@page import="dao.boardmodule.*"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -134,12 +136,11 @@
 </script>
 </head>
 <body>
+<input type="hidden" id="u_id" value="${u_id}" />
+<input type="hidden" id="single" value="${udto.no_single}" />
+<input type="hidden" id="battle" value="${udto.no_battle}" />
 	<jsp:include page="/nav.jsp" />
 	<br><br><br><br><br><br>
-<%
-	request.setCharacterEncoding("UTF-8");
-	response.setCharacterEncoding("UTF-8");
-%>
 <jsp:useBean id="dao" class="dao.boardmodule.FreeBoard" />
 <jsp:useBean id="dto" class="dto.Board" />
 <%

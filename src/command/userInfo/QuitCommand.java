@@ -18,7 +18,7 @@ public class QuitCommand implements Command{
 		if(result != 1){
 			return "";
 		}
-		return "WEB-INF/userInfo/userList.jsp";
+		return "/WEB-INF/views/userInfo/userList.jsp";
 	}
 
 }

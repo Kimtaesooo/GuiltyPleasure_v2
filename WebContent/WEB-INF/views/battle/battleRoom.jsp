@@ -13,9 +13,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap332/css/bootstrap.min.css">
-<script	src="${pageContext.request.contextPath}/bootstrap332/js/jquery-3.2.1.min.js"></script>
-<script	src="${pageContext.request.contextPath}/bootstrap332/js/bootstrap.min.js"></script>
 <script>
 	$(function() {
 		$("#btnPopup").click(function() {
@@ -52,7 +49,7 @@
 <%
 	List list = dao.getListRoom();
 %>
-	<jsp:include page="/top.jsp" />
+	<%@ include file="/nav.jsp" %>
 	<br>
 	<h2>
 		<center>배틀 대기방</center>

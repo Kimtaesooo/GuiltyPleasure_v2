@@ -42,6 +42,6 @@ public class MybattleInfoCommand implements Command{
 		request.setAttribute("pageno", pageno);
 		
 		
-		return "WEB-INF/myInfo/myBattleInfo.jsp";
+		return "WEB-INF/views/myInfo/myBattleInfo.jsp";
 	}
 }

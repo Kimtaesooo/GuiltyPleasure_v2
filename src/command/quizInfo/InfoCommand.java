@@ -22,7 +22,7 @@ public class InfoCommand implements Command {
 		
 		request.setAttribute("dto", dto);
 		
-		return "WEB-INF/quizInfo/quizInfo.jsp";
+		return "WEB-INF/views/quizInfo/quizInfo.jsp";
 	}
 
 }

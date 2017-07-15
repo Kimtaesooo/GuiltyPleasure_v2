@@ -34,6 +34,6 @@ public class SearchQuiz extends HttpServlet {
 		BonusManager bDao = BonusManager.getInstance();
 		bDao.searchQuiz(id);
 		
-		resp.sendRedirect("/GuiltyPleasure/CORDING/shop/outline/searchResult.jsp");
+		resp.sendRedirect("/WEB-INF/views/shop/outline/searchResult.jsp");
 	}
 }

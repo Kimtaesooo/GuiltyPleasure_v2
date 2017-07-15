@@ -42,6 +42,6 @@ public class ShopBuyCommand extends HttpServlet {
 		if(nickname!=null){
 		sDao.editNickname(id, nickname);
 		}
-		resp.sendRedirect("/GuiltyPleasure/CORDING/shop/outline/shop.jsp?cmd=SHOPLIST");
+		resp.sendRedirect("/WEB-INF/views/shop/outline/shop.jsp?cmd=SHOPLIST");
 	}
 }

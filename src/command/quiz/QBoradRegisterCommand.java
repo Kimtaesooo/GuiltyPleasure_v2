@@ -13,18 +13,18 @@ import dao.QuizRegDAO;
 import dto.U_Quiz;
 
 /**
- * @author ±èÇö¼ö
- * ÄûÁî µî·Ï °Ô½ÃÆÇÀ» °¡Á®¿À´Â Å¬·¡½º
+ * @author ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ * ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ô½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
  * */
 public class QBoradRegisterCommand implements Command {
 
 	
 	/**
-	 * @param HttpServletRequest ¿äÃ»ÇÑ ÆäÀÌÁöÀÇ requestº¯¼ö
-	 * @param HttpServletResponse ¿äÃ»ÇÑ ÆäÀÌÁöÀÇ responseº¯¼ö
-	 * @return String ÀÓ½Ã ÄûÁî µî·Ï °Ô½ÃÆÇÀÇ ÁÖ¼Ò¸¦ ¹ÝÈ¯
+	 * @param HttpServletRequest ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ requestï¿½ï¿½ï¿½ï¿½
+	 * @param HttpServletResponse ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ responseï¿½ï¿½ï¿½ï¿½
+	 * @return String ï¿½Ó½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ô½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼Ò¸ï¿½ ï¿½ï¿½È¯
 	 * 
-	 * @see QuizRegDAO ÄûÁî µî·Ï¿¡ ÇÊ¿äÇÑ db¿¬°á°ú ÀÛ¾÷À» ÇØÁÖ´Â Å¬·¡½º
+	 * @see QuizRegDAO ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ï¿ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ dbï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö´ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
 	 * */
 	@Override
 	public Object processCommand(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -36,6 +36,6 @@ public class QBoradRegisterCommand implements Command {
 		list = dao.getQBoard(id);
 		req.setAttribute("Boardlist", list);
 	
-		return "/CORDING/QuizRegi/QuizRegBorad.jsp";		
+		return "WEB-INF/views/QuizRegi/QuizRegBorad.jsp";		
 	}
 }

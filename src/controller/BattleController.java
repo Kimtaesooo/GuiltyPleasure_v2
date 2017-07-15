@@ -11,18 +11,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import command.battle.CommandFactory;
 
-@WebServlet(urlPatterns="/battle")
+@WebServlet(urlPatterns = "/battle")
 public class BattleController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    CommandFactory instance;
+	CommandFactory instance;
 
-    public BattleController() {
-        super();
-        instance =CommandFactory.getInstance();
-    }
+	public BattleController() {
+		super();
+		instance = CommandFactory.getInstance();
+	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request,response);
+		doPost(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -30,10 +30,18 @@ public class BattleController extends HttpServlet {
 		String cmd = request.getParameter("cmd");
 		String url = "";
 		Command command = null;
+
+		// 배틀페이지 이동
+		if (cmd.equals("battlepage")) {
+			url = "/WEB-INF/views/battle/battleRoom.jsp";
+			RequestDispatcher view = request.getRequestDispatcher(url);
+			view.forward(request, response);
+			return;
+		}
 		command = instance.createCommand(cmd);
-		
+
 		url = command.processCommand(request, response).toString();
-		
+
 		RequestDispatcher view = request.getRequestDispatcher(url);
 		view.forward(request, response);
 	}

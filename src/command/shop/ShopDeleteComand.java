@@ -30,6 +30,6 @@ public class ShopDeleteComand extends HttpServlet {
 		String code=req.getParameter("code");
 		ShopManager sDao = ShopManager.getInstance();
 		sDao.deleteItemByCode(code);
-		resp.sendRedirect("/GuiltyPleasure/CORDING/shop/outline/shop.jsp?cmd=SHOPLIST");
+		resp.sendRedirect("/WEB-INF/views/shop/outline/shop.jsp?cmd=SHOPLIST");
 	}
 }

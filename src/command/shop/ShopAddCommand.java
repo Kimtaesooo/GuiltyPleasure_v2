@@ -42,6 +42,6 @@ public class ShopAddCommand extends HttpServlet {
 		
 		ShopManager sDao = ShopManager.getInstance();
 		sDao.addItem(dto);
-		resp.sendRedirect("/GuiltyPleasure/CORDING/shop/outline/shop.jsp?cmd=SHOPLIST");
+		resp.sendRedirect("/WEB-INF/views/shop/outline/shop.jsp?cmd=SHOPLIST");
 	}
 }

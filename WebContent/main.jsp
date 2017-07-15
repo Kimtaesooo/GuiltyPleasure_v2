@@ -7,105 +7,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap332/css/bootstrap.min.css">
-<!-- jQuery -->
-<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.min.js"></script>
-<!-- jQuery Easing -->
-<script	src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.easing.1.3.js"></script>
-<!-- Bootstrap -->
-<script	src="${pageContext.request.contextPath}/design/mintstrap/outline/js/bootstrap.min.js"></script>
-<!-- Waypoints -->
-<script	src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.waypoints.min.js"></script>
-<!-- Magnific Popup -->
-<script	src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.magnific-popup.min.js"></script>
-<!-- Owl Carousel -->
-<script	src="${pageContext.request.contextPath}/design/mintstrap/outline/js/owl.carousel.min.js"></script>
-<!-- toCount -->
-<script	src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.countTo.js"></script>
-<!-- Main JS -->
-<script	src="${pageContext.request.contextPath}/design/mintstrap/outline/js/main.js"></script>
-<!-- Animate.css -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/animate.css">
-<!-- Icomoon Icon Fonts-->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/icomoon.css">
-<!-- Simple Line Icons-->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/simple-line-icons.css">
-<!-- Magnific Popup -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/magnific-popup.css">
-<!-- Owl Carousel -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/owl.carousel.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/owl.theme.default.min.css">
-<!-- Theme Style -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/style.css">
-<!-- Modernizr JS -->
-<script src="js/modernizr-2.6.2.min.js"></script>
 
-<script>
-	$(document).ready(function() {
-		$("#btnPopup").click(function() {
-			$("#theModal").modal();
-		});
-
-	});
-	function insingle() {
-		if ($("#u_id").val().length == 0) {
-			alert('로그인 후 사용 가능합니다.');
-			return;
-		}
-		if ($("#single").val() != 'null') {
-			alert("싱글 플레이가 금지된 유저 입니다.");
-			return;
-		}
-		location.href = "CORDING/Quiz/SingleMain.jsp";
-	}
-
-	function inbattle() {
-		if ($("#u_id").val().length == 0) {
-			alert('로그인 후 사용 가능합니다.');
-			return;
-		}
-		if ($("#battle").val() != 'null') {
-			alert('배틀 플레이가 금지된 유저입니다.');
-			return;
-		}
-		location.href = "CORDING/battle/battleRoom.jsp";
-	}
-
-	function inshop() {
-		if ($("#u_id").val().length == 0) {
-			alert('로그인 후 사용 가능합니다.');
-			return;
-		}
-		location.href = "/GuiltyPleasure/shop?cmd=SHOPLIST";
-	}
-
-	function inregquiz() {
-		if ($("#u_id").val().length == 0) {
-			alert('로그인 후 사용 가능합니다.');
-			return;
-		}
-		location.href = "CORDING/QuizRegi/QuizRegInfo.jsp";
-	}
-
-	function inmagic() {
-		if ($("#u_id").val().length == 0) {
-			alert('로그인 후 사용 가능합니다.');
-			return;
-		}
-		if ($("#battle").val() != 'null') {
-			alert('배틀 플레이가 금지된 유저입니다.');
-			return;
-		}
-		location.href = "CORDING/magic/magicEyeStart.jsp";
-	}
-</script>
 
 <title>Main</title>
 
 </head>
 <body>
-	<jsp:include page="/nav.jsp" />
-
+<%@ include file="/nav.jsp" %>
+<input type="hidden" id="u_id" value="${u_id}" />
+<input type="hidden" id="single" value="${udto.no_single}" />
+<input type="hidden" id="battle" value="${udto.no_battle}" />
 	<style>
 #fh5co-hero {
 	padding-top: 2em;
@@ -154,9 +65,6 @@
 	font-size: 15px;
 }
 </style>
-	<input type="hidden" id="u_id" value="${u_id}" />
-	<input type="hidden" id="single" value="${udto.no_single}" />
-	<input type="hidden" id="battle" value="${udto.no_battle}" />
 	<div id="fh5co-main">
 
 		<header id="fh5co-hero" data-section="home"

@@ -28,7 +28,7 @@
 	function fnSubmit(){
     	var u_id = document.getElementById("u_id").value;
     	var param = "u_id=" + u_id;
-    	sendRequest("POST", "idCheck.jsp", param, callback);
+    	sendRequest("POST", "/GuiltyPleasure/logcheck?cmd=idcheck", param, callback);
     }  
     function callback(){
     	if(httpRequest.readyState==4){
@@ -293,7 +293,7 @@
                 	fnSubmit();
                     var divId = $('#divId');
                     
-                    if($('#u_id').val()==""){
+                    if($("#idcheck").text().indexOf("불가") != -1){
                     	divId.removeClass("has-success");
                     	divId.addClass("has-error");
                     }else{
@@ -454,8 +454,8 @@
                     }
                      
                     //아이디 검사
-                    if($('#u_id').val()==""){
-                        modalContents.text("아이디를 입력하여 주시기 바랍니다.");
+                    if($('#idcheck').text().indexOf("불가") != -1){
+                        modalContents.text("아이디를 확인하여 주시기 바랍니다.");
                         modal.modal('show');
                          
                         divId.removeClass("has-success");

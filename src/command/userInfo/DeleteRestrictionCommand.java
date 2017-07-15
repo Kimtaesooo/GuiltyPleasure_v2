@@ -18,9 +18,9 @@ public class DeleteRestrictionCommand implements Command{
 		int result = dao.deleteRestriction(param, id);
 				
 		if(result == 1){
-			return "WEB-INF/userInfo/userList.jsp";
+			return "/WEB-INF/views/userInfo/userList.jsp";
 		}
-		return "WEB-INF/userInfo/userInfo.jsp";
+		return "/WEB-INF/views/userInfo/userInfo.jsp";
 	}
 
 }

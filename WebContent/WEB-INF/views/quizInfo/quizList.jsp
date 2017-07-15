@@ -45,7 +45,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<%@include file="../../top2.jsp" %>
+<%@include file="/nav.jsp" %>
 <form method="post" action="/GuiltyPleasure/quizinfo" name="quizInfoForm" id="quizInfoForm">
 <input type="hidden" name="cmd" id="cmd"/>
 <input type="hidden" name="qcode" id="qcode"/>

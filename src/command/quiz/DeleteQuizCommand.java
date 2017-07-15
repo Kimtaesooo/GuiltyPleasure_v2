@@ -11,15 +11,15 @@ import dao.QuizRegDAO;
 
 
 /**
- * └╙╜├ ─√┴ю ╡ю╖╧ ░╘╜├╞╟└╟ ─√┴ю╕ж ╗ш┴ж╟╧┤┬ ┼м╖б╜║
+ * я┐╜╙╜я┐╜ я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜ я┐╜╘╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜ю╕ж я┐╜я┐╜я┐╜я┐╜я┐╜╧┤я┐╜ ┼мя┐╜я┐╜я┐╜я┐╜
  * */
 public class DeleteQuizCommand implements Command{
 	/**
-	 * @param HttpServletRequest ┐ф├╗╟╤ ╞ф└╠┴Ў└╟ request║п╝Ў
-	 * @param HttpServletResponse ┐ф├╗╟╤ ╞ф└╠┴Ў└╟ response║п╝Ў
-	 * @return String ─√┴ю╗ш┴ж└╟ ░с░·┐й║╬┐б ╡√╢є ┐╧╖с╞ф└╠┴Ў ╢╟┤┬ ─√┴ю┴д║╕ ╞ф└╠┴Ў ┴╓╝╥╕ж ╣▌╚п
+	 * @param HttpServletRequest я┐╜я┐╜├╗я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ requestя┐╜я┐╜я┐╜я┐╜
+	 * @param HttpServletResponse я┐╜я┐╜├╗я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ responseя┐╜я┐╜я┐╜я┐╜
+	 * @return String я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜╬┐я┐╜ я┐╜я┐╜я┐╜я┐╜ я┐╜╧╖я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜╟┤я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜╓╝╥╕я┐╜ я┐╜я┐╜╚п
 	 * 
-	 * @see QuizRegDAO ─√┴ю ╡ю╖╧┐б ╟╩┐ф╟╤ db┐м░с░· └█╛ў└╗ ╟╪┴╓┤┬ ┼м╖б╜║
+	 * @see QuizRegDAO я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜╧┐я┐╜ я┐╜╩┐я┐╜я┐╜я┐╜ dbя┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜█╛я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜╓┤я┐╜ ┼мя┐╜я┐╜я┐╜я┐╜
 	 * */
 	
 	@Override
@@ -31,8 +31,8 @@ public class DeleteQuizCommand implements Command{
 		result = dao.deleteQuiz(qnum);
 		req.setAttribute("cmd", "DELETE");
 		if(result == 1){
-			return "/CORDING/QuizRegi/RegiComplete.jsp";
+			return "WEB-INF/views/QuizRegi/RegiComplete.jsp";
 		}
-		return "/CORDING/QuizRegi/QuizeInform.jsp";
+		return "WEB-INF/views/QuizRegi/QuizeInform.jsp";
 	}
 }

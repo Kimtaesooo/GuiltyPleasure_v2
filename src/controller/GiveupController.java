@@ -10,22 +10,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import command.quiz.CommandFactory;
-import dao.QuizRegDAO;
 
 /**
- * °ÔÀÓÆ÷±â¸¦ Ã³¸®ÇÏ´Â ¼­ºí¸´
- * @author ±èÇö¼ö
- * */
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½â¸¦ Ã³ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½
+ * 
+ * @author ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ */
 
-@WebServlet(urlPatterns="/giveup")
-public class GiveupController extends HttpServlet{
-
+@WebServlet(urlPatterns = "/giveup")
+public class GiveupController extends HttpServlet {
 
 	/**
-	 * @param HttpServletRequest ¿äÃ»ÇÑ ÆäÀÌÁöÀÇ requestº¯¼ö
-	 * @param HttpServletResponse ¿äÃ»ÇÑ ÆäÀÌÁöÀÇ responseº¯¼ö
-	 * @see RequestDispatcher cmdÀÇ °ª¿¡ µû¶ó urlÀ» ¹Ş¾Æ¿Í urlÁÖ¼Ò·Î º¸³»´Â Å¬·¡½º
-	 * */		
+	 * @param HttpServletRequest
+	 *            ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ requestï¿½ï¿½ï¿½ï¿½
+	 * @param HttpServletResponse
+	 *            ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ responseï¿½ï¿½ï¿½ï¿½
+	 * @see RequestDispatcher cmdï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ urlï¿½ï¿½ ï¿½Ş¾Æ¿ï¿½ urlï¿½Ö¼Ò·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
+	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -35,15 +36,33 @@ public class GiveupController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+
 		String cmd = req.getParameter("cmd");
+
+		// ì‹±ê¸€ê²Œì„ ë©”ì¸ í˜ì´ì§€ ì´ë™
+		if (cmd.equals("singlepage")) {
+			String url = "/WEB-INF/views/Quiz/SingleMain.jsp";
+			RequestDispatcher view = req.getRequestDispatcher(url);
+			view.forward(req, resp);
+			return;
+			// í€´ì¦ˆë“±ë¡ í˜ì´ì§€ ì´ë™
+		} else if (cmd.equals("inregquiz")) {
+			String url = "/WEB-INF/views/QuizRegi/QuizRegInfo.jsp";
+			RequestDispatcher view = req.getRequestDispatcher(url);
+			view.forward(req, resp);
+			return;
+		} else if (cmd.equals("inmagic")) {
+			String url = "/WEB-INF/views/magic/magicEyeStart.jsp";
+			RequestDispatcher view = req.getRequestDispatcher(url);
+			view.forward(req, resp);
+			return;
+		}
+
 		CommandFactory factory = CommandFactory.newInstance();
 		Command command = factory.createCommand(cmd);
 		String url = (String) command.processCommand(req, resp);
-		System.out.println("url : "+url);
 		RequestDispatcher dis = req.getRequestDispatcher(url);
 		dis.forward(req, resp);
 	}
 
-	
 }

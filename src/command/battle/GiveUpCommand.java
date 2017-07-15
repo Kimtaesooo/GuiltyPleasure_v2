@@ -17,7 +17,7 @@ public class GiveUpCommand implements Command{
 		String u_id = request.getParameter("u_id");
 		String br_num = request.getParameter("br_num");
 		
-		return "/CORDING/battle/battleResult2.jsp?br_num="+br_num+"u_id="+u_id+"";
+		return "/WEB-INF/views/battle/battleResult2.jsp?br_num="+br_num+"u_id="+u_id+"";
 	}
 
 }

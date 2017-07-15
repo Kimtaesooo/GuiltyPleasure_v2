@@ -8,22 +8,21 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import controller.Command;
-import dao.QuizRegDAO;
 
 
 /**
- * ╜╠▒█░╘└╙┐б╝н ╞ў▒т╣Ў╞░└╗ ┤й╕ж╜├ ▒т┴╕┐б └·└х╡╚ ░╘└╙░с░·╕ж ╗ш┴ж╟╧░э └╠╡┐╟╥ ╞ф└╠┴Ў╕ж ┴д╟╪┴╓┤┬ ┼м╖б╜║
- * @author ▒ш╟Ў╝Ў
+ * я┐╜╠▒█░я┐╜я┐╜╙┐я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜╞░я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜╙░я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜╧░я┐╜ я┐╜╠╡я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜╓┤я┐╜ ┼мя┐╜я┐╜я┐╜я┐╜
+ * @author я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
  * */
 public class GiveupCommand implements Command{
 
 	
 	/**
-	 * @param HttpServletRequest ┐ф├╗╟╤ ╞ф└╠┴Ў└╟ request║п╝Ў
-	 * @param HttpServletResponse ┐ф├╗╟╤ ╞ф└╠┴Ў└╟ response║п╝Ў
-	 * @return String ░╘└╙└╗ ╞ў▒т╟╧░э ╕▐└╬╞ф└╠┴Ў└╟ ┴╓╝╥╕ж ╣▌╚п
+	 * @param HttpServletRequest я┐╜я┐╜├╗я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ requestя┐╜я┐╜я┐╜я┐╜
+	 * @param HttpServletResponse я┐╜я┐╜├╗я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ responseя┐╜я┐╜я┐╜я┐╜
+	 * @return String я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜╧░я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜╓╝╥╕я┐╜ я┐╜я┐╜╚п
 	 * 
-	 * @see session ░╘└╙┐б╝н ▒т╖╧╡╚ ░с░·╕ж ░б┴Ў░э└╓┤┬ session
+	 * @see session я┐╜я┐╜я┐╜╙┐я┐╜я┐╜я┐╜ я┐╜я┐╜╧╡я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜╓┤я┐╜ session
 	 * */
 	@Override
 	public Object processCommand(HttpServletRequest req, HttpServletResponse resp)

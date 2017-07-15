@@ -97,7 +97,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<%@include file="../../top2.jsp" %>
+<%@include file="/nav.jsp" %>
 <form method="post" action="/GuiltyPleasure/quizinfo" name="quizInfoForm" id="quizInfoForm">
 <input type="hidden" name="cmd" id="cmd"/>
 <input type="hidden" name="q_code" id="q_code" value="${dto.q_code }"/>

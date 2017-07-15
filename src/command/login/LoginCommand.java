@@ -51,6 +51,8 @@ public class LoginCommand implements Command {
 			session.setAttribute("u_id", u_id);
 			session.setAttribute("u_nickname", dto.getU_nickname());
 			session.setAttribute("udto", userdto);
+			session.setAttribute("u_point", dto.getU_point());
+			
 			// response.sendRedirect("/GuiltyPleasure/main.jsp");
 			return "/main.jsp";
 		} else {

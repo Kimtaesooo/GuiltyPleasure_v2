@@ -11,26 +11,26 @@ import dao.QuizRegDAO;
 import dto.U_Quiz;
 
 /**
- * @author ±èÇö¼ö
- * À¯Àú ¾ÆÀÌµð·Î ÄûÁî°¡ µî·ÏµÈ µ¥ÀÌÅÍ¸¦ °¡Á®¿À´Â Å¬·¡½º
+ * @author ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ * ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ï¿½ ï¿½ï¿½ï¿½î°¡ ï¿½ï¿½Ïµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
  * */
 public class QBRGetCommand implements Command {
 	/**
-	 * @param HttpServletRequest ¿äÃ»ÇÑ ÆäÀÌÁöÀÇ requestº¯¼ö
-	 * @param HttpServletResponse ¿äÃ»ÇÑ ÆäÀÌÁöÀÇ responseº¯¼ö
-	 * @return String db¿¡ ÄûÁîÀÇ Á¤º¸¸¦ µî·ÏÈÄ µî·ÏµÈ ÄûÁîÁ¤º¸¸¦ °¡Áö°í ±× ÄûÁî¿¡´ëÇØ º¸¿©ÁÖ´Â ÆäÀÌÁö urlÀ» ¹ÝÈ¯
+	 * @param HttpServletRequest ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ requestï¿½ï¿½ï¿½ï¿½
+	 * @param HttpServletResponse ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ responseï¿½ï¿½ï¿½ï¿½
+	 * @return String dbï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ïµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½î¿¡ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ urlï¿½ï¿½ ï¿½ï¿½È¯
 	 * 
-	 * @see QuizRegDAO ÄûÁî µî·Ï¿¡ ÇÊ¿äÇÑ db¿¬°á°ú °ü·ÃµÈ ÀÛ¾÷À» ÇØÁÖ´Â Å¬·¡½º
+	 * @see QuizRegDAO ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ï¿ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ dbï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö´ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
 	 * */
 	@Override
 	public Object processCommand(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		QuizRegDAO dao = new QuizRegDAO();
-		// ¿©±â¼­ id´Â ±Û ½ÃÄö½º ¹øÈ£ÀÓ
+		// ï¿½ï¿½ï¿½â¼­ idï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ï¿½ï¿½
 		String id = req.getParameter("id");
 		
 		U_Quiz uq = dao.getU_Quzi(id);
 		req.setAttribute("uq", uq);
-		return  "/CORDING/QuizRegi/QuizeInform.jsp";
+		return  "WEB-INF/views//QuizRegi/QuizeInform.jsp";
 	}
 
 }

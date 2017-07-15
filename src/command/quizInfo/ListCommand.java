@@ -57,7 +57,7 @@ public class ListCommand implements Command {
 		request.setAttribute("total", count);
 		request.setAttribute("pageno", pageno);
 		
-		return "WEB-INF/quizInfo/quizList.jsp";
+		return "WEB-INF/views/quizInfo/quizList.jsp";
 	}
 
 }

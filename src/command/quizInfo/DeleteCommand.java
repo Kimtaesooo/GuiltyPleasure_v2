@@ -17,11 +17,11 @@ public class DeleteCommand implements Command {
 		System.out.println("comm id = "+id);
 		int result = dao.deleteQuiz(id);
 		if(result != 1){
-			System.out.println("½ÇÆÐÀå¼Ò");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 			return "";
 		}		
 		
-		return "WEB-INF/quizInfo/quizInfo.jsp";
+		return "WEB-INF/views/quizInfo/quizInfo.jsp";
 	}
 
 }

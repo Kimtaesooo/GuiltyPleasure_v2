@@ -2,22 +2,22 @@ package command.quiz;
 
 import controller.Command;
 /**
- * Ä¿¸Çµå ÆÑÅä¸® Å¬·¡½º
- * @author ±èÇö¼ö
+ * Ä¿ï¿½Çµï¿½ ï¿½ï¿½ï¿½ä¸® Å¬ï¿½ï¿½ï¿½ï¿½
+ * @author ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  * */
 public class CommandFactory {
 	private CommandFactory(){}
 	private static CommandFactory instance = new CommandFactory();
 	
 	/**
-	 * CommandFactory instance¸¦ »ý¼ºÇÏ´Â ¸Þ¼­µå
+	 * CommandFactory instanceï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
 	 * */
 	public static CommandFactory newInstance(){
 		return instance;
 	}
 	/**
-	 * @param String cmd Ä¿¸Çµå¸¦ »ý¼ºÇÒ¶§ ¸Å°³º¯¼ö·Î °ªÀ» ÁÖ¾î ¿øÇÏ´Â ÀÎ½ºÅÏ½º¸¦ »ý¼ºÇÑ´Ù
-	 * @return Instance String¸Å°³º¯¼ö¿¡ µû¶ó command°´Ã¼¸¦ ¹ÝÈ¯ÇÑ´Ù.
+	 * @param String cmd Ä¿ï¿½Çµå¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½ ï¿½Å°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Î½ï¿½ï¿½Ï½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½
+	 * @return Instance Stringï¿½Å°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ commandï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ñ´ï¿½.
 	 * 
 	 * */
 	public Command createCommand(String cmd){

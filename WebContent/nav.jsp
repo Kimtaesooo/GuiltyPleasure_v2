@@ -5,7 +5,93 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap332/css/bootstrap.min.css">
+<!-- jQuery -->
+<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.min.js"></script>
+<!-- jQuery Easing -->
+<script	src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.easing.1.3.js"></script>
+<!-- Bootstrap -->
+<script	src="${pageContext.request.contextPath}/design/mintstrap/outline/js/bootstrap.min.js"></script>
+<!-- Waypoints -->
+<script	src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.waypoints.min.js"></script>
+<!-- Magnific Popup -->
+<script	src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.magnific-popup.min.js"></script>
+<!-- Owl Carousel -->
+<script	src="${pageContext.request.contextPath}/design/mintstrap/outline/js/owl.carousel.min.js"></script>
+<!-- toCount -->
+<script	src="${pageContext.request.contextPath}/design/mintstrap/outline/js/jquery.countTo.js"></script>
+<!-- Main JS -->
+<script	src="${pageContext.request.contextPath}/design/mintstrap/outline/js/main.js"></script>
+<!-- Animate.css -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/animate.css">
+<!-- Icomoon Icon Fonts-->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/icomoon.css">
+<!-- Simple Line Icons-->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/simple-line-icons.css">
+<!-- Magnific Popup -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/magnific-popup.css">
+<!-- Owl Carousel -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/owl.carousel.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/owl.theme.default.min.css">
+<!-- Theme Style -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/design/mintstrap/outline/css/style.css">
+<!-- Modernizr JS -->
+<script src="${pageContext.request.contextPath}/design/mintstrap/outline/js/modernizr-2.6.2.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$("#btnPopup").click(function() {
+			$("#theModal").modal();
+		});
 
+	});
+	function insingle() {
+		if ($("#u_id").val().length == 0) {
+			alert('로그인 후 사용 가능합니다.');
+			return;
+		}
+		if ($("#single").val() != '') {
+			alert("싱글 플레이가 금지된 유저 입니다.");
+			return;
+		}
+		location.href = "/GuiltyPleasure/giveup?cmd=singlepage";
+	}
+
+	function inbattle() {
+		if ($("#u_id").val().length == 0) {
+			alert('로그인 후 사용 가능합니다.');
+			return;
+		}
+		if ($("#battle").val() != '') {
+			alert('배틀 플레이가 금지된 유저입니다.');
+			return;
+		}
+		location.href = "/GuiltyPleasure/battle?cmd=battlepage";
+	}
+
+	function inshop() {
+		if ($("#u_id").val().length == 0) {
+			alert('로그인 후 사용 가능합니다.');
+			return;
+		}
+		location.href = "/GuiltyPleasure/shop?cmd=SHOPLIST";
+	}
+
+	function inregquiz() {
+		if ($("#u_id").val().length == 0) {
+			alert('로그인 후 사용 가능합니다.');
+			return;
+		}
+		location.href = "/GuiltyPleasure/giveup?cmd=inregquiz";
+	}
+
+	function inmagic() {
+		if ($("#u_id").val().length == 0) {
+			alert('로그인 후 사용 가능합니다.');
+			return;
+		}
+		location.href = "/GuiltyPleasure/giveup?cmd=inmagic";
+	}
+</script>
 <style>
 #fh5co-menu {
     margin-top: 0px;
@@ -108,69 +194,13 @@ color: #333;
     border-bottom: none;
    
 }
-
 </style>
-<script>
-$(document).ready(function(){
-	function insingle(){
-		if($("#u_id").val().length ==0){
-			alert('로그인 후 사용 가능합니다.');
-			return ;
-		}
-		if($("#single").val()!= 'null'){
-			alert("싱글 플레이가 금지된 유저 입니다.");
-			return ;
-		}
-		location.href="CORDING/Quiz/SingleStart.jsp";
-	}
-	
-	function inbattle(){
-		if($("#u_id").val().length ==0){
-			alert('로그인 후 사용 가능합니다.');
-			return ;
-		}
-		if($("#battle").val()!= 'null'){
-			alert('배틀 플레이가 금지된 유저입니다.');
-			return ;
-		}
-		location.href="CORDING/battle/battleRoom.jsp";
-	}
-	
-	function inshop(){
-		if($("#u_id").val().length ==0){
-			alert('로그인 후 사용 가능합니다.');
-			return ;
-		}
-		location.href="/GuiltyPleasure/shop?cmd=SHOPLIST";
-	}
-	
-	function inregquiz(){
-		if($("#u_id").val().length ==0){
-			alert('로그인 후 사용 가능합니다.');
-			return ;
-		}
-		location.href="CORDING/QuizRegi/QuizRegInfo.jsp";
-	}
-	
-	function inmagic(){
-		if($("#u_id").val().length ==0){
-			alert('로그인 후 사용 가능합니다.');
-			return ;
-		}
-		if($("#battle").val()!= 'null'){
-			alert('배틀 플레이가 금지된 유저입니다.');
-			return ;
-		}
-		location.href="CORDING/magic/magicEyeStart.jsp";
-	}
-	
-});
-</script>
+
 </head>
 <body>
 <input type="hidden" id="u_id" value="${u_id}" />
 <input type="hidden" id="single" value="${udto.no_single}" />
-<input type="hidden" id="battle" value="${udto.no_battle}" />
+<input type="hidden" name="battle" value="${udto.no_battle}" />
 <div id="fh5co-offcanvass" style="padding-top: 0px;">
 <div class="row" align="center">
 				<div class="col-md-12">
@@ -190,7 +220,7 @@ $(document).ready(function(){
 	<br><br>
 	<hr>
 	<h2 class="fh5co-lead">${u_id}님 환영합니다!</h2>
-	<h2 class="fh5co-lead">포인트 : ${udto.point}</h2>
+	<h2 class="fh5co-lead">포인트 : ${u_point}</h2>
 	<hr>
 	<a href="/GuiltyPleasure/myinfo?cmd=MYINFO">MY PAGE</a>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

@@ -16,15 +16,15 @@ import dao.QuizRegDAO;
 import dto.U_Quiz;
 
 /**
- * @author ±èÇö¼ö
- * À¯Àú°¡ ÄûÁî¸¦ µî·ÏÇÒ¶§ °ÅÄ¡´Â Å¬·¡½º
+ * @author ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½î¸¦ ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
  * */
 public class QuziRegisterCommand implements Command{
 	/**
-	 * @param HttpServletRequest ¿äÃ»ÇÑ ÆäÀÌÁöÀÇ requestº¯¼ö
-	 * @param HttpServletResponse ¿äÃ»ÇÑ ÆäÀÌÁöÀÇ responseº¯¼ö
-	 * @return String DB¿¡ µ¥ÀÌÅÍ¸¦ ÀÔ·ÂÇÑÈÄ ¿Ï·áÆäÀÌÁö È¤Àº, ´Ù½Ã µî·ÏÆäÀÌÁö·Î ÀÌµ¿ÇÏ´Â urlÁÖ¼Ò¸¦ ¹ÝÈ¯
-	 * @see QuizRegDAO db¿¡ ÀÖ´Â ÀÓ½Ã ÄûÁî µî·Ï Å×ÀÌºí¿¡ ÀúÀåÇÒ¶§³ª °¡Á®¿Ã¶§ »ç¿ëµÇ´Â Å¬·¡½º
+	 * @param HttpServletRequest ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ requestï¿½ï¿½ï¿½ï¿½
+	 * @param HttpServletResponse ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ responseï¿½ï¿½ï¿½ï¿½
+	 * @return String DBï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¤ï¿½ï¿½, ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ï´ï¿½ urlï¿½Ö¼Ò¸ï¿½ ï¿½ï¿½È¯
+	 * @see QuizRegDAO dbï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Ó½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ã¶ï¿½ ï¿½ï¿½ï¿½Ç´ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
 	 * */		
 	@Override
 	public Object processCommand(HttpServletRequest request, HttpServletResponse resp)throws ServletException, IOException {
@@ -32,9 +32,9 @@ public class QuziRegisterCommand implements Command{
 		int i = dao.RegiQuiz(dao.setQuiz(request));
 		request.setAttribute("cmd", "INSERT");
 		if(i>0){
-			return "/CORDING/QuizRegi/RegiComplete.jsp";
+			return "WEB-INF/views/QuizRegi/RegiComplete.jsp";
 		}
-		return "/CORDING/QuizRegi/QuizReg.jsp";
+		return "WEB-INF/views/QuizRegi/QuizReg.jsp";
 	}
 	
 }

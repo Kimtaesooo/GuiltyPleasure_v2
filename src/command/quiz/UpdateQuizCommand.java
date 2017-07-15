@@ -18,9 +18,9 @@ public class UpdateQuizCommand implements Command{
 		int result = dao.updateQuiz(dao.setQuiz(req));
 		req.setAttribute("cmd", "UPDATE");
 		if(result == 1){
-			return "/CORDING/QuizRegi/RegiComplete.jsp";
+			return "WEB-INF/views/QuizRegi/RegiComplete.jsp";
 		}
-		return "/CORDING/QuizRegi/QuizeInform.jsp";
+		return "WEB-INF/views/QuizRegi/QuizeInform.jsp";
 	}
 
 }
