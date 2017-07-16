@@ -13,21 +13,22 @@ import javax.servlet.http.HttpSession;
 
 import command.quiz.CommandFactory;
 import controller.Command;
+import dao.QuizRegDAO;
 import dto.Quiz;
 
 /**
- * @author ±èÇö¼ö
- * ½Ì±ÛÇÃ·¹ÀÌ ¼­ºí¸´ Å¬·¡½º
+ * @author ê¹€í˜„ìˆ˜
+ * ì‹±ê¸€í”Œë ˆì´ ì„œë¸”ë¦¿ í´ë˜ìŠ¤
  * */
 @WebServlet(urlPatterns = "/quiz")
 public class SinglePlay extends HttpServlet {
 	Quiz q;
 	
 	/**
-	 * @param HttpServletRequest ¿äÃ»ÇÑ ÆäÀÌÁöÀÇ requestº¯¼ö
-	 * @param HttpServletResponse ¿äÃ»ÇÑ ÆäÀÌÁöÀÇ responseº¯¼ö
+	 * @param HttpServletRequest ìš”ì²­í•œ í˜ì´ì§€ì˜ requestë³€ìˆ˜
+	 * @param HttpServletResponse ìš”ì²­í•œ í˜ì´ì§€ì˜ responseë³€ìˆ˜
 	 * 
-	 * @see doPost post¹æ½ÄÀ¸·Î Ã³¸®ÇÏ°Ô²û ÇØÁÖ´Â Å¬·¡½º
+	 * @see doPost postë°©ì‹ìœ¼ë¡œ ì²˜ë¦¬í•˜ê²Œë” í•´ì£¼ëŠ” í´ë˜ìŠ¤
 	 * */
 	
 	@Override
@@ -36,11 +37,11 @@ public class SinglePlay extends HttpServlet {
 	}
 	
 	/**
-	 * @param HttpServletRequest ¿äÃ»ÇÑ ÆäÀÌÁöÀÇ requestº¯¼ö
-	 * @param HttpServletResponse ¿äÃ»ÇÑ ÆäÀÌÁöÀÇ responseº¯¼ö
+	 * @param HttpServletRequest ìš”ì²­í•œ í˜ì´ì§€ì˜ requestë³€ìˆ˜
+	 * @param HttpServletResponse ìš”ì²­í•œ í˜ì´ì§€ì˜ responseë³€ìˆ˜
 	 * 
-	 * @see QuizRegDAO ÄûÁî µî·Ï¿¡ ÇÊ¿äÇÑ db¿¬°á°ú ÀÛ¾÷À» ÇØÁÖ´Â Å¬·¡½º
-	 * @see Quiz ÄûÁî°¡ µî·ÏµÇ´Â °´Ã¼ Å¬·¡½º
+	 * @see QuizRegDAO í€´ì¦ˆ ë“±ë¡ì— í•„ìš”í•œ dbì—°ê²°ê³¼ ì‘ì—…ì„ í•´ì£¼ëŠ” í´ë˜ìŠ¤
+	 * @see Quiz í€´ì¦ˆê°€ ë“±ë¡ë˜ëŠ” ê°ì²´ í´ë˜ìŠ¤
 	 * */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -56,9 +57,9 @@ public class SinglePlay extends HttpServlet {
 			req.setAttribute("counter", counter);
 		}
 		
-		//½Ì±Û ÄûÁî °á°ú°¡ µé¾î°¥ ¸®½ºÆ®
+		//ì‹±ê¸€ í€´ì¦ˆ ê²°ê³¼ê°€ ë“¤ì–´ê°ˆ ë¦¬ìŠ¤íŠ¸
 		if(method.equals("SINGLE")){
-			//°´°ü½Ä
+			//ê°ê´€ì‹
 			if(session.getAttribute("SingleResultlist") != null){
 				resultList = (ArrayList) session.getAttribute("SingleResultlist");
 			}else{
@@ -67,12 +68,12 @@ public class SinglePlay extends HttpServlet {
 			
 			if(cmd.equals("QUIZ_RESULT")){
 				String[] result = req.getParameterValues("result");
-				System.out.println("Ä«¿îÆ® "+counter +"¹®Á¦:"+result);
+				System.out.println("ì¹´ìš´íŠ¸ "+counter +"ë¬¸ì œ:"+result);
 				resultList.add(result);
 				session.setAttribute("SingleResultlist", resultList);
 			}
 		}else{
-			//ÁÖ°ü½Ä
+			//ì£¼ê´€ì‹
 			if(session.getAttribute("ShortResultlist") != null){
 				resultList = (ArrayList) session.getAttribute("ShortResultlist");
 			}else{

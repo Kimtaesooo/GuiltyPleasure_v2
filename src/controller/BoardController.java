@@ -13,7 +13,7 @@ import command.board.CommandBoard;
 import command.board.CommandFactory;
 /**
  * 
- * @author Ȳ����
+ * @author 황선영
  * @version 1.0 2017.07.03
  */
 @WebServlet(urlPatterns="/Board")

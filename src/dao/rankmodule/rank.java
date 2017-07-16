@@ -10,14 +10,14 @@ import dbcp.DBConnectionMgr;
 import dto.u_battle;
 import dto.u_single;
 /**
- * ·©Å· Å¬·¹½º ÀÔ´Ï´Ù.
+ * ë­í‚¹ í´ë ˆìŠ¤ ì…ë‹ˆë‹¤.
  */
 public class rank {
 	private Connection con;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	private DBConnectionMgr pool;
-	//Äõ¸®¹® º¯¼ö
+	//ì¿¼ë¦¬ë¬¸ ë³€ìˆ˜
 	private String sql = "";
 	
 	public rank(){
@@ -25,15 +25,15 @@ public class rank {
 			pool = DBConnectionMgr.getInstance();
 		}
 		catch(Exception err){
-			System.out.println("DBCP ÀÎ½ºÅÏ½º ÂüÁ¶ ½ÇÆĞ : "+err);
+			System.out.println("DBCP ì¸ìŠ¤í„´ìŠ¤ ì°¸ì¡° ì‹¤íŒ¨ : "+err);
 		}
 	}
 	
-	//¹èÆ² ·©Å· ¸®½ºÆ® °¡Á®¿À±â
+	//ë°°í‹€ ë­í‚¹ ë¦¬ìŠ¤íŠ¸ ê°€ì ¸ì˜¤ê¸°
 	public List getBoardList(){
 		/**
-		 * ·©Å· ¸ñ·Ï °¡Á®¿À±â ¸Ş¼ÒµåÀÔ´Ï´Ù.
-		 * @return List list ¸®½ºÆ®·Î ¹İÈ¯ÇÕ´Ï´Ù.
+		 * ë­í‚¹ ëª©ë¡ ê°€ì ¸ì˜¤ê¸° ë©”ì†Œë“œì…ë‹ˆë‹¤.
+		 * @return List list ë¦¬ìŠ¤íŠ¸ë¡œ ë°˜í™˜í•©ë‹ˆë‹¤.
 		 */
 		ArrayList list = new ArrayList();
 		sql = "select u_battle.u_id, userinfo.u_nickname, userinfo.u_comment, u_battle.ub_win, u_battle.ub_lose, userinfo.u_point from u_battle  inner join userinfo on u_battle.u_id = userinfo.u_id where u_battle.ub_win+u_battle.ub_lose>200 order by u_battle.ub_win/(u_battle.ub_win+u_battle.ub_lose) desc";
@@ -55,20 +55,20 @@ public class rank {
 				}
 		}
 		catch(Exception err){
-			System.out.println("getBoardList() ¿¡¼­ ¿À·ù : "+err);
+			System.out.println("getBoardList() ì—ì„œ ì˜¤ë¥˜ : "+err);
 		}
 		finally{
 			pool.freeConnection(con,pstmt, rs);
 		}
 		return list;
 	}
-	//ÀÚ½ÅÀÇ ¹èÆ² ·©Å· °¡Á®¿À±â
+	//ìì‹ ì˜ ë°°í‹€ ë­í‚¹ ê°€ì ¸ì˜¤ê¸°
 	public int BattleMyRank(String id){
 		/**
-		 * ÀÚ½ÅÀÇ ·©Å· Ã£±â ¸Ş¼ÒµåÀÔ´Ï´Ù.
-		 * @param int rank ÀÚ½ÅÀÇ ·©Å·ÀÌ ³ª¿Ã¶§ ±îÁö 1¾¿ ´õÇÏ¿© ÀúÀåµË´Ï´Ù.
-		 * @param int myrank ÀÚ½ÅÀÇ ·©Å·ÀÌ ³ª¿À¸é rank ÀÇ °ªÀ¸·Î ÀúÀåÇÕ´Ï´Ù.
-		 * @return int myrank ÀÚ½ÅÀÇ ¼øÀ§¸¦ ¹İÈ¯ÇÕ´Ï´Ù.
+		 * ìì‹ ì˜ ë­í‚¹ ì°¾ê¸° ë©”ì†Œë“œì…ë‹ˆë‹¤.
+		 * @param int rank ìì‹ ì˜ ë­í‚¹ì´ ë‚˜ì˜¬ë•Œ ê¹Œì§€ 1ì”© ë”í•˜ì—¬ ì €ì¥ë©ë‹ˆë‹¤.
+		 * @param int myrank ìì‹ ì˜ ë­í‚¹ì´ ë‚˜ì˜¤ë©´ rank ì˜ ê°’ìœ¼ë¡œ ì €ì¥í•©ë‹ˆë‹¤.
+		 * @return int myrank ìì‹ ì˜ ìˆœìœ„ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
 		 */
 		int rank=0;
 		int myrank=0;
@@ -87,7 +87,7 @@ public class rank {
 			}
 		}
 		catch(Exception err){
-			System.out.println("MyRank() ¿¡¼­ ¿À·ù : "+err);
+			System.out.println("MyRank() ì—ì„œ ì˜¤ë¥˜ : "+err);
 		}
 		finally{
 			pool.freeConnection(con,pstmt, rs);
@@ -95,11 +95,11 @@ public class rank {
 		return myrank;
 	}
 	
-	//½Ì±Û ·©Å· °¡Á®¿À±â
+	//ì‹±ê¸€ ë­í‚¹ ê°€ì ¸ì˜¤ê¸°
 	public List getBoardList2(String type){
 		/**
-		 * ÄûÁî Á¤´ä·ü ¸Ş¼ÒµåÀÔ´Ï´Ù.
-		 * @return List list ¸®½ºÆ®·Î ¹İÈ¯ÇÕ´Ï´Ù.
+		 * í€´ì¦ˆ ì •ë‹µë¥  ë©”ì†Œë“œì…ë‹ˆë‹¤.
+		 * @return List list ë¦¬ìŠ¤íŠ¸ë¡œ ë°˜í™˜í•©ë‹ˆë‹¤.
 		 */
 		ArrayList list = new ArrayList();
 		sql = "select u_poa.u_id, userinfo.u_nickname, userinfo.u_comment, u_poa.up_wa_cnt, u_poa.up_a_cnt, u_poa.up_type, userinfo.u_point from u_poa  inner join userinfo on u_poa.u_id = userinfo.u_id where u_poa.up_type='"+type+"' and u_poa.up_a_cnt+u_poa.up_wa_cnt>200 order by u_poa.up_a_cnt/(u_poa.up_a_cnt+u_poa.up_wa_cnt) desc";
@@ -122,7 +122,7 @@ public class rank {
 				}
 		}
 		catch(Exception err){
-			System.out.println("getBoardList() ¿¡¼­ ¿À·ù : "+err);
+			System.out.println("getBoardList() ì—ì„œ ì˜¤ë¥˜ : "+err);
 		}
 		finally{
 			pool.freeConnection(con,pstmt, rs);
@@ -130,13 +130,13 @@ public class rank {
 		return list;
 	}
 	
-	//³» ½Ì±Û ·©Å· µî¼ö °¡Á®¿À±â
+	//ë‚´ ì‹±ê¸€ ë­í‚¹ ë“±ìˆ˜ ê°€ì ¸ì˜¤ê¸°
 	public int SingleMyRank(String id, String type){
 		/**
-		 * Á¤´ä·ü ÀÚ½ÅÀÇ ·©Å· Ã£±â ¸Ş¼ÒµåÀÔ´Ï´Ù.
-		 * @param int rank ÀÚ½ÅÀÇ ·©Å·ÀÌ ³ª¿Ã¶§ ±îÁö 1¾¿ ´õÇÏ¿© ÀúÀåµË´Ï´Ù.
-		 * @param int myrank ÀÚ½ÅÀÇ ·©Å·ÀÌ ³ª¿À¸é rank ÀÇ °ªÀ¸·Î ÀúÀåÇÕ´Ï´Ù.
-		 * @return int myrank ÀÚ½ÅÀÇ ¼øÀ§¸¦ ¹İÈ¯ÇÕ´Ï´Ù.
+		 * ì •ë‹µë¥  ìì‹ ì˜ ë­í‚¹ ì°¾ê¸° ë©”ì†Œë“œì…ë‹ˆë‹¤.
+		 * @param int rank ìì‹ ì˜ ë­í‚¹ì´ ë‚˜ì˜¬ë•Œ ê¹Œì§€ 1ì”© ë”í•˜ì—¬ ì €ì¥ë©ë‹ˆë‹¤.
+		 * @param int myrank ìì‹ ì˜ ë­í‚¹ì´ ë‚˜ì˜¤ë©´ rank ì˜ ê°’ìœ¼ë¡œ ì €ì¥í•©ë‹ˆë‹¤.
+		 * @return int myrank ìì‹ ì˜ ìˆœìœ„ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
 		 */
 		int rank=0;
 		int myrank=0;
@@ -155,7 +155,7 @@ public class rank {
 			}
 		}
 		catch(Exception err){
-			System.out.println("MyRank() ¿¡¼­ ¿À·ù : "+err);
+			System.out.println("MyRank() ì—ì„œ ì˜¤ë¥˜ : "+err);
 		}
 		finally{
 			pool.freeConnection(con,pstmt, rs);

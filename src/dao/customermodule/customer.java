@@ -8,9 +8,8 @@ import java.util.List;
 
 import dbcp.DBConnectionMgr;
 import dto.c_board;
-import dto.u_battle;
 /**
- * °í°´¼¾ÅÍ  Å¬·¹½ºÀÔ´Ï´Ù.
+ * ê³ ê°ì„¼í„°  í´ë ˆìŠ¤ì…ë‹ˆë‹¤.
  */
 
 public class customer {
@@ -25,19 +24,19 @@ public class customer {
 			pool = DBConnectionMgr.getInstance();
 		}
 		catch(Exception err){
-			System.out.println("DBCP ÀÎ½ºÅÏ½º ÂüÁ¶ ½ÇÆĞ : "+err);
+			System.out.println("DBCP ì¸ìŠ¤í„´ìŠ¤ ì°¸ì¡° ì‹¤íŒ¨ : "+err);
 		}
 	}
 	
-	//±Û µî·Ï
+	//ê¸€ ë“±ë¡
 	public void regC_board(c_board dto){
 		/**
-		 * ±Û µî·Ï ¸Ş¼ÒµåÀÔ´Ï´Ù.
-		 * @param c_board dto ±Û µî·Ï ¸Ş¼­µå´Â ¸Å°³º¯¼ö c_board ¸¦ Àü´Ş ¹Ş´Â´Ù.
+		 * ê¸€ ë“±ë¡ ë©”ì†Œë“œì…ë‹ˆë‹¤.
+		 * @param c_board dto ê¸€ ë“±ë¡ ë©”ì„œë“œëŠ” ë§¤ê°œë³€ìˆ˜ c_board ë¥¼ ì „ë‹¬ ë°›ëŠ”ë‹¤.
 		 */
 		sql = "INSERT INTO SERVICE_CENTER (SC_NUM, U_ID, SC_TYPE, SC_TITLE, SC_CONTENT, SC_REGDATE, SC_IMAGE, SC_STATE)"+
 		" VALUES ('SC'||LPAD((seq_sc_num.NEXTVAL),4,'0'),"+
-		" ?,?,?,?,sysdate,'','´ë±â')";
+		" ?,?,?,?,sysdate,'','ëŒ€ê¸°')";
 		try{
 			con = pool.getConnection();
 			pstmt = con.prepareStatement(sql);
@@ -51,22 +50,22 @@ public class customer {
 
 		}
 		catch(Exception err){
-			System.out.println("regC_boadr() ¿¡¼­ ¿À·ù : "+err);
+			System.out.println("regC_boadr() ì—ì„œ ì˜¤ë¥˜ : "+err);
 		}
 		finally{
 			pool.freeConnection(con,pstmt, rs);
 		}
 	}
-	//±Û »Ñ·ÁÁÖ±â
+	//ê¸€ ë¿Œë ¤ì£¼ê¸°
 	public List getBoardList(String id, String type, String key){
 		/**
-		 * ±Û ¸ñ·Ï Àü´Ş ¸Ş¼ÒµåÀÔ´Ï´Ù.
-		 * @return List list ¸®½ºÆ®¸¦ ¹İÈ¯ÇÕ´Ï´Ù.
+		 * ê¸€ ëª©ë¡ ì „ë‹¬ ë©”ì†Œë“œì…ë‹ˆë‹¤.
+		 * @return List list ë¦¬ìŠ¤íŠ¸ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
 		 */
 		ArrayList list = new ArrayList();
-		//°Ô½Ã±Û °Ë»ö¿¡ Á¶°Ç ¾È´Ş·ÈÀ» ¶§
+		//ê²Œì‹œê¸€ ê²€ìƒ‰ì— ì¡°ê±´ ì•ˆë‹¬ë ¸ì„ ë•Œ
 		if(key.length()==0||key==null){
-			//¸¶½ºÅÍÀÏ°æ¿ì °í°´¼¾ÅÍ ±Û ÀüºÎ °¡Á®¿È
+			//ë§ˆìŠ¤í„°ì¼ê²½ìš° ê³ ê°ì„¼í„° ê¸€ ì „ë¶€ ê°€ì ¸ì˜´
 			if(id.equals("master")){
 				sql = "select * from service_center  order by sc_state asc, sc_regdate desc";
 			}else{
@@ -97,19 +96,19 @@ public class customer {
 				}
 		}
 		catch(Exception err){
-			System.out.println("getBoardList() ¿¡¼­ ¿À·ù : "+err);
+			System.out.println("getBoardList() ì—ì„œ ì˜¤ë¥˜ : "+err);
 		}
 		finally{
 			pool.freeConnection(con,pstmt, rs);
 		}
 		return list;
 	}
-	//±Û ÀĞ±â
+	//ê¸€ ì½ê¸°
 	public c_board getRead (String num){
 		/**
-		 * ±Û ÀĞ±â ¸Ş¼ÒµåÀÔ´Ï´Ù.
-		 * @param c_board dto ¹İÈ¯ÇÒ °ªÀ» ÀúÀåÇØµÑ º¯¼ö
-		 * @return c_board dto dto·Î ¹İÈ¯ÇÕ´Ï´Ù.
+		 * ê¸€ ì½ê¸° ë©”ì†Œë“œì…ë‹ˆë‹¤.
+		 * @param c_board dto ë°˜í™˜í•  ê°’ì„ ì €ì¥í•´ë‘˜ ë³€ìˆ˜
+		 * @return c_board dto dtoë¡œ ë°˜í™˜í•©ë‹ˆë‹¤.
 		 */
 		c_board dto = new c_board();
 		
@@ -131,18 +130,18 @@ public class customer {
 				}
 		}
 		catch(Exception err){
-			System.out.println("getRead() ¿¡¼­ ¿À·ù : "+err);
+			System.out.println("getRead() ì—ì„œ ì˜¤ë¥˜ : "+err);
 		}
 		finally{
 			pool.freeConnection(con,pstmt, rs);
 		}
 		return dto;
 	}
-	//´äº¯ ÀĞ±â
+	//ë‹µë³€ ì½ê¸°
 	public String getReadAs (String num){
 		/**
-		 * ´äº¯ ÀĞ±â ¸Ş¼ÒµåÀÔ´Ï´Ù.
-		 * @return String as ´äº¯À» ¹®ÀÚ¿­·Î ¹İÈ¯ÇÕ´Ï´Ù.
+		 * ë‹µë³€ ì½ê¸° ë©”ì†Œë“œì…ë‹ˆë‹¤.
+		 * @return String as ë‹µë³€ì„ ë¬¸ìì—´ë¡œ ë°˜í™˜í•©ë‹ˆë‹¤.
 		 */
 		String as=null;
 		sql = "select * from service_center_as where sc_num='"+num+"'";
@@ -156,17 +155,17 @@ public class customer {
 				}
 		}
 		catch(Exception err){
-			System.out.println("getReadAs() ¿¡¼­ ¿À·ù : "+err);
+			System.out.println("getReadAs() ì—ì„œ ì˜¤ë¥˜ : "+err);
 		}
 		finally{
 			pool.freeConnection(con,pstmt, rs);
 		}
 		return as;
 	}
-	//´äº¯ µî·Ï
+	//ë‹µë³€ ë“±ë¡
 	public void reg_Ans(String num, String ans){
 		/**
-		 * ´äº¯ µî·Ï  ¸Ş¼ÒµåÀÔ´Ï´Ù.
+		 * ë‹µë³€ ë“±ë¡  ë©”ì†Œë“œì…ë‹ˆë‹¤.
 		 */
 		sql = "INSERT INTO SERVICE_CENTER_AS (SC_NUM, SCA_ANSWER) VALUES (?,?)";
 		try{
@@ -179,18 +178,18 @@ public class customer {
 
 		}
 		catch(Exception err){
-			System.out.println("regC_boadr() ¿¡¼­ ¿À·ù : "+err);
+			System.out.println("regC_boadr() ì—ì„œ ì˜¤ë¥˜ : "+err);
 		}
 		finally{
 			pool.freeConnection(con,pstmt, rs);
 		}
 	}
-	//´äº¯ ´Ş¾ÒÀ»½Ã ¿Ï·á·Î º¯°æ
+	//ë‹µë³€ ë‹¬ì•˜ì„ì‹œ ì™„ë£Œë¡œ ë³€ê²½
 	public void reg_Ans_fin(String num){
 		/**
-		 * ´äº¯ »óÅÂ º¯°æ ¸Ş¼ÒµåÀÔ´Ï´Ù.
+		 * ë‹µë³€ ìƒíƒœ ë³€ê²½ ë©”ì†Œë“œì…ë‹ˆë‹¤.
 		 */
-		sql = "UPDATE SERVICE_CENTER SET SC_STATE='¿Ï·á' WHERE SC_NUM='"+num+"'";
+		sql = "UPDATE SERVICE_CENTER SET SC_STATE='ì™„ë£Œ' WHERE SC_NUM='"+num+"'";
 		try{
 			con = pool.getConnection();
 			pstmt = con.prepareStatement(sql);
@@ -198,16 +197,16 @@ public class customer {
 
 		}
 		catch(Exception err){
-			System.out.println("reg_Ans_fin() ¿¡¼­ ¿À·ù : "+err);
+			System.out.println("reg_Ans_fin() ì—ì„œ ì˜¤ë¥˜ : "+err);
 		}
 		finally{
 			pool.freeConnection(con,pstmt, rs);
 		}
 	}
-	//À¯Àú ºñ¹Ğ¹øÈ£ °¡Á®¿À±â
+	//ìœ ì € ë¹„ë°€ë²ˆí˜¸ ê°€ì ¸ì˜¤ê¸°
 	public String getUserPw (String u_id){
 		/**
-		 * À¯Àú ºñ¹Ğ¹øÈ£ °¡Á®¿À±â ¸Ş¼ÒµåÀÔ´Ï´Ù.
+		 * ìœ ì € ë¹„ë°€ë²ˆí˜¸ ê°€ì ¸ì˜¤ê¸° ë©”ì†Œë“œì…ë‹ˆë‹¤.
 		 */
 		String as=null;
 		sql = "select * from userinfo where U_ID='"+u_id+"'";
@@ -221,17 +220,17 @@ public class customer {
 				}
 		}
 		catch(Exception err){
-			System.out.println("getUserPw() ¿¡¼­ ¿À·ù : "+err);
+			System.out.println("getUserPw() ì—ì„œ ì˜¤ë¥˜ : "+err);
 		}
 		finally{
 			pool.freeConnection(con,pstmt, rs);
 		}
 		return as;
 	}
-	//À¯Àú ±Û Áö¿ì±â
+	//ìœ ì € ê¸€ ì§€ìš°ê¸°
 	public void DeleteUserQ (String sc_num){
 		/**
-		 * À¯Àú ±Û Áö¿ì±â ¸Ş¼ÒµåÀÔ´Ï´Ù.
+		 * ìœ ì € ê¸€ ì§€ìš°ê¸° ë©”ì†Œë“œì…ë‹ˆë‹¤.
 		 */
 		sql = "delete from service_center where sc_num='"+sc_num+"'";
 		try{	
@@ -240,16 +239,16 @@ public class customer {
 			pstmt.executeUpdate();
 		}
 		catch(Exception err){
-			System.out.println("DeleteUserQ() ¿¡¼­ ¿À·ù : "+err);
+			System.out.println("DeleteUserQ() ì—ì„œ ì˜¤ë¥˜ : "+err);
 		}
 		finally{
 			pool.freeConnection(con,pstmt, rs);
 		}
 	}
-	//´äº¯ »èÁ¦
+	//ë‹µë³€ ì‚­ì œ
 	public void DeleteAns (String sc_num){
 		/**
-		 * ´äº¯ »èÁ¦ ¸Ş¼ÒµåÀÔ´Ï´Ù.
+		 * ë‹µë³€ ì‚­ì œ ë©”ì†Œë“œì…ë‹ˆë‹¤.
 		 */
 		sql = "delete from service_center_as where sc_num='"+sc_num+"'";
 		try{	
@@ -258,7 +257,7 @@ public class customer {
 			pstmt.executeUpdate();
 		}
 		catch(Exception err){
-			System.out.println("DeleteAns() ¿¡¼­ ¿À·ù : "+err);
+			System.out.println("DeleteAns() ì—ì„œ ì˜¤ë¥˜ : "+err);
 		}
 		finally{
 			pool.freeConnection(con,pstmt, rs);

@@ -65,7 +65,7 @@
 			alert('배틀 플레이가 금지된 유저입니다.');
 			return;
 		}
-		location.href = "/GuiltyPleasure/battle?cmd=battlepage";
+		location.href = "/GuiltyPleasure/battle?cmd=BATTLEPAGE";
 	}
 
 	function inshop() {

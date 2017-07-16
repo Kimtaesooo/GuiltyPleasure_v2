@@ -20,7 +20,7 @@ public class ReplyDeleteCommand implements CommandBoard {
 	Reply dto2 = new Reply();
 	
 	/**
-	 * ��� ���� ó�� -> �� �󼼺��� ������
+	 * 댓글 삭제 처리 -> 글 상세보기 페이지
 	 */
 	@Override
 	public Object processCommand(HttpServletRequest req, HttpServletResponse resp)

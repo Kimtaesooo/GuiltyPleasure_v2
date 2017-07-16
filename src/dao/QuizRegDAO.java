@@ -41,7 +41,7 @@ public class QuizRegDAO {
 		return uq;		
 	}
 	
-	//db¿¡ ÄûÁî µî·Ï ¸Ş¼­µå
+	//dbì— í€´ì¦ˆ ë“±ë¡ ë©”ì„œë“œ
 	public int RegiQuiz(U_Quiz uq){
 		int i=0;
 		String sql = "insert into U_QREG(UQ_NUM, U_ID, Q_TYPE, UQ_QUESTION, "
@@ -58,13 +58,13 @@ public class QuizRegDAO {
 			pstmt.setString(7, uq.getUq_wa_c());
 			i = pstmt.executeUpdate();
 		} catch (SQLException e) {
-			System.out.println("ÄûÁî µ¥ÀÌÅÍ¸¦ ³Ö´Â °úÁ¤¿¡¼­ ¿À·ù ¹ß»ı");
+			System.out.println("í€´ì¦ˆ ë°ì´í„°ë¥¼ ë„£ëŠ” ê³¼ì •ì—ì„œ ì˜¤ë¥˜ ë°œìƒ");
 			e.printStackTrace();
 		}
 		return i;		
 	}
 	
-	//¿î¿µÀÚ ÄûÁî µî·Ï ¸Ş¼­µå
+	//ìš´ì˜ì í€´ì¦ˆ ë“±ë¡ ë©”ì„œë“œ
 	public int MRegiQuiz(U_Quiz uq){		
 		int i=0;
 		String sql = "INSERT INTO QUIZ (Q_CODE, Q_TYPE, Q_QUESTION, Q_ANSWER, Q_CA_CNT, Q_WA_CNT, U_ID, Q_WA_A, Q_WA_B, Q_WA_C) "
@@ -80,13 +80,13 @@ public class QuizRegDAO {
 			pstmt.setString(7, uq.getUq_wa_c());
 			i = pstmt.executeUpdate();
 		} catch (SQLException e) {
-			System.out.println("¿î¿µÀÚ ÄûÁî µ¥ÀÌÅÍ¸¦ ³Ö´Â °úÁ¤¿¡¼­ ¿À·ù ¹ß»ı");
+			System.out.println("ìš´ì˜ì í€´ì¦ˆ ë°ì´í„°ë¥¼ ë„£ëŠ” ê³¼ì •ì—ì„œ ì˜¤ë¥˜ ë°œìƒ");
 			e.printStackTrace();
 		}
 		return i;		
 	}
 		
-		// ÄûÁîµî·Ï °Ô½ÃÆÇ¿¡ id·Î ÇØ´çÇÏ´Â °Ô ÀÖ´ÂÁö Ã¼Å©
+		// í€´ì¦ˆë“±ë¡ ê²Œì‹œíŒì— idë¡œ í•´ë‹¹í•˜ëŠ” ê²Œ ìˆëŠ”ì§€ ì²´í¬
 		public String checkBoard(String id) {
 			String confirm = "";
 			try {
@@ -95,9 +95,9 @@ public class QuizRegDAO {
 				pstmt.setString(1, id);
 				rs = pstmt.executeQuery();
 				if (rs.next() == true) {
-					confirm = "ÀÖÀ½";
+					confirm = "ìˆìŒ";
 				} else {
-					confirm = "¾øÀ½";
+					confirm = "ì—†ìŒ";
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -106,7 +106,7 @@ public class QuizRegDAO {
 			return confirm;
 		}
 
-		//°Ô½ÃÆÇ Å¬¸¯½Ã »ó¼¼³»¿ëÀ» ºÒ·¯¿À´Â ¸Ş¼­µå
+		//ê²Œì‹œíŒ í´ë¦­ì‹œ ìƒì„¸ë‚´ìš©ì„ ë¶ˆëŸ¬ì˜¤ëŠ” ë©”ì„œë“œ
 		public U_Quiz getU_Quzi(String id){
 			U_Quiz uqinform = new U_Quiz();
 			String sql = "select * from U_QREG where UQ_NUM=?";
@@ -136,10 +136,10 @@ public class QuizRegDAO {
 		}
 		
 		
-	// ÀüÃ¼ ¸®½ºÆ®¸¦ °¡Á®¿À´Â ¸Ş¼­µå
+	// ì „ì²´ ë¦¬ìŠ¤íŠ¸ë¥¼ ê°€ì ¸ì˜¤ëŠ” ë©”ì„œë“œ
 	public ArrayList<U_Quiz> getQBoard(String id) {
-		// sql 2°³ ; ÇÏ³ª´Â À¯Àú°¡ Á¢¼ÓÇßÀ»¶§, ÇÏ³ª´Â ¸¶½ºÅÍ°¡ Á¢¼ÓÇßÀ»¶§
-		// ¸¶½ºÅÍ°¡ Á¢¼ÓÇßÀ»¶© Àü µ¥ÀÌÅÍ Ãâ·Â, À¯Àú°¡ Á¢¼ÓÇßÀ» ¶© ±× À¯Àú°¡ ÇØ´çÇÏ´Â
+		// sql 2ê°œ ; í•˜ë‚˜ëŠ” ìœ ì €ê°€ ì ‘ì†í–ˆì„ë•Œ, í•˜ë‚˜ëŠ” ë§ˆìŠ¤í„°ê°€ ì ‘ì†í–ˆì„ë•Œ
+		// ë§ˆìŠ¤í„°ê°€ ì ‘ì†í–ˆì„ë• ì „ ë°ì´í„° ì¶œë ¥, ìœ ì €ê°€ ì ‘ì†í–ˆì„ ë• ê·¸ ìœ ì €ê°€ í•´ë‹¹í•˜ëŠ”
 	
 		ArrayList<U_Quiz> qlist = new ArrayList<U_Quiz>();
 		String sql;
@@ -148,11 +148,11 @@ public class QuizRegDAO {
 			master = false;
 		}
 		try {
-			//°ü¸®ÀÚÀÏ¶§	
+			//ê´€ë¦¬ìì¼ë•Œ	
 			if(master){				
 				sql = "select * from u_qreg  where uq_adopt = 'N' order by uq_adopt ";				
 			}else{
-				//À¯ÀúÀÌ°í µî·ÏÇÑ ÄûÁî°¡ ¸î°³ÀÖÀ»°æ¿ì
+				//ìœ ì €ì´ê³  ë“±ë¡í•œ í€´ì¦ˆê°€ ëª‡ê°œìˆì„ê²½ìš°
 				sql = "select * from u_qreg where u_id = ? order by uq_adopt";				
 			}
 			pstmt = conn.prepareStatement(sql);
@@ -177,7 +177,7 @@ public class QuizRegDAO {
 				qlist.add(uq);
 			}
 		} catch (SQLException e) {
-			System.out.println("ÄûÁîµî·Ï °Ô½ÃÆÇÀ» ¸®ÅÏ ¸øÇßÀ» °æ¿ì" + e);
+			System.out.println("í€´ì¦ˆë“±ë¡ ê²Œì‹œíŒì„ ë¦¬í„´ ëª»í–ˆì„ ê²½ìš°" + e);
 			e.printStackTrace();
 		} finally {
 	
@@ -186,7 +186,7 @@ public class QuizRegDAO {
 		return qlist;
 	}
 	
-	//db¿¡ ÄûÁî ¼öÁ¤ ¸Ş¼­µå
+	//dbì— í€´ì¦ˆ ìˆ˜ì • ë©”ì„œë“œ
 	public int updateQuiz(U_Quiz uq){
 		
 		int i=0;
@@ -204,7 +204,7 @@ public class QuizRegDAO {
 			pstmt.setString(7, uq.getUq_num());
 			i = pstmt.executeUpdate();
 		} catch (SQLException e) {
-			System.out.println("ÄûÁî µ¥ÀÌÅÍ¸¦ ³Ö´Â °úÁ¤¿¡¼­ ¿À·ù ¹ß»ı");
+			System.out.println("í€´ì¦ˆ ë°ì´í„°ë¥¼ ë„£ëŠ” ê³¼ì •ì—ì„œ ì˜¤ë¥˜ ë°œìƒ");
 			e.printStackTrace();
 		}
 		return i;		
@@ -219,7 +219,7 @@ public class QuizRegDAO {
 			i = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
-			System.out.println("ÄûÁî µ¥ÀÌÅÍ¸¦ ³Ö´Â °úÁ¤¿¡¼­ ¿À·ù ¹ß»ı");
+			System.out.println("í€´ì¦ˆ ë°ì´í„°ë¥¼ ë„£ëŠ” ê³¼ì •ì—ì„œ ì˜¤ë¥˜ ë°œìƒ");
 			e.printStackTrace();
 		}
 		return i;		

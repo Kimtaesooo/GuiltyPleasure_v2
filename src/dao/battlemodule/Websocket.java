@@ -18,29 +18,29 @@ import dto.Battle_Room;
 
 @ServerEndpoint("/battlesocket")
 public class Websocket {
-	static HashMap<String, Session> map = new HashMap<String, Session>(); // ¼¼¼Ç°ú ¾ÆÀÌµğ ¸ÊÇÎÇÒ·Á°í ÇßÁö¸¸ ¾È¾¸
+	static HashMap<String, Session> map = new HashMap<String, Session>(); // ì„¸ì…˜ê³¼ ì•„ì´ë”” ë§µí•‘í• ë ¤ê³  í–ˆì§€ë§Œ ì•ˆì”€
 
 	private static Set<Session> clients = Collections.synchronizedSet(new HashSet<Session>());
-	String me = ""; // Á¤º¸¸¦ º¸³»´Â À¯Àú
-	String br_num = ""; // °ÔÀÓ¹æ ¹øÈ£
-	String user01 = ""; // °ÔÀÓ¹æ À¯Àú1
-	String user02 = ""; // °ÔÀÓÀå À¯Àú2
-	Boolean startFlag = false; // °ÔÀÓ¹æÀÌ ½ÃÀÛµÇ¾ú´ÂÁö ¾ÈµÇ¾ú´ÂÁö È®ÀÎÇÏ´Â º¯¼ö
+	String me = ""; // ì •ë³´ë¥¼ ë³´ë‚´ëŠ” ìœ ì €
+	String br_num = ""; // ê²Œì„ë°© ë²ˆí˜¸
+	String user01 = ""; // ê²Œì„ë°© ìœ ì €1
+	String user02 = ""; // ê²Œì„ì¥ ìœ ì €2
+	Boolean startFlag = false; // ê²Œì„ë°©ì´ ì‹œì‘ë˜ì—ˆëŠ”ì§€ ì•ˆë˜ì—ˆëŠ”ì§€ í™•ì¸í•˜ëŠ” ë³€ìˆ˜
 
 	/**
-	 * À¯Àú°¡ º¸³½ ¸Ş¼­Áö¸¦ ¹Ş´Â ¸Ş¼­µå
+	 * ìœ ì €ê°€ ë³´ë‚¸ ë©”ì„œì§€ë¥¼ ë°›ëŠ” ë©”ì„œë“œ
 	 * @param message
-	 * 			¸Ş½ÃÁö¸¦ ¹Ş´Â´Ù.
+	 * 			ë©”ì‹œì§€ë¥¼ ë°›ëŠ”ë‹¤.
 	 * @param session
-	 * 			¼¼¼ÇÀ» ¹Ş´Â´Ù.(ÃÖÃÊ ÇÑ¹ø)
+	 * 			ì„¸ì…˜ì„ ë°›ëŠ”ë‹¤.(ìµœì´ˆ í•œë²ˆ)
 	 * @throws IOException
-	 * 			¿¹¿Ü Ã³¸®
+	 * 			ì˜ˆì™¸ ì²˜ë¦¬
 	 */
 	@OnMessage
 	public void onMessage(String message, Session session) throws IOException {
 		System.out.println(message);
 
-		// ¹Ş¾Æ¿Â ¹®ÀÚ¿­À» ':' ±¸ºĞÀÚ¸¦ ÅëÇÏ¿© ¹è¿­·Î ÀúÀå
+		// ë°›ì•„ì˜¨ ë¬¸ìì—´ì„ ':' êµ¬ë¶„ìë¥¼ í†µí•˜ì—¬ ë°°ì—´ë¡œ ì €ì¥
 		String strArray[] = message.split(":");
 
 		/*
@@ -49,7 +49,7 @@ public class Websocket {
 		 * client.getBasicRemote().sendText(message); } } } }
 		 */
 
-		// ¸Ş½ÃÁö Àü¼Û
+		// ë©”ì‹œì§€ ì „ì†¡
 		if (strArray[0].equals("messageSend")) {
 			synchronized (clients) {
 				for (Session client : clients) {
@@ -60,10 +60,10 @@ public class Websocket {
 			}
 		}
 
-		// ¼¼¼Ç °ª ¸ÅÇÎ
+		// ì„¸ì…˜ ê°’ ë§¤í•‘
 		// "sessionValue:" + br_num + ":" + me
 		if (strArray[0].equals("sessionValue")) {
-			// 0-sessionValue, 1-¹æ¹øÈ£, 2-u_id
+			// 0-sessionValue, 1-ë°©ë²ˆí˜¸, 2-u_id
 			me = strArray[2];
 			map.put(me, session);
 			Session usersession = map.get(me);
@@ -73,7 +73,7 @@ public class Websocket {
 			}
 		}
 
-		// ¹æÀåÀÌ °ÔÀÓ½ÃÀÛ ¹öÆ°À» ´­·¶À» ¶§
+		// ë°©ì¥ì´ ê²Œì„ì‹œì‘ ë²„íŠ¼ì„ ëˆŒë €ì„ ë•Œ
 		if (strArray[0].equals("gameStart")) {
 			// message = "gameStart:" + br_num + ":" + me + ":" + q_type;
 			br_num = strArray[1];
@@ -84,9 +84,9 @@ public class Websocket {
 			List list = battleplay.roomInfo(me);
 			Battle_Room room = (Battle_Room) list.get(0);
 			int people_cnt = room.getBr_people();
-			// °ÔÀÓ¹æ ÀÎ¿øÀÌ 2¸í ÀÌÇÏÀÏ‹š (Áï, ³ª È¥ÀÚÀÏ¶§)
+			// ê²Œì„ë°© ì¸ì›ì´ 2ëª… ì´í•˜ì¼ë–„ (ì¦‰, ë‚˜ í˜¼ìì¼ë•Œ)
 			if (people_cnt < 2) {
-				message = "people_cnt_check:" + br_num + ":ÀÎ¿øÀÌ ºÎÁ·ÇÕ´Ï´Ù.:";
+				message = "people_cnt_check:" + br_num + ":ì¸ì›ì´ ë¶€ì¡±í•©ë‹ˆë‹¤.:";
 				synchronized (clients) {
 					for (Session client : clients) {
 						if (client.equals(session)) {
@@ -97,10 +97,10 @@ public class Websocket {
 				return;
 			}
 
-			// DB·Î ºÎÅÍ °ÔÀÓ¹æÀÌ ½ÃÀÛµÇ¾ú´ÂÁö ¾ÈµÇ¾ú´ÂÁö È®ÀÎÇÏ±â À§ÇØ °ªÀ» ²¨³» ¿Â´Ù. Y´Â ½ÇÇàÁß, N´Â ´ë±âÁß
+			// DBë¡œ ë¶€í„° ê²Œì„ë°©ì´ ì‹œì‘ë˜ì—ˆëŠ”ì§€ ì•ˆë˜ì—ˆëŠ”ì§€ í™•ì¸í•˜ê¸° ìœ„í•´ ê°’ì„ êº¼ë‚´ ì˜¨ë‹¤. YëŠ” ì‹¤í–‰ì¤‘, NëŠ” ëŒ€ê¸°ì¤‘
 			String startFlag = battleplay.updateBattleRoomState(br_num);
 
-			// °ÔÀÓ¹æÀÌ ½ÃÀÛÇÏ°í ÀÖÁö ¾ÊÀº »óÅÂ
+			// ê²Œì„ë°©ì´ ì‹œì‘í•˜ê³  ìˆì§€ ì•Šì€ ìƒíƒœ
 			if (startFlag.equals("N")) {
 				String question = "";
 				String answer = "";
@@ -109,13 +109,13 @@ public class Websocket {
 				String wa3 = "";
 				String code = "";
 
-				// ÄûÁîÀ¯ÇüÀ» º¯¼ö·Î ³Ñ°ÜÁÖ°í ÄûÁî À¯Çü¿¡ µû¸¥ ÄûÁî¸¦ ·£´ıÀûÀ¸·Î ¾ò¾î¿Â´Ù.
+				// í€´ì¦ˆìœ í˜•ì„ ë³€ìˆ˜ë¡œ ë„˜ê²¨ì£¼ê³  í€´ì¦ˆ ìœ í˜•ì— ë”°ë¥¸ í€´ì¦ˆë¥¼ ëœë¤ì ìœ¼ë¡œ ì–»ì–´ì˜¨ë‹¤.
 				GetBattleQuiz getBattleQuiz = new GetBattleQuiz();
 				String quiz = getBattleQuiz.getQuiz(q_type);
 
 				String quizinfo[] = quiz.split(":");
-				// Q0012:C:°¡Àå ¾µ¸ğ¾ø´Â ±¸¸®´Â?:¸ÛÅÖ±¸¸®:±¸¸®:µü´Ù±¸¸®:³Ê±¸¸®:
-				// 0.ÄÚµå 1.À¯Çü 2.¹®Á¦ 3.Á¤´ä 4.¿À´ä 5.¿À´ä 6.¿À´ä
+				// Q0012:C:ê°€ì¥ ì“¸ëª¨ì—†ëŠ” êµ¬ë¦¬ëŠ”?:ë©í……êµ¬ë¦¬:êµ¬ë¦¬:ë”±ë‹¤êµ¬ë¦¬:ë„ˆêµ¬ë¦¬:
+				// 0.ì½”ë“œ 1.ìœ í˜• 2.ë¬¸ì œ 3.ì •ë‹µ 4.ì˜¤ë‹µ 5.ì˜¤ë‹µ 6.ì˜¤ë‹µ
 				code = quizinfo[0];
 				question = quizinfo[2];
 				answer = quizinfo[3];
@@ -132,7 +132,7 @@ public class Websocket {
 			}
 		}
 
-		// ´ÙÀ½ ¹®Á¦·Î ³Ñ±â±â
+		// ë‹¤ìŒ ë¬¸ì œë¡œ ë„˜ê¸°ê¸°
 		if (strArray[0].equals("nextSend")) {
 			// message = "nextSend:" + br_num + ":" + me + ":" + q_type);
 			br_num = strArray[1];
@@ -150,8 +150,8 @@ public class Websocket {
 			String quiz = getBattleQuiz.getQuiz(q_type);
 
 			String quizinfo[] = quiz.split(":");
-			// Q0012:C:°¡Àå ¾µ¸ğ¾ø´Â ±¸¸®´Â?:¸ÛÅÖ±¸¸®:±¸¸®:µü´Ù±¸¸®:³Ê±¸¸®:
-			// 0.ÄÚµå 1.À¯Çü 2.¹®Á¦ 3.Á¤´ä 4.¿À´ä 5.¿À´ä 6.¿À´ä
+			// Q0012:C:ê°€ì¥ ì“¸ëª¨ì—†ëŠ” êµ¬ë¦¬ëŠ”?:ë©í……êµ¬ë¦¬:êµ¬ë¦¬:ë”±ë‹¤êµ¬ë¦¬:ë„ˆêµ¬ë¦¬:
+			// 0.ì½”ë“œ 1.ìœ í˜• 2.ë¬¸ì œ 3.ì •ë‹µ 4.ì˜¤ë‹µ 5.ì˜¤ë‹µ 6.ì˜¤ë‹µ
 			code = quizinfo[0];
 			question = quizinfo[2];
 			answer = quizinfo[3];
@@ -167,7 +167,7 @@ public class Websocket {
 			}
 		}
 
-		// À¯Àú°¡ ´©¸¥ ´äÀ» ¹Ş¾Æ¿Â´Ù.
+		// ìœ ì €ê°€ ëˆ„ë¥¸ ë‹µì„ ë°›ì•„ì˜¨ë‹¤.
 		if (strArray[0].equals("button")) {
 			// message = button:"+ br_num+":"+me+":"+code+":"+button4.value
 			br_num = strArray[1];
@@ -175,30 +175,30 @@ public class Websocket {
 			String q_code = strArray[3];
 			String value = strArray[4];
 
-			// ÃÊ±â ¹öÆ° ´©¸¦¶§ ¾Æ¹« µ¿ÀÛ ÇÏÁö ¾Ê°Ô ¸·¾Æ¹ö¸°´Ù.
-			if (value.equals("Å°ÆĞµå1") || value.equals("Å°ÆĞµå2") || value.equals("Å°ÆĞµå3") || value.equals("Å°ÆĞµå4")
+			// ì´ˆê¸° ë²„íŠ¼ ëˆ„ë¥¼ë•Œ ì•„ë¬´ ë™ì‘ í•˜ì§€ ì•Šê²Œ ë§‰ì•„ë²„ë¦°ë‹¤.
+			if (value.equals("í‚¤íŒ¨ë“œ1") || value.equals("í‚¤íŒ¨ë“œ2") || value.equals("í‚¤íŒ¨ë“œ3") || value.equals("í‚¤íŒ¨ë“œ4")
 					|| value.equals("undefined")) {
 				return;
 			}
 
 			BattlePlay battleplay = new BattlePlay();
 			Battle_Play roomdto = new Battle_Play();
-			// µÑ ´Ù Æ²¸° °æ¿ì È®ÀÎ ÇÏ´Â °Í Bp_state
+			// ë‘˜ ë‹¤ í‹€ë¦° ê²½ìš° í™•ì¸ í•˜ëŠ” ê²ƒ Bp_state
 			List list = battleplay.playInfo(br_num);
 			roomdto = (Battle_Play) list.get(0);
 			int bp_state = roomdto.getBp_state();
 
-			// Á¤´ä °ª °¡Á®¿À±â
+			// ì •ë‹µ ê°’ ê°€ì ¸ì˜¤ê¸°
 			String checkFlag = battleplay.checkanswer(q_code);
 
 			if (bp_state < 1) {
-				// Á¤´äÀ» Æ²¸° °æ¿ì
+				// ì •ë‹µì„ í‹€ë¦° ê²½ìš°
 				if (!value.equals(checkFlag)) {
-					// bp_state Ä«¿îÆÃ +1 ÇÑ´Ù.
-					if (!value.equals("¤»¤»¤»¤»¤»")) {
+					// bp_state ì¹´ìš´íŒ… +1 í•œë‹¤.
+					if (!value.equals("ã…‹ã…‹ã…‹ã…‹ã…‹")) {
 						battleplay.updatePlayRoomState(br_num);
 					}
-					message = "wrong:" + br_num + ":Æ²·È½À´Ï´Ù. »ó´ë¹æÀÌ ¹®Á¦¸¦ Ç® µ¿¾È ±â´Ù·Á ÁÖ¼¼¿ä:¤»¤»¤»¤»¤»";
+					message = "wrong:" + br_num + ":í‹€ë ¸ìŠµë‹ˆë‹¤. ìƒëŒ€ë°©ì´ ë¬¸ì œë¥¼ í’€ ë™ì•ˆ ê¸°ë‹¤ë ¤ ì£¼ì„¸ìš”:ã…‹ã…‹ã…‹ã…‹ã…‹";
 					synchronized (clients) {
 						for (Session client : clients) {
 							if (client.equals(session)) {
@@ -208,10 +208,10 @@ public class Websocket {
 					}
 					return;
 				} else {
-					// Á¤´äÀ» ¸ÂÃá °æ¿ì
-					// bp_01cnt, bp_02cnt Ä«¿îÆÃÇÑ´Ù.
+					// ì •ë‹µì„ ë§ì¶˜ ê²½ìš°
+					// bp_01cnt, bp_02cnt ì¹´ìš´íŒ…í•œë‹¤.
 					battleplay.updatePlayCnt(br_num, me);
-					// Á¤´ä °³¼ö °¡Áö°í ¿Â´Ù.
+					// ì •ë‹µ ê°œìˆ˜ ê°€ì§€ê³  ì˜¨ë‹¤.
 					List playinfo = battleplay.playInfo(br_num);
 					Battle_Play result = (Battle_Play) playinfo.get(0);
 					int bp_01cnt = result.getBp_01cnt();
@@ -238,15 +238,15 @@ public class Websocket {
 					return;
 				}
 			}
-			// ¹®Á¦¸¦ ´Ê°Ô Ç¬ °æ¿ì
+			// ë¬¸ì œë¥¼ ëŠ¦ê²Œ í‘¼ ê²½ìš°
 			else {
-				// ¸ÕÀú Ç¬ À¯Àú°¡ ¹®Á¦ Çª´Â°Å ¹æÁö
-				if (!value.equals("¤»¤»¤»¤»¤»")) {
-					// Á¤´äÀÏ ¶§
+				// ë¨¼ì € í‘¼ ìœ ì €ê°€ ë¬¸ì œ í‘¸ëŠ”ê±° ë°©ì§€
+				if (!value.equals("ã…‹ã…‹ã…‹ã…‹ã…‹")) {
+					// ì •ë‹µì¼ ë•Œ
 					if (value.equals(checkFlag)) {
 						battleplay.updatePlayCnt(br_num, me);
 
-						// Á¤´ä °³¼ö °¡Áö°í ¿Â´Ù.
+						// ì •ë‹µ ê°œìˆ˜ ê°€ì§€ê³  ì˜¨ë‹¤.
 						List playinfo = battleplay.playInfo(br_num);
 						Battle_Play result = (Battle_Play) playinfo.get(0);
 						int bp_01cnt = result.getBp_01cnt();
@@ -270,7 +270,7 @@ public class Websocket {
 						}
 						return;
 					}
-					// ¿À´äÀÏ ¶§
+					// ì˜¤ë‹µì¼ ë•Œ
 					else {
 						battleplay.updatePlayCnt(br_num);
 						message = "next:" + br_num + ":";
@@ -288,9 +288,9 @@ public class Websocket {
 	}
 
 	/**
-	 * À¯Àú°¡ ÃÖÃÊ À¥¼ÒÄÏ¿¡ Á¢¼ÓÇÒ ¶§ ¼¼¼ÇÀ» ºÎ¿©ÇÏ´Â ¸Ş¼­µå
+	 * ìœ ì €ê°€ ìµœì´ˆ ì›¹ì†Œì¼“ì— ì ‘ì†í•  ë•Œ ì„¸ì…˜ì„ ë¶€ì—¬í•˜ëŠ” ë©”ì„œë“œ
 	 * @param session
-	 * 			¼¼¼Ç°ªÀ» ¹Ş´Â´Ù. ¼¼¼Ç°ªÀº ¼­¹ö°¡ ·£´ıÀûÀ¸·Î ºÎ¿©ÇÑ´Ù.
+	 * 			ì„¸ì…˜ê°’ì„ ë°›ëŠ”ë‹¤. ì„¸ì…˜ê°’ì€ ì„œë²„ê°€ ëœë¤ì ìœ¼ë¡œ ë¶€ì—¬í•œë‹¤.
 	 */
 	@OnOpen
 	public void onOpen(Session session) {
@@ -299,7 +299,7 @@ public class Websocket {
 	}
 
 	/**
-	 * ¼¼¼Ç ´İ±â
+	 * ì„¸ì…˜ ë‹«ê¸°
 	 * @param session
 	 */
 	@OnClose

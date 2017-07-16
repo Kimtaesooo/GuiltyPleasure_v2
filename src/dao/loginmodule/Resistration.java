@@ -19,17 +19,17 @@ public class Resistration {
 			con = pool.getConnection();
 		}
 		catch(Exception err){
-			System.out.println("DBCP ÀÎ½ºÅÏ½º ÂüÁ¶ ½ÇÆĞ : " + err);
+			System.out.println("DBCP ì¸ìŠ¤í„´ìŠ¤ ì°¸ì¡° ì‹¤íŒ¨ : " + err);
 		}
 	}
 	
 	/**
-	 * È¸¿ø°¡ÀÔ µî·Ï, UserInfo´Â dto Å¬·¡½º 
-	 * @param dto UserInfo Á¤º¸
+	 * íšŒì›ê°€ì… ë“±ë¡, UserInfoëŠ” dto í´ë˜ìŠ¤ 
+	 * @param dto UserInfo ì •ë³´
 	 */
 	public void regUser(UserInfo dto){
 		String sql ="";
-		// À¯Àú µî·Ï(È¸¿ø°¡ÀÔ)
+		// ìœ ì € ë“±ë¡(íšŒì›ê°€ì…)
 		sql = "insert into userinfo(u_id, u_pw, u_name, u_nickname, u_phone, u_email, u_addr, u_postnumber, "
 				+ "u_birth, u_gender, u_introduce, u_regdate, u_point, u_power, u_delete, u_question, u_answer, u_comment) "
 				+ "values(?,?,?,?,?,?,?,?,?,?,?,sysdate,0,1000,'N',?,?,?)";
@@ -57,12 +57,12 @@ public class Resistration {
 			pstmt.executeUpdate();
 		}
 		catch(Exception err){
-			System.out.println("regUser Ã¹¹øÂ°¿¡¼­ ¿À·ù");
+			System.out.println("regUser ì²«ë²ˆì§¸ì—ì„œ ì˜¤ë¥˜");
 			err.printStackTrace();
 			return;
 		}
 		
-		// À¯Àú AÁ¤´ä·ü ÃÊ±âÈ­
+		// ìœ ì € Aì •ë‹µë¥  ì´ˆê¸°í™”
 		sql = "insert into u_poa(u_id, up_type, up_a_cnt, up_wa_cnt) values(?,'A',0,0)";
 		try{
 			pstmt = con.prepareStatement(sql);
@@ -70,11 +70,11 @@ public class Resistration {
 			pstmt.executeUpdate();
 		}
 		catch(Exception err){
-			System.out.println("regUser µÎ¹øÂ°¿¡¼­ ¿À·ù");
+			System.out.println("regUser ë‘ë²ˆì§¸ì—ì„œ ì˜¤ë¥˜");
 			err.printStackTrace();
 		}
 		
-		// À¯Àú BÁ¤´ä·ü ÃÊ±âÈ­
+		// ìœ ì € Bì •ë‹µë¥  ì´ˆê¸°í™”
 		sql = "insert into u_poa(u_id, up_type, up_a_cnt, up_wa_cnt) values(?,'B',0,0)";
 		try{
 			pstmt = con.prepareStatement(sql);
@@ -82,11 +82,11 @@ public class Resistration {
 			pstmt.executeUpdate();
 		}
 		catch(Exception err){
-			System.out.println("regUser ¼¼¹øÂ°¿¡¼­ ¿À·ù");
+			System.out.println("regUser ì„¸ë²ˆì§¸ì—ì„œ ì˜¤ë¥˜");
 			err.printStackTrace();
 		}
 		
-		// À¯Àú CÁ¤´ä·ü ÃÊ±âÈ­
+		// ìœ ì € Cì •ë‹µë¥  ì´ˆê¸°í™”
 		sql = "insert into u_poa(u_id, up_type, up_a_cnt, up_wa_cnt) values(?,'C',0,0)";
 		try{
 			pstmt = con.prepareStatement(sql);
@@ -94,11 +94,11 @@ public class Resistration {
 			pstmt.executeUpdate();
 		}
 		catch(Exception err){
-			System.out.println("regUser ³×¹øÂ°¿¡¼­ ¿À·ù");
+			System.out.println("regUser ë„¤ë²ˆì§¸ì—ì„œ ì˜¤ë¥˜");
 			err.printStackTrace();
 		}
 		
-		// À¯Àú DÁ¤´ä·ü ÃÊ±âÈ­
+		// ìœ ì € Dì •ë‹µë¥  ì´ˆê¸°í™”
 		sql = "insert into u_poa(u_id, up_type, up_a_cnt, up_wa_cnt) values(?,'D',0,0)";
 		try{
 			pstmt = con.prepareStatement(sql);
@@ -106,11 +106,11 @@ public class Resistration {
 			pstmt.executeUpdate();
 		}
 		catch(Exception err){
-			System.out.println("regUser ´Ù¼¸¹øÂ°¿¡¼­ ¿À·ù");
+			System.out.println("regUser ë‹¤ì„¯ë²ˆì§¸ì—ì„œ ì˜¤ë¥˜");
 			err.printStackTrace();
 		}
 		
-		// À¯Àú ÀüÀû ÃÊ±âÈ­
+		// ìœ ì € ì „ì  ì´ˆê¸°í™”
 		sql = "insert into u_battle(u_id, ub_win, ub_lose) values(?,0,0)";
 		try{
 			pstmt = con.prepareStatement(sql);
@@ -118,11 +118,11 @@ public class Resistration {
 			pstmt.executeUpdate();
 		}
 		catch(Exception err){
-			System.out.println("regUser ¿©¼¸¹øÂ°¿¡¼­ ¿À·ù");
+			System.out.println("regUser ì—¬ì„¯ë²ˆì§¸ì—ì„œ ì˜¤ë¥˜");
 			err.printStackTrace();
 		}
 		
-		// À¯Àú°ü¸® »óÅÂ ÃÊ±âÈ­
+		// ìœ ì €ê´€ë¦¬ ìƒíƒœ ì´ˆê¸°í™”
 		sql = "insert into u_manage(u_id, um_chat, um_single, um_battle, um_entry, um_enroll) values(?,'','','','','')";
 		try{
 			pstmt = con.prepareStatement(sql);
@@ -130,7 +130,7 @@ public class Resistration {
 			pstmt.executeUpdate();
 		}
 		catch(Exception err){
-			System.out.println("regUser ÀÏ°ö¹øÂ°¿¡¼­ ¿À·ù");
+			System.out.println("regUser ì¼ê³±ë²ˆì§¸ì—ì„œ ì˜¤ë¥˜");
 			err.printStackTrace();
 		}
 		
@@ -139,9 +139,4 @@ public class Resistration {
 		}
 		
 	}
-	
-	
-	
-	
-
 }

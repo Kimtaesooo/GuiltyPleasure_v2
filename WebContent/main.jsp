@@ -7,11 +7,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
 <title>Main</title>
-
 </head>
+
+
 <body>
 <%@ include file="/nav.jsp" %>
 <input type="hidden" id="u_id" value="${u_id}" />

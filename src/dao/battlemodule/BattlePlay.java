@@ -12,7 +12,7 @@ import dto.Battle_Play;
 import dto.Battle_Room;
 import dto.Quiz;
 /**
- * ¹èÆ² ÇÃ·¹ÀÌ DAO
+ * ë°°í‹€ í”Œë ˆì´ DAO
  * @author KimTaesoo
  *
  */
@@ -27,11 +27,11 @@ public class BattlePlay {
 			pool = DBConnectionMgr.getInstance();
 			con = pool.getConnection();
 		} catch (Exception err) {
-			System.out.println("DBCP ÀÎ½ºÅÏ½º ÂüÁ¶ ½ÇÆĞ : " + err);
+			System.out.println("DBCP ì¸ìŠ¤í„´ìŠ¤ ì°¸ì¡° ì‹¤íŒ¨ : " + err);
 		}
 	}
 
-	// battleRoom.jsp ¹èÆ² °ÔÀÓ¹æ »ı¼º
+	// battleRoom.jsp ë°°í‹€ ê²Œì„ë°© ìƒì„±
 	public void regRoom(Battle_Room dto, String u_id) {
 		String sql = "";
 		sql = "insert into battle_room(br_num, br_subject, br_pw, br_type, br_cnt, br_point, u_id, br_people, br_gamestate, br_ip) "
@@ -48,17 +48,17 @@ public class BattlePlay {
 			pstmt.executeUpdate();
 
 		} catch (Exception err) {
-			System.out.println("regRoom Ã¹¹øÂ°¿¡¼­ ¿À·ù");
+			System.out.println("regRoom ì²«ë²ˆì§¸ì—ì„œ ì˜¤ë¥˜");
 			err.printStackTrace();
 		} finally {
 			pool.freeConnection(con, pstmt, rs);
 		}
 	}
 
-	// battleRoom.jsp ¹èÆ² ·ë ¸ñ·Ï »ı¼º
+	// battleRoom.jsp ë°°í‹€ ë£¸ ëª©ë¡ ìƒì„±
 	public List getListRoom() {
 		ArrayList list = new ArrayList();
-		String sql = "select br_num, br_subject, br_pw, decode (br_type, 'A', '¿¬¿¹', 'B','³Í¼¾½º','C','»ó½Ä','D','¾ÆÀç') as br_type, "
+		String sql = "select br_num, br_subject, br_pw, decode (br_type, 'A', 'ì—°ì˜ˆ', 'B','ë„Œì„¼ìŠ¤','C','ìƒì‹','D','ì•„ì¬') as br_type, "
 				+ "br_cnt, br_point, u_id, br_people, br_gamestate, br_ip " + "from battle_room order by br_gamestate";
 
 		try {
@@ -80,7 +80,7 @@ public class BattlePlay {
 				list.add(battleliset);
 			}
 		} catch (Exception err) {
-			System.out.println("getListRoom();¿¡¼­ ¿À·ù");
+			System.out.println("getListRoom();ì—ì„œ ì˜¤ë¥˜");
 			err.printStackTrace();
 		} finally {
 			pool.freeConnection(con, pstmt, rs);
@@ -88,7 +88,7 @@ public class BattlePlay {
 		return list;
 	}
 
-	// playRoom.jsp ¹æ Á¤º¸ ¼ÒÈ¯, À¯Àú ¾ÆÀÌµğ·Î °Ë»ö
+	// playRoom.jsp ë°© ì •ë³´ ì†Œí™˜, ìœ ì € ì•„ì´ë””ë¡œ ê²€ìƒ‰
 	public List roomInfo(String u_id) {
 		int br_people = 1;
 		ArrayList list = new ArrayList();
@@ -112,7 +112,7 @@ public class BattlePlay {
 				list.add(room);
 			}
 		} catch (Exception err) {
-			System.out.println("roomInfo();¿¡¼­ ¿À·ù");
+			System.out.println("roomInfo();ì—ì„œ ì˜¤ë¥˜");
 			err.printStackTrace();
 		} finally {
 			pool.freeConnection(con, pstmt, rs);
@@ -120,7 +120,7 @@ public class BattlePlay {
 		return list;
 	}
 
-	// playRoom.jsp ¹æ Á¤º¸ ¼ÒÈ¯, ¹æ ¹øÈ£·Î °Ë»ö
+	// playRoom.jsp ë°© ì •ë³´ ì†Œí™˜, ë°© ë²ˆí˜¸ë¡œ ê²€ìƒ‰
 	public List roomInfo2(String br_num) {
 		int br_people = 1;
 		ArrayList list = new ArrayList();
@@ -145,7 +145,7 @@ public class BattlePlay {
 				list.add(room);
 			}
 		} catch (Exception err) {
-			System.out.println("roomInfo();¿¡¼­ ¿À·ù");
+			System.out.println("roomInfo();ì—ì„œ ì˜¤ë¥˜");
 			err.printStackTrace();
 		} finally {
 			pool.freeConnection(con, pstmt, rs);
@@ -153,7 +153,7 @@ public class BattlePlay {
 		return list;
 	}
 
-	// playRoom.jsp battle_play Á¤º¸ ¼ÒÈ¯
+	// playRoom.jsp battle_play ì •ë³´ ì†Œí™˜
 	public List playInfo(String br_num) {
 		ArrayList list = new ArrayList();
 		String sql = "select * from battle_play where br_num ='" + br_num + "'";
@@ -174,7 +174,7 @@ public class BattlePlay {
 				list.add(room);
 			}
 		} catch (Exception err) {
-			System.out.println("playInfo();¿¡¼­ ¿À·ù");
+			System.out.println("playInfo();ì—ì„œ ì˜¤ë¥˜");
 			err.printStackTrace();
 		} finally {
 			pool.freeConnection(con, pstmt, rs);
@@ -182,7 +182,7 @@ public class BattlePlay {
 		return list;
 	}
 
-	// playRoom DB¿¡ ¹æ¹øÈ£¿Í ¹æÀå ¾ÆÀÌµğ Áı¾î³Ö±â
+	// playRoom DBì— ë°©ë²ˆí˜¸ì™€ ë°©ì¥ ì•„ì´ë”” ì§‘ì–´ë„£ê¸°
 	public void playRoom(String br_num, String u_id, int br_cnt) {
 		String sql = "";
 		sql = "insert into battle_play(br_num, q_code, user01, user02, bp_01cnt, bp_02cnt, bp_count, bp_state) "
@@ -195,23 +195,23 @@ public class BattlePlay {
 			pstmt.executeUpdate();
 
 		} catch (Exception err) {
-			System.out.println("playRoom Ã¹¹øÂ°¿¡¼­ ¿À·ù");
+			System.out.println("playRoom ì²«ë²ˆì§¸ì—ì„œ ì˜¤ë¥˜");
 			err.printStackTrace();
 		} finally {
 			pool.freeConnection(con, pstmt, rs);
 		}
 	}
 
-	// ¹æ¿¡ ¹æÀåÀÌ ¾Æ´Ñ ´Ù¸¥ »ç¶÷ÀÌ Á¢¼ÓÇßÀ» ¶§ µî·Ï
-	public void updatePlayRoom(String br_num, String gameuser) {
+	// ë°©ì— ë°©ì¥ì´ ì•„ë‹Œ ë‹¤ë¥¸ ì‚¬ëŒì´ ì ‘ì†í–ˆì„ ë•Œ ë“±ë¡
+	public void updatePlayRoom(String br_num, String u_id) {
 		String sql = "";
-		sql = "update battle_play set user02 = '" + gameuser + "' where br_num = '" + br_num + "'";
+		sql = "update battle_play set user02 = '" + u_id + "' where br_num = '" + br_num + "'";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.executeUpdate();
 
 		} catch (Exception err) {
-			System.out.println("updatePlayRoom Ã¹¹øÂ°¿¡¼­ ¿À·ù");
+			System.out.println("updatePlayRoom ì²«ë²ˆì§¸ì—ì„œ ì˜¤ë¥˜");
 			err.printStackTrace();
 		}
 
@@ -220,7 +220,7 @@ public class BattlePlay {
 			pstmt = con.prepareStatement(sql);
 			pstmt.executeUpdate();
 		} catch (Exception err) {
-			System.out.println("updatePlayRoom µÎ¹øÂ°¿¡¼­ ¿À·ù");
+			System.out.println("updatePlayRoom ë‘ë²ˆì§¸ì—ì„œ ì˜¤ë¥˜");
 			err.printStackTrace();
 
 		} finally {
@@ -228,7 +228,7 @@ public class BattlePlay {
 		}
 	}
 
-	// ¹èÆ² ÄûÁî °¡Áö°í¿À±â
+	// ë°°í‹€ í€´ì¦ˆ ê°€ì§€ê³ ì˜¤ê¸°
 	public List getQuiz(String q_type) {
 		PreparedStatement pre = null;
 		ResultSet rs = null;
@@ -259,12 +259,12 @@ public class BattlePlay {
 		return list;
 	}
 
-	// ¹èÆ²°ÔÀÓ ½ÃÀÛÇÏ¸é ¹æ »óÅÂ º¯°æ
+	// ë°°í‹€ê²Œì„ ì‹œì‘í•˜ë©´ ë°© ìƒíƒœ ë³€ê²½
 	public String updateBattleRoomState(String br_num) {
 		String startFlag = "";
 		String sql = "";
 
-		// °ÔÀÓ »óÅÂ ¹Ş¾Æ¿Â´Ù.
+		// ê²Œì„ ìƒíƒœ ë°›ì•„ì˜¨ë‹¤.
 		sql = "select * from battle_room where br_num = ?";
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -275,7 +275,7 @@ public class BattlePlay {
 				startFlag = rs.getString("br_gamestate");
 			}
 		} catch (Exception err) {
-			System.out.println("updateBattleRoomState Ã¹¹øÂ°¿¡¼­ ¿À·ù");
+			System.out.println("updateBattleRoomState ì²«ë²ˆì§¸ì—ì„œ ì˜¤ë¥˜");
 			err.printStackTrace();
 		}
 
@@ -286,7 +286,7 @@ public class BattlePlay {
 				pstmt.executeUpdate();
 
 			} catch (Exception err) {
-				System.out.println("updateBattleRoomState µÎ¹øÂ°¿¡¼­ ¿À·ù");
+				System.out.println("updateBattleRoomState ë‘ë²ˆì§¸ì—ì„œ ì˜¤ë¥˜");
 				err.printStackTrace();
 			} finally {
 				pool.freeConnection(con, pstmt, rs);
@@ -298,7 +298,7 @@ public class BattlePlay {
 		return startFlag;
 	}
 
-	// ¹èÆ² ÇÃ·¹ÀÌ À¯Àú Á¤´ä Ã³¸®
+	// ë°°í‹€ í”Œë ˆì´ ìœ ì € ì •ë‹µ ì²˜ë¦¬
 	public void updatePlayCnt(String br_num, String gameuser) {
 		String sql = "";
 		String user01 = "";
@@ -312,7 +312,7 @@ public class BattlePlay {
 				user02 = rs.getString("USER02");
 			}
 		} catch (Exception err) {
-			System.out.println("updatePlayCnt(ÀÎÀÚ2°³) Ã¹¹øÂ°¿¡¼­ ¿À·ù");
+			System.out.println("updatePlayCnt(ì¸ì2ê°œ) ì²«ë²ˆì§¸ì—ì„œ ì˜¤ë¥˜");
 			err.printStackTrace();
 		}
 
@@ -326,7 +326,7 @@ public class BattlePlay {
 			pstmt.executeUpdate();
 
 		} catch (Exception err) {
-			System.out.println("updatePlayCnt(ÀÎÀÚ2°³) µÎ¹øÂ°¿¡¼­ ¿À·ù");
+			System.out.println("updatePlayCnt(ì¸ì2ê°œ) ë‘ë²ˆì§¸ì—ì„œ ì˜¤ë¥˜");
 			err.printStackTrace();
 		}
 
@@ -335,28 +335,28 @@ public class BattlePlay {
 			pstmt = con.prepareStatement(sql);
 			pstmt.executeUpdate();
 		} catch (Exception err) {
-			System.out.println("updatePlayCnt(ÀÎÀÚ2°³) ¼¼¹øÂ°¿¡¼­ ¿À·ù");
+			System.out.println("updatePlayCnt(ì¸ì2ê°œ) ì„¸ë²ˆì§¸ì—ì„œ ì˜¤ë¥˜");
 			err.printStackTrace();
 		} finally {
 			pool.freeConnection(con, pstmt, rs);
 		}
 	}
 
-	// playroom bp_state »óÅÂ 0À¸·Î ¸¸µé±â
+	// playroom bp_state ìƒíƒœ 0ìœ¼ë¡œ ë§Œë“¤ê¸°
 	public void updatePlayCnt(String br_num) {
 		String sql = "update battle_play set bp_state = 0 where br_num = '" + br_num + "'";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.executeUpdate();
 		} catch (Exception err) {
-			System.out.println("updatePlayCnt(ÀÎÀÚ1°³) Ã¹¹øÂ°¿¡¼­ ¿À·ù");
+			System.out.println("updatePlayCnt(ì¸ì1ê°œ) ì²«ë²ˆì§¸ì—ì„œ ì˜¤ë¥˜");
 			err.printStackTrace();
 		} finally {
 			pool.freeConnection(con, pstmt, rs);
 		}
 	}
 
-	// ¹èÆ² Á¤´ä Ã¼Å©
+	// ë°°í‹€ ì •ë‹µ ì²´í¬
 	public String checkanswer(String q_code) {
 		String sql = "";
 		String answer = "";
@@ -368,7 +368,7 @@ public class BattlePlay {
 				answer = rs.getString("q_answer");
 			}
 		} catch (Exception err) {
-			System.out.println("checkanswer Ã¹¹øÂ°¿¡¼­ ¿À·ù");
+			System.out.println("checkanswer ì²«ë²ˆì§¸ì—ì„œ ì˜¤ë¥˜");
 			err.printStackTrace();
 		} finally {
 			pool.freeConnection(con, pstmt, rs);
@@ -376,51 +376,51 @@ public class BattlePlay {
 		return answer;
 	}
 
-	// ¹èÆ²°ÔÀÓ ¿À´ä Ä«¿îÆ® ³Ö±â
+	// ë°°í‹€ê²Œì„ ì˜¤ë‹µ ì¹´ìš´íŠ¸ ë„£ê¸°
 	public void updatePlayRoomState(String br_num) {
 		String sql = "";
-		// °ÔÀÓ »óÅÂ ¹Ş¾Æ¿Â´Ù.
+		// ê²Œì„ ìƒíƒœ ë°›ì•„ì˜¨ë‹¤.
 		sql = "update battle_play set bp_state = bp_state+1 where br_num = '" + br_num + "'";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.executeQuery();
 		} catch (Exception err) {
-			System.out.println("updatePlayRoomState Ã¹¹øÂ°¿¡¼­ ¿À·ù");
+			System.out.println("updatePlayRoomState ì²«ë²ˆì§¸ì—ì„œ ì˜¤ë¥˜");
 			err.printStackTrace();
 		} finally {
 			pool.freeConnection(con, pstmt, rs);
 		}
 	}
 
-	// ½ÂÀÚ Æ÷ÀÎÆ® Ã³¸®
+	// ìŠ¹ì í¬ì¸íŠ¸ ì²˜ë¦¬
 	public void win(String u_id, int u_point) {
 		String sql = "update userinfo set u_point = u_point + " + u_point + " where u_id = '" + u_id + "'";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.executeUpdate();
 		} catch (Exception err) {
-			System.out.println("win Ã¹¹øÂ°¿¡¼­ ¿À·ù");
+			System.out.println("win ì²«ë²ˆì§¸ì—ì„œ ì˜¤ë¥˜");
 			err.printStackTrace();
 		} finally {
 			pool.freeConnection(con, pstmt, rs);
 		}
 	}
 
-	// ÆĞÀÚ Æ÷ÀÎÆ® Ã³¸®
+	// íŒ¨ì í¬ì¸íŠ¸ ì²˜ë¦¬
 	public void lose(String u_id, int u_point) {
 		String sql = "update userinfo set u_point = u_point - " + u_point + " where u_id = '" + u_id + "'";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.executeUpdate();
 		} catch (Exception err) {
-			System.out.println("lose Ã¹¹øÂ°¿¡¼­ ¿À·ù");
+			System.out.println("lose ì²«ë²ˆì§¸ì—ì„œ ì˜¤ë¥˜");
 			err.printStackTrace();
 		} finally {
 			pool.freeConnection(con, pstmt, rs);
 		}
 	}
 
-	// ¹æ Á¤º¸ »èÁ¦
+	// ë°© ì •ë³´ ì‚­ì œ
 	public void deletPlayRoom(String br_num) {
 		String sql = "";
 		sql = "delete from battle_play where br_num = '" + br_num + "'";
@@ -428,7 +428,7 @@ public class BattlePlay {
 			pstmt = con.prepareStatement(sql);
 			pstmt.executeUpdate();
 		} catch (Exception err) {
-			System.out.println("deletPlayRoom Ã¹¹øÂ°¿¡¼­ ¿À·ù");
+			System.out.println("deletPlayRoom ì²«ë²ˆì§¸ì—ì„œ ì˜¤ë¥˜");
 			err.printStackTrace();
 		}
 		
@@ -437,7 +437,7 @@ public class BattlePlay {
 			pstmt = con.prepareStatement(sql);
 			pstmt.executeUpdate();
 		} catch (Exception err) {
-			System.out.println("deletPlayRoom µÎ¹øÂ°¿¡¼­ ¿À·ù");
+			System.out.println("deletPlayRoom ë‘ë²ˆì§¸ì—ì„œ ì˜¤ë¥˜");
 			err.printStackTrace();
 		}
 

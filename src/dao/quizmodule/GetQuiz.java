@@ -11,15 +11,15 @@ import dto.Quiz;
 import dto.QuizResult;
 
 /**
- * ÄûÁî°ÔÀÓ°ú °ü·ÃµÈ db¿¬°á¹× ÀÛ¾÷±â´ÉÀº ¿©±â¿¡¼­ ¸¸µë
+ * í€´ì¦ˆê²Œì„ê³¼ ê´€ë ¨ëœ dbì—°ê²°ë° ì‘ì—…ê¸°ëŠ¥ì€ ì—¬ê¸°ì—ì„œ ë§Œë“¬
  * */
 public class GetQuiz {
 	DBConnectionMgr db = null;
 	Connection con = null;
 
 	/**
-	 * ¸ÕÀú db¿Í ¿¬°áÇÏ±âÀ§ÇØ ºÎ¸£°í ÀÌ °´Ã¼¸¦ ÅëÇØ ÄûÁî¸¦ »ı¼ºÇÑ´Ù.
-	 * @see GetQuiz db¿Í ¿¬°áÀ» ÇØÁÖ´Â »ı¼ºÀÚ
+	 * ë¨¼ì € dbì™€ ì—°ê²°í•˜ê¸°ìœ„í•´ ë¶€ë¥´ê³  ì´ ê°ì²´ë¥¼ í†µí•´ í€´ì¦ˆë¥¼ ìƒì„±í•œë‹¤.
+	 * @see GetQuiz dbì™€ ì—°ê²°ì„ í•´ì£¼ëŠ” ìƒì„±ì
 	 * */
 	public GetQuiz() {
 		try {
@@ -32,8 +32,8 @@ public class GetQuiz {
 	}
 
 	/**
-	 *  ÄûÁî ÇÑ°³¸¦ »ı¼ºÇÏ´Â ¸Ş¼­µå
-	 *  @return Quiz db¿¡¼­ ÄûÁîÀÇ Á¤º¸¸¦ ÀÓÀÇ·Î ÇÑ°³ °¡Á®¿Í Quiz°´Ã¼¸¦ »ı¼ºÇÏ°í µ¥ÀÌÅÍ¸¦ ÀúÀåÇØ¼­ ¹İÈ¯
+	 *  í€´ì¦ˆ í•œê°œë¥¼ ìƒì„±í•˜ëŠ” ë©”ì„œë“œ
+	 *  @return Quiz dbì—ì„œ í€´ì¦ˆì˜ ì •ë³´ë¥¼ ì„ì˜ë¡œ í•œê°œ ê°€ì ¸ì™€ Quizê°ì²´ë¥¼ ìƒì„±í•˜ê³  ë°ì´í„°ë¥¼ ì €ì¥í•´ì„œ ë°˜í™˜
 	 * */
 	public Quiz makeQuiz() {
 		PreparedStatement pre = null;
@@ -62,10 +62,10 @@ public class GetQuiz {
 	}
 	
 	/**
-	 * ÄûÁîÀÇ ¼ıÀÚ¸¸Å­ ÃßÃâÇÏ´Â ¸Ş¼­µå
-	 * @param int ÃßÃâÇÏ°íÀÚÇÒ ¹®Á¦¼ö¸¦ ¹Ş´Â ¸Å°³º¯¼ö
-	 * @See Quiz  ÄûÁîÁ¤º¸¸¦ ÀúÀåÇÏ´Â QuizÅ¬·¡½º
-	 * @return ArrayList ¸Å°³º¯¼ö¸¸Å­ÀÇ ¹®Á¦¸¦ ÀÓÀÇ·Î °¡Á®¿Í QuizÅ¬·¡½º°¡ ´ã±ä ArrayList¸¦ ¹İÈ¯
+	 * í€´ì¦ˆì˜ ìˆ«ìë§Œí¼ ì¶”ì¶œí•˜ëŠ” ë©”ì„œë“œ
+	 * @param int ì¶”ì¶œí•˜ê³ ìí•  ë¬¸ì œìˆ˜ë¥¼ ë°›ëŠ” ë§¤ê°œë³€ìˆ˜
+	 * @See Quiz  í€´ì¦ˆì •ë³´ë¥¼ ì €ì¥í•˜ëŠ” Quizí´ë˜ìŠ¤
+	 * @return ArrayList ë§¤ê°œë³€ìˆ˜ë§Œí¼ì˜ ë¬¸ì œë¥¼ ì„ì˜ë¡œ ê°€ì ¸ì™€ Quizí´ë˜ìŠ¤ê°€ ë‹´ê¸´ ArrayListë¥¼ ë°˜í™˜
 	 * */
 	public ArrayList makeQuiz(int val) {
 		PreparedStatement pre = null;
@@ -99,9 +99,9 @@ public class GetQuiz {
 
 	
 	/**
-	 * ÄûÁî Á¤´ä ¿À´ä°ú ÀÌ¿ëÀÚÀÇ Á¤´ä¼ö ¿À´ä¼ö¸¦ ±â·ÏÇÏ´Â ¸Ş¼­µå
+	 * í€´ì¦ˆ ì •ë‹µ ì˜¤ë‹µê³¼ ì´ìš©ìì˜ ì •ë‹µìˆ˜ ì˜¤ë‹µìˆ˜ë¥¼ ê¸°ë¡í•˜ëŠ” ë©”ì„œë“œ
 	 * 
-	 * @param ArrayList ÄûÁî °á°úµéÀÌ ÀúÀåµÈ ArrayList¸¦ ¸Å°³º¯¼ö·Î ¹ŞÀ½
+	 * @param ArrayList í€´ì¦ˆ ê²°ê³¼ë“¤ì´ ì €ì¥ëœ ArrayListë¥¼ ë§¤ê°œë³€ìˆ˜ë¡œ ë°›ìŒ
 	 * */
 	public void setResult(ArrayList list) {
 		QuizResult qrs = null;
@@ -109,7 +109,7 @@ public class GetQuiz {
 		PreparedStatement psmt = null;
 		for (int i = 0; i < list.size(); i++) {
 			qrs = (QuizResult) list.get(i);
-			// quiz¿¡ µé¾î°¥ Ç×¸ñµé
+			// quizì— ë“¤ì–´ê°ˆ í•­ëª©ë“¤
 			String q_code = qrs.getQ_code();
 			int ca_count = qrs.getQ_ca_count();
 			int wa_count = qrs.getQ_wa_count();
@@ -124,7 +124,7 @@ public class GetQuiz {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			// À¯Àú¿¡°Ô µé¾î°¥ Ç×¸ñµé
+			// ìœ ì €ì—ê²Œ ë“¤ì–´ê°ˆ í•­ëª©ë“¤
 			String u_id = qrs.getU_id();
 			int ca_sum = qrs.getCa_sum();
 			int wa_sum = qrs.getWa_sum();
@@ -148,6 +148,4 @@ public class GetQuiz {
 		}
 
 	}
-
-	
 }

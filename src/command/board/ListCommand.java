@@ -11,7 +11,7 @@ import dao.boardmodule.FreeBoard;
 import dto.Board;
 /**
  * 
- * @author Ȳ����
+ * @author 황선영
  * @version 1.0 2017.07.03
  */
 public class ListCommand implements CommandBoard {
@@ -19,7 +19,7 @@ public class ListCommand implements CommandBoard {
 	Board dto = new Board();
 	
 	/**
-	 * �Խñ� ����Ʈ �����ͼ� ȭ�鿡 �Ѹ��� ���� ó�� -> ����Ʈ ������
+	 * 게시글 리스트 가져와서 화면에 뿌리기 위한 처리 -> 리스트 페이지
 	 */
 	@Override
 	public Object processCommand(HttpServletRequest req, HttpServletResponse resp)
@@ -27,18 +27,18 @@ public class ListCommand implements CommandBoard {
 		req.setCharacterEncoding("utf-8");
 		resp.setCharacterEncoding("utf-8");
 		
-		//�˻� ����� ���� ���� �ޱ�
+		//검색 기능을 위한 변수 받기
 		String keyfield = req.getParameter("keyfield");
 		String keyword = req.getParameter("keyword");
 		
-		/*4.����¡�� ���� ����(���������� �޾ƿ���)*/
+		/*4.페이징을 위한 변수(페이지에서 받아오기)*/
 		String nowPage = req.getParameter("nowPage");
 		String nowBlock = req.getParameter("nowBlock");
 
 		List<Board> BoardList = dao.getBoardList(keyword, keyfield);
 		req.setAttribute("BoardList", BoardList);
 		
-		/*5.����¡�� ���� ���� (�������� ������)*/
+		/*5.페이징을 위한 변수 (페이지에 보내기)*/
 		req.setAttribute("nowPage", nowPage);
 		req.setAttribute("nowBlock", nowBlock);
 		

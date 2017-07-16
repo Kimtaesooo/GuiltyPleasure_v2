@@ -1,10 +1,7 @@
-<%@ page import="dao.battlemodule.BattlePlay"%>
-<%@ page import="java.util.ArrayList"%>
-<%@ page import="dto.Battle_Play"%>
-<%@ page import="dto.Battle_Room"%>
-<%@ page import="java.util.List"%>
-<%@ page import="java.net.Socket"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="java.net.Socket"%>
 <!DOCTYPE html>
 <html>
 <!-- 
@@ -14,66 +11,18 @@
  -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap332/css/bootstrap.min.css">
-<script	src="${pageContext.request.contextPath}/bootstrap332/js/jquery-3.2.1.min.js"></script>
-<script	src="${pageContext.request.contextPath}/bootstrap332/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/design/bootstrap332/css/bootstrap.min.css">
+<script	src="${pageContext.request.contextPath}/design/bootstrap332/js/jquery-3.2.1.min.js"></script>
+<script	src="${pageContext.request.contextPath}/design/bootstrap332/js/bootstrap.min.js"></script>
 </head>
 <body>
-
-	<%
-		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
-		// 유저 : 클릭해서 br_num, u_id(방 생성자) 받아온다. 방장(생성자) : 방 만들때 br_num, u_id 직접 가져온다.
-		String br_num = request.getParameter("br_num");
-		String bangjang = request.getParameter("bangjang");
-		String gameuser = "";
-		String me = (String) session.getAttribute("u_id"); // 내 아이디 세션값으로 저장(웹소켓에 보낼때 쓴다.)
-		String q_type = request.getParameter("br_type");
-		String ip = request.getRemoteAddr();
-
-		// dto, dao 선언
-		List roominfo = new ArrayList();
-		List playinfo = new ArrayList();
-		BattlePlay dao = new BattlePlay();
-
-		roominfo = dao.roomInfo2(br_num); // 방에 대한 정보(battleroom) - 문제개수, 유형 등등
-		Battle_Room battleroom = (Battle_Room) roominfo.get(0);
-
-		playinfo = dao.playInfo(br_num); // 방에 속한 유저들의 정보(playroom) - 방장ID, 유저ID, 정답 카운팅 등
-		Battle_Play battleplay = (Battle_Play) playinfo.get(0);
-
-		String user01 = battleplay.getUser01(); // 방장
-		String user02 = battleplay.getUser02(); // 게임유저
-		int people = battleroom.getBr_people();
-
-		if (battleroom.getBr_people() == 1) {
-			if (!session.getAttribute("u_id").equals(bangjang)) {
-				gameuser = (String) session.getAttribute("u_id");
-				// Br_people 인원 수 증가
-				dao.updatePlayRoom(br_num, gameuser);
-			}
-		}
-		if (battleroom.getBr_people() == 2) {
-			if (!session.getAttribute("u_id").equals(user01) && !session.getAttribute("u_id").equals(user02)) {
-	%>
-	<script>
-		alert('인원이 꽉 찼습니다.');
-		location.href = "battleRoom.jsp";
-	</script>
-	<%
-		}
-		}
-	%>
-
-
-
-	<input type="hidden" value="<%=user01%>" id="user01">
-	<input type="hidden" value="<%=user02%>" id="user02">
-	<input type="hidden" value="<%=br_num%>" id="br_num">
-	<input type="hidden" value="<%=q_type%>" id="q_type">
-	<input type="hidden" value="<%=me%>" id="me">
-	<input type="hidden" value="<%=ip%>" id="ip">
-	<input type="hidden" value="<%=people%>" id="people">
+	<input type="text" value="${bangjang}" id="user01">
+	<input type="text" value="${user02}" id="user02">
+	<input type="text" value="${br_num}" id="br_num">
+	<input type="text" value="${br_type}" id="q_type">
+	<input type="text" value="${u_id}" id="me">
+	<input type="text" value="${ip}" id="ip">
+	<input type="text" value="${people}" id="people">
 	<br>
 	<br>
 	<h3 align=center>배틀 게임 시작</h3>
@@ -85,11 +34,11 @@
 			style="width:700px; height:500px;  overflow-x:hidden; 
  			overflow-y:auto; 
 			padding:10px; background-color: #dae5f1;border: 1px solid #101010;">
-상대방이 먼저 문제를 맞출경우 자동으로 다음 문제로 넘어갑니다.
-오답을 선택할 시 상대방이 문제를 다 풀때까지 기다려야 합니다.
-키패드의 1,2,3,4 버튼을 이용하여 정답을 전송할 수 있습니다.
-방을 만들 때 설정한 문제 개수를 모두 맞추는 유저가 이기며, 상대방의 포인트를 뺏어갑니다.
-테스트중이므로 중복된 문제가 나올 수 있습니다.
+상대방이 먼저 문제를 맞출경우 자동으로 다음 문제로 넘어갑니다.<br>
+오답을 선택할 시 상대방이 문제를 다 풀때까지 기다려야 합니다.<br>
+키패드의 1,2,3,4 버튼을 이용하여 정답을 전송할 수 있습니다.<br>
+방을 만들 때 설정한 문제 개수를 모두 맞추는 유저가 이기며, 상대방의 포인트를 뺏어갑니다.<br>
+테스트중이므로 중복된 문제가 나올 수 있습니다.<br>
 			</div>
 			<div class="col-md-3">
 			<br><br>
@@ -120,7 +69,7 @@
 			<div class="col-md-10" id="messageWindow"
 			style="width:300px; height:300px;  overflow-x:hidden; 
  			overflow-y:auto; 
-			padding:10px; background-color: #d4d7da;border: 1px solid #101010;"></div>
+			padding:10px; background-color: transparent; border: 1px solid #101010;"></div>
 			<br>
 			<br>
 			<div class="col-xs-9">
@@ -136,9 +85,7 @@
 				<br><br><br><br>
 			</div>
 			<br> <br> <br>
-			<%
-				if (session.getAttribute("u_id").equals(user01)) {
-			%>
+			<c:if test="${bangjang eq u_id}">
 			<div class="col-xs-6">
 				<a class="btn btn-danger btn-lg btn-block" onclick="giveUp();" role="button">포기</a>
 			</div>
@@ -146,20 +93,14 @@
 				<a class="btn btn-success btn-lg btn-block" role="button"
 					onclick="gamestart();">시작</a>
 			</div>
-			<%
-				} else {
-			%>
+			</c:if>
+			<c:if test="${bangjang ne	 u_id}">
 			<div class="col-xs-12">
 				<a class="btn btn-danger btn-lg btn-block" onclick="giveUp();" role="button">포기하기</a>
 			</div>
-
-			<%
-				}
-			%>
+			</c:if>
 		</div>
 	</div>
-
-
 
 
 	<!-- 채팅 부분 -->
@@ -167,7 +108,7 @@
 		var textarea = document.getElementById("messageWindow");
 		var connectionCheck = document.getElementById("connectionCheck");
 		var ip = document.getElementById('ip').value;
-		var webSocket = new WebSocket("ws://70.12.110.106:8080/GuiltyPleasure/battlesocket");
+		var webSocket = new WebSocket("ws://localhost:8080/GuiltyPleasure/battlesocket");
 		var inputMessage = document.getElementById('inputMessage');
 		var user01 = document.getElementById('user01').value;
 		var user02 = document.getElementById('user02').value;

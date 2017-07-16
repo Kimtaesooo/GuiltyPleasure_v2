@@ -1,30 +1,41 @@
 package command.battle;
 
+import javax.servlet.RequestDispatcher;
+
 import controller.Command;
 
 public class CommandFactory {
 	private static CommandFactory instance = new CommandFactory();
-	
-	private CommandFactory(){
-		
+
+	private CommandFactory() {
+
 	}
-	
-	public static CommandFactory getInstance(){
+
+	public static CommandFactory getInstance() {
 		return instance;
 	}
-	public Command createCommand(String cmd){
-		
-		// ¹æ ¸¸µé±â
-		if(cmd.equals("MAKEROOM")){
+
+	public Command createCommand(String cmd) {
+
+		// ë°© ë§Œë“¤ê¸°
+		if (cmd.equals("MAKEROOM")) {
 			return new MakeRoomCommand();
 		}
-		// ¹èÆ² °á°úÃ¢ ÀÌµ¿
-		else if(cmd.equals("EXIT")){
+		// ë°°í‹€ ê²°ê³¼ì°½ ì´ë™
+		else if (cmd.equals("EXIT")) {
 			return new ExitCommand();
 		}
-		// ¹èÆ² Æ÷±âÇÏ±â
-		else if(cmd.equals("GIVEUP")){
+		// ë°°í‹€ í¬ê¸°í•˜ê¸°
+		else if (cmd.equals("GIVEUP")) {
 			return new GiveUpCommand();
+		}
+		// ë°°í‹€ ëŒ€ê¸°ë°© ì´ë™
+		else if (cmd.equals("BATTLEPAGE")) {
+			return new BattlePageCommand();
+		}
+		// ë°°í‹€ í”Œë ˆì´ ë°© ì´ë™
+		else if (cmd.equals("ENTERROOM")) {
+			return new EnterRoomCommand();
 		}
 		return null;
 	}

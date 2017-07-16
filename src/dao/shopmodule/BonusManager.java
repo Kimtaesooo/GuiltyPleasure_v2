@@ -1,17 +1,10 @@
 package dao.shopmodule;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import dbcp.DBConnectionMgr;
-import dto.Shop;
-import dto.UserInfo;
-import dto.UserInfoDTO;
 
 public class BonusManager {
 	private Connection con;
@@ -24,7 +17,7 @@ public class BonusManager {
 			pool = DBConnectionMgr.getInstance();
 
 		} catch (Exception err) {
-			System.out.println("DBCP ÀÎ½ºÅÏ½º ÂüÁ¶ ½ÇÆĞ:" + err);
+			System.out.println("DBCP ì¸ìŠ¤í„´ìŠ¤ ì°¸ì¡° ì‹¤íŒ¨:" + err);
 		} finally {
 
 		}
@@ -45,7 +38,7 @@ public class BonusManager {
 			pstmt.setString(1, id);
 			pstmt.executeUpdate();
 		} catch (Exception err) {
-			System.out.println("bonusPoint()¿¡¼­¿À·ù");
+			System.out.println("bonusPoint()ì—ì„œì˜¤ë¥˜");
 			err.printStackTrace();
 		} finally {
 			pool.freeConnection(con, pstmt);
@@ -59,7 +52,7 @@ public class BonusManager {
 			pstmt.setString(1, id);
 			pstmt.executeUpdate();
 		} catch (Exception err) {
-			System.out.println("searchQuiz()¿¡¼­¿À·ù");
+			System.out.println("searchQuiz()ì—ì„œì˜¤ë¥˜");
 			err.printStackTrace();
 		} finally {
 			pool.freeConnection(con, pstmt);
@@ -75,7 +68,7 @@ public class BonusManager {
 			pstmt.setString(1, u_nickname);
 			pstmt.executeUpdate();
 		} catch (Exception err) {
-			System.out.println("u_nickname()¿¡¼­¿À·ù");
+			System.out.println("u_nickname()ì—ì„œì˜¤ë¥˜");
 			err.printStackTrace();
 		} finally {
 			pool.freeConnection(con, pstmt);

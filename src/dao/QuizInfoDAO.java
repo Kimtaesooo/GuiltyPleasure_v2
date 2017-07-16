@@ -35,7 +35,7 @@ public class QuizInfoDAO {
 		int insql = 1;
 		int inpstmt = 1;
 		
-		String sql = "SELECT * FROM ( SELECT Q.Q_CODE , DECODE(Q.Q_TYPE,'A','ø¨æ÷','B','≥ÕºæΩ∫','C','ææÓ','D','ªÛΩƒ','±‚≈∏') AS Q_TYPE , Q.Q_QUESTION , Q.Q_ANSWER , Q.Q_WA_A , Q.Q_WA_B , Q.Q_WA_C " 
+		String sql = "SELECT * FROM ( SELECT Q.Q_CODE , DECODE(Q.Q_TYPE,'A','Ïó∞Ïï†','B','ÎÑåÏÑºÏä§','C','Ïñ∏Ïñ¥','D','ÏÉÅÏãù','Í∏∞ÌÉÄ') AS Q_TYPE , Q.Q_QUESTION , Q.Q_ANSWER , Q.Q_WA_A , Q.Q_WA_B , Q.Q_WA_C " 
 					+" , U.U_ID , ROW_NUMBER() OVER (ORDER BY "+order+" ) AS NUM FROM QUIZ Q INNER JOIN USERINFO U "
 				    +" ON Q.U_ID = U.U_ID ";
 		
@@ -172,7 +172,6 @@ public class QuizInfoDAO {
 				count = rs.getInt("count");
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
 			pool.freeConnection(conn, pstmt, rs);
@@ -197,7 +196,6 @@ public class QuizInfoDAO {
 				dto.setQ_wa_c(rs.getString("q_wa_c"));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
 			pool.freeConnection(conn, pstmt, rs);
@@ -236,7 +234,6 @@ public class QuizInfoDAO {
 			pstmt.setString(1, id);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
 			pool.freeConnection(conn, pstmt, rs);

@@ -3,14 +3,10 @@ package dao.loginmodule;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
 
 import dbcp.DBConnectionMgr;
-import dto.u_battle;
-import dto.u_single;
 /**
- * ¾ÆÀÌµğ/ ºñ¹Ğ¹øÈ£ Á¶È¸ Å¬·¡½º ÀÔ´Ï´Ù.
+ * ì•„ì´ë””/ ë¹„ë°€ë²ˆí˜¸ ì¡°íšŒ í´ë˜ìŠ¤ ì…ë‹ˆë‹¤.
  * 
  */
 
@@ -26,14 +22,14 @@ public class idpw {
 			pool = DBConnectionMgr.getInstance();
 		}
 		catch(Exception err){
-			System.out.println("DBCP ÀÎ½ºÅÏ½º ÂüÁ¶ ½ÇÆĞ : "+err);
+			System.out.println("DBCP ì¸ìŠ¤í„´ìŠ¤ ì°¸ì¡° ì‹¤íŒ¨ : "+err);
 		}
 	}
 	
 	/**
-	 * List.jsp ÆäÀÌÁö¿¡¼­ »ç¿ë
-	 * È¸¿ø ¸ñ·ÏÀ» °¡Á®¿À´Â ¸Ş¼­µå
-	 * @return arr[] ¹İÈ¯, È¸¿ø ¸ñ·Ï ¸®½ºÆ® ¸®ÅÏ
+	 * List.jsp í˜ì´ì§€ì—ì„œ ì‚¬ìš©
+	 * íšŒì› ëª©ë¡ì„ ê°€ì ¸ì˜¤ëŠ” ë©”ì„œë“œ
+	 * @return arr[] ë°˜í™˜, íšŒì› ëª©ë¡ ë¦¬ìŠ¤íŠ¸ ë¦¬í„´
 	 */
 	public String[] getBoardList(){
 		String [] u_find = new String [20];
@@ -55,7 +51,7 @@ public class idpw {
 			}
 		}
 		catch(Exception err){
-			System.out.println("getBoardList() ¿¡¼­ ¿À·ù : "+err);
+			System.out.println("getBoardList() ì—ì„œ ì˜¤ë¥˜ : "+err);
 		}
 		finally{
 			pool.freeConnection(con,pstmt, rs);
@@ -64,12 +60,12 @@ public class idpw {
 	}
 	
 	/**
-	 * ¾ÆÀÌµğÃ£±â
+	 * ì•„ì´ë””ì°¾ê¸°
 	 * @param name
-	 * 			À¯Àú ÀÌ¸§À» ¹Ş´Â´Ù.
+	 * 			ìœ ì € ì´ë¦„ì„ ë°›ëŠ”ë‹¤.
 	 * @param email
-	 * 			À¯Àú ÀÌ¸ŞÀÏÀ» ¹Ş´Â´Ù.
-	 * @return String id, À¯Àú id ¹İÈ¯
+	 * 			ìœ ì € ì´ë©”ì¼ì„ ë°›ëŠ”ë‹¤.
+	 * @return String id, ìœ ì € id ë°˜í™˜
 	 */
 	public String searchId(String name, String email){
 		
@@ -90,7 +86,7 @@ public class idpw {
 			}
 		}
 		catch(Exception err){
-			System.out.println("searchId ¿¡¼­ ¿À·ù : "+err);
+			System.out.println("searchId ì—ì„œ ì˜¤ë¥˜ : "+err);
 		}
 		finally{
 			pool.freeConnection(con,pstmt, rs);
@@ -100,15 +96,15 @@ public class idpw {
 	
 	
 	/**
-	 * ºñ¹Ğ¹øÈ£ Ã£±â ¸Ş¼­µå
+	 * ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸° ë©”ì„œë“œ
 	 * @param id
-	 * 			À¯Àú id ¹ŞÀ½
+	 * 			ìœ ì € id ë°›ìŒ
 	 * @param email
-	 * 			À¯Àú email ¹ŞÀ½
+	 * 			ìœ ì € email ë°›ìŒ
 	 * @param U_QUESTION
-	 * 			À¯Àú°¡ ÀÔ·ÂÇÑ Áú¹® °ª
+	 * 			ìœ ì €ê°€ ì…ë ¥í•œ ì§ˆë¬¸ ê°’
 	 * @param U_ANSWER
-	 * 			À¯Àú°¡ ÀÔ·ÂÇÑ Áú¹® ´ä
+	 * 			ìœ ì €ê°€ ì…ë ¥í•œ ì§ˆë¬¸ ë‹µ
 	 * @return
 	 */
 	public String searchPw(String id, String email, String U_QUESTION, String U_ANSWER){
@@ -128,7 +124,7 @@ public class idpw {
 			}
 		}
 		catch(Exception err){
-			System.out.println("searchPw ¿¡¼­ ¿À·ù : "+err);
+			System.out.println("searchPw ì—ì„œ ì˜¤ë¥˜ : "+err);
 		}
 		finally{
 			pool.freeConnection(con,pstmt, rs);

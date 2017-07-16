@@ -3,8 +3,6 @@ package dao.loginmodule;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
 
 import dbcp.DBConnectionMgr;
 import dto.UserInfo;
@@ -21,16 +19,15 @@ public class Login {
 			con = pool.getConnection();
 		}
 		catch(Exception err){
-			System.out.println("DBCP ÀÎ½ºÅÏ½º ÂüÁ¶ ½ÇÆĞ : " + err);
+			System.out.println("DBCP ì¸ìŠ¤í„´ìŠ¤ ì°¸ì¡° ì‹¤íŒ¨ : " + err);
 		}
 	}
 	
-	// À¯ÀúÁ¤º¸ ¾ò±â
 	/**
-	 * À¯Àú Á¤º¸ ¾ò´Â ¸Ş¼­µå
+	 * ìœ ì € ì •ë³´ ì–»ëŠ” ë©”ì„œë“œ
 	 * @param u_id
-	 * 			À¯Àú Á¤º¸¸¦ ¾ò±â À§ÇÑ id°ª ¹ŞÀ½
-	 * @return UserInfo dto ¸®ÅÏ
+	 * 			ìœ ì € ì •ë³´ë¥¼ ì–»ê¸° ìœ„í•œ idê°’ ë°›ìŒ
+	 * @return UserInfo dto ë¦¬í„´
 	 */
 	public UserInfo getUser(String u_id){
 		UserInfo dto = new UserInfo();
@@ -61,7 +58,7 @@ public class Login {
 			}
 		}
 		catch(Exception err){
-			System.out.println("getUser¿¡¼­ ¿À·ù");
+			System.out.println("getUserì—ì„œ ì˜¤ë¥˜");
 			err.printStackTrace();
 		}
 		finally{

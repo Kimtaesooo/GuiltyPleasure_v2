@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 import dao.DBConnectionMgr;
 /**
- * Æ÷ÀÎÆ®¸¦ ÀúÀåÇÏ±âÀ§ÇØ db¿Í ¿¬µ¿µÇ´Â Å¬·¡½º
+ * í¬ì¸íŠ¸ë¥¼ ì €ì¥í•˜ê¸°ìœ„í•´ dbì™€ ì—°ë™ë˜ëŠ” í´ë˜ìŠ¤
  * */
 public class GetPoint {
 	DBConnectionMgr db;
@@ -16,19 +16,19 @@ public class GetPoint {
 	ResultSet rs;
 	
 	/**
-	 * db¿Í ¿¬µ¿ÇÏ´Â Å¬·¡½º
+	 * dbì™€ ì—°ë™í•˜ëŠ” í´ë˜ìŠ¤
 	 * */
 	public GetPoint() {
 		try {
 			db = DBConnectionMgr.getInstance();
 			con = db.getConnection();
 		} catch (Exception e) {
-			System.out.println("Æ÷ÀÎÆ®Àû¸³À» À§ÇÑ µğºñ¿¬°á ½ÇÆĞ");
+			System.out.println("í¬ì¸íŠ¸ì ë¦½ì„ ìœ„í•œ ë””ë¹„ì—°ê²° ì‹¤íŒ¨");
 		}
 	}
 	
 	/**
-	 * @param String id¸¦ ¸Å°³º¯¼ö·Î ¹ŞÀ½
+	 * @param String idë¥¼ ë§¤ê°œë³€ìˆ˜ë¡œ ë°›ìŒ
 	 * 
 	 * */
 	public int SavePoint(String id){
@@ -48,8 +48,8 @@ public class GetPoint {
 	}
 	
 	/**
-	 * @param String  À¯Àú id¸¦ ¸Å°³º¯¼ö·Î ¹ŞÀ½
-	 * @param int °´°ü½Ä¿¡¼­ »ç¿ëµÉ point¸¦ ¸Å°³º¯¼ö·Î ¹ŞÀ½
+	 * @param String  ìœ ì € idë¥¼ ë§¤ê°œë³€ìˆ˜ë¡œ ë°›ìŒ
+	 * @param int ê°ê´€ì‹ì—ì„œ ì‚¬ìš©ë  pointë¥¼ ë§¤ê°œë³€ìˆ˜ë¡œ ë°›ìŒ
 	 * */
 	public int SavePoint(String id, int point){
 		String sql = "update USERINFO set U_POINT = U_POINT + ? where U_ID = ?";

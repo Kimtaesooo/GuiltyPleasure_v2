@@ -21,11 +21,11 @@ public class QBorad {
 			dbm = DBConnectionMgr.getInstance();
 			con = dbm.getConnection();
 		} catch (Exception e) {
-			System.out.println("¿¬°á ½ÇÆĞ " + e);
+			System.out.println("ì—°ê²° ì‹¤íŒ¨ " + e);
 		}
 	}
 
-	// ÄûÁîµî·Ï °Ô½ÃÆÇ¿¡ id·Î ÇØ´çÇÏ´Â °Ô ÀÖ´ÂÁö Ã¼Å©
+	// í€´ì¦ˆë“±ë¡ ê²Œì‹œíŒì— idë¡œ í•´ë‹¹í•˜ëŠ” ê²Œ ìˆëŠ”ì§€ ì²´í¬
 	public String checkBoard(String id) {
 		try {
 			String check = "select u_id from U_QREG where u_id =?";
@@ -33,9 +33,9 @@ public class QBorad {
 			psmt.setString(1, id);
 			rs = psmt.executeQuery();
 			if (rs.next() == true) {
-				confrim = "ÀÖÀ½";
+				confrim = "ìˆìŒ";
 			} else {
-				confrim = "¾øÀ½";
+				confrim = "ì—†ìŒ";
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -44,7 +44,7 @@ public class QBorad {
 		return confrim;
 	}
 
-	//°Ô½ÃÆÇ Å¬¸¯½Ã »ó¼¼³»¿ëÀ» ºÒ·¯¿À´Â ¸Ş¼­µå
+	//ê²Œì‹œíŒ í´ë¦­ì‹œ ìƒì„¸ë‚´ìš©ì„ ë¶ˆëŸ¬ì˜¤ëŠ” ë©”ì„œë“œ
 	public U_Quiz getU_Quzi(String id){
 		U_Quiz uqinform = new U_Quiz();
 		String sql = "select * from U_QREG where UQ_NUM=?";
@@ -73,20 +73,20 @@ public class QBorad {
 	}
 	
 	
-	// ÀüÃ¼ ¸®½ºÆ®¸¦ °¡Á®¿À´Â ¸Ş¼­µå
+	// ì „ì²´ ë¦¬ìŠ¤íŠ¸ë¥¼ ê°€ì ¸ì˜¤ëŠ” ë©”ì„œë“œ
 		public ArrayList getQBoard(String id) {
-			// sql 2°³ ; ÇÏ³ª´Â À¯Àú°¡ Á¢¼ÓÇßÀ»¶§, ÇÏ³ª´Â ¸¶½ºÅÍ°¡ Á¢¼ÓÇßÀ»¶§
-			// ¸¶½ºÅÍ°¡ Á¢¼ÓÇßÀ»¶© Àü µ¥ÀÌÅÍ Ãâ·Â, À¯Àú°¡ Á¢¼ÓÇßÀ» ¶© ±× À¯Àú°¡ ÇØ´çÇÏ´Â
+			// sql 2ê°œ ; í•˜ë‚˜ëŠ” ìœ ì €ê°€ ì ‘ì†í–ˆì„ë•Œ, í•˜ë‚˜ëŠ” ë§ˆìŠ¤í„°ê°€ ì ‘ì†í–ˆì„ë•Œ
+			// ë§ˆìŠ¤í„°ê°€ ì ‘ì†í–ˆì„ë• ì „ ë°ì´í„° ì¶œë ¥, ìœ ì €ê°€ ì ‘ì†í–ˆì„ ë• ê·¸ ìœ ì €ê°€ í•´ë‹¹í•˜ëŠ”
 
 			ArrayList qlist = new ArrayList<>();
 			U_Quiz uq = null;
 			String sql;
-			String check = "Å×½ºÆ®";
+			String check = "í…ŒìŠ¤íŠ¸";
 			if (!id.equals("master"))
 				check = checkBoard(id);
 			try {
 				if (id.equals("master")) {
-					//°ü¸®ÀÚÀÏ¶§
+					//ê´€ë¦¬ìì¼ë•Œ
 					sql = "select * from u_qreg order by uq_adopt";
 					psmt = con.prepareStatement(sql);
 					rs = psmt.executeQuery();
@@ -105,7 +105,7 @@ public class QBorad {
 						qlist.add(uq);
 					}
 				} else if (check != null) {
-					//À¯ÀúÀÌ°í µî·ÏÇÑ ÄûÁî°¡ ¸î°³ÀÖÀ»°æ¿ì
+					//ìœ ì €ì´ê³  ë“±ë¡í•œ í€´ì¦ˆê°€ ëª‡ê°œìˆì„ê²½ìš°
 					sql = "select * from u_qreg where u_id = ? order by uq_adopt";
 					psmt = con.prepareStatement(sql);
 					psmt.setString(1, id);
@@ -125,11 +125,11 @@ public class QBorad {
 						qlist.add(uq);
 					}
 				} else if(check==null){
-					//À¯ÀúÀÌÁö¸¸ ÄûÁî°¡ ¸î°³ ¾øÀ»°æ¿ì
+					//ìœ ì €ì´ì§€ë§Œ í€´ì¦ˆê°€ ëª‡ê°œ ì—†ì„ê²½ìš°
 					qlist = null;
 				}
 			} catch (SQLException e) {
-				System.out.println("ÄûÁîµî·Ï °Ô½ÃÆÇÀ» ¸®ÅÏ ¸øÇßÀ» °æ¿ì" + e);
+				System.out.println("í€´ì¦ˆë“±ë¡ ê²Œì‹œíŒì„ ë¦¬í„´ ëª»í–ˆì„ ê²½ìš°" + e);
 				e.printStackTrace();
 			} finally {
 

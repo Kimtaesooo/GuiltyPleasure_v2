@@ -31,13 +31,6 @@ public class BattleController extends HttpServlet {
 		String url = "";
 		Command command = null;
 
-		// 배틀페이지 이동
-		if (cmd.equals("battlepage")) {
-			url = "/WEB-INF/views/battle/battleRoom.jsp";
-			RequestDispatcher view = request.getRequestDispatcher(url);
-			view.forward(request, response);
-			return;
-		}
 		command = instance.createCommand(cmd);
 
 		url = command.processCommand(request, response).toString();

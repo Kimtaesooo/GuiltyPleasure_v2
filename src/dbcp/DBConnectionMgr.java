@@ -40,8 +40,8 @@ public class DBConnectionMgr {
     private Vector<ConnectionObject> connections = new Vector<ConnectionObject>(10);
     
     private String _driver = "oracle.jdbc.driver.OracleDriver",
-    //_url = "jdbc:oracle:thin:@localhost:1521:orcl",
-    _url = "jdbc:oracle:thin:@70.12.110.106:1521:orcl",
+    _url = "jdbc:oracle:thin:@localhost:1521:orcl",
+    //_url = "jdbc:oracle:thin:@70.12.110.106:1521:orcl",
     _user = "GP",
     _password = "1111";
 
@@ -58,7 +58,7 @@ public class DBConnectionMgr {
      unused connections are closed.
      */
 
-    //DBCP »ý¼ºÇØÁÖ´Â ¸Þ¼­µå, °¡Àå ¸ÕÀú ÇØ¾ßÇÑ´Ù. ½Ì±ÛÅæÀÌ´Ù. ´Ü ÇÑ°³ »ý¼ºµÇ´Â..
+    //DBCP ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ø¾ï¿½ï¿½Ñ´ï¿½. ï¿½Ì±ï¿½ï¿½ï¿½ï¿½Ì´ï¿½. ï¿½ï¿½ ï¿½Ñ°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç´ï¿½..
     public static DBConnectionMgr getInstance() {
         if (instance == null) {
             synchronized (DBConnectionMgr.class) {
@@ -109,7 +109,7 @@ public class DBConnectionMgr {
     }
 
 
-    //DB¶û ¹Ù·Î ¿¬°áÇØ¼­ ¾µ ¼ö ÀÖ°Ô ÇØÁØ´Ù. connection °´Ã¼¸¦ ºô·Á°¥ ¶§ ¾´´Ù. Ä¿³Ø¼Ç °´Ã¼¸¦ returnÇÔ
+    //DBï¿½ï¿½ ï¿½Ù·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö°ï¿½ ï¿½ï¿½ï¿½Ø´ï¿½. connection ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. Ä¿ï¿½Ø¼ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ returnï¿½ï¿½
     /** Returns an unused existing or new connection.  */
     public synchronized Connection getConnection()
             throws Exception {
@@ -167,7 +167,7 @@ public class DBConnectionMgr {
     }
 
 
-    //¹Ý³³ ¸Þ¼­µå
+    //ï¿½Ý³ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
     /** Marks a flag in the ConnectionObject to indicate this connection is no longer in use */
     public synchronized void freeConnection(Connection c) {
         if (c == null)

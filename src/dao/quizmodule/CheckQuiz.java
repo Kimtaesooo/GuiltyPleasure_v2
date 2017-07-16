@@ -6,7 +6,7 @@ import java.util.Collections;
 import dto.Quiz;
 
 /**
- * ÄûÁî¿Í °ü·ÃµÈ ÀÛ¾÷À» ÇÏ´ÂÅ¬·¡½º
+ * í€´ì¦ˆì™€ ê´€ë ¨ëœ ì‘ì—…ì„ í•˜ëŠ”í´ë˜ìŠ¤
  * */
 public class CheckQuiz {
 	Quiz quiz;
@@ -17,9 +17,9 @@ public class CheckQuiz {
 		super();
 	}
 	/**
-	 * ÄûÁîÀÇ º¸±â¸¦ ¼¯¾î ÁÖ´Â Å¬·¡½º
-	 * @param Quiz ÄûÁî°´Ã¼
-	 * @see Quiz ÄûÁî Á¤º¸¸¦ ÀúÀåÇÏ´Â DTOÅ¬·¡½º
+	 * í€´ì¦ˆì˜ ë³´ê¸°ë¥¼ ì„ì–´ ì£¼ëŠ” í´ë˜ìŠ¤
+	 * @param Quiz í€´ì¦ˆê°ì²´
+	 * @see Quiz í€´ì¦ˆ ì •ë³´ë¥¼ ì €ì¥í•˜ëŠ” DTOí´ë˜ìŠ¤
 	 * */
 	public void setQuizList(Quiz quiz){
 		quizlist = new ArrayList();
@@ -32,16 +32,16 @@ public class CheckQuiz {
 	}
 	
 	/**
-	 * ¼¯ÀÎÄûÁî¸¦ ¹İÈ¯ÇÏ´Â Å¬·¡½º
+	 * ì„ì¸í€´ì¦ˆë¥¼ ë°˜í™˜í•˜ëŠ” í´ë˜ìŠ¤
 	 * @see setQuizList(Quiz)
-	 * @return ArrayList ÄûÁî º¸±â°¡ ¼¯ÀÎ ¸®½ºÆ®¸¦ ¹İÈ¯
+	 * @return ArrayList í€´ì¦ˆ ë³´ê¸°ê°€ ì„ì¸ ë¦¬ìŠ¤íŠ¸ë¥¼ ë°˜í™˜
 	 * */
 	public ArrayList getQuizList(){
 		return quizlist;
 	}
 	
 	/**
-	 * ¼±ÅÃÇÑ ´ä°ú Á¤´äÀÌ ¸Â´ÂÁö È®ÀÎÇÏ´Â ¸Ş¼­µå
+	 * ì„ íƒí•œ ë‹µê³¼ ì •ë‹µì´ ë§ëŠ”ì§€ í™•ì¸í•˜ëŠ” ë©”ì„œë“œ
 	 * */
 	public void setQuizCheck(String select) {
 		this.quiz = quiz;

@@ -20,7 +20,7 @@ public class exam {
 			pool = DBConnectionMgr.getInstance();
 		}
 		catch(Exception err){
-			System.out.println("DBCP ÀÎ½ºÅÏ½º ÂüÁ¶ ½ÇÆĞ : "+err);
+			System.out.println("DBCP ì¸ìŠ¤í„´ìŠ¤ ì°¸ì¡° ì‹¤íŒ¨ : "+err);
 		}
 	}
 	
@@ -48,7 +48,7 @@ public class exam {
 				}
 		}
 		catch(Exception err){
-			System.out.println("getBoardList() ¿¡¼­ ¿À·ù : "+err);
+			System.out.println("getBoardList() ì—ì„œ ì˜¤ë¥˜ : "+err);
 		}
 		finally{
 			pool.freeConnection(con,pstmt, rs);

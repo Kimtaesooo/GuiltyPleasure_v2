@@ -1,17 +1,13 @@
 package dao.shopmodule;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import dbcp.DBConnectionMgr;
 import dto.Shop;
-import dto.UserInfo;
-import dto.UserInfoDTO;
 
 public class ShopManager {
 	private Connection con;
@@ -24,7 +20,7 @@ public class ShopManager {
 			pool = DBConnectionMgr.getInstance();
 
 		} catch (Exception err) {
-			System.out.println("DBCP ÀÎ½ºÅÏ½º ÂüÁ¶ ½ÇÆĞ:" + err);
+			System.out.println("DBCP ì¸ìŠ¤í„´ìŠ¤ ì°¸ì¡° ì‹¤íŒ¨:" + err);
 		} finally {
 
 		}
@@ -36,7 +32,7 @@ public class ShopManager {
 		return instance;
 	}
 
-	// ¾ÆÀÌÅÛ ¼öÁ¤
+	// ì•„ì´í…œ ìˆ˜ì •
 	public void updateItem(Shop dto) {
 		try {
 			String sql = "update shop set s_itemname=?,s_price=?, s_deadline=?,s_limit_num=?,s_content=? where s_itemcode=?";
@@ -54,14 +50,14 @@ public class ShopManager {
 			pstmt.executeUpdate();
 
 		} catch (Exception err) {
-			System.out.println("updateItem()¿¡¼­ ¿À·ù");
+			System.out.println("updateItem()ì—ì„œ ì˜¤ë¥˜");
 			err.printStackTrace();
 		} finally {
 			pool.freeConnection(con, pstmt);
 		}
 	}
 
-	// ¾ÆÀÌÅÛ Ãß°¡
+	// ì•„ì´í…œ ì¶”ê°€
 	public void addItem(Shop dto) {
 		try {
 			String sql = "Insert into shop (s_itemcode, s_itemname,s_price,s_deadline,s_limit_num,s_limit_pow,s_content) values('SIC'||LPAD((seq_s_itemcode.NEXTVAL),4,'0'),?,?,?,?,'',?)";
@@ -83,7 +79,7 @@ public class ShopManager {
 		}
 	}
 
-	// ¾ÆÀÌÅÛ¼±ÅÃ
+	// ì•„ì´í…œì„ íƒ
 	public Shop selectOneItemByCode(String s_itemcode) {
 		String sql = "select * from shop WHERE s_itemcode=?";
 		Shop dto = null;
@@ -105,7 +101,7 @@ public class ShopManager {
 			}
 			System.out.println(dto.getS_deadline());
 		} catch (Exception err) {
-			System.out.println("getItemList()¿¡¼­¿À·ù");
+			System.out.println("getItemList()ì—ì„œì˜¤ë¥˜");
 			err.printStackTrace();
 		} finally {
 			pool.freeConnection(con, pstmt, rs);
@@ -113,7 +109,7 @@ public class ShopManager {
 		return dto;
 	}
 
-	// ¾ÆÀÌÅÛ ±¸¸Å±â´É 1 ¾ÆÀÌÅÛ±¸¸ÅÈÄ³²ÀºÆ÷ÀÎÆ®·Î À¯ÀúÁ¤º¸¼¼ÆÃ
+	// ì•„ì´í…œ êµ¬ë§¤ê¸°ëŠ¥ 1 ì•„ì´í…œêµ¬ë§¤í›„ë‚¨ì€í¬ì¸íŠ¸ë¡œ ìœ ì €ì •ë³´ì„¸íŒ…
 	public void setUserPoint(String u_id, int u_point) {
 
 		String sql = "update userinfo set u_point=? where u_id = ?";
@@ -125,7 +121,7 @@ public class ShopManager {
 			pstmt.executeUpdate();
 
 		} catch (Exception err) {
-			System.out.println("setUserPoint¿¡¼­ ¿À·ù");
+			System.out.println("setUserPointì—ì„œ ì˜¤ë¥˜");
 			err.printStackTrace();
 		} finally {
 			pool.freeConnection(con, pstmt);
@@ -133,7 +129,7 @@ public class ShopManager {
 
 	}
 
-	// ¾ÆÀÌÅÛ ±¸¸Å±â´É2 ¾ÆÀÌÅÛ ¼ö·® -1
+	// ì•„ì´í…œ êµ¬ë§¤ê¸°ëŠ¥2 ì•„ì´í…œ ìˆ˜ëŸ‰ -1
 	public void minusOneItem(String s_itemcode, int s_limit_num) {
 		String sql = "update shop set s_limit_num=? where s_itemcode=?";
 		try {
@@ -143,14 +139,14 @@ public class ShopManager {
 			pstmt.setString(2, s_itemcode);
 			pstmt.executeUpdate();
 		} catch (Exception err) {
-			System.out.println("minusOneByCode()¿¡¼­¿À·ù");
+			System.out.println("minusOneByCode()ì—ì„œì˜¤ë¥˜");
 			err.printStackTrace();
 		} finally {
 			pool.freeConnection(con, pstmt);
 		}
 	}
 
-	// ¾ÆÀÌÅÛ ±¸¸Å±â´É3 ±¸¸Å³»¿ª¸®½ºÆ®¿¡ Ãß°¡
+	// ì•„ì´í…œ êµ¬ë§¤ê¸°ëŠ¥3 êµ¬ë§¤ë‚´ì—­ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€
 	public void addPurchaseList(String u_id, Shop dto) {
 		try {
 			String sql = "insert into purchase values('P'||LPAD((seq_p_buy_code.NEXTVAL),4,'0'),?,?,?,sysdate,sysdate+?,?)";
@@ -161,7 +157,7 @@ public class ShopManager {
 			pstmt.setString(2, dto.getS_itemcode());
 			pstmt.setString(3, dto.getS_itemname());
 			pstmt.setInt(4, dto.getS_deadline());
-			System.out.println(dto.getS_deadline() + "µ¥µå¶óÀÎ");
+			System.out.println(dto.getS_deadline() + "ë°ë“œë¼ì¸");
 			pstmt.setInt(5, dto.getS_price());
 			pstmt.executeUpdate();
 
@@ -173,7 +169,7 @@ public class ShopManager {
 		}
 	}
 
-	// ¾ÆÀÌÅÛ ±¸¸Å±â´É4 ±¸¸ÅÇÑ ¾ÆÀÌÅÛ ±â´É Ãß°¡
+	// ì•„ì´í…œ êµ¬ë§¤ê¸°ëŠ¥4 êµ¬ë§¤í•œ ì•„ì´í…œ ê¸°ëŠ¥ ì¶”ê°€
 	public void addItemFunction(String u_id, Shop dto) {
 		String sql = "";
 		try {
@@ -200,7 +196,7 @@ public class ShopManager {
 		}
 	}
 
-	// ¾ÆÀÌÅÛ ±¸¸Å±â´É(´Ğ³×ÀÓº¯°æ)
+	// ì•„ì´í…œ êµ¬ë§¤ê¸°ëŠ¥(ë‹‰ë„¤ì„ë³€ê²½)
 	public void editNickname(String u_id, String nickname) {
 
 		String sql = "update userinfo set u_nickname=? where u_id = ?";
@@ -219,7 +215,7 @@ public class ShopManager {
 		}
 	}
 
-	// ¾ÆÀÌÅÛ »èÁ¦
+	// ì•„ì´í…œ ì‚­ì œ
 	public void deleteItemByCode(String s_itemcode) {
 		String sql = "delete shop WHERE s_itemcode=?";
 		Shop dto = null;
@@ -229,14 +225,14 @@ public class ShopManager {
 			pstmt.setString(1, s_itemcode);
 			pstmt.executeUpdate();
 		} catch (Exception err) {
-			System.out.println("getItemList()¿¡¼­¿À·ù");
+			System.out.println("getItemList()ì—ì„œì˜¤ë¥˜");
 			err.printStackTrace();
 		} finally {
 			pool.freeConnection(con, pstmt);
 		}
 	}
 
-	// ÀüÃ¼¸®½ºÆ®Ãâ·Â
+	// ì „ì²´ë¦¬ìŠ¤íŠ¸ì¶œë ¥
 	public List getItemList() {
 		ArrayList list = new ArrayList();
 		String sql = "select * from shop order by s_itemcode";
@@ -257,7 +253,7 @@ public class ShopManager {
 				list.add(dto);
 			}
 		} catch (Exception err) {
-			System.out.println("getItemList()¿¡¼­¿À·ù");
+			System.out.println("getItemList()ì—ì„œì˜¤ë¥˜");
 			err.printStackTrace();
 		} finally {
 			pool.freeConnection(con, pstmt, rs);

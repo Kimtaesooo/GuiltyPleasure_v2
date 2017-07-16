@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.*;
 /**
- * °øÁö»çÇ× Ä¿¸Çµå ÆåÅä¸® Å¬·¹½ºÀÔ´Ï´Ù.
+ * ê³µì§€ì‚¬í•­ ì»¤ë§¨ë“œ í™í† ë¦¬ í´ë ˆìŠ¤ì…ë‹ˆë‹¤.
  */
 @WebServlet(urlPatterns = "/notice")
 public class CommandFactory extends HttpServlet {
@@ -23,33 +23,33 @@ public class CommandFactory extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		
 		/**
-		 * ÆäÀÌÁö ÀÌµ¿ ¸Ş¼ÒµåÀÔ´Ï´Ù.
-		 * @param String cmd »ç¿ëÀÚ°¡ ¿äÃ»ÇÑ cmd ¸¦ ÀúÀåÇÒ º¯¼ö
-		 * @param String url ÀÌµ¿µÉ ÆäÀÌÁö¸¦ ÀúÀåÇÒ º¯¼ö
+		 * í˜ì´ì§€ ì´ë™ ë©”ì†Œë“œì…ë‹ˆë‹¤.
+		 * @param String cmd ì‚¬ìš©ìê°€ ìš”ì²­í•œ cmd ë¥¼ ì €ì¥í•  ë³€ìˆ˜
+		 * @param String url ì´ë™ë  í˜ì´ì§€ë¥¼ ì €ì¥í•  ë³€ìˆ˜
 		 */
-		req.setCharacterEncoding("euc-kr");
-		//¸í·É¾î °¡Á®¿À±â
+		req.setCharacterEncoding("UTF-8");
+		//ëª…ë ¹ì–´ ê°€ì ¸ì˜¤ê¸°
 		String cmd = req.getParameter("cmd");
 		String url = null;
-		//¸í·É¾î ¸®½ºÆ®ÀÏ¶§ ÀÌµ¿
+		//ëª…ë ¹ì–´ ë¦¬ìŠ¤íŠ¸ì¼ë•Œ ì´ë™
 		if(cmd.equals("list")){
 			url = "/CORDING/notice_board/n_list.jsp";
 		}
-		//±ÛÀĞ±â½Ã ±Û¹øÈ£¿Í ÇÔ²² Àü´Ş
+		//ê¸€ì½ê¸°ì‹œ ê¸€ë²ˆí˜¸ì™€ í•¨ê»˜ ì „ë‹¬
 		else if(cmd.equals("read")){
 			req.setAttribute("num", req.getParameter("num"));
 			url = "/CORDING/notice_board/n_read.jsp";
 		}
-		//»èÁ¦½Ã ±Û¹øÈ£¿Í ÇÔ²² Àü´Ş
+		//ì‚­ì œì‹œ ê¸€ë²ˆí˜¸ì™€ í•¨ê»˜ ì „ë‹¬
 		else if(cmd.equals("delete")){
 			req.setAttribute("num", req.getParameter("num"));
 			url = "/CORDING/notice_board/n_delete.jsp";
 		}
-		//±Û ÀÛ¼º
+		//ê¸€ ì‘ì„±
 		else if(cmd.equals("update")){
 			url = "/CORDING/notice_board/n_update.jsp";
 		}
-		//±Û µî·Ï
+		//ê¸€ ë“±ë¡
 		else if(cmd.equals("reg")){
 			req.setAttribute("title", req.getParameter("title"));
 			req.setAttribute("type", req.getParameter("type"));

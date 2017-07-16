@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<%@page import="dto.Battle_Room"%>
-<%@ page import="dao.battlemodule.BattlePlay"%>
-<%@ page import="java.util.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <!DOCTYPE html>
 <html>
@@ -19,44 +19,29 @@
 			$("#theModal").modal();
 		});
 	});
-	
-	function fnRead(u_id, br_num, br_type){
+
+	function fnRead(u_id, br_num, br_type) {
 		document.frmRead.bangjang.value = u_id;
 		document.frmRead.br_num.value = br_num;
-		if(br_type=="연예"){br_type = "A"};
-		if(br_type=="넌센스"){br_type = "B"};
-		if(br_type=="상식"){br_type = "C"};
-		if(br_type=="아재"){br_type = "D"};
+		if (br_type == "연예") {br_type = "A"	};
+		if (br_type == "넌센스") {br_type = "B"};
+		if (br_type == "상식") {br_type = "C"	};
+		if (br_type == "아재") {br_type = "D"};
 		document.frmRead.br_type.value = br_type;
 		document.frmRead.submit();
 	}
 </script>
-
-
-<%
-	String gameUser = (String)session.getAttribute("u_id");
-	String ip = request.getRemoteAddr();	
-	String u_id ="";
-	if(session.getAttribute("u_id")!=null){
-		u_id = (String)session.getAttribute("u_id");
-	}
-%>
 <title>배틀 대기방</title>
-</head>  
+</head>
+
 <body>
-	<jsp:useBean id="dao" class="dao.battlemodule.BattlePlay"/>
-	<jsp:useBean id="dto" class="dto.Battle_Room"/>
-<%
-	List list = dao.getListRoom();
-%>
-	<%@ include file="/nav.jsp" %>
-	<br>
-	<h2>
-		<center>배틀 대기방</center>
-	</h2>
-	<br>
-	<br>
-	<br>
+	<%@ include file="/nav.jsp"%>
+	<input type="hidden" id="u_id" value="${u_id}" />
+	<input type="hidden" id="single" value="${udto.no_single}" />
+	<input type="hidden" id="battle" value="${udto.no_battle}" />
+	<br><br><br><br><br><br><br><br>
+	<h2><center>배틀 대기방</center></h2>
+	<br><br><br>
 	<div class="container">
 		<table class="table table-hover">
 			<thead>
@@ -71,38 +56,39 @@
 					<th class="text-center">게임상태</th>
 				</tr>
 			</thead>
-			
+
 			<tbody>
-				<%if(list.size() ==0){%>
-				<tr>
-					<td colspan="8" align="center">현재 대기중인 게임이 없습니다.</td>
-				</tr>
-				<%}
-				else{%>				
-				<%for(int i=0; i<list.size(); i++){
-					Battle_Room room = (Battle_Room)list.get(i);
-				%>
-				<tr class="text-center">
-					<td><%=i+1%></td>
-					<td><a href="javascript:fnRead('<%=room.getU_id()%>','<%=room.getBr_num()%>', '<%=room.getBr_type()%>')"><%=room.getBr_subject() %></a></td>
-					<td><%=room.getBr_type() %></td>
-					<td><%=room.getBr_cnt() %></td>
-					<td><%=room.getBr_point() %></td>
-					<td><%=room.getU_id() %></td>
-					<td><%=room.getBr_people() %></td>
-					<%if(room.getBr_gamestate().equals("Y")){%>
-						<td><font color="red"><%=room.getBr_gamestate() %></font></td>
-					<%}else{ %>
-						<td><%=room.getBr_gamestate() %></td>
-					<%} %>
-				</tr>
-				<%} 
-				}%>
+				<c:if test="${fn:length(list) == 0}">
+					<tr>
+						<td colspan="8" align="center">현재 대기중인 게임이 없습니다.</td>
+					</tr>
+				</c:if>
+				<c:if test="${fn:length(list) != 0}">
+					<c:forEach var="roomList" items="${list}" varStatus="status">
+						<tr class="text-center">
+							<td>${status.count}</td>
+							<td><a
+								href="javascript:fnRead('${roomList.u_id}', '${roomList.br_num}', '${roomList.br_type}')">${roomList.br_subject}</a></td>
+							<td>${roomList.br_type}</td>
+							<td>${roomList.br_cnt}</td>
+							<td>${roomList.br_point}</td>
+							<td>${roomList.u_id}</td>
+							<td>${roomList.br_people}</td>
+							<c:if test="${roomList.br_gamestate eq 'Y'}">
+								<td><font color="red">${roomList.br_gamestate}</font></td>
+							</c:if>
+							<c:if test="${roomList.br_gamestate eq 'N'}">
+								<td>${roomList.br_gamestate}</td>
+							</c:if>
+						</tr>
+					</c:forEach>
+				</c:if>
 			</tbody>
 		</table>
 		<hr />
 		<div class="col-md-12 portfolio-item" align="right">
-			<a class="btn btn-default pull-right" href="#makeRoom" data-toggle="modal" id="btnPopup">방만들기</a>
+			<a class="btn btn-default pull-right" href="#makeRoom"
+				data-toggle="modal" id="btnPopup">방만들기</a>
 		</div>
 
 		<div class="text-center">
@@ -120,14 +106,14 @@
 
 	<!-- 방만들기 모달 -->
 	<div class="modal fade" id="makeRoom" data-backdrop="static">
-		<form class="form-horizontal" method="post" action="/GuiltyPleasure/battle?cmd=MAKEROOM">
+		<form class="form-horizontal" method="post"
+			action="/GuiltyPleasure/battle?cmd=MAKEROOM">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
 						<h3>배틀 방 만들기</h3>
 					</div>
 					<div class="modal-body">
-						<input type="hidden" value="<%=ip%>" name="br_ip">
 						<div class="form-group">
 							<label for="br_subject" class="col-sm-2 control-label">방제목</label>
 							<div class="col-sm-10">
@@ -145,8 +131,8 @@
 						<div class="form-group">
 							<label for="inputPassword" class="col-sm-2 control-label">포인트</label>
 							<div class="col-sm-10">
-								<input type="text"  class="form-control onlyNumber" name="br_point"
-									id="br_point" placeholder="포인트를 입력해주세요">									
+								<input type="text" class="form-control onlyNumber"
+									name="br_point" id="br_point" placeholder="포인트를 입력해주세요">
 							</div>
 						</div>
 						<div class="form-group">
@@ -182,18 +168,18 @@
 		</form>
 	</div>
 	<!-- 방만들기 모달 종료-->
-<form name="frmRead" method="post" action="playRoom.jsp">
-	<input type="hidden" name="bangjang"/>
-	<input type="hidden" name="br_num"/>
-	<input type="hidden" name="br_type"/>
-</form>	
-<script>
-$(".onlyNumber").keyup(function(event){
-    if (!(event.keyCode >=37 && event.keyCode<=40)) {
-        var inputVal = $(this).val();
-        $(this).val(inputVal.replace(/[^0-9]/gi,''));
-    }
-});
-</script>
+	<form name="frmRead" method="post"
+		action="/GuiltyPleasure/battle?cmd=ENTERROOM">
+		<input type="hidden" name="bangjang" /> <input type="hidden"
+			name="br_num" /> <input type="hidden" name="br_type" />
+	</form>
+	<script>
+		$(".onlyNumber").keyup(function(event) {
+			if (!(event.keyCode >= 37 && event.keyCode <= 40)) {
+				var inputVal = $(this).val();
+				$(this).val(inputVal.replace(/[^0-9]/gi, ''));
+			}
+		});
+	</script>
 </body>
 </html>

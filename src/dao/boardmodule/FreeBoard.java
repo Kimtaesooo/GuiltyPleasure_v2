@@ -1,6 +1,6 @@
 package dao.boardmodule;
 /**
- * @author È²¼±¿µ
+ * @author í™©ì„ ì˜
  */
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,7 +20,7 @@ public class FreeBoard {
 	private DBConnectionMgr pool;
 	
 	/**
-	 * DB¿¬°á
+	 * DBì—°ê²°
 	 * 
 	 * */
 	public FreeBoard(){
@@ -29,17 +29,17 @@ public class FreeBoard {
 			con = pool.getConnection();
 		}
 		catch(Exception err){
-			System.out.println("DBCP ÀÎ½ºÅÏ½º ÂüÁ¶ ½ÇÆĞ " + err);
+			System.out.println("DBCP ì¸ìŠ¤í„´ìŠ¤ ì°¸ì¡° ì‹¤íŒ¨ " + err);
 		}
 	}
 	
 	/**
-	 * °Ô½ÃÆÇ ±Û µî·Ï - BoardWrite.jsp 
+	 * ê²Œì‹œíŒ ê¸€ ë“±ë¡ - BoardWrite.jsp 
 	 * 
-	 * @param u_id À¯Àú ¾ÆÀÌµğ
-	 * @param b_title ±Û Á¦¸ñ
-	 * @param b_content ±Û ³»¿ë
-	 * @return b_num ±Û ¹øÈ£
+	 * @param u_id ìœ ì € ì•„ì´ë””
+	 * @param b_title ê¸€ ì œëª©
+	 * @param b_content ê¸€ ë‚´ìš©
+	 * @return b_num ê¸€ ë²ˆí˜¸
 	 * */
 	public String regBoard(String u_id, String b_title, String b_content){
 		String u_nickname ="";
@@ -56,7 +56,7 @@ public class FreeBoard {
 			}
 		}
 			catch(Exception err){
-			System.out.println("regBoard Ã¹¹øÂ° Æ®¶óÀÌ¿¡¼­ ¿À·ù "+ err);
+			System.out.println("regBoard ì²«ë²ˆì§¸ íŠ¸ë¼ì´ì—ì„œ ì˜¤ë¥˜ "+ err);
 				err.printStackTrace();
 			}
 		
@@ -70,7 +70,7 @@ public class FreeBoard {
 			pstmt.setString(4, b_content);
 			result = pstmt.executeUpdate();
 			
-			// ±Û µî·Ï ÈÄ, µî·ÏµÈ ±ÛÀ» BoardRead.jsp·Î º¸¿©ÁÖ±â À§ÇØ b_num ¹Ş±â
+			// ê¸€ ë“±ë¡ í›„, ë“±ë¡ëœ ê¸€ì„ BoardRead.jspë¡œ ë³´ì—¬ì£¼ê¸° ìœ„í•´ b_num ë°›ê¸°
 			if(result == 1){
 				sql = "select b_num from board where u_id = ? order by b_regdate desc";
 				pstmt = con.prepareStatement(sql);
@@ -82,7 +82,7 @@ public class FreeBoard {
 			}
 		}
 		catch(Exception err){
-			System.out.println("regBoard() 2¹øÂ°¿¡¼­ ¿À·ù "+ err);
+			System.out.println("regBoard() 2ë²ˆì§¸ì—ì„œ ì˜¤ë¥˜ "+ err);
 			err.printStackTrace();
 		}
 		finally{
@@ -92,17 +92,17 @@ public class FreeBoard {
 	}
 	
 	/**
-	 * °Ô½ÃÆÇ ±Û ¸®½ºÆ® °¡Á®¿À±â - BoardList.jsp
+	 * ê²Œì‹œíŒ ê¸€ ë¦¬ìŠ¤íŠ¸ ê°€ì ¸ì˜¤ê¸° - BoardList.jsp
 	 * 
 	 * @param keyword
 	 * @param keyfield
-	 * @return list °Ô½ÃÆÇ ±Û ¸®½ºÆ® 
+	 * @return list ê²Œì‹œíŒ ê¸€ ë¦¬ìŠ¤íŠ¸ 
 	 */
 	public List<Board> getBoardList(String keyword, String keyfield){
 		ArrayList list = new ArrayList();
 		String sql = "";
 			
-		//°Ë»ö±â´É
+		//ê²€ìƒ‰ê¸°ëŠ¥
 		if(keyword==null || keyword.equals("null") || keyword==""){
 			sql = "select * from board order by b_num desc";
 		}
@@ -126,7 +126,7 @@ public class FreeBoard {
 			}
 		}
 		catch(Exception err){
-			System.out.println("getBoardList()¿¡¼­ ¿À·ù "+ err);
+			System.out.println("getBoardList()ì—ì„œ ì˜¤ë¥˜ "+ err);
 			err.printStackTrace();
 		}
 		finally{
@@ -138,7 +138,7 @@ public class FreeBoard {
 	}
 	
 	/**
-	 * ±Û °¡Á®¿À±â -  BoardList.jsp, BoardRead.jsp, BoardUpdate.jsp
+	 * ê¸€ ê°€ì ¸ì˜¤ê¸° -  BoardList.jsp, BoardRead.jsp, BoardUpdate.jsp
 	 * 
 	 * @param b_num
 	 * @param isRead
@@ -148,7 +148,7 @@ public class FreeBoard {
 		Board board = new Board();
 		String sql = null;
 		try{
-			// Á¶È¸¼ö Áõ°¡
+			// ì¡°íšŒìˆ˜ ì¦ê°€
 			if(isRead){
 				sql = "update board set b_count = b_count+1 where b_num =?";
 				pstmt = con.prepareStatement(sql);
@@ -156,7 +156,7 @@ public class FreeBoard {
 				pstmt.executeUpdate();
 			}
 	
-			// »ó¼¼ ±Û  Á¶È¸
+			// ìƒì„¸ ê¸€  ì¡°íšŒ
 			sql = "select * from board where b_num=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, b_num);
@@ -172,7 +172,7 @@ public class FreeBoard {
 	        	 board.setB_content(rs.getString("b_content"));
 	         }
 	         
-	         // ÀÌÀü ±Û, ´ÙÀ½ ±Û
+	         // ì´ì „ ê¸€, ë‹¤ìŒ ê¸€
 	         sql = "select b_num as prevnum, b_title as prevtitle from board where b_num = (select min(b_num) from board where b_num>?)";
 	         
 	         pstmt = con.prepareStatement(sql);
@@ -194,7 +194,7 @@ public class FreeBoard {
 	         }
 		}
 		catch(Exception err){
-            System.out.println("getBoard():read¿¡¼­ ¿À·ù "+ err);
+            System.out.println("getBoard():readì—ì„œ ì˜¤ë¥˜ "+ err);
          }
          finally{
             pool.freeConnection(con, pstmt, rs);
@@ -203,9 +203,9 @@ public class FreeBoard {
 	}
 	
 	/**
-	 * ÀÛ¼ºÀÚ ÀÚ½ÅÀÇ ±Û Á¶È¸½Ã Á¶È¸¼ö °¨¼Ò
+	 * ì‘ì„±ì ìì‹ ì˜ ê¸€ ì¡°íšŒì‹œ ì¡°íšŒìˆ˜ ê°ì†Œ
 	 * 
-	 * @param b_num ±Û ¹øÈ£
+	 * @param b_num ê¸€ ë²ˆí˜¸
 	 */
 	public void minusCount(String b_num){
 		String sql = "update board set b_count = b_count-1 where b_num =?";
@@ -215,7 +215,7 @@ public class FreeBoard {
 			pstmt.executeUpdate();
 		}
 		catch(Exception err){
-			System.out.println("minusCount()¿¡¼­ ¿À·ù "+ err);
+			System.out.println("minusCount()ì—ì„œ ì˜¤ë¥˜ "+ err);
 		}
 		finally{
 			pool.freeConnection(con,pstmt);
@@ -223,9 +223,9 @@ public class FreeBoard {
 	}
 	
 	/**
-	 * ±Û »èÁ¦ Ã³¸®
+	 * ê¸€ ì‚­ì œ ì²˜ë¦¬
 	 * 
-	 * @param b_num ±Û ¹øÈ£
+	 * @param b_num ê¸€ ë²ˆí˜¸
 	 */
 	public void deleteBoard(String b_num){
 		String sql = "";
@@ -237,7 +237,7 @@ public class FreeBoard {
 			pstmt.executeUpdate();
 		}
 		catch(Exception err){
-	       System.out.println("Ã¹¹øÂ° deleteBoard()¿¡¼­ ¿À·ù "+ err);
+	       System.out.println("ì²«ë²ˆì§¸ deleteBoard()ì—ì„œ ì˜¤ë¥˜ "+ err);
 	       err.printStackTrace();
 	    }		
 		
@@ -248,7 +248,7 @@ public class FreeBoard {
 			pstmt.executeUpdate();
 		}
 		catch(Exception err){
-	       System.out.println("µÎ¹øÂ° deleteBoard()¿¡¼­ ¿À·ù"+ err);
+	       System.out.println("ë‘ë²ˆì§¸ deleteBoard()ì—ì„œ ì˜¤ë¥˜"+ err);
 	       err.printStackTrace();
 	    }
 	    finally{
@@ -257,9 +257,9 @@ public class FreeBoard {
 	}
 	
 	/**
-	 * °Ô½ÃÆÇ ¾÷µ¥ÀÌÆ® Ã³¸®
+	 * ê²Œì‹œíŒ ì—…ë°ì´íŠ¸ ì²˜ë¦¬
 	 * 
-	 * @param board °Ô½ÃÆÇ dto
+	 * @param board ê²Œì‹œíŒ dto
 	 */
 	public void updateBoard(Board board){
 		String sql = "update board set b_title=?, b_content=? where b_num=?";
@@ -272,7 +272,7 @@ public class FreeBoard {
 			pstmt.executeUpdate();
 		}
 		catch(Exception err){
-			System.out.println("updateBoard()¿¡¼­ ¿À·ù"+ err);
+			System.out.println("updateBoard()ì—ì„œ ì˜¤ë¥˜"+ err);
 	        err.printStackTrace();
 		}
 		finally{
@@ -281,10 +281,10 @@ public class FreeBoard {
 	}
 	
 	/**
-	 * ´ñ±Û¸ñ·Ï °¡Á®¿À±â
+	 * ëŒ“ê¸€ëª©ë¡ ê°€ì ¸ì˜¤ê¸°
 	 * 
-	 * @param b_num ±Û ¹øÈ£
-	 * @return rep_list ´ñ±Û¸ñ·Ï
+	 * @param b_num ê¸€ ë²ˆí˜¸
+	 * @return rep_list ëŒ“ê¸€ëª©ë¡
 	 */
 	public ArrayList<Reply> getReplyList(String b_num){
 		ArrayList<Reply> rep_list = new ArrayList<Reply>();
@@ -307,7 +307,7 @@ public class FreeBoard {
 			}
 		}
 		catch(Exception err){
-			System.out.println("getReplyList()¿¡¼­ ¿À·ù"+ err);
+			System.out.println("getReplyList()ì—ì„œ ì˜¤ë¥˜"+ err);
 			err.printStackTrace();
 		}
 		finally{
@@ -317,9 +317,9 @@ public class FreeBoard {
 	}
 	
 	/**
-	 * ´ñ±Û ÀÔ·Â
+	 * ëŒ“ê¸€ ì…ë ¥
 	 * 
-	 * @param reply ´ñ±Û dto
+	 * @param reply ëŒ“ê¸€ dto
 	 */
 	public void replyBoard(Reply reply){
 		String sql = "insert into reply(r_reply, b_num, u_id, r_content, r_regdate) "
@@ -332,7 +332,7 @@ public class FreeBoard {
 			pstmt.executeUpdate();
 		}
 		catch(Exception err){
-		      System.out.println("replyBoard()¿¡¼­ ¿À·ù : " + err);
+		      System.out.println("replyBoard()ì—ì„œ ì˜¤ë¥˜ : " + err);
 		      err.printStackTrace();
 		   }
 		   finally{
@@ -341,9 +341,9 @@ public class FreeBoard {
 	}
 	
 	/**
-	 * ´ñ±Û »èÁ¦
+	 * ëŒ“ê¸€ ì‚­ì œ
 	 * 
-	 * @param r_reply ´ñ±Û ¹øÈ£
+	 * @param r_reply ëŒ“ê¸€ ë²ˆí˜¸
 	 */
 	public void deleteReply(String r_reply){
 		String sql = "delete from reply where r_reply= ? ";
@@ -354,7 +354,7 @@ public class FreeBoard {
 	        pstmt.executeUpdate();
 		}
 		catch(Exception err){
-	       System.out.println("deleteReply()¿¡¼­ ¿À·ù"+ err);
+	       System.out.println("deleteReply()ì—ì„œ ì˜¤ë¥˜"+ err);
 	       err.printStackTrace();
 	    }
 	    finally{

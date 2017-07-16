@@ -23,8 +23,8 @@ public class QuizRegister extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setCharacterEncoding("euc-kr");
-		request.setCharacterEncoding("euc-kr");
+		response.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("UTF-8");
 		String cmd = request.getParameter("cmd");
 		CommandFactory factory = CommandFactory.newInstance();
 		Command command = factory.createCommand(cmd);

@@ -8,21 +8,19 @@ import java.util.List;
 
 import dbcp.DBConnectionMgr;
 import dto.Notice;
-import dto.c_board;
-import dto.u_battle;
 
 /**
- * °øÁö»çÇ×¿¡ »ç¿ëµÈ Å¬·¡½ºÀÔ´Ï´Ù.
+ * ê³µì§€ì‚¬í•­ì— ì‚¬ìš©ëœ í´ë˜ìŠ¤ì…ë‹ˆë‹¤.
  */
 public class notice {
 	/**
-	 * @param String sql Äõ¸®¹®À» ÀúÀå½ÃÅ³ º¯¼öÀÔ´Ï´Ù.
+	 * @param String sql ì¿¼ë¦¬ë¬¸ì„ ì €ì¥ì‹œí‚¬ ë³€ìˆ˜ì…ë‹ˆë‹¤.
 	 */
 	private Connection con;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	private DBConnectionMgr pool;
-	//Äõ¸®¹® ¾²ÀÏ º¯¼ö
+	//ì¿¼ë¦¬ë¬¸ ì“°ì¼ ë³€ìˆ˜
 	private String sql = "";
 	
 	public notice(){
@@ -30,15 +28,15 @@ public class notice {
 			pool = DBConnectionMgr.getInstance();
 		}
 		catch(Exception err){
-			System.out.println("DBCP ÀÎ½ºÅÏ½º ÂüÁ¶ ½ÇÆĞ : "+err);
+			System.out.println("DBCP ì¸ìŠ¤í„´ìŠ¤ ì°¸ì¡° ì‹¤íŒ¨ : "+err);
 		}
 	}
-	//À¯Àú ´Ğ³×ÀÓ °¡Á®¿À´Â ¸Ş¼­µå
+	//ìœ ì € ë‹‰ë„¤ì„ ê°€ì ¸ì˜¤ëŠ” ë©”ì„œë“œ
 	public String getUserNick (String u_id){
 		/**
-		 * ´Ğ³×ÀÓ ¹İÈ¯ ¸Ş¼­µå ÀÔ´Ï´Ù.
-		 * @param String nickname ´Ğ³×ÀÓ ÀúÀå º¯¼öÀÔ´Ï´Ù.
-		 * @return String nickname »ç¿ëÀÚÀÇ ´Ğ³×ÀÓÀ» ¹İÈ¯ÇÕ´Ï´Ù.
+		 * ë‹‰ë„¤ì„ ë°˜í™˜ ë©”ì„œë“œ ì…ë‹ˆë‹¤.
+		 * @param String nickname ë‹‰ë„¤ì„ ì €ì¥ ë³€ìˆ˜ì…ë‹ˆë‹¤.
+		 * @return String nickname ì‚¬ìš©ìì˜ ë‹‰ë„¤ì„ì„ ë°˜í™˜í•©ë‹ˆë‹¤.
 		 */
 		String nickname=null;
 		sql = "select * from userinfo where U_ID='"+u_id+"'";
@@ -52,17 +50,17 @@ public class notice {
 			}
 		}
 		catch(Exception err){
-			System.out.println("getUserNickn() ¿¡¼­ ¿À·ù : "+err);
+			System.out.println("getUserNickn() ì—ì„œ ì˜¤ë¥˜ : "+err);
 		}
 		finally{
 			pool.freeConnection(con,pstmt, rs);
 		}
 		return nickname;
 	}
-	//±Û µî·Ï
+	//ê¸€ ë“±ë¡
 	public void regN_board(Notice dto){
 		/**
-		 * ±Û µî·Ï ¸Ş¼­µå ÀÔ´Ï´Ù.
+		 * ê¸€ ë“±ë¡ ë©”ì„œë“œ ì…ë‹ˆë‹¤.
 		 */
 		sql = "INSERT INTO NOTICE (N_NUM, U_ID, U_NICKNAME, N_TITLE, N_CONTENT, N_REGDATE, N_COUNT, N_IMPORTANT)"+
 		" VALUES (seq_n_num.NEXTVAL,"+
@@ -72,25 +70,25 @@ public class notice {
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setString(1, dto.getU_id());
-			//ÀÛ¼ºÀÚ´Â ¹«Á¶°Ç ¿î¿µÀÚ
-			pstmt.setString(2, "¿î¿µÀÚ");
+			//ì‘ì„±ìëŠ” ë¬´ì¡°ê±´ ìš´ì˜ì
+			pstmt.setString(2, "ìš´ì˜ì");
 			pstmt.setString(3, dto.getN_title());
 			pstmt.setString(4, dto.getN_content());
 			pstmt.executeUpdate();
 
 		}
 		catch(Exception err){
-			System.out.println("regN_boadr() ¿¡¼­ ¿À·ù : "+err);
+			System.out.println("regN_boadr() ì—ì„œ ì˜¤ë¥˜ : "+err);
 		}
 		finally{
 			pool.freeConnection(con,pstmt, rs);
 		}
 	}
-	//°Ô½ÃÆÇ »Ñ·ÁÁÖ±â
+	//ê²Œì‹œíŒ ë¿Œë ¤ì£¼ê¸°
 	public List getBoardList(String id, String type, String key){
 		/**
-		 * °Ô½ÃÆÇ ¸ñ·ÏÀ» °¡Á®¿À´Â ¸Ş¼ÒµåÀÔ´Ï´Ù.
-		 * @return List list °Ô½ÃÆÇ ¸ñ·ÏÀ» ¹İÈ¯ÇÕ´Ï´Ù.
+		 * ê²Œì‹œíŒ ëª©ë¡ì„ ê°€ì ¸ì˜¤ëŠ” ë©”ì†Œë“œì…ë‹ˆë‹¤.
+		 * @return List list ê²Œì‹œíŒ ëª©ë¡ì„ ë°˜í™˜í•©ë‹ˆë‹¤.
 		 */
 		ArrayList list = new ArrayList();
 		
@@ -119,18 +117,18 @@ public class notice {
 				}
 		}
 		catch(Exception err){
-			System.out.println("noticeList °¡Á®¿À±â ¿¡¼­ ¿À·ù : "+err);
+			System.out.println("noticeList ê°€ì ¸ì˜¤ê¸° ì—ì„œ ì˜¤ë¥˜ : "+err);
 		}
 		finally{
 			pool.freeConnection(con,pstmt, rs);
 		}
 		return list;
 	}
-	//±ÛÀĞ±â
+	//ê¸€ì½ê¸°
 	public Notice getRead (String num){
 		/**
-		 * ±Û ÀĞ±â ¸Ş¼Òµå ÀÔ´Ï´Ù.
-		 * @return Notice dto °øÁö»çÇ× dto ¸¦ ¹İÈ¯ÇÕ´Ï´Ù.
+		 * ê¸€ ì½ê¸° ë©”ì†Œë“œ ì…ë‹ˆë‹¤.
+		 * @return Notice dto ê³µì§€ì‚¬í•­ dto ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
 		 */
 		Notice dto = new Notice();
 		
@@ -151,7 +149,7 @@ public class notice {
 				}
 		}
 		catch(Exception err){
-			System.out.println("getRead() ¿¡¼­ ¿À·ù : "+err);
+			System.out.println("getRead() ì—ì„œ ì˜¤ë¥˜ : "+err);
 		}
 		finally{
 			pool.freeConnection(con,pstmt, rs);
@@ -159,10 +157,10 @@ public class notice {
 		return dto;
 	}
 	
-	//Á¶È¸¼öÁõ°¡
+	//ì¡°íšŒìˆ˜ì¦ê°€
 	public void N_Count_Update(String num){
 		/**
-		 * Á¶È¸¼ö Áõ°¡ ¸Ş¼­µåÀÔ´Ï´Ù.
+		 * ì¡°íšŒìˆ˜ ì¦ê°€ ë©”ì„œë“œì…ë‹ˆë‹¤.
 		 */
 		sql = "UPDATE NOTICE SET N_COUNT=N_COUNT+1 WHERE N_NUM='"+num+"'";
 		try{
@@ -172,18 +170,18 @@ public class notice {
 
 		}
 		catch(Exception err){
-			System.out.println("N_Count_Update() ¿¡¼­ ¿À·ù : "+err);
+			System.out.println("N_Count_Update() ì—ì„œ ì˜¤ë¥˜ : "+err);
 		}
 		finally{
 			pool.freeConnection(con,pstmt, rs);
 		}
 	}
-	//À¯Àú ºñ¹Ğ¹øÈ£ °¡Á®¿À±â
+	//ìœ ì € ë¹„ë°€ë²ˆí˜¸ ê°€ì ¸ì˜¤ê¸°
 	public String getUserPw (String u_id){
 		/**
-		 * À¯Àú ºñ¹Ğ¹øÈ£ °¡Á®¿À±â ¸Ş¼ÒµåÀÔ´Ï´Ù.
-		 * @param String as ºñ¹Ğ¹øÈ£ ÀúÀå¿¡ »ç¿ëµÉ º¯¼ö ÀÔ´Ï´Ù.
-		 * @return String as ºñ¹Ğ¹øÈ£¸¦ ¹İÈ¯ÇÕ´Ï´Ù.
+		 * ìœ ì € ë¹„ë°€ë²ˆí˜¸ ê°€ì ¸ì˜¤ê¸° ë©”ì†Œë“œì…ë‹ˆë‹¤.
+		 * @param String as ë¹„ë°€ë²ˆí˜¸ ì €ì¥ì— ì‚¬ìš©ë  ë³€ìˆ˜ ì…ë‹ˆë‹¤.
+		 * @return String as ë¹„ë°€ë²ˆí˜¸ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
 		 */
 		String as=null;
 		sql = "select * from userinfo where U_ID='"+u_id+"'";
@@ -197,7 +195,7 @@ public class notice {
 				}
 		}
 		catch(Exception err){
-			System.out.println("getUserPw() ¿¡¼­ ¿À·ù : "+err);
+			System.out.println("getUserPw() ì—ì„œ ì˜¤ë¥˜ : "+err);
 		}
 		finally{
 			pool.freeConnection(con,pstmt, rs);
@@ -205,10 +203,10 @@ public class notice {
 		return as;
 	}
 	
-	//±Û Áö¿ì±â
+	//ê¸€ ì§€ìš°ê¸°
 	public void deleteBoard(String n_num){
 		/**
-		 * ±Û Áö¿ì±â ¸Ş¼ÒµåÀÔ´Ï´Ù.
+		 * ê¸€ ì§€ìš°ê¸° ë©”ì†Œë“œì…ë‹ˆë‹¤.
 		 */
 		String sql = "delete from NOTICE where n_num=?";
 		try{
@@ -219,7 +217,7 @@ public class notice {
 			pstmt.executeUpdate();
 		}
 		catch(Exception err){
-	       System.out.println("deleteBoard()¿¡¼­ ¿À·ù");
+	       System.out.println("deleteBoard()ì—ì„œ ì˜¤ë¥˜");
 	       err.printStackTrace();
 	    }
 	    finally{
