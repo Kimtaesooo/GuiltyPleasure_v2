@@ -30,7 +30,6 @@ public class BattleController extends HttpServlet {
 		String cmd = request.getParameter("cmd");
 		String url = "";
 		Command command = null;
-
 		command = instance.createCommand(cmd);
 
 		url = command.processCommand(request, response).toString();

@@ -30,10 +30,14 @@ public class GiveUpCommand implements Command{
 		String u_id = (String) session.getAttribute("u_id");
 		
 		BattlePlay battleplay = new BattlePlay(); //DAO
-		List playinfo = battleplay.playInfo(br_num);
-		List roominfo = battleplay.roomInfo(br_num);
+		List playinfo = battleplay.playInfo(br_num); //DTO battle_play
+		List roominfo = battleplay.roomInfo2(br_num); //DTO battle_room
 		Battle_Play PlayDto = (Battle_Play) playinfo.get(0);
 		Battle_Room RoomDto = (Battle_Room) roominfo.get(0);
+		
+		String user01 = PlayDto.getUser01();
+		String user02 = PlayDto.getUser02();
+		
 		
 		if(PlayDto.getUser01().equals(loser)){
 			winner = PlayDto.getUser02();
@@ -46,20 +50,22 @@ public class GiveUpCommand implements Command{
 		battleplay.win(winner, point); // 승자 포인트 올려주고
 		battleplay.lose(loser, point); // 패자 포인트 내려주고
 		
+		
 		UserInfo userinfo = new UserInfo();
 		Login login = new Login();
 		userinfo = login.getUser(u_id);
 		int nowPoint = userinfo.getU_point(); // 유저 현재 포인트 받아온다.
 		
+		
 		request.setAttribute("winner", winner);
 		request.setAttribute("loser", loser);
+		request.setAttribute("user01", user01);
+		request.setAttribute("user02", user02);
+		request.setAttribute("point", point);
 		request.setAttribute("nowPoint", nowPoint);
 
 		// 방 정보 삭제(새로고침 포인트 획득 방지)
 		battleplay.deletPlayRoom(br_num);
-		
-		
-		
 		
 		return "/WEB-INF/views/battle/battleResult.jsp";
 	}

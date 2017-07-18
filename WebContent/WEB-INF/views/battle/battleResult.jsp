@@ -70,11 +70,11 @@ a {
 							</div>
 							<div class="col-md-4 text-center">
 								<br>
-								<c:if test="${u_id eq 'winner'}">
-									<span class="fh5co-counter js-counter" data-from="0" data-to="+${point}" data-speed="2000" data-refresh-interval="50"></span>
+								<c:if test="${u_id eq winner}">
+									<span class="fh5co-counter js-counter" data-from="0" data-to="${point}" data-speed="2000" data-refresh-interval="50"></span>
 									<span class="fh5co-counter-label">획득 포인트 </span>
 								</c:if>
-								<c:if test="${u_id eq 'loser'}">
+								<c:if test="${u_id eq loser}">
 									<span class="fh5co-counter js-counter" data-from="0" data-to="-${point}" data-speed="2000" data-refresh-interval="50"></span>
 									<span class="fh5co-counter-label">잃은 포인트 </span>
 								</c:if>

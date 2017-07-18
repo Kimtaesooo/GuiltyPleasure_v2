@@ -122,7 +122,6 @@ public class BattlePlay {
 
 	// playRoom.jsp 방 정보 소환, 방 번호로 검색
 	public List roomInfo2(String br_num) {
-		int br_people = 1;
 		ArrayList list = new ArrayList();
 		String sql = "select * from battle_room where br_num ='" + br_num + "'";
 

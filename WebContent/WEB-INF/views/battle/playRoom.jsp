@@ -199,6 +199,7 @@
 			// 유저가 포기하기 버튼은 눌러서 서버로부터 메세지를 받을 때
 			// message = "giveup:" + br_num + ":" + me + "";
 			if (strArray[0] == "giveup" && strArray[1] == br_num) {
+				br_num = strArray[1];
 				giveUpUser = strArray[2];
 				giveUpPage();
 			}

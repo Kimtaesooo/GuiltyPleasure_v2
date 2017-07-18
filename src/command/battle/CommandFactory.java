@@ -37,10 +37,6 @@ public class CommandFactory {
 		else if (cmd.equals("ENTERROOM")) {
 			return new EnterRoomCommand();
 		}
-		// 유저가 게임 포기
-		else if (cmd.equals("GIVEUP")) {
-			return new GiveUpCommand();
-		}
 		return null;
 	}
 }
