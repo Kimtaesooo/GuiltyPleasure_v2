@@ -16,13 +16,11 @@
 <script	src="${pageContext.request.contextPath}/design/bootstrap332/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<input type="text" value="${bangjang}" id="user01">
-	<input type="text" value="${user02}" id="user02">
-	<input type="text" value="${br_num}" id="br_num">
-	<input type="text" value="${br_type}" id="q_type">
-	<input type="text" value="${u_id}" id="me">
-	<input type="text" value="${ip}" id="ip">
-	<input type="text" value="${people}" id="people">
+	<input type="hidden" value="${bangjang}" id="user01">
+	<input type="hidden" value="${br_num}" id="br_num">
+	<input type="hidden" value="${br_type}" id="q_type">
+	<input type="hidden" value="${u_id}" id="me">
+	<input type="hidden" value="${ip}" id="ip">
 	<br>
 	<br>
 	<h3 align=center>배틀 게임 시작</h3>
@@ -42,23 +40,19 @@
 			</div>
 			<div class="col-md-3">
 			<br><br>
-				<a class="btn btn-success btn-lg btn-block" role="button"
-					id="button1" onclick="buttonA()">키패드1</a>
+				<a class="btn btn-success btn-lg btn-block" role="button" id="button1" onclick="buttonA()">키패드1</a>
 			</div>
 			<div class="col-md-3">
 			<br><br>
-				<a class="btn btn-success btn-lg btn-block" role="button"
-					id="button2" onclick="buttonB();">키패드2</a>
+				<a class="btn btn-success btn-lg btn-block" role="button" id="button2" onclick="buttonB();">키패드2</a>
 			</div>
 			<div class="col-md-3">
 			<br><br>
-				<a class="btn btn-success btn-lg btn-block" role="button"
-					id="button3" onclick="buttonC();">키패드3</a>
+				<a class="btn btn-success btn-lg btn-block" role="button" id="button3" onclick="buttonC();">키패드3</a>
 			</div>
 			<div class="col-md-3">
 			<br><br>
-				<a class="btn btn-success btn-lg btn-block" role="button"
-					id="button4" onclick="buttonD();">키패드4</a>
+				<a class="btn btn-success btn-lg btn-block" role="button" id="button4" onclick="buttonD();">키패드4</a>
 			</div>
 		</div>
 
@@ -67,21 +61,16 @@
 				id="connectionCheck" style="background-color: transparent;" readonly></textarea>
 			<br>
 			<div class="col-md-10" id="messageWindow"
-			style="width:300px; height:300px;  overflow-x:hidden; 
- 			overflow-y:auto; 
-			padding:10px; background-color: transparent; border: 1px solid #101010;"></div>
-			<br>
-			<br>
+			style="width:300px; height:300px;  overflow-x:hidden; overflow-y:auto; padding:10px; background-color: transparent; border: 1px solid #101010;"></div>
+			<br><br>
 			<div class="col-xs-9">
 			<br>
-				<input type="text" class="form-control" id="inputMessage"
-					onkeyup="enterkey();">
+				<input type="text" class="form-control" id="inputMessage" onkeyup="enterkey();">
 			</div>
 			
 			<div class="col-xs-3">
 			<br>
-				<input type="button" class="btn btn-default" value="전송"
-					onclick="messagesend();" />
+				<input type="button" class="btn btn-default" value="전송" onclick="messagesend();" />
 				<br><br><br><br>
 			</div>
 			<br> <br> <br>
@@ -90,13 +79,12 @@
 				<a class="btn btn-danger btn-lg btn-block" onclick="giveUp();" role="button">포기</a>
 			</div>
 			<div class="col-xs-6">
-				<a class="btn btn-success btn-lg btn-block" role="button"
-					onclick="gamestart();">시작</a>
+				<a class="btn btn-success btn-lg btn-block" role="button" onclick="gamestart();">시작</a>
 			</div>
 			</c:if>
 			<c:if test="${bangjang ne	 u_id}">
 			<div class="col-xs-12">
-				<a class="btn btn-danger btn-lg btn-block" onclick="giveUp();" role="button">포기하기</a>
+				<a class="btn btn-danger btn-lg btn-block" onclick="giveUp();" role="button">포기</a>
 			</div>
 			</c:if>
 		</div>
@@ -111,11 +99,9 @@
 		var webSocket = new WebSocket("ws://localhost:8080/GuiltyPleasure/battlesocket");
 		var inputMessage = document.getElementById('inputMessage');
 		var user01 = document.getElementById('user01').value;
-		var user02 = document.getElementById('user02').value;
 		var br_num = document.getElementById('br_num').value;
 		var q_type = document.getElementById('q_type').value;
 		var me = document.getElementById('me').value;
-		var people = document.getElementById('people').value;
 		var button1 = document.getElementById('button1');
 		var button2 = document.getElementById('button2');
 		var button3 = document.getElementById('button3');
@@ -125,6 +111,7 @@
 		var but3value;
 		var but4value;
 		var code;
+		var giveUpUser;
 
 		webSocket.onerror = function(event) {
 			onError(event)
@@ -209,6 +196,12 @@
 			if (strArray[0] == "exit" && strArray[1] == br_num) {
 				exit();
 			}
+			// 유저가 포기하기 버튼은 눌러서 서버로부터 메세지를 받을 때
+			// message = "giveup:" + br_num + ":" + me + "";
+			if (strArray[0] == "giveup" && strArray[1] == br_num) {
+				giveUpUser = strArray[2];
+				giveUpPage();
+			}
 		}
 
 		function messagesend() {
@@ -223,14 +216,10 @@
 		}
 
 		// 방장이 게임 시작 버튼을 눌렀을 때
-		function gamestart() {
-			webSocket.send("gameStart:" + br_num + ":" + me + ":" + q_type);
-		}
+		function gamestart() { webSocket.send("gameStart:" + br_num + ":" + me + ":" + q_type);	}
 
 		// 유저가 답을 누르면 다음 문제로 넘어가기 위한 버튼
-		function nextsend() {
-			webSocket.send("nextSend:" + br_num + ":" + me + ":" + q_type);
-		}
+		function nextsend() { webSocket.send("nextSend:" + br_num + ":" + me + ":" + q_type); }
 		
 		// 게임이 끝나고 나간다.
 		function exit() {
@@ -238,33 +227,23 @@
 			window.location.href="/GuiltyPleasure/battle?cmd=EXIT&br_num="+br_num+"";
 		}
 		
-		// 게임을 포기하고 나간다.
-		function giveUp() {
+		// 유저가 포기하기를 눌렀을 때 서버로 메세지 전송
+		function giveUp() { webSocket.send("giveup:" + br_num + ":" + me); }
+		
+		// 유저가 포기하기 눌러서 서버로부터 받은 메세지
+		function giveUpPage(){
 			webSocket.close();
-			window.location.href="/GuiltyPleasure/battle?cmd=GIVEUP&br_num="+br_num+"&u_id="+me+"";
+			window.location.href="/GuiltyPleasure/battle?cmd=GIVEUP&br_num="+br_num+"&giveUpUser="+giveUpUser+"";
 		}
 
-		// 유저가 답을 눌렀을 때
-		function buttonA() {
-			webSocket.send("button:" + br_num + ":" + me + ":" + code + ":"
-					+ but1value);
-		}
-		// 유저가 답을 눌렀을 때
-		function buttonB() {
-			webSocket.send("button:" + br_num + ":" + me + ":" + code + ":"
-					+ but2value);
-		}
-		// 유저가 답을 눌렀을 때
-		function buttonC() {
-			webSocket.send("button:" + br_num + ":" + me + ":" + code + ":"
-					+ but3value);
-		}
-
-		// 유저가 답을 눌렀을 때
-		function buttonD() {
-			webSocket.send("button:" + br_num + ":" + me + ":" + code + ":"
-					+ but4value);
-		}
+		// 유저가 A 답을 눌렀을 때
+		function buttonA() { webSocket.send("button:" + br_num + ":" + me + ":" + code + ":" + but1value); }
+		// 유저가 B 답을 눌렀을 때
+		function buttonB() { webSocket.send("button:" + br_num + ":" + me + ":" + code + ":" + but2value); }
+		// 유저가 C 답을 눌렀을 때
+		function buttonC() { webSocket.send("button:" + br_num + ":" + me + ":" + code + ":" + but3value); }
+		// 유저가 D 답을 눌렀을 때
+		function buttonD() { webSocket.send("button:" + br_num + ":" + me + ":" + code + ":" + but4value); }
 
 		function enterkey() {
 			if (window.event.keyCode == 13) {

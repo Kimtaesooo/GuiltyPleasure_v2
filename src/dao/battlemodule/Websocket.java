@@ -284,6 +284,22 @@ public class Websocket {
 				}
 			}
 		}
+		
+		// 유저가 포기하기를 눌렀을 때 해당 번호를 가진 방 사람들에게 메시지를 전달한다.
+		if (strArray[0].equals("giveup")) {
+			// message : "giveup:" + br_num + ":" + me
+			br_num = strArray[1];
+			me = strArray[2];
+			message = "giveup:" + br_num + ":" + me + "";
+			
+			synchronized (clients) {
+				for (Session client : clients) {
+					client.getBasicRemote().sendText(message);
+				}
+			}
+		}
+		
+		
 
 	}
 
